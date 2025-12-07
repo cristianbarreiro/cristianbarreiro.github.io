@@ -1,10 +1,11 @@
 /**
  * Página Contact
  * Formulario de contacto con validación básica
- * NO conectado a backend - solo muestra console.log
+ * Conectado a EmailJS para envío de emails
  */
 
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import {
     Title,
     Text,
@@ -30,6 +31,11 @@ import {
 } from '@tabler/icons-react';
 import { siteConfig } from '../config/siteConfig';
 
+// Credenciales de EmailJS
+const EMAILJS_SERVICE_ID = 'service_0hsjser';
+const EMAILJS_TEMPLATE_ID = 'template_pzhzwlq';
+const EMAILJS_PUBLIC_KEY = '9JkBfQC-lLp997XZX';
+
 // Estado inicial del formulario
 const initialFormState = {
     name: '',
@@ -47,7 +53,10 @@ function Contact() {
     // Estado para indicar envío exitoso
     const [submitted, setSubmitted] = useState(false);
 
-    // Estado de carga mientras se "envía"
+    // Estado para indicar error en el envío
+    const [submitError, setSubmitError] = useState(false);
+
+    // Estado de carga mientras se envía
     const [loading, setLoading] = useState(false);
 
     /**
@@ -95,16 +104,16 @@ function Contact() {
                 [field]: undefined,
             }));
         }
+
+        // Limpia el error de envío cuando el usuario escribe
+        if (submitError) {
+            setSubmitError(false);
+        }
     };
 
     /**
      * Manejador de envío del formulario
-     * 
-     * NOTA: Este formulario NO está conectado a un backend real.
-     * Aquí podrías integrar:
-     * - EmailJS (https://www.emailjs.com/) para enviar emails desde frontend
-     * - Un backend propio con Express/Node
-     * - Servicios como Formspree, Netlify Forms, etc.
+     * Envía el email usando EmailJS
      */
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -117,26 +126,30 @@ function Contact() {
         }
 
         setLoading(true);
+        setSubmitError(false);
 
-        // Simular envío (en producción, aquí iría la llamada al backend)
-        // eslint-disable-next-line no-console
-        console.log('📧 Datos del formulario de contacto:');
-        // eslint-disable-next-line no-console
-        console.log(formData);
-        // eslint-disable-next-line no-console
-        console.log('---');
-        // eslint-disable-next-line no-console
-        console.log('Para integrar un servicio de email, consulta el README.md');
+        try {
+            // Enviar email con EmailJS
+            await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                formData,
+                EMAILJS_PUBLIC_KEY
+            );
 
-        // Simular delay de red
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+            // Éxito
+            setSubmitted(true);
+            setFormData(initialFormState);
 
-        setLoading(false);
-        setSubmitted(true);
-        setFormData(initialFormState);
-
-        // Ocultar mensaje de éxito después de 5 segundos
-        setTimeout(() => setSubmitted(false), 5000);
+            // Ocultar mensaje de éxito después de 5 segundos
+            setTimeout(() => setSubmitted(false), 5000);
+        } catch (error) {
+            // Error al enviar
+            console.error('Error al enviar el email:', error);
+            setSubmitError(true);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -219,15 +232,17 @@ function Contact() {
                                     Enviar mensaje
                                 </Button>
 
-                                {/* Nota sobre integración */}
-                                <Alert
-                                    icon={<IconAlertCircle size={16} />}
-                                    color="blue"
-                                    variant="light"
-                                    title="Nota:"
-                                >
-                                    Este formulario no está conectado a un backend real.
-                                </Alert>
+                                {/* Mensaje de error */}
+                                {submitError && (
+                                    <Alert
+                                        icon={<IconAlertCircle size={16} />}
+                                        color="red"
+                                        variant="light"
+                                        title="Error al enviar"
+                                    >
+                                        Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo.
+                                    </Alert>
+                                )}
                             </Stack>
                         </form>
                     </Paper>
