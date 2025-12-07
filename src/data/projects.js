@@ -56,7 +56,7 @@ export const projects = [
     },
     {
         id: 3,
-        title: 'Proyectos de frontendmentor',
+        title: 'Proyectos de FrontendMentor',
         description:
             'Desafíos de desarrollo web y diseño, especializados y de frontend. Libertad para elegir lenguajes y herramientas.',
         longDescription:
