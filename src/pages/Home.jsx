@@ -35,7 +35,7 @@ function Home() {
                     <div>
                         <Text
                             size="lg"
-                            fw={500}
+                            fw={300}
                             c={theme.primaryColor}
                             mb="xs"
                         >

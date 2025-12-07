@@ -1,35 +1,36 @@
 /**
- * Estilos globales mínimos
- * La mayoría del estilado se hace con Mantine
- * Este archivo es solo para ajustes específicos
+ * ========================================
+ * ESTILOS GLOBALES
+ * ========================================
+ * La mayoría del estilado se hace con Mantine.
+ * Este archivo contiene ajustes específicos.
+ * 
+ * Índice:
+ * 1. Reset y Base
+ * 2. Tipografía
+ * 3. Transiciones de Tema
+ * 4. Accesibilidad
+ * 5. Utilidades
+ * 6. Animaciones
+ * 7. Video de Fondo
+ * 8. Scrollbar Personalizado
+ * ========================================
  */
 
-/* Reset básico adicional (Mantine ya incluye uno) */
+/* ========================================
+   1. RESET Y BASE
+   ======================================== */
+
 * {
   box-sizing: border-box;
 }
 
-/* Scroll suave para anclas */
 html {
   scroll-behavior: smooth;
 }
 
-/* Asegura que el body ocupe toda la altura */
 body {
   min-height: 100vh;
-}
-
-/* Mejora la legibilidad de texto largo */
-p {
-  line-height: 1.7;
-}
-
-/* Transiciones suaves para el tema claro/oscuro */
-body,
-.mantine-AppShell-root {
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
 }
 
 /* Evita el salto de scroll al abrir modales */
@@ -37,7 +38,14 @@ body.mantine-modal-open {
   padding-right: 0 !important;
 }
 
-/* Estilo para enlaces dentro de párrafos */
+/* ========================================
+   2. TIPOGRAFÍA
+   ======================================== */
+
+p {
+  line-height: 1.7;
+}
+
 p a {
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -47,20 +55,54 @@ p a:hover {
   text-decoration-thickness: 2px;
 }
 
-/* Foco visible para accesibilidad */
+/* ========================================
+   3. TRANSICIONES DE TEMA
+   ======================================== */
+
+body,
+.mantine-AppShell-root {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* ========================================
+   4. ACCESIBILIDAD
+   ======================================== */
+
+/* Foco visible para navegación con teclado */
 :focus-visible {
   outline: 2px solid var(--mantine-color-blue-5);
   outline-offset: 2px;
 }
 
-/* Container principal con max-width legible */
+/* Ocultar visualmente pero mantener accesible para lectores de pantalla */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========================================
+   5. UTILIDADES
+   ======================================== */
+
 .content-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-/* Animación suave para elementos que entran */
+/* ========================================
+   6. ANIMACIONES
+   ======================================== */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -77,30 +119,17 @@ p a:hover {
   animation: fadeInUp 0.5s ease-out forwards;
 }
 
-/* Clase para ocultar visualmente pero mantener accesible */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
 /* ========================================
-   Video de fondo sutil - Solo área principal
+   7. VIDEO DE FONDO
    ======================================== */
 
-/* Contenedor principal con posición relativa - full width pegado al header */
+/* -- 7.1 Contenedor Principal -- */
 .main-content-wrapper {
   position: relative;
   flex: 1;
   overflow: hidden;
   min-height: calc(100vh - 60px - 200px);
-  /* viewport - header - footer aprox */
+  /* viewport - header - footer */
   width: 100vw;
   margin-left: calc(-1 * var(--mantine-spacing-md, 16px));
   margin-right: calc(-1 * var(--mantine-spacing-md, 16px));
@@ -108,7 +137,7 @@ p a:hover {
   padding: var(--mantine-spacing-md, 16px);
 }
 
-/* Video de fondo */
+/* -- 7.2 Elemento de Video -- */
 .background-video {
   position: absolute;
   top: 50%;
@@ -122,21 +151,18 @@ p a:hover {
   object-fit: cover;
   pointer-events: none;
   opacity: 0;
-  /* Dissolve suave entre videos */
   transition: opacity 1.5s ease-in-out;
 }
 
-/* Video activo visible */
 .background-video.video-active {
   opacity: 0.40;
 }
 
-/* Video inactivo oculto */
 .background-video.video-inactive {
   opacity: 0;
 }
 
-/* Overlay con gradiente sutil para mejorar legibilidad */
+/* -- 7.3 Overlay -- */
 .video-overlay {
   position: absolute;
   top: 0;
@@ -151,7 +177,13 @@ p a:hover {
   pointer-events: none;
 }
 
-/* Overlay para modo oscuro */
+/* -- 7.4 Contenido sobre el video -- */
+.content-above-video {
+  position: relative;
+  z-index: 2;
+}
+
+/* -- 7.5 Modo Oscuro -- */
 [data-mantine-color-scheme='dark'] .video-overlay {
   background: linear-gradient(180deg,
       rgba(26, 27, 30, 0.88) 0%,
@@ -159,18 +191,11 @@ p a:hover {
       rgba(26, 27, 30, 0.88) 100%);
 }
 
-/* En modo oscuro, el video activo es un poco más visible */
 [data-mantine-color-scheme='dark'] .background-video.video-active {
   opacity: 0.35;
 }
 
-/* Contenido encima del video y overlay */
-.content-above-video {
-  position: relative;
-  z-index: 2;
-}
-
-/* Reduce motion para accesibilidad */
+/* -- 7.6 Accesibilidad: Movimiento Reducido -- */
 @media (prefers-reduced-motion: reduce) {
   .background-video {
     display: none;
@@ -178,10 +203,16 @@ p a:hover {
 }
 
 /* ========================================
-   Scrollbar personalizado
+   8. SCROLLBAR PERSONALIZADO
    ======================================== */
 
-/* Para navegadores basados en Webkit (Chrome, Safari, Edge) */
+/* -- 8.1 Firefox -- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #228BE6 var(--mantine-color-default-border);
+}
+
+/* -- 8.2 Webkit (Chrome, Safari, Edge) -- */
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
@@ -207,13 +238,7 @@ p a:hover {
   background: #1864ab;
 }
 
-/* Para Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #228BE6 var(--mantine-color-default-border);
-}
-
-/* Modo oscuro - ajuste de contraste */
+/* -- 8.3 Scrollbar Modo Oscuro -- */
 [data-mantine-color-scheme='dark'] ::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
 }
@@ -230,4 +255,3 @@ p a:hover {
 [data-mantine-color-scheme='dark'] ::-webkit-scrollbar-thumb:active {
   background: #4dabf7;
 }
-
