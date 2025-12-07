@@ -43,6 +43,19 @@ const initialFormState = {
     message: '',
 };
 
+/**
+ * Sanitiza texto eliminando tags HTML y scripts potencialmente maliciosos
+ * También elimina caracteres de control y normaliza espacios
+ */
+const sanitize = (text) => {
+    return text
+        .replace(/<[^>]*>/g, '')           // Elimina tags HTML
+        .replace(/javascript:/gi, '')       // Elimina javascript: URLs
+        .replace(/on\w+=/gi, '')            // Elimina event handlers (onclick=, etc.)
+        .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '') // Elimina caracteres de control
+        .trim();
+};
+
 function Contact() {
     // Estado del formulario
     const [formData, setFormData] = useState(initialFormState);
@@ -129,11 +142,18 @@ function Contact() {
         setSubmitError(false);
 
         try {
+            // Sanitizar datos antes de enviar
+            const sanitizedData = {
+                name: sanitize(formData.name),
+                email: sanitize(formData.email),
+                message: sanitize(formData.message),
+            };
+
             // Enviar email con EmailJS
             await emailjs.send(
                 EMAILJS_SERVICE_ID,
                 EMAILJS_TEMPLATE_ID,
-                formData,
+                sanitizedData,
                 EMAILJS_PUBLIC_KEY
             );
 
