@@ -7,7 +7,7 @@ export const siteConfig = {
     // Información personal
     name: 'C·DEV.',
     fullName: 'Cristian Barreiro',
-    title: 'Full-Stack Software Engineer with Infrastructure Experience',
+    title: 'Desarrollador Full-Stack | Web y Software',
     subtitle: 'Estudiante de Tecnólogo en Informática | Apasionado por el desarrollo de software y la tecnología',
     email: 'cristianbarreirofag@gmail.com',
 
