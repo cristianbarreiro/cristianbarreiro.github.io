@@ -16,7 +16,7 @@ export const siteConfig = {
         'Apasionado por crear experiencias web modernas y accesibles. Siempre aprendiendo nuevas tecnologías.',
 
     // Bio más detallada para la página About
-    bio: `Soy Programador Junior y Técnico en Informática, con formación en Bachillerato Tecnológico de Informática y actualmente cursando la carrera de Tecnólogo en Informática.
+    bio: `Soy Programador Mid-Level y Técnico en Informática, con formación en Bachillerato Tecnológico de Informática y actualmente cursando la carrera de Tecnólogo en Informática.
 
 Tengo experiencia en desarrollo de software, administración de redes, mantenimiento de equipos y soporte técnico. Me especializo en crear soluciones prácticas y funcionales enfocadas en las necesidades reales del usuario, utilizando lenguajes como Python, PHP, JavaScript y C#, junto con sus respectivos frameworks y herramientas de desarrollo.
 
