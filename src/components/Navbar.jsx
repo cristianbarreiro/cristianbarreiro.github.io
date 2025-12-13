@@ -86,6 +86,7 @@ function Navbar() {
                                     size="sm"
                                     fw={500}
                                     c={location.pathname === link.path ? theme.primaryColor : 'dimmed'}
+                                    className="menu-link"
                                     style={{
                                         textDecoration: 'none',
                                         padding: '0.5rem 0.75rem',
