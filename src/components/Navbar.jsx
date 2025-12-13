@@ -19,6 +19,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { IconHome, IconUser, IconFolder, IconCode, IconMail } from '@tabler/icons-react';
 import ThemeToggle from './ThemeToggle';
 import { siteConfig } from '../config/siteConfig';
+import { useRef, useEffect } from 'react';
 
 // Definición de enlaces de navegación
 // Cada enlace tiene: path, label, icon
@@ -38,6 +39,14 @@ function Navbar() {
     // Hook para saber la ruta actual (para resaltar enlace activo)
     const location = useLocation();
     const theme = useMantineTheme();
+
+    const inicioRef = useRef(null);
+
+    useEffect(() => {
+        if (location.pathname === '/' && inicioRef.current) {
+            inicioRef.current.focus();
+        }
+    }, [location.pathname]);
 
     return (
         <>
@@ -64,14 +73,14 @@ function Navbar() {
                             <img
                                 src="/logo.svg"
                                 alt={siteConfig.name}
-                                style={{ 
-                                    height: '44px', 
+                                style={{
+                                    height: '44px',
                                     width: 'auto',
                                     display: 'block',
                                     imageRendering: '-webkit-optimize-contrast',
                                     transform: 'scale(2.2)',
                                     transformOrigin: 'left center',
-                                }} 
+                                }}
                             />
                         </Link>
 
@@ -93,6 +102,8 @@ function Navbar() {
                                         borderRadius: theme.radius.sm,
                                         transition: 'color 0.2s ease',
                                     }}
+                                    ref={link.path === '/' ? inicioRef : null} // <--- aquí
+                                    tabIndex={0} // <--- asegura que sea focusables
                                 >
                                     {link.label}
                                 </Text>

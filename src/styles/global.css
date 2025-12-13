@@ -288,3 +288,11 @@ body,
 .menu-link:hover:not(:focus) {
   filter: brightness(1.4);
 }
+
+.menu-link:focus {
+  outline: none;
+}
+
+.menu-link:focus-visible {
+  outline: none;
+}
