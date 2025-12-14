@@ -46,6 +46,7 @@ export const skills = [
         icon: 'IconServer',
         items: [
             { name: 'Node.js', level: 'Avanzado' },
+            { name: 'Bun', level: 'Principiante' },
             { name: 'Express', level: 'Intermedio' },
             { name: 'Apollo GraphQL', level: 'Principiante' },
             { name: 'GraphQL', level: 'Principiante' },
@@ -84,7 +85,7 @@ export const skills = [
             { name: 'GitHub', level: 'Avanzado' },
             { name: 'VS Code', level: 'Avanzado' },
             { name: 'npm', level: 'Avanzado' },
-            { name: 'Vite', level: 'Principiante' },
+            { name: 'Vite', level: 'Intermedio' },
             { name: 'Bash', level: 'Intermedio' },
             { name: 'Docker', level: 'Intermedio' },
             { name: 'Linux', level: 'Avanzado' },
