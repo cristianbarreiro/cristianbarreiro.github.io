@@ -15,6 +15,7 @@ import { siteConfig } from '../config/siteConfig';
 
 // Mapeo de redes sociales a íconos
 // Esto permite añadir nuevas redes fácilmente en siteConfig
+
 const socialIcons = {
     github: IconBrandGithub,
     linkedin: IconBrandLinkedin,
@@ -23,6 +24,7 @@ const socialIcons = {
 };
 
 // Labels para accesibilidad
+
 const socialLabels = {
     github: 'GitHub',
     linkedin: 'LinkedIn',
