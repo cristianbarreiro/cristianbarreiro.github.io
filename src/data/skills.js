@@ -26,6 +26,7 @@ export const skills = [
             { name: 'R', level: 'Principiante' },
             { name: 'Haskell', level: 'Principiante' },
             { name: 'Pascal', level: 'Principiante' },
+            { name: 'Go', level: 'Principiante' },
         ],
     },
     {

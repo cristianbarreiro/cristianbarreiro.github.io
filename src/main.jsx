@@ -31,6 +31,7 @@ import { siteConfig } from './config/siteConfig';
  * 
  * Documentación: https://mantine.dev/theming/theme-object/
  */
+
 const theme = createTheme({
   // Color primario (configurable desde siteConfig.js)
   primaryColor: siteConfig.primaryColor,
@@ -86,6 +87,7 @@ const theme = createTheme({
  * - BrowserRouter: habilita el enrutamiento
  * - MantineProvider: provee el tema y estilos de Mantine
  */
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
