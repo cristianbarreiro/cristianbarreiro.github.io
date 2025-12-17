@@ -1,3 +1,4 @@
+
 /**
  * ========================================
  * ESTILOS GLOBALES
@@ -304,4 +305,18 @@ body,
 
 .menu-link:focus-visible {
   outline: none;
+}
+
+.menu-link.active:hover::before,
+.menu-link.active:hover:not(:focus)::before,
+.menu-link.active::before {
+  opacity: 0 !important;
+  filter: none !important;
+  transform: translate(-50%, -50%) scale(0.1) !important;
+}
+
+.menu-link.active:hover,
+.menu-link.active:hover:not(:focus),
+.menu-link.active {
+  filter: none !important;
 }
