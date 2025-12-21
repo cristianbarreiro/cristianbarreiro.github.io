@@ -21,10 +21,10 @@ export const projects = [
         description:
             'Aplicación de sistema de control de versiones similar a Git en versión consola.',
         longDescription:
-            'Una aplicación por consola que permite a los usuarios gestionar versiones de archivos y proyectos, similar a Git. Incluye funcionalidades como añadir archivo principal, crear versiones, modificarlas y hacer búsquedas deversiones.',
+            'Una aplicación por consola que permite a los usuarios gestionar versiones de archivos y proyectos, similar a Git. Incluye funcionalidades como añadir archivo principal, crear versiones, modificarlas y hacer búsquedas deversiones. (Proyecto privado)',
         image: null,
         tags: ['C', 'C++', 'Librerías del Sistema Operativo', 'Estructuras de Datos'],
-        demoUrl: 'https://github.com/cristianbarreiro/listas_struct/tree/main/estructuras_proyecto(incompleto)',
+        demoUrl: '#',
         repoUrl: 'https://github.com/webosinc/Obligatorio_EDA',
         featured: true,
     },
@@ -32,12 +32,12 @@ export const projects = [
         id: 2,
         title: 'Socratica Social Network',
         description:
-            'Red social para compartir conocimientos y debates, especializada en intercambio cultural.',
+            'Red social para compartir conocimientos y debates, especializada en intercambio cultural. (Proyecto privado)',
         longDescription:
             'Plataforma web que permite a los usuarios crear perfiles, publicar contenido, seguir a otros usuarios y participar en debates sobre diversos temas culturales. Incluye funcionalidades de moderación y personalización de perfiles.',
         image: null,
         tags: ['Laravel', 'API REST', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB'],
-        demoUrl: 'https://github.com/cristianbarreiro/laravel-social-network',
+        demoUrl: '#',
         repoUrl: 'https://github.com/BinaryTech-corp',
         featured: true,
     },
