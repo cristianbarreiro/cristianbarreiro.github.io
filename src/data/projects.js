@@ -19,9 +19,9 @@ export const projects = [
         id: 1,
         title: 'Sistema de Control de Versiones',
         description:
-            'Aplicación de sistema de control de versiones similar a Git en versión consola.',
+            'Aplicación de sistema de control de versiones similar a Git en versión consola. (Proyecto privado)',
         longDescription:
-            'Una aplicación por consola que permite a los usuarios gestionar versiones de archivos y proyectos, similar a Git. Incluye funcionalidades como añadir archivo principal, crear versiones, modificarlas y hacer búsquedas deversiones. (Proyecto privado)',
+            'Una aplicación por consola que permite a los usuarios gestionar versiones de archivos y proyectos, similar a Git. Incluye funcionalidades como añadir archivo principal, crear versiones, modificarlas y hacer búsquedas deversiones.',
         image: null,
         tags: ['C', 'C++', 'Librerías del Sistema Operativo', 'Estructuras de Datos'],
         demoUrl: '#',
