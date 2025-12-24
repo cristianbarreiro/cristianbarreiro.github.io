@@ -36,8 +36,8 @@ Soy una persona adaptable, con pensamiento analítico y un fuerte enfoque en la 
     socialLinks: {
         github: 'https://github.com/cristianbarreiro',
         linkedin: 'https://www.linkedin.com/in/cristian-barreiro-dev',
-        twitter: '#',
-        portfolio: '#',
+        twitter: '',
+        portfolio: 'https://cristianbarreiro.github.io/',
     },
 
     // Configuración del tema de Mantine

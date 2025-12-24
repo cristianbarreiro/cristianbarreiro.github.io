@@ -24,7 +24,7 @@ export const experience = [
         startDate: '2027-03',
         endDate: null,
         description: [
-            'Evaluación de softrware open source, por ejemplo para redes e infraestructura',
+            'Evaluación de software open source, por ejemplo para redes e infraestructura',
             'Desarrollo de aplicaciones',
             'Testing y verificación de programas',
             'Tareas de mantenimiento de sistemas',
