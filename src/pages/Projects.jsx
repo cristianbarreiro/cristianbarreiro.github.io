@@ -16,14 +16,19 @@ import {
 } from '@mantine/core';
 import { IconFilter, IconX } from '@tabler/icons-react';
 import ProjectCard from '../components/ProjectCard';
-import { projects, getAllTags } from '../data/projects';
+import { getProjects, getAllTags } from '../data/projects';
+import { useTranslation } from 'react-i18next';
 
 function Projects() {
+    const { t, i18n } = useTranslation();
+
+    const projects = useMemo(() => getProjects(i18n.resolvedLanguage || i18n.language), [i18n.resolvedLanguage, i18n.language]);
+
     // Estado para el filtro de tecnología seleccionado
     const [selectedTag, setSelectedTag] = useState(null);
 
     // Obtiene todos los tags únicos para el dropdown de filtro
-    const allTags = useMemo(() => getAllTags(), []);
+    const allTags = useMemo(() => getAllTags(projects), [projects]);
 
     // Filtra los proyectos según el tag seleccionado
     // useMemo evita recalcular en cada render si no cambia el filtro
@@ -32,7 +37,7 @@ function Projects() {
             return projects;
         }
         return projects.filter((project) => project.tags.includes(selectedTag));
-    }, [selectedTag]);
+    }, [projects, selectedTag]);
 
     // Ordena para que los destacados aparezcan primero
     const sortedProjects = useMemo(() => {
@@ -49,22 +54,22 @@ function Projects() {
     return (
         <main>
             {/* Encabezado de página */}
-            <section aria-label="Proyectos">
+            <section aria-label={t('projects.aria')}>
                 <Stack gap="xl">
                     <div>
                         <Title order={1} mb="sm">
-                            Proyectos
+                            {t('projects.title')}
                         </Title>
                         <Text size="lg" c="dimmed">
-                            Una selección de proyectos personales y de aprendizaje
+                            {t('projects.subtitle')}
                         </Text>
                     </div>
 
                     {/* Controles de filtrado */}
                     <Group gap="md" align="end" wrap="wrap">
                         <Select
-                            label="Filtrar por tecnología"
-                            placeholder="Todas las tecnologías"
+                            label={t('projects.filterLabel')}
+                            placeholder={t('projects.filterPlaceholder')}
                             data={allTags}
                             value={selectedTag}
                             onChange={setSelectedTag}
@@ -82,7 +87,7 @@ function Projects() {
                                 leftSection={<IconX size={14} />}
                                 onClick={clearFilter}
                             >
-                                Limpiar filtro
+                                {t('projects.clearFilter')}
                             </Button>
                         )}
                     </Group>
@@ -90,7 +95,10 @@ function Projects() {
                     {/* Indicador de resultados */}
                     <Group gap="sm">
                         <Text size="sm" c="dimmed">
-                            Mostrando {sortedProjects.length} de {projects.length} proyectos
+                            {t('projects.showing', {
+                                shown: sortedProjects.length,
+                                total: projects.length,
+                            })}
                         </Text>
                         {selectedTag && (
                             <Badge variant="light" size="sm">
@@ -102,7 +110,7 @@ function Projects() {
             </section>
 
             {/* Grid de proyectos */}
-            <section aria-label="Lista de proyectos" style={{ marginTop: '2rem' }}>
+            <section aria-label={t('projects.listAria')} style={{ marginTop: '2rem' }}>
                 {sortedProjects.length > 0 ? (
                     <Grid gutter="lg">
                         {sortedProjects.map((project) => (
@@ -118,10 +126,10 @@ function Projects() {
                     // Mensaje cuando no hay resultados
                     <Stack align="center" py="xl" gap="md">
                         <Text size="lg" c="dimmed">
-                            No se encontraron proyectos con la tecnología "{selectedTag}"
+                            {t('projects.noResults', { tag: selectedTag })}
                         </Text>
                         <Button variant="light" onClick={clearFilter}>
-                            Ver todos los proyectos
+                            {t('projects.viewAll')}
                         </Button>
                     </Stack>
                 )}

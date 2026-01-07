@@ -30,6 +30,7 @@ import {
     IconAlertCircle,
 } from '@tabler/icons-react';
 import { siteConfig } from '../config/siteConfig';
+import { useTranslation } from 'react-i18next';
 
 // Credenciales de EmailJS
 const EMAILJS_SERVICE_ID = 'service_0hsjser';
@@ -48,15 +49,25 @@ const initialFormState = {
  * También elimina caracteres de control y normaliza espacios
  */
 const sanitize = (text) => {
-    return text
-        .replace(/<[^>]*>/g, '')           // Elimina tags HTML
-        .replace(/javascript:/gi, '')       // Elimina javascript: URLs
-        .replace(/on\w+=/gi, '')            // Elimina event handlers (onclick=, etc.)
-        .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '') // Elimina caracteres de control
-        .trim();
+    const stripped = String(text)
+        .replace(/<[^>]*>/g, '') // Elimina tags HTML
+        .replace(/javascript:/gi, '') // Elimina javascript: URLs
+        .replace(/on\w+=/gi, ''); // Elimina event handlers (onclick=, etc.)
+
+    // Elimina caracteres de control sin usar regex (evita `no-control-regex`)
+    const withoutControlChars = Array.from(stripped)
+        .filter((ch) => {
+            const code = ch.charCodeAt(0);
+            return code === 9 || code === 10 || code === 13 || code >= 32;
+        })
+        .join('');
+
+    return withoutControlChars.trim();
 };
 
 function Contact() {
+    const { t } = useTranslation();
+
     // Estado del formulario
     const [formData, setFormData] = useState(initialFormState);
 
@@ -81,21 +92,21 @@ function Contact() {
 
         // Validar nombre
         if (!formData.name.trim()) {
-            newErrors.name = 'El nombre es requerido';
+            newErrors.name = t('contact.validation.nameRequired');
         }
 
         // Validar email
         if (!formData.email.trim()) {
-            newErrors.email = 'El email es requerido';
+            newErrors.email = t('contact.validation.emailRequired');
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-            newErrors.email = 'El email no es válido';
+            newErrors.email = t('contact.validation.emailInvalid');
         }
 
         // Validar mensaje
         if (!formData.message.trim()) {
-            newErrors.message = 'El mensaje es requerido';
+            newErrors.message = t('contact.validation.messageRequired');
         } else if (formData.message.trim().length < 10) {
-            newErrors.message = 'El mensaje debe tener al menos 10 caracteres';
+            newErrors.message = t('contact.validation.messageMin');
         }
 
         return newErrors;
@@ -175,14 +186,14 @@ function Contact() {
     return (
         <main>
             {/* Encabezado de página */}
-            <section aria-label="Contacto">
+            <section aria-label={t('contact.aria')}>
                 <Stack gap="xl">
                     <div>
                         <Title order={1} mb="sm">
-                            Contacto
+                            {t('contact.title')}
                         </Title>
                         <Text size="lg" c="dimmed">
-                            ¿Tienes un proyecto en mente o quieres colaborar? ¡Escríbeme!
+                            {t('contact.subtitle')}
                         </Text>
                     </div>
                 </Stack>
@@ -198,18 +209,18 @@ function Contact() {
                                 {submitted && (
                                     <Alert
                                         icon={<IconCheck size={16} />}
-                                        title="¡Mensaje enviado!"
+                                        title={t('contact.successTitle')}
                                         color="green"
                                         variant="light"
                                     >
-                                        Gracias por contactarme. Te responderé lo antes posible.
+                                        {t('contact.successBody')}
                                     </Alert>
                                 )}
 
                                 {/* Campo nombre */}
                                 <TextInput
-                                    label="Nombre"
-                                    placeholder="Tu nombre"
+                                    label={t('contact.nameLabel')}
+                                    placeholder={t('contact.namePlaceholder')}
                                     required
                                     value={formData.name}
                                     onChange={handleChange('name')}
@@ -219,8 +230,8 @@ function Contact() {
 
                                 {/* Campo email */}
                                 <TextInput
-                                    label="Email"
-                                    placeholder="tu@email.com"
+                                    label={t('contact.emailLabel')}
+                                    placeholder={t('contact.emailPlaceholder')}
                                     type="email"
                                     required
                                     value={formData.email}
@@ -232,8 +243,8 @@ function Contact() {
 
                                 {/* Campo mensaje */}
                                 <Textarea
-                                    label="Mensaje"
-                                    placeholder="Cuéntame sobre tu proyecto o idea..."
+                                    label={t('contact.messageLabel')}
+                                    placeholder={t('contact.messagePlaceholder')}
                                     required
                                     minRows={5}
                                     value={formData.message}
@@ -249,7 +260,7 @@ function Contact() {
                                     loading={loading}
                                     leftSection={<IconSend size={18} />}
                                 >
-                                    Enviar mensaje
+                                    {t('contact.send')}
                                 </Button>
 
                                 {/* Mensaje de error */}
@@ -258,9 +269,9 @@ function Contact() {
                                         icon={<IconAlertCircle size={16} />}
                                         color="red"
                                         variant="light"
-                                        title="Error al enviar"
+                                        title={t('contact.errorTitle')}
                                     >
-                                        Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo.
+                                        {t('contact.errorBody')}
                                     </Alert>
                                 )}
                             </Stack>
@@ -274,10 +285,10 @@ function Contact() {
                         <Stack gap="lg">
                             <div>
                                 <Title order={2} size="h4" mb="sm">
-                                    Otras formas de contacto
+                                    {t('contact.otherWaysTitle')}
                                 </Title>
                                 <Text size="sm" c="dimmed">
-                                    También puedes encontrarme en estas plataformas:
+                                    {t('contact.otherWaysSubtitle')}
                                 </Text>
                             </div>
 
@@ -288,7 +299,7 @@ function Contact() {
                                 </ThemeIcon>
                                 <div>
                                     <Text size="sm" fw={500}>
-                                        Email
+                                        {t('contact.directEmail')}
                                     </Text>
                                     <Anchor href={`mailto:${siteConfig.email}`} size="sm">
                                         {siteConfig.email}
@@ -311,7 +322,7 @@ function Contact() {
                                             target="_blank"
                                             size="sm"
                                         >
-                                            Ver perfil
+                                            {t('contact.viewProfile')}
                                         </Anchor>
                                     </div>
                                 </Group>
@@ -332,7 +343,7 @@ function Contact() {
                                             target="_blank"
                                             size="sm"
                                         >
-                                            Conectar
+                                            {t('contact.connect')}
                                         </Anchor>
                                     </div>
                                 </Group>
@@ -353,7 +364,7 @@ function Contact() {
                                             target="_blank"
                                             size="sm"
                                         >
-                                            Seguir
+                                            {t('contact.follow')}
                                         </Anchor>
                                     </div>
                                 </Group>

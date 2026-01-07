@@ -12,6 +12,7 @@ import {
     IconWorld,
 } from '@tabler/icons-react';
 import { siteConfig } from '../config/siteConfig';
+import { useTranslation } from 'react-i18next';
 
 // Mapeo de redes sociales a íconos
 // Esto permite añadir nuevas redes fácilmente en siteConfig
@@ -25,14 +26,9 @@ const socialIcons = {
 
 // Labels para accesibilidad
 
-const socialLabels = {
-    github: 'GitHub',
-    linkedin: 'LinkedIn',
-    twitter: 'Twitter',
-    portfolio: 'Sitio web',
-};
-
 function Footer() {
+    const { t } = useTranslation();
+
     // Obtiene las redes sociales que tengan URL definida
     const socialEntries = Object.entries(siteConfig.socialLinks).filter(
         ([, url]) => url && url !== ''
@@ -49,6 +45,8 @@ function Footer() {
                             const Icon = socialIcons[key];
                             if (!Icon) return null;
 
+                            const label = t(`footer.labels.${key}`);
+
                             return (
                                 <ActionIcon
                                     key={key}
@@ -58,7 +56,7 @@ function Footer() {
                                     rel="noopener noreferrer"
                                     size="lg"
                                     variant="subtle"
-                                    aria-label={`Ir a ${socialLabels[key]}`}
+                                    aria-label={t('footer.goTo', { label })}
                                 >
                                     <Icon size={22} stroke={1.5} />
                                 </ActionIcon>

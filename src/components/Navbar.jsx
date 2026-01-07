@@ -18,20 +18,24 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import { IconHome, IconUser, IconFolder, IconCode, IconMail } from '@tabler/icons-react';
 import ThemeToggle from './ThemeToggle';
+import LanguageToggle from './LanguageToggle';
 import { siteConfig } from '../config/siteConfig';
 import { useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 // Definición de enlaces de navegación
 // Cada enlace tiene: path, label, icon
 const navLinks = [
-    { path: '/', label: 'Inicio', icon: IconHome },
-    { path: '/about', label: 'Sobre mí', icon: IconUser },
-    { path: '/projects', label: 'Proyectos', icon: IconFolder },
-    { path: '/skills', label: 'Habilidades', icon: IconCode },
-    { path: '/contact', label: 'Contacto', icon: IconMail },
+    { path: '/', labelKey: 'nav.home', icon: IconHome },
+    { path: '/about', labelKey: 'nav.about', icon: IconUser },
+    { path: '/projects', labelKey: 'nav.projects', icon: IconFolder },
+    { path: '/skills', labelKey: 'nav.skills', icon: IconCode },
+    { path: '/contact', labelKey: 'nav.contact', icon: IconMail },
 ];
 
 function Navbar() {
+    const { t } = useTranslation();
+
     // Estado para el drawer del menú móvil
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
         useDisclosure(false);
@@ -104,20 +108,22 @@ function Navbar() {
                                     ref={link.path === '/' ? inicioRef : null}
                                     tabIndex={0}
                                 >
-                                    {link.label}
+                                    {t(link.labelKey)}
                                 </Text>
                             ))}
                             <ThemeToggle />
+                            <LanguageToggle />
                         </Group>
 
                         {/* Botones móvil (hamburguesa + toggle tema) */}
                         <Group hiddenFrom="sm">
                             <ThemeToggle />
+                            <LanguageToggle />
                             <Burger
                                 opened={drawerOpened}
                                 onClick={toggleDrawer}
                                 size="sm"
-                                aria-label="Abrir menú de navegación"
+                                aria-label={t('nav.openMenu')}
                             />
                         </Group>
                     </Group>
@@ -130,7 +136,7 @@ function Navbar() {
                 onClose={closeDrawer}
                 size="xs"
                 padding="md"
-                title="Navegación"
+                title={t('nav.drawerTitle')}
                 zIndex={200}
             >
                 <Stack gap="xs">
@@ -139,7 +145,7 @@ function Navbar() {
                             key={link.path}
                             component={Link}
                             to={link.path}
-                            label={link.label}
+                            label={t(link.labelKey)}
                             leftSection={<link.icon size={18} />}
                             active={location.pathname === link.path}
                             onClick={closeDrawer}

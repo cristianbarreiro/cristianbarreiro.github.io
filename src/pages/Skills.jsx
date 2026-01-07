@@ -20,8 +20,9 @@ import {
     IconTool,
     IconBulb,
 } from '@tabler/icons-react';
-import { skills, levelColors } from '../data/skills';
+import { getSkills, levelColors } from '../data/skills';
 import SkillTag from '../components/SkillTag';
+import { useTranslation } from 'react-i18next';
 
 // Mapeo de nombres de íconos a componentes
 // Esto permite definir el ícono en los datos como string
@@ -33,33 +34,56 @@ const iconMap = {
 };
 
 // Porcentajes asociados a cada nivel (para la barra de progreso)
-const levelProgress = {
-    Principiante: 33,
-    Intermedio: 66,
-    Avanzado: 100,
+const levelProgressByKey = {
+    beginner: 33,
+    intermediate: 66,
+    advanced: 100,
 };
 
+const levelKeyByLabel = {
+    // ES
+    Principiante: 'beginner',
+    Intermedio: 'intermediate',
+    Avanzado: 'advanced',
+    // EN
+    Beginner: 'beginner',
+    Intermediate: 'intermediate',
+    Advanced: 'advanced',
+};
+
+const levelColorByKey = {
+    beginner: 'blue',
+    intermediate: 'green',
+    advanced: 'grape',
+};
+
+const levelKeys = ['beginner', 'intermediate', 'advanced'];
+
 function Skills() {
+    const { t, i18n } = useTranslation();
+
+    const skills = getSkills(i18n.resolvedLanguage || i18n.language);
+
     return (
         <main>
             {/* Encabezado de página */}
-            <section aria-label="Habilidades">
+            <section aria-label={t('skills.aria')}>
                 <Stack gap="xl">
                     <div>
                         <Title order={1} mb="sm">
-                            Habilidades
+                            {t('skills.title')}
                         </Title>
                         <Text size="lg" c="dimmed">
-                            Tecnologías y herramientas con las que trabajo
+                            {t('skills.subtitle')}
                         </Text>
                     </div>
 
                     {/* Leyenda de niveles */}
                     <Group gap="lg">
-                        {Object.entries(levelColors).map(([level, color]) => (
-                            <Group key={level} gap="xs">
-                                <Badge color={color} variant="light" size="sm">
-                                    {level}
+                        {levelKeys.map((levelKey) => (
+                            <Group key={levelKey} gap="xs">
+                                <Badge color={levelColorByKey[levelKey]} variant="light" size="sm">
+                                    {t(`skills.level.${levelKey}`)}
                                 </Badge>
                             </Group>
                         ))}
@@ -68,7 +92,7 @@ function Skills() {
             </section>
 
             {/* Grid de categorías */}
-            <section aria-label="Categorías de habilidades" style={{ marginTop: '2rem' }}>
+            <section aria-label={t('skills.categoriesAria')} style={{ marginTop: '2rem' }}>
                 <Grid gutter="lg">
                     {skills.map((category) => {
                         // Obtiene el componente de ícono según el nombre
@@ -91,25 +115,41 @@ function Skills() {
                                     <Stack gap="md">
                                         {category.items.map((skill) => (
                                             <div key={skill.name}>
-                                                <Group justify="space-between" mb={5}>
-                                                    <Text size="sm" fw={500}>
-                                                        {skill.name}
-                                                    </Text>
-                                                    <Badge
-                                                        color={levelColors[skill.level]}
-                                                        variant="light"
-                                                        size="xs"
-                                                    >
-                                                        {skill.level}
-                                                    </Badge>
-                                                </Group>
-                                                <Progress
-                                                    value={levelProgress[skill.level]}
-                                                    color={levelColors[skill.level]}
-                                                    size="sm"
-                                                    radius="xl"
-                                                    animated
-                                                />
+                                                {(() => {
+                                                    const levelKey = levelKeyByLabel[skill.level];
+                                                    const badgeColor =
+                                                        levelColors[skill.level] ||
+                                                        (levelKey ? levelColorByKey[levelKey] : 'blue');
+                                                    const progressValue = levelKey
+                                                        ? levelProgressByKey[levelKey]
+                                                        : 0;
+
+                                                    return (
+                                                        <>
+                                                            <Group justify="space-between" mb={5}>
+                                                                <Text size="sm" fw={500}>
+                                                                    {skill.name}
+                                                                </Text>
+                                                                <Badge
+                                                                    color={badgeColor}
+                                                                    variant="light"
+                                                                    size="xs"
+                                                                >
+                                                                    {levelKey
+                                                                        ? t(`skills.level.${levelKey}`)
+                                                                        : ''}
+                                                                </Badge>
+                                                            </Group>
+                                                            <Progress
+                                                                value={progressValue}
+                                                                color={badgeColor}
+                                                                size="sm"
+                                                                radius="xl"
+                                                                animated
+                                                            />
+                                                        </>
+                                                    );
+                                                })()}
                                             </div>
                                         ))}
                                     </Stack>
@@ -121,10 +161,10 @@ function Skills() {
             </section>
 
             {/* Vista alternativa: todas las habilidades como tags */}
-            <section aria-label="Todas las habilidades" style={{ marginTop: '3rem' }}>
+            <section aria-label={t('skills.allSkillsAria')} style={{ marginTop: '3rem' }}>
                 <Paper p="xl" radius="md" withBorder>
                     <Title order={2} size="h4" mb="lg">
-                        Vista rápida
+                        {t('skills.quickViewTitle')}
                     </Title>
                     <Group gap="sm">
                         {skills.flatMap((category) =>

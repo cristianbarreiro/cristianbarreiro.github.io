@@ -14,6 +14,7 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import Skills from './pages/Skills';
 import Contact from './pages/Contact';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Configuración de rutas
@@ -26,6 +27,8 @@ import Contact from './pages/Contact';
  * Cada Route define una página específica
  */
 function App() {
+  const { t } = useTranslation();
+
   return (
     <Routes>
       {/* Layout wrapper con Navbar y Footer */}
@@ -51,7 +54,7 @@ function App() {
           element={
             <div style={{ textAlign: 'center', padding: '4rem' }}>
               <h1>404</h1>
-              <p>Página no encontrada</p>
+              <p>{t('notFound.message')}</p>
             </div>
           }
         />

@@ -6,8 +6,11 @@
 
 import { ActionIcon, useMantineColorScheme, useComputedColorScheme } from '@mantine/core';
 import { IconSun, IconMoon } from '@tabler/icons-react';
+import { useTranslation } from 'react-i18next';
 
 function ThemeToggle() {
+    const { t } = useTranslation();
+
     // Hook de Mantine para controlar el esquema de colores
     const { setColorScheme } = useMantineColorScheme();
 
@@ -27,8 +30,8 @@ function ThemeToggle() {
             radius="md"
             aria-label={
                 computedColorScheme === 'dark'
-                    ? 'Cambiar a modo claro'
-                    : 'Cambiar a modo oscuro'
+                    ? t('theme.toLight')
+                    : t('theme.toDark')
             }
         >
             {/* Muestra el ícono del sol en modo oscuro y la luna en modo claro */}

@@ -14,59 +14,124 @@
  * - featured: si es un proyecto destacado (aparece primero)
  */
 
-export const projects = [
-    {
-        id: 1,
-        title: 'Sistema de Control de Versiones',
-        description:
-            'Aplicación de sistema de control de versiones similar a Git en versión consola. (Proyecto privado)',
-        longDescription:
-            'Una aplicación por consola que permite a los usuarios gestionar versiones de archivos y proyectos, similar a Git. Incluye funcionalidades como añadir archivo principal, crear versiones, modificarlas y hacer búsquedas deversiones.',
-        image: null,
-        tags: ['C', 'C++', 'Librerías del Sistema Operativo', 'Estructuras de Datos'],
-        demoUrl: '#',
-        repoUrl: 'https://github.com/webosinc/Obligatorio_EDA',
-        featured: true,
-    },
-    {
-        id: 2,
-        title: 'Socratica Social Network',
-        description:
-            'Red social para compartir conocimientos y debates, especializada en intercambio cultural. (Proyecto privado)',
-        longDescription:
-            'Plataforma web que permite a los usuarios crear perfiles, publicar contenido, seguir a otros usuarios y participar en debates sobre diversos temas culturales. Incluye funcionalidades de moderación y personalización de perfiles.',
-        image: null,
-        tags: ['Laravel', 'API REST', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB'],
-        demoUrl: '#',
-        repoUrl: 'https://github.com/BinaryTech-corp',
-        featured: true,
-    },
-    {
-        id: 3,
-        title: 'Web de Automotora',
-        description:
-            'Gestionar autos disponibles en el sistema y filtrado. Funcionalides en página de automotora.',
-        longDescription:
-            'Aplicación web que permite a los administradores de una automotora gestionar inventario de vehículos, y poder clasificarlos según nombre, precio, marca, etcétera.',
-        image: null,
-        tags: ['Javascript', 'HTML', 'CSS', 'API Fetch', 'LocalStorage'],
-        demoUrl: 'https://carsauto.vercel.app',
-        repoUrl: 'https://github.com/cristianbarreiro/carsauto',
-        featured: false,
-    },
-    {
-        id: 3,
-        title: 'Proyectos de FrontendMentor',
-        description:
-            'Desafíos de desarrollo web y diseño, especializados y de frontend. Libertad para elegir lenguajes y herramientas.',
-        longDescription:
-            'Colección de proyectos realizados a partir de desafíos de frontendmentor, abarcando diversas técnicas y estilos de desarrollo frontend. En el futuro utilizaré frameworks y compiladores CSS para mejorar el diseño y la experiencia de usuario.',
-        image: null,
-        tags: ['Javascript', 'HTML', 'CSS', 'React', 'SCSS', 'TailwindCSS', 'Bootstrap'],
-        demoUrl: 'https://www.frontendmentor.io/profile/cristianbarreiro',
-        repoUrl: '',
-        featured: false,
-    }
+const projectsByLanguage = {
+    es: [
+        {
+            id: 1,
+            title: 'Sistema de Control de Versiones',
+            description:
+                'Aplicación de sistema de control de versiones similar a Git en versión consola. (Proyecto privado)',
+            longDescription:
+                'Una aplicación por consola que permite a los usuarios gestionar versiones de archivos y proyectos, similar a Git. Incluye funcionalidades como añadir archivo principal, crear versiones, modificarlas y hacer búsquedas de versiones.',
+            image: null,
+            tags: ['C', 'C++', 'Librerías del Sistema Operativo', 'Estructuras de Datos'],
+            demoUrl: '#',
+            repoUrl: 'https://github.com/webosinc/Obligatorio_EDA',
+            featured: true,
+        },
+        {
+            id: 2,
+            title: 'Socratica Social Network',
+            description:
+                'Red social para compartir conocimientos y debates, especializada en intercambio cultural. (Proyecto privado)',
+            longDescription:
+                'Plataforma web que permite a los usuarios crear perfiles, publicar contenido, seguir a otros usuarios y participar en debates sobre diversos temas culturales. Incluye funcionalidades de moderación y personalización de perfiles.',
+            image: null,
+            tags: ['Laravel', 'API REST', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB'],
+            demoUrl: '#',
+            repoUrl: 'https://github.com/BinaryTech-corp',
+            featured: true,
+        },
+        {
+            id: 3,
+            title: 'Web de Automotora',
+            description:
+                'Gestionar autos disponibles en el sistema y filtrado. Funcionalidades en página de automotora.',
+            longDescription:
+                'Aplicación web que permite a los administradores de una automotora gestionar inventario de vehículos y clasificarlos según nombre, precio, marca, etcétera.',
+            image: null,
+            tags: ['Javascript', 'HTML', 'CSS', 'API Fetch', 'LocalStorage'],
+            demoUrl: 'https://carsauto.vercel.app',
+            repoUrl: 'https://github.com/cristianbarreiro/carsauto',
+            featured: false,
+        },
+        {
+            id: 4,
+            title: 'Proyectos de FrontendMentor',
+            description:
+                'Desafíos de desarrollo web y diseño, especializados en frontend. Libertad para elegir lenguajes y herramientas.',
+            longDescription:
+                'Colección de proyectos realizados a partir de desafíos de Frontend Mentor, abarcando diversas técnicas y estilos de desarrollo frontend. En el futuro utilizaré frameworks y compiladores CSS para mejorar el diseño y la experiencia de usuario.',
+            image: null,
+            tags: ['Javascript', 'HTML', 'CSS', 'React', 'SCSS', 'TailwindCSS', 'Bootstrap'],
+            demoUrl: 'https://www.frontendmentor.io/profile/cristianbarreiro',
+            repoUrl: '',
+            featured: false,
+        },
+    ],
+    en: [
+        {
+            id: 1,
+            title: 'Version Control System',
+            description:
+                'Console-based version control system similar to Git. (Private project)',
+            longDescription:
+                'A console application that lets users manage file and project versions, similar to Git. It includes features like adding a main file, creating versions, modifying them, and searching versions.',
+            image: null,
+            tags: ['C', 'C++', 'Operating System Libraries', 'Data Structures'],
+            demoUrl: '#',
+            repoUrl: 'https://github.com/webosinc/Obligatorio_EDA',
+            featured: true,
+        },
+        {
+            id: 2,
+            title: 'Socratica Social Network',
+            description:
+                'A social network for sharing knowledge and debates, focused on cultural exchange. (Private project)',
+            longDescription:
+                'A web platform where users can create profiles, publish content, follow others, and take part in debates about different cultural topics. Includes moderation and profile customization features.',
+            image: null,
+            tags: ['Laravel', 'REST API', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB'],
+            demoUrl: '#',
+            repoUrl: 'https://github.com/BinaryTech-corp',
+            featured: true,
+        },
+        {
+            id: 3,
+            title: 'Car Dealership Website',
+            description:
+                'Manage available cars in the system and filtering. Dealership site features.',
+            longDescription:
+                'A web app that lets dealership admins manage vehicle inventory and classify it by name, price, brand, etc.',
+            image: null,
+            tags: ['JavaScript', 'HTML', 'CSS', 'Fetch API', 'LocalStorage'],
+            demoUrl: 'https://carsauto.vercel.app',
+            repoUrl: 'https://github.com/cristianbarreiro/carsauto',
+            featured: false,
+        },
+        {
+            id: 4,
+            title: 'Frontend Mentor Projects',
+            description:
+                'Web development and design challenges focused on frontend. Freedom to choose languages and tools.',
+            longDescription:
+                'A collection of projects built from Frontend Mentor challenges, covering different techniques and frontend styles. In the future I will use frameworks and CSS tooling to improve design and user experience.',
+            image: null,
+            tags: ['JavaScript', 'HTML', 'CSS', 'React', 'SCSS', 'TailwindCSS', 'Bootstrap'],
+            demoUrl: 'https://www.frontendmentor.io/profile/cristianbarreiro',
+            repoUrl: '',
+            featured: false,
+        },
+    ],
+};
+
+export const getProjects = (language = 'es') => {
+    const lang = (language || 'es').split('-')[0];
+    return projectsByLanguage[lang] || projectsByLanguage.es;
+};
+
+// Compatibilidad: por defecto exporta ES
+export const projects = getProjects('es');
     // {
     //     id: 3,
     //     title: 'E-commerce Landing',
@@ -118,14 +183,14 @@ export const projects = [
     //     repoUrl: 'https://github.com/tu-usuario/scientific-calculator',
     //     featured: false,
     // },
-];
+
 
 /**
  * Obtiene todos los tags únicos de los proyectos
  * Útil para crear filtros
  */
-export const getAllTags = () => {
-    const allTags = projects.flatMap((project) => project.tags);
+export const getAllTags = (list = projects) => {
+    const allTags = (list || []).flatMap((project) => project.tags);
     return [...new Set(allTags)].sort();
 };
 

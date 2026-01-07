@@ -8,8 +8,13 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { MantineProvider, createTheme } from '@mantine/core';
 
+import { I18nextProvider } from 'react-i18next';
+
 // Estilos de Mantine (¡importante importar!)
 import '@mantine/core/styles.css';
+
+// Inicializa i18next (idiomas) al arrancar la app
+import i18n from './i18n';
 
 // Estilos globales personalizados
 import './styles/global.css';
@@ -90,10 +95,12 @@ const theme = createTheme({
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <MantineProvider theme={theme} defaultColorScheme="auto">
-        <App />
-      </MantineProvider>
-    </BrowserRouter>
+    <I18nextProvider i18n={i18n}>
+      <BrowserRouter>
+        <MantineProvider theme={theme} defaultColorScheme="auto">
+          <App />
+        </MantineProvider>
+      </BrowserRouter>
+    </I18nextProvider>
   </React.StrictMode>
 );

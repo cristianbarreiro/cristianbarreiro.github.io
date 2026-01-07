@@ -14,6 +14,7 @@ import {
     useMantineTheme,
 } from '@mantine/core';
 import { IconExternalLink, IconBrandGithub } from '@tabler/icons-react';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Props del componente:
@@ -27,6 +28,7 @@ import { IconExternalLink, IconBrandGithub } from '@tabler/icons-react';
  */
 function ProjectCard({ project }) {
     const theme = useMantineTheme();
+    const { t } = useTranslation();
 
     return (
         <Card
@@ -53,7 +55,7 @@ function ProjectCard({ project }) {
                     size="sm"
                     style={{ position: 'absolute', top: 10, right: 10 }}
                 >
-                    Destacado
+                    {t('projectCard.featured')}
                 </Badge>
             )}
 
@@ -92,7 +94,7 @@ function ProjectCard({ project }) {
                         size="xs"
                         leftSection={<IconExternalLink size={14} />}
                     >
-                        Demo
+                        {t('projectCard.demo')}
                     </Button>
                 )}
 
@@ -107,7 +109,7 @@ function ProjectCard({ project }) {
                         size="xs"
                         leftSection={<IconBrandGithub size={14} />}
                     >
-                        Código
+                        {t('projectCard.code')}
                     </Button>
                 )}
             </Group>

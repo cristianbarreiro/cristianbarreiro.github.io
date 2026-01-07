@@ -16,14 +16,16 @@ import {
 } from '@mantine/core';
 import { IconArrowRight, IconMail } from '@tabler/icons-react';
 import { siteConfig } from '../config/siteConfig';
+import { useTranslation } from 'react-i18next';
 
 function Home() {
     const theme = useMantineTheme();
+    const { t } = useTranslation();
 
     return (
         <main>
             {/* Hero Section */}
-            <section aria-label="Presentación">
+            <section aria-label={t('home.presentationAria')}>
                 <Stack
                     align="center"
                     justify="center"
@@ -39,7 +41,7 @@ function Home() {
                             c={theme.primaryColor}
                             mb="xs"
                         >
-                            ¡Hola! 👋 Soy
+                            {t('home.greeting')}
                         </Text>
                         <Title
                             order={1}
@@ -57,7 +59,7 @@ function Home() {
 
                     {/* Subtítulo / rol */}
                     <Title order={2} size="h2" fw={400} c="dimmed">
-                        {siteConfig.title}
+                        {t('site.title')}
                     </Title>
 
                     {/* Descripción del hero */}
@@ -67,7 +69,7 @@ function Home() {
                         maw={600}
                         style={{ lineHeight: 1.7 }}
                     >
-                        {siteConfig.heroDescription}
+                        {t('site.heroDescription')}
                     </Text>
 
                     {/* Botones CTA (Call to Action) */}
@@ -78,7 +80,7 @@ function Home() {
                             size="lg"
                             rightSection={<IconArrowRight size={18} />}
                         >
-                            Ver proyectos
+                            {t('home.viewProjects')}
                         </Button>
                         <Button
                             component={Link}
@@ -87,14 +89,14 @@ function Home() {
                             variant="outline"
                             leftSection={<IconMail size={18} />}
                         >
-                            Contactar
+                            {t('home.contact')}
                         </Button>
                     </Group>
                 </Stack>
             </section>
 
             {/* Sección "Sobre mí" breve */}
-            <section aria-label="Resumen">
+            <section aria-label={t('home.summaryAria')}>
                 <Container size="sm" py="xl">
                     <Paper
                         p="xl"
@@ -105,10 +107,10 @@ function Home() {
                         }}
                     >
                         <Title order={3} size="h4" mb="md">
-                            Un poco sobre mí
+                            {t('home.aboutBriefTitle')}
                         </Title>
                         <Text size="md" c="dimmed" style={{ whiteSpace: 'pre-line' }}>
-                            {siteConfig.bio.split('\n').slice(0, 2).join('\n')}
+                            {t('site.bio').split('\n').slice(0, 2).join('\n')}
                         </Text>
                         <Button
                             component={Link}
@@ -117,7 +119,7 @@ function Home() {
                             mt="md"
                             rightSection={<IconArrowRight size={16} />}
                         >
-                            Conocer más
+                            {t('home.knowMore')}
                         </Button>
                     </Paper>
                 </Container>

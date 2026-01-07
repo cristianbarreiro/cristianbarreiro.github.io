@@ -21,29 +21,32 @@ import {
     IconHeart,
     IconUser,
 } from '@tabler/icons-react';
-import { siteConfig } from '../config/siteConfig';
 import {
-    experience,
     getWorkExperience,
     getEducation,
     formatDate,
 } from '../data/experience';
+import { useTranslation } from 'react-i18next';
 
 function About() {
-    const workExperience = getWorkExperience();
-    const education = getEducation();
+    const { t, i18n } = useTranslation();
+
+    const language = i18n.resolvedLanguage || i18n.language;
+
+    const workExperience = getWorkExperience(language);
+    const education = getEducation(language);
 
     return (
         <main>
             {/* Encabezado de página */}
-            <section aria-label="Sobre mí">
+            <section aria-label={t('about.aria')}>
                 <Stack gap="xl">
                     <div>
                         <Title order={1} mb="sm">
-                            Sobre mí
+                            {t('about.title')}
                         </Title>
                         <Text size="lg" c="dimmed">
-                            {siteConfig.subtitle}
+                            {t('site.subtitle')}
                         </Text>
                     </div>
 
@@ -54,14 +57,14 @@ function About() {
                                 <IconUser size={20} />
                             </ThemeIcon>
                             <Title order={2} size="h3">
-                                Biografía
+                                {t('about.bioTitle')}
                             </Title>
                         </Group>
                         <Text
                             size="md"
                             style={{ whiteSpace: 'pre-line', lineHeight: 1.8 }}
                         >
-                            {siteConfig.bio}
+                            {t('site.bio')}
                         </Text>
                     </Paper>
 
@@ -72,11 +75,11 @@ function About() {
                                 <IconHeart size={20} />
                             </ThemeIcon>
                             <Title order={2} size="h3">
-                                Intereses
+                                {t('about.interestsTitle')}
                             </Title>
                         </Group>
                         <Group gap="sm">
-                            {siteConfig.interests.map((interest) => (
+                            {t('site.interests', { returnObjects: true }).map((interest) => (
                                 <Badge key={interest} variant="light" size="lg" radius="sm">
                                     {interest}
                                 </Badge>
@@ -87,7 +90,7 @@ function About() {
             </section>
 
             {/* Experiencia y Educación */}
-            <section aria-label="Experiencia y educación">
+            <section aria-label={t('about.experienceEducationAria')}>
                 <Grid mt="xl" gutter="xl">
                     {/* Experiencia laboral */}
                     <Grid.Col span={{ base: 12, md: 6 }}>
@@ -97,7 +100,7 @@ function About() {
                                     <IconBriefcase size={20} />
                                 </ThemeIcon>
                                 <Title order={2} size="h3">
-                                    Experiencia
+                                    {t('about.experienceTitle')}
                                 </Title>
                             </Group>
 
@@ -112,7 +115,7 @@ function About() {
                                             {exp.organization}
                                         </Text>
                                         <Text size="xs" c="dimmed" mt={4}>
-                                            {formatDate(exp.startDate)} - {formatDate(exp.endDate)}
+                                            {formatDate(exp.startDate, i18n.language)} - {formatDate(exp.endDate, i18n.language)}
                                         </Text>
                                         <Stack gap="xs" mt="sm">
                                             {exp.description.slice(0, 2).map((item, index) => (
@@ -135,7 +138,7 @@ function About() {
                                     <IconSchool size={20} />
                                 </ThemeIcon>
                                 <Title order={2} size="h3">
-                                    Educación
+                                    {t('about.educationTitle')}
                                 </Title>
                             </Group>
 
@@ -150,7 +153,7 @@ function About() {
                                             {edu.organization}
                                         </Text>
                                         <Text size="xs" c="dimmed" mt={4}>
-                                            {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
+                                            {formatDate(edu.startDate, i18n.language)} - {formatDate(edu.endDate, i18n.language)}
                                         </Text>
                                         <Stack gap="xs" mt="sm">
                                             {edu.description.slice(0, 2).map((item, index) => (
