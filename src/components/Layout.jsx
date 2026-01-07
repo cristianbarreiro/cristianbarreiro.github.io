@@ -25,37 +25,72 @@ function Layout() {
         let currentActive = 1;
         let isTransitioning = false;
 
-        const checkAndSwitch = () => {
+        const startTransition = () => {
+            if (isTransitioning) return;
+
             const currentVideo = currentActive === 1 ? video1 : video2;
             const nextVideo = currentActive === 1 ? video2 : video1;
 
-            if (!currentVideo.duration || isTransitioning) return;
+            isTransitioning = true;
+
+            nextVideo.currentTime = 0;
+            nextVideo.play().catch(() => { });
+
+            currentActive = currentActive === 1 ? 2 : 1;
+            setActiveVideo(currentActive);
+
+            // Después del dissolve, pausar y resetear el anterior.
+            setTimeout(() => {
+                currentVideo.pause();
+                try {
+                    currentVideo.currentTime = 0;
+                } catch {
+                    // Ignorar si no se puede setear por estado del media.
+                }
+                isTransitioning = false;
+            }, (DISSOLVE_TIME * 1000) + 200);
+        };
+
+        const checkAndSwitch = () => {
+            const currentVideo = currentActive === 1 ? video1 : video2;
+
+            // Reintento de playback si quedó pausado.
+            if (currentVideo.paused && !currentVideo.ended) {
+                currentVideo.play().catch(() => { });
+            }
+
+            // Si todavía no hay metadata (duration NaN/0), no podemos calcular el dissolve.
+            if (!Number.isFinite(currentVideo.duration) || currentVideo.duration <= 0) return;
 
             const timeRemaining = currentVideo.duration - currentVideo.currentTime;
-
-            // Iniciar dissolve antes de que termine
-            if (timeRemaining <= DISSOLVE_TIME && timeRemaining > 0) {
-                isTransitioning = true;
-                nextVideo.currentTime = 0;
-                nextVideo.play().catch(() => { });
-                currentActive = currentActive === 1 ? 2 : 1;
-                setActiveVideo(currentActive);
-
-                // Reset después de que termine el dissolve
-                setTimeout(() => {
-                    isTransitioning = false;
-                }, (DISSOLVE_TIME * 1000) + 200);
+            if (timeRemaining <= DISSOLVE_TIME) {
+                startTransition();
             }
+        };
+
+        const handleEnded = (endedVideo) => {
+            // Sólo reaccionar si terminó el video que estaba activo.
+            const currentVideo = currentActive === 1 ? video1 : video2;
+            if (endedVideo !== currentVideo) return;
+            startTransition();
         };
 
         // Monitorear cada 100ms
         const interval = setInterval(checkAndSwitch, 100);
+
+        // Fallback extra: si el activo llega a ended y el intervalo no lo detecta a tiempo.
+        const onEnded1 = () => handleEnded(video1);
+        const onEnded2 = () => handleEnded(video2);
+        video1.addEventListener('ended', onEnded1);
+        video2.addEventListener('ended', onEnded2);
 
         // Iniciar el primer video
         video1.play().catch(() => { });
 
         return () => {
             clearInterval(interval);
+            video1.removeEventListener('ended', onEnded1);
+            video2.removeEventListener('ended', onEnded2);
         };
     }, []);
 
@@ -84,6 +119,7 @@ function Layout() {
                     <video
                         ref={video1Ref}
                         className={`background-video ${activeVideo === 1 ? 'video-active' : 'video-inactive'}`}
+                        preload="auto"
                         muted
                         playsInline
                         aria-hidden="true"
@@ -94,6 +130,7 @@ function Layout() {
                     <video
                         ref={video2Ref}
                         className={`background-video ${activeVideo === 2 ? 'video-active' : 'video-inactive'}`}
+                        preload="auto"
                         muted
                         playsInline
                         aria-hidden="true"
