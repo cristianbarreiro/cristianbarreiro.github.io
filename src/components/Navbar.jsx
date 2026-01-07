@@ -73,18 +73,12 @@ function Navbar() {
                                 textDecoration: 'none',
                                 display: 'flex',
                                 alignItems: 'center',
+                                minWidth: 0,
                             }}>
                             <img
                                 src="/logo.svg"
                                 alt={siteConfig.name}
-                                style={{
-                                    height: '44px',
-                                    width: 'auto',
-                                    display: 'block',
-                                    imageRendering: '-webkit-optimize-contrast',
-                                    transform: 'scale(2.2)',
-                                    transformOrigin: 'left center',
-                                }}
+                                className="navbar-logo"
                             />
                         </Link>
 

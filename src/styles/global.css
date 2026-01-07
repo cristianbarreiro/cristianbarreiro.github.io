@@ -30,8 +30,20 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
 body {
   min-height: 100vh;
+}
+
+img,
+video {
+  max-width: 100%;
 }
 
 /* Evita el salto de scroll al abrir modales */
@@ -131,11 +143,28 @@ body,
   overflow: hidden;
   min-height: calc(100vh - 60px - 200px);
   /* viewport - header - footer */
-  width: 100vw;
+  width: calc(
+    100% + var(--mantine-spacing-md, 16px) + var(--mantine-spacing-md, 16px)
+  );
   margin-left: calc(-1 * var(--mantine-spacing-md, 16px));
   margin-right: calc(-1 * var(--mantine-spacing-md, 16px));
   margin-top: calc(-1 * var(--mantine-spacing-md, 16px));
   padding: var(--mantine-spacing-md, 16px);
+}
+
+.navbar-logo {
+  height: 44px;
+  width: auto;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  transform: scale(2.2);
+  transform-origin: left center;
+}
+
+@media (max-width: 36em) {
+  .navbar-logo {
+    transform: none;
+  }
 }
 
 /* -- 7.2 Elemento de Video -- */
