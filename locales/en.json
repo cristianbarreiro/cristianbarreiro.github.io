@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact",
+    "drawerTitle": "Navigation",
+    "openMenu": "Open navigation menu"
+  },
+  "theme": {
+    "toLight": "Switch to light mode",
+    "toDark": "Switch to dark mode"
+  },
+  "language": {
+    "toggle": "Switch language ({{next}})"
+  },
+  "home": {
+    "presentationAria": "Introduction",
+    "summaryAria": "Summary",
+    "greeting": "Hi! 👋 I'm",
+    "viewProjects": "View projects",
+    "contact": "Contact",
+    "aboutBriefTitle": "A bit about me",
+    "knowMore": "Learn more"
+  },
+  "about": {
+    "aria": "About",
+    "title": "About",
+    "bioTitle": "Biography",
+    "interestsTitle": "Interests",
+    "experienceEducationAria": "Experience and education",
+    "experienceTitle": "Experience",
+    "educationTitle": "Education"
+  },
+  "projects": {
+    "aria": "Projects",
+    "listAria": "Project list",
+    "title": "Projects",
+    "subtitle": "A selection of personal and learning projects",
+    "filterLabel": "Filter by technology",
+    "filterPlaceholder": "All technologies",
+    "clearFilter": "Clear filter",
+    "showing": "Showing {{shown}} of {{total}} projects",
+    "noResults": "No projects found with the \"{{tag}}\" technology",
+    "viewAll": "View all projects"
+  },
+  "projectCard": {
+    "featured": "Featured",
+    "demo": "Demo",
+    "code": "Code"
+  },
+  "skills": {
+    "aria": "Skills",
+    "title": "Skills",
+    "subtitle": "Technologies and tools I work with",
+    "categoriesAria": "Skill categories",
+    "allSkillsAria": "All skills",
+    "quickViewTitle": "Quick view",
+    "level": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    }
+  },
+  "notFound": {
+    "message": "Page not found"
+  },
+  "contact": {
+    "aria": "Contact",
+    "title": "Contact",
+    "subtitle": "Do you have a project in mind or want to collaborate? Message me!",
+    "successTitle": "Message sent!",
+    "successBody": "Thanks for reaching out. I'll get back to you as soon as possible.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@email.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell me about your project or idea...",
+    "send": "Send message",
+    "errorTitle": "Send error",
+    "errorBody": "There was a problem sending your message. Please try again.",
+    "otherWaysTitle": "Other ways to reach me",
+    "otherWaysSubtitle": "You can also find me on these platforms:",
+    "directEmail": "Email",
+    "viewProfile": "View profile",
+    "connect": "Connect",
+    "follow": "Follow",
+    "validation": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Email is not valid",
+      "messageRequired": "Message is required",
+      "messageMin": "Message must be at least 10 characters"
+    }
+  },
+  "footer": {
+    "labels": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter",
+      "portfolio": "Website"
+    },
+    "goTo": "Go to {{label}}"
+  },
+  "site": {
+    "title": "Full-Stack Developer | Web & Software",
+    "subtitle": "IT Technologist student | Passionate about software development and technology",
+    "heroDescription": "Passionate about building modern, accessible web experiences. Always learning new technologies.",
+    "bio": "I'm a Programmer and IT Technician, with a background in a Technical High School program in IT and currently pursuing an IT Technologist degree.\n\nI have experience in software development, network administration, equipment maintenance, and technical support. I specialize in building practical, functional solutions focused on real user needs, using languages such as Python, PHP, JavaScript, and C#, along with their respective frameworks and development tools.\n\nI'm an adaptable person with analytical thinking and a strong focus on efficient problem-solving. I enjoy working in collaborative teams, bringing innovative ideas, and taking on technical responsibilities that contribute to project success. I'm motivated to actively participate in different areas of the IT environment, always aiming to improve processes and deliver high-quality solutions.",
+    "interests": [
+      "Full-stack development",
+      "UI/UX design",
+      "Open source",
+      "Continuous learning",
+      "Teamwork",
+      "Problem solving"
+    ]
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "contact": "Contacto",
+    "drawerTitle": "Navegación",
+    "openMenu": "Abrir menú de navegación"
+  },
+  "theme": {
+    "toLight": "Cambiar a modo claro",
+    "toDark": "Cambiar a modo oscuro"
+  },
+  "language": {
+    "toggle": "Cambiar idioma ({{next}})"
+  },
+  "home": {
+    "presentationAria": "Presentación",
+    "summaryAria": "Resumen",
+    "greeting": "¡Hola! 👋 Soy",
+    "viewProjects": "Ver proyectos",
+    "contact": "Contactar",
+    "aboutBriefTitle": "Un poco sobre mí",
+    "knowMore": "Conocer más"
+  },
+  "about": {
+    "aria": "Sobre mí",
+    "title": "Sobre mí",
+    "bioTitle": "Biografía",
+    "interestsTitle": "Intereses",
+    "experienceEducationAria": "Experiencia y educación",
+    "experienceTitle": "Experiencia",
+    "educationTitle": "Educación"
+  },
+  "projects": {
+    "aria": "Proyectos",
+    "listAria": "Lista de proyectos",
+    "title": "Proyectos",
+    "subtitle": "Una selección de proyectos personales y de aprendizaje",
+    "filterLabel": "Filtrar por tecnología",
+    "filterPlaceholder": "Todas las tecnologías",
+    "clearFilter": "Limpiar filtro",
+    "showing": "Mostrando {{shown}} de {{total}} proyectos",
+    "noResults": "No se encontraron proyectos con la tecnología \"{{tag}}\"",
+    "viewAll": "Ver todos los proyectos"
+  },
+  "projectCard": {
+    "featured": "Destacado",
+    "demo": "Demo",
+    "code": "Código"
+  },
+  "skills": {
+    "aria": "Habilidades",
+    "title": "Habilidades",
+    "subtitle": "Tecnologías y herramientas con las que trabajo",
+    "categoriesAria": "Categorías de habilidades",
+    "allSkillsAria": "Todas las habilidades",
+    "quickViewTitle": "Vista rápida",
+    "level": {
+      "beginner": "Principiante",
+      "intermediate": "Intermedio",
+      "advanced": "Avanzado"
+    }
+  },
+  "notFound": {
+    "message": "Página no encontrada"
+  },
+  "contact": {
+    "aria": "Contacto",
+    "title": "Contacto",
+    "subtitle": "¿Tienes un proyecto en mente o quieres colaborar? ¡Escríbeme!",
+    "successTitle": "¡Mensaje enviado!",
+    "successBody": "Gracias por contactarme. Te responderé lo antes posible.",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "emailLabel": "Email",
+    "emailPlaceholder": "tu@email.com",
+    "messageLabel": "Mensaje",
+    "messagePlaceholder": "Cuéntame sobre tu proyecto o idea...",
+    "send": "Enviar mensaje",
+    "errorTitle": "Error al enviar",
+    "errorBody": "Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo.",
+    "otherWaysTitle": "Otras formas de contacto",
+    "otherWaysSubtitle": "También puedes encontrarme en estas plataformas:",
+    "directEmail": "Email",
+    "viewProfile": "Ver perfil",
+    "connect": "Conectar",
+    "follow": "Seguir",
+    "validation": {
+      "nameRequired": "El nombre es requerido",
+      "emailRequired": "El email es requerido",
+      "emailInvalid": "El email no es válido",
+      "messageRequired": "El mensaje es requerido",
+      "messageMin": "El mensaje debe tener al menos 10 caracteres"
+    }
+  },
+  "footer": {
+    "labels": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter",
+      "portfolio": "Sitio web"
+    },
+    "goTo": "Ir a {{label}}"
+  },
+  "site": {
+    "title": "Desarrollador Full-Stack | Web y Software",
+    "subtitle": "Estudiante de Tecnólogo en Informática | Apasionado por el desarrollo de software y la tecnología",
+    "heroDescription": "Apasionado por crear experiencias web modernas y accesibles. Siempre aprendiendo nuevas tecnologías.",
+    "bio": "Soy Programador y Técnico en Informática, con formación en Bachillerato Tecnológico de Informática y actualmente cursando la carrera de Tecnólogo en Informática.\n\nTengo experiencia en desarrollo de software, administración de redes, mantenimiento de equipos y soporte técnico. Me especializo en crear soluciones prácticas y funcionales enfocadas en las necesidades reales del usuario, utilizando lenguajes como Python, PHP, JavaScript y C#, junto con sus respectivos frameworks y herramientas de desarrollo.\n\nSoy una persona adaptable, con pensamiento analítico y un fuerte enfoque en la resolución eficiente de problemas. Disfruto trabajar en equipos colaborativos, aportar ideas innovadoras y asumir responsabilidades técnicas que contribuyan al éxito de los proyectos. Me motiva participar activamente en distintas áreas del entorno TI, siempre orientado a mejorar procesos y desarrollar soluciones de calidad.",
+    "interests": [
+      "Desarrollo Fullstack",
+      "UI/UX Design",
+      "Código abierto",
+      "Aprendizaje continuo",
+      "Trabajo en equipo",
+      "Resolución de problemas"
+    ]
+  }
+}
