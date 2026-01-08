@@ -128,6 +128,27 @@ body,
   padding: 0 1rem;
 }
 
+/* Hover: movimiento horizontal solo para IconArrowRight */
+.icon-arrow-right {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.mantine-Button-root:hover .icon-arrow-right,
+.mantine-ActionIcon-root:hover .icon-arrow-right,
+.mantine-Anchor-root:hover .icon-arrow-right,
+a:hover .icon-arrow-right,
+button:hover .icon-arrow-right {
+  transform: translateX(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon-arrow-right {
+    transition: none;
+  }
+}
+
 /* ========================================
    6. ANIMACIONES
    ======================================== */

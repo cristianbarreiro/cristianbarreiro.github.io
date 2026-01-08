@@ -78,7 +78,12 @@ function Home() {
                             component={Link}
                             to="/projects"
                             size="lg"
-                            rightSection={<IconArrowRight size={18} />}
+                            rightSection={
+                                <IconArrowRight
+                                    size={18}
+                                    className="icon-arrow-right"
+                                />
+                            }
                         >
                             {t('home.viewProjects')}
                         </Button>
@@ -117,7 +122,12 @@ function Home() {
                             to="/about"
                             variant="subtle"
                             mt="md"
-                            rightSection={<IconArrowRight size={16} />}
+                            rightSection={
+                                <IconArrowRight
+                                    size={16}
+                                    className="icon-arrow-right"
+                                />
+                            }
                         >
                             {t('home.knowMore')}
                         </Button>
