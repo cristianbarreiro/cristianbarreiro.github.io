@@ -80,6 +80,25 @@ body,
 }
 
 /* ========================================
+   3.1 AJUSTES DARK MODE (más soft/moderno)
+   ======================================== */
+
+/* Mantine aplica data-mantine-color-scheme en el elemento root (html). */
+:root[data-mantine-color-scheme='dark'] {
+  /* Fondo más suave (y consistente en toda la app) */
+  --mantine-color-body: var(--mantine-color-dark-8);
+
+  /* Texto más “blanquecino” */
+  --mantine-color-text: var(--mantine-color-gray-0);
+
+  /* Texto secundario menos gris apagado */
+  --mantine-color-dimmed: var(--mantine-color-gray-2);
+
+  /* Bordes un poco más suaves */
+  --mantine-color-default-border: var(--mantine-color-dark-5);
+}
+
+/* ========================================
    4. ACCESIBILIDAD
    ======================================== */
 
@@ -141,6 +160,12 @@ body,
   position: relative;
   flex: 1;
   overflow: hidden;
+
+  /* Ajustes rápidos (modo claro por defecto) */
+  --bg-video-opacity: 0.55;
+  --bg-overlay-top: 0.35;
+  --bg-overlay-mid: 0.25;
+  --bg-overlay-bot: 0.35;
   min-height: calc(100vh - 60px - 200px);
   /* viewport - header - footer */
   width: calc(
@@ -170,13 +195,9 @@ body,
 /* -- 7.2 Elemento de Video -- */
 .background-video {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
   width: 100%;
-  max-width: 100vw;
-  min-height: 100%;
-  height: auto;
+  height: 100%;
   z-index: 0;
   object-fit: cover;
   pointer-events: none;
@@ -185,7 +206,7 @@ body,
 }
 
 .background-video.video-active {
-  opacity: 0.40;
+  opacity: var(--bg-video-opacity);
 }
 
 .background-video.video-inactive {
@@ -201,9 +222,9 @@ body,
   bottom: 0;
   z-index: 1;
   background: linear-gradient(180deg,
-      rgba(255, 255, 255, 0.55) 0%,
-      rgba(255, 255, 255, 0.45) 50%,
-      rgba(255, 255, 255, 0.55) 100%);
+      rgba(255, 255, 255, var(--bg-overlay-top)) 0%,
+      rgba(255, 255, 255, var(--bg-overlay-mid)) 50%,
+      rgba(255, 255, 255, var(--bg-overlay-bot)) 100%);
   pointer-events: none;
 }
 
@@ -214,15 +235,18 @@ body,
 }
 
 /* -- 7.5 Modo Oscuro -- */
+[data-mantine-color-scheme='dark'] .main-content-wrapper {
+  --bg-video-opacity: 0.38;
+  --bg-overlay-top: 0.88;
+  --bg-overlay-mid: 0.78;
+  --bg-overlay-bot: 0.88;
+}
+
 [data-mantine-color-scheme='dark'] .video-overlay {
   background: linear-gradient(180deg,
       rgba(26, 27, 30, 0.88) 0%,
       rgba(26, 27, 30, 0.78) 50%,
       rgba(26, 27, 30, 0.88) 100%);
-}
-
-[data-mantine-color-scheme='dark'] .background-video.video-active {
-  opacity: 0.35;
 }
 
 /* -- 7.6 Accesibilidad: Movimiento Reducido -- */
