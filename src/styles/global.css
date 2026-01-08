@@ -375,6 +375,42 @@ body,
     border-radius: var(--menu-link-hover-radius);
 }
 
+/* Shimmer SOLO en hover (y NO en el link activo/selected) */
+@keyframes menuLinkTextShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .menu-link:hover:not(.active) {
+    background-image: linear-gradient(
+      110deg,
+      var(--mantine-color-text) 0%,
+      var(--mantine-color-text) 38%,
+      color-mix(in srgb, var(--mantine-color-text) 70%, var(--mantine-color-gray-0)) 50%,
+      var(--mantine-color-text) 62%,
+      var(--mantine-color-text) 100%
+    );
+    background-size: 240% 100%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: menuLinkTextShimmer 1.1s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-link:hover:not(.active) {
+    animation: none;
+  }
+}
+
 .menu-link:focus {
   outline: none;
 }
