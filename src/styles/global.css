@@ -95,6 +95,15 @@ body,
   --mantine-color-default-border: var(--mantine-color-dark-5);
 }
 
+/* Texto descriptivo del hero: mantener light como estaba y suavizar SOLO en dark. */
+.hero-description {
+  color: var(--mantine-color-dimmed);
+}
+
+:root[data-mantine-color-scheme="dark"] .hero-description {
+  color: var(--mantine-color-gray-4);
+}
+
 /* ========================================
    4. ACCESIBILIDAD
    ======================================== */

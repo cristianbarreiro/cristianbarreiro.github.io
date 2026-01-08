@@ -13,6 +13,7 @@ import {
     Container,
     Paper,
     useMantineTheme,
+    useMantineColorScheme,
 } from '@mantine/core';
 import { IconArrowRight, IconMail } from '@tabler/icons-react';
 import { siteConfig } from '../config/siteConfig';
@@ -20,6 +21,7 @@ import { useTranslation } from 'react-i18next';
 
 function Home() {
     const theme = useMantineTheme();
+    const { colorScheme } = useMantineColorScheme();
     const { t } = useTranslation();
 
     return (
@@ -58,14 +60,19 @@ function Home() {
                     </div>
 
                     {/* Subtítulo / rol */}
-                    <Title order={2} size="h2" fw={400} c="dimmed">
+                    <Title
+                        order={2}
+                        size="h2"
+                        fw={400}
+                        c={colorScheme === 'dark' ? 'white' : 'dimmed'}
+                    >
                         {t('site.title')}
                     </Title>
 
                     {/* Descripción del hero */}
                     <Text
                         size="lg"
-                        c="dimmed"
+                        className="hero-description"
                         maw={600}
                         style={{ lineHeight: 1.7 }}
                     >
