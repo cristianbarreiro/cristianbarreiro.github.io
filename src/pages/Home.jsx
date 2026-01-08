@@ -64,7 +64,7 @@ function Home() {
                         order={2}
                         size="h2"
                         fw={400}
-                        c={colorScheme === 'dark' ? 'white' : 'dimmed'}
+                        c={colorScheme === 'dark' ? 'white' : 'gray.8'}
                     >
                         {t('site.title')}
                     </Title>
