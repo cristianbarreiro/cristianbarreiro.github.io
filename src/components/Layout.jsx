@@ -11,11 +11,15 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 
 function Layout() {
-    const videoRef = useRef(null);
+    const videoARef = useRef(null);
+    const videoBRef = useRef(null);
 
     useEffect(() => {
-        const video = videoRef.current;
-        if (!video) return;
+        const videoA = videoARef.current;
+        const videoB = videoBRef.current;
+        if (!videoA || !videoB) return;
+
+        const videos = [videoA, videoB];
 
         let disposed = false;
         let lastTime = 0;
@@ -23,46 +27,93 @@ function Layout() {
         let lastRecoverTs = 0;
         let consecutiveRecoveries = 0;
 
+        // Crossfade real A/B: el próximo video empieza a reproducirse
+        // mientras el anterior se desvanece (opacidad), evitando “corte”.
+        const activeIndexRef = { current: 0 };
+        let transitioning = false;
+
+        const parseDurationToSeconds = (value) => {
+            // Puede venir como: "2.25s" | "150ms" | "2.25s, 2.25s".
+            const first = String(value || '').split(',')[0]?.trim() || '';
+            if (!first) return 0;
+            if (first.endsWith('ms')) {
+                const ms = Number.parseFloat(first.slice(0, -2));
+                return Number.isFinite(ms) ? ms / 1000 : 0;
+            }
+            if (first.endsWith('s')) {
+                const s = Number.parseFloat(first.slice(0, -1));
+                return Number.isFinite(s) ? s : 0;
+            }
+            const s = Number.parseFloat(first);
+            return Number.isFinite(s) ? s : 0;
+        };
+
+        const getFadeSeconds = () => {
+            try {
+                const styles = window.getComputedStyle(videos[0]);
+                return parseDurationToSeconds(styles.transitionDuration);
+            } catch {
+                return 0;
+            }
+        };
+
+        const setVideoActive = (el, active) => {
+            if (!el) return;
+            if (active) {
+                el.classList.add('video-active');
+                el.classList.remove('video-inactive');
+            } else {
+                el.classList.remove('video-active');
+                el.classList.add('video-inactive');
+            }
+        };
+
         // Watchdog de respaldo (no debería activarse normalmente con WebM).
         // Idea: si el video se queda pausado o “congelado”, reintentamos play.
         // Solo si no hay progreso por bastante tiempo, hacemos un recover con reload.
         const WATCHDOG_INTERVAL_MS = 10000; // cada cuánto revisamos
         const NO_PROGRESS_MS = 20000; // cuánto tiempo sin avanzar para considerar “traba”
 
-        const safePlay = async () => {
+        const safePlay = async (el) => {
             if (disposed) return false;
+            if (!el) return false;
             try {
                 // Asegura autoplay silencioso
-                video.muted = true;
-                video.playsInline = true;
-                video.loop = true;
+                el.muted = true;
+                el.playsInline = true;
+                // Importante: desactivamos loop nativo y lo hacemos nosotros
+                // para poder solapar (crossfade) el final con el reinicio.
+                el.loop = false;
 
-                const p = video.play();
+                const p = el.play();
                 if (p && typeof p.then === 'function') await p;
-                return !video.paused;
+                return !el.paused;
             } catch {
                 return false;
             }
         };
 
-        const waitForReady = (timeoutMs = 1500) =>
+        const waitForReady = (el, timeoutMs = 1500) =>
             new Promise((resolve) => {
                 let done = false;
                 const finish = () => {
                     if (done) return;
                     done = true;
-                    video.removeEventListener('loadedmetadata', finish);
-                    video.removeEventListener('canplay', finish);
+                    el?.removeEventListener('loadedmetadata', finish);
+                    el?.removeEventListener('canplay', finish);
                     resolve();
                 };
 
-                video.addEventListener('loadedmetadata', finish, { once: true });
-                video.addEventListener('canplay', finish, { once: true });
+                el?.addEventListener('loadedmetadata', finish, { once: true });
+                el?.addEventListener('canplay', finish, { once: true });
                 window.setTimeout(finish, timeoutMs);
             });
 
-        const recover = async (reason) => {
+        const recoverActive = async (reason) => {
             if (disposed) return;
+
+            const video = videos[activeIndexRef.current];
+            if (!video) return;
 
             const now = performance.now();
 
@@ -76,7 +127,7 @@ function Layout() {
             const resumeTime = Number.isFinite(video.currentTime) ? video.currentTime : 0;
 
             // 1) intento suave: play sin recargar
-            if (await safePlay()) {
+            if (await safePlay(video)) {
                 consecutiveRecoveries = 0;
                 lastTime = video.currentTime || 0;
                 lastProgressTs = performance.now();
@@ -90,7 +141,7 @@ function Layout() {
                 // ignore
             }
 
-            await waitForReady();
+            await waitForReady(video);
 
             try {
                 video.currentTime = resumeTime;
@@ -98,10 +149,124 @@ function Layout() {
                 // ignore
             }
 
-            await safePlay();
+            await safePlay(video);
             lastTime = video.currentTime || 0;
             lastProgressTs = performance.now();
             void reason;
+        };
+
+        const crossfadeToNext = async () => {
+            if (disposed) return;
+            if (transitioning) return;
+            transitioning = true;
+
+            const currentIndex = activeIndexRef.current;
+            const nextIndex = 1 - currentIndex;
+            const current = videos[currentIndex];
+            const next = videos[nextIndex];
+            if (!current || !next) {
+                transitioning = false;
+                return;
+            }
+
+            // Preparamos el siguiente video desde 0 y lo arrancamos.
+            try {
+                next.pause();
+            } catch {
+                // ignore
+            }
+            try {
+                next.currentTime = 0;
+            } catch {
+                // ignore
+            }
+
+            // Lo hacemos visible (fade-in) mientras el actual sigue arriba.
+            setVideoActive(next, true);
+
+            await waitForReady(next);
+            const ok = await safePlay(next);
+
+            if (!ok) {
+                // Si no se pudo reproducir, volvemos al estado previo.
+                setVideoActive(next, false);
+                transitioning = false;
+                return;
+            }
+
+            // Ahora sí: fade-out del actual (el nuevo ya está corriendo).
+            setVideoActive(current, false);
+            activeIndexRef.current = nextIndex;
+            lastTime = next.currentTime || 0;
+            lastProgressTs = performance.now();
+            consecutiveRecoveries = 0;
+
+            const fadeSeconds = getFadeSeconds();
+            const cleanupMs = Math.max(250, Math.round(fadeSeconds * 1000) + 120);
+            window.setTimeout(() => {
+                if (disposed) return;
+                // Dejamos el anterior listo para el próximo swap.
+                try {
+                    current.pause();
+                } catch {
+                    // ignore
+                }
+                try {
+                    current.currentTime = 0;
+                } catch {
+                    // ignore
+                }
+                setVideoActive(current, false);
+            }, cleanupMs);
+
+            // Evita re-entradas por ráfagas de eventos.
+            window.setTimeout(() => {
+                transitioning = false;
+            }, 150);
+        };
+
+        const onTimeUpdate = (e) => {
+            if (disposed) return;
+
+            const active = videos[activeIndexRef.current];
+            if (!active) return;
+            if (e?.currentTarget && e.currentTarget !== active) return;
+
+            const duration = active.duration;
+            const t = active.currentTime;
+
+            if (!Number.isFinite(duration) || duration <= 0) return;
+            if (!Number.isFinite(t)) return;
+
+            // Usamos la duración de transición desde CSS.
+            const fadeSeconds = getFadeSeconds();
+            if (!(fadeSeconds > 0)) return;
+
+            // Empezamos a desvanecer antes del final.
+            // Además de fadeSeconds, añadimos un "lead" para compensar que:
+            // - `timeupdate` no es por-frame
+            // - el ojo percibe el corte si arrancamos demasiado justo
+            const margin = 0.12;
+            const leadSeconds = Math.min(1.0, Math.max(0.35, fadeSeconds * 0.45));
+            const fadeStartAt = Math.max(0, duration - fadeSeconds - leadSeconds);
+
+            if (t >= fadeStartAt) {
+                void crossfadeToNext();
+                return;
+            }
+
+            // Si por cualquier motivo el tiempo vuelve a 0 sin swap (raro), evitamos spam.
+            void margin;
+        };
+
+        const onEnded = (e) => {
+            if (disposed) return;
+
+            const active = videos[activeIndexRef.current];
+            if (!active) return;
+            if (e?.currentTarget && e.currentTarget !== active) return;
+
+            void crossfadeToNext();
         };
 
         const onVisibility = () => {
@@ -109,38 +274,55 @@ function Layout() {
 
             // Cuando volvemos al tab, algunos navegadores dejan el video pausado.
             // Recuperamos de forma conservadora.
-            if (video.paused) void recover('visibility');
+            const active = videos[activeIndexRef.current];
+            if (active?.paused) void recoverActive('visibility');
         };
 
         const onFatal = () => {
             // Eventos “fuertes”: suelen indicar que el pipeline de decodificación se rompió.
             // Ahí sí conviene hacer recover (con backoff).
-            void recover('media-fatal');
+            void recoverActive('media-fatal');
         };
 
         const onPause = () => {
             // Pausas espurias (por UI/interacciones): intentar play primero (sin reload)
             if (document.visibilityState === 'visible') {
-                void safePlay();
+                const active = videos[activeIndexRef.current];
+                if (active) void safePlay(active);
             }
         };
 
         document.addEventListener('visibilitychange', onVisibility);
-        video.addEventListener('stalled', onFatal);
-        video.addEventListener('error', onFatal);
-        video.addEventListener('emptied', onFatal);
-        video.addEventListener('pause', onPause);
+        for (const v of videos) {
+            v.addEventListener('stalled', onFatal);
+            v.addEventListener('error', onFatal);
+            v.addEventListener('emptied', onFatal);
+            v.addEventListener('pause', onPause);
+            v.addEventListener('timeupdate', onTimeUpdate);
+            v.addEventListener('ended', onEnded);
+        }
 
-        // Start inicial: intentamos play y dejamos al watchdog como “red de seguridad”.
-        void safePlay();
+        // Start inicial: solo A visible. B queda lista “apagada”.
+        activeIndexRef.current = 0;
+        setVideoActive(videoA, true);
+        setVideoActive(videoB, false);
+        try {
+            videoB.pause();
+        } catch {
+            // ignore
+        }
+        void safePlay(videoA);
 
         const watchdog = window.setInterval(() => {
             if (disposed) return;
             if (document.visibilityState !== 'visible') return;
 
+            const video = videos[activeIndexRef.current];
+            if (!video) return;
+
             if (video.paused) {
                 // Si está pausado, primero reintentar play.
-                void safePlay();
+                void safePlay(video);
                 return;
             }
 
@@ -154,7 +336,7 @@ function Layout() {
 
             if ((performance.now() - lastProgressTs) > NO_PROGRESS_MS) {
                 // Si está “reproduciendo” pero no avanza por mucho tiempo: recuperar.
-                void recover('no-progress');
+                void recoverActive('no-progress');
             }
         }, WATCHDOG_INTERVAL_MS);
 
@@ -162,10 +344,14 @@ function Layout() {
             disposed = true;
             window.clearInterval(watchdog);
             document.removeEventListener('visibilitychange', onVisibility);
-            video.removeEventListener('stalled', onFatal);
-            video.removeEventListener('error', onFatal);
-            video.removeEventListener('emptied', onFatal);
-            video.removeEventListener('pause', onPause);
+            for (const v of videos) {
+                v.removeEventListener('stalled', onFatal);
+                v.removeEventListener('error', onFatal);
+                v.removeEventListener('emptied', onFatal);
+                v.removeEventListener('pause', onPause);
+                v.removeEventListener('timeupdate', onTimeUpdate);
+                v.removeEventListener('ended', onEnded);
+            }
         };
     }, []);
 
@@ -191,13 +377,11 @@ function Layout() {
                 {/* Contenedor con video de fondo */}
                 <Box className="main-content-wrapper">
                     <video
-                        ref={videoRef}
+                        ref={videoARef}
                         className="background-video video-active"
                         preload="auto"
                         muted
                         playsInline
-                        loop
-                        autoPlay
                         aria-hidden="true"
                     >
                         {/*
@@ -206,6 +390,18 @@ function Layout() {
                           - webm (preferido): suele ser más liviano/estable en Chromium.
                           - mp4 (fallback): compatibilidad amplia (por ejemplo Safari).
                         */}
+                        <source src="/videos/background.webm" type="video/webm" />
+                        <source src="/videos/background.mp4" type="video/mp4" />
+                    </video>
+
+                    <video
+                        ref={videoBRef}
+                        className="background-video video-inactive"
+                        preload="auto"
+                        muted
+                        playsInline
+                        aria-hidden="true"
+                    >
                         <source src="/videos/background.webm" type="video/webm" />
                         <source src="/videos/background.mp4" type="video/mp4" />
                     </video>

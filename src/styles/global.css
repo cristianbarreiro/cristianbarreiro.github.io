@@ -163,7 +163,7 @@ body,
 
   /* Ajustes rápidos (modo claro por defecto) */
   --bg-video-opacity: 0.40;
-  --bg-video-fade: 2.25s;
+  --bg-video-fade: 1.35s;
   --bg-overlay-top: 0.35;
   --bg-overlay-mid: 0.25;
   --bg-overlay-bot: 0.35;
@@ -203,6 +203,7 @@ body,
   object-fit: cover;
   pointer-events: none;
   opacity: 0;
+  will-change: opacity;
   transition: opacity var(--bg-video-fade) ease-in-out;
 }
 
@@ -238,7 +239,7 @@ body,
 /* -- 7.5 Modo Oscuro -- */
 [data-mantine-color-scheme='dark'] .main-content-wrapper {
   --bg-video-opacity: 0.38;
-  --bg-video-fade: 2.25s;
+  --bg-video-fade: 1.35s;
   --bg-overlay-top: 0.88;
   --bg-overlay-mid: 0.78;
   --bg-overlay-bot: 0.88;
