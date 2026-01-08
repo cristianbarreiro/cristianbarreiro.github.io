@@ -93,12 +93,6 @@ function Navbar() {
                                     size="sm"
                                     fw={500}
                                     className={`menu-link${location.pathname === link.path ? ' active' : ''}`}
-                                    style={{
-                                        textDecoration: 'none',
-                                        padding: '0.5rem 0.75rem',
-                                        borderRadius: theme.radius.sm,
-                                        transition: 'color 0.2s ease',
-                                    }}
                                     ref={link.path === '/' ? inicioRef : null}
                                     tabIndex={0}
                                 >

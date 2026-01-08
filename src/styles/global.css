@@ -318,49 +318,61 @@ body,
    ======================================== */
 
 .menu-link {
-  color: inherit;
+  /*
+    Hover moderno tipo OVERLAY (como tu ejemplo), controlable:
+    - --menu-link-px/py: padding del link (define “ancho/largo” base)
+    - --menu-link-radius: radio del link
+    - --menu-hover-radius: radio del overlay (por defecto igual al link)
+    - --menu-hover-inset-x/y: achica/agranda el overlay (negativo agranda)
+    - --menu-hover-opacity: opacidad del overlay
+    - --menu-hover-scale-from/to: escala de entrada/salida
+    - --menu-hover-duration: velocidad
+  */
+  --menu-link-px: 0.55rem;
+  --menu-link-py: 0.3rem;
+  --menu-link-radius: 15px;
+  --menu-link-hover-radius: 999px;
+
+  --menu-hover-radius: var(--menu-link-radius);
+  --menu-hover-inset-x: 0px;
+  --menu-hover-inset-y: 0px;
+  --menu-hover-opacity: 1;
+  --menu-hover-scale-from: 0;
+  --menu-hover-scale-to: 1;
+  --menu-hover-duration: 0.4s;
+
+  display: inline-block;
+  padding: var(--menu-link-py) var(--menu-link-px);
+  border-radius: var(--menu-link-radius);
   text-decoration: none;
   position: relative;
-  z-index: 1;
-  transition: color 0.2s;
   overflow: hidden;
-}
-
-.menu-link {
-  color: #343a40; /* Gris oscuro para white mode */
-  /* ...otros estilos... */
-}
-
-[data-mantine-color-scheme='dark'] .menu-link {
-  color: #dee2e6; /* Gris claro para dark mode */
+  transition: color var(--menu-hover-duration);
+  color: var(--mantine-color-text);
 }
 
 .menu-link::before {
   content: "";
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 120%;
-  height: 120%;
-  background: #212529;
-  border-radius: 999px;
-  transform: translate(-50%, -50%) scale(0.1);
+  inset: var(--menu-hover-inset-y) var(--menu-hover-inset-x);
+  border-radius: var(--menu-hover-radius);
+
+  /* Overlay neutro basado en el tema (sin hardcodear colores). */
+  background-color: color-mix(in srgb, var(--mantine-color-text) 14%, transparent);
+
   opacity: 0;
-  transition: opacity 0.3s, transform 0.3s;
-  z-index: -1;
+  transform: scale(var(--menu-hover-scale-from));
+  transition: all var(--menu-hover-duration);
 }
 
-[data-mantine-color-scheme='dark'] .menu-link::before {
-  background: #f1f3f5;
+.menu-link:hover::before {
+  opacity: var(--menu-hover-opacity);
+  transform: scale(var(--menu-hover-scale-to));
 }
 
-.menu-link:hover:not(:focus)::before {
-  opacity: 0.18;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.menu-link:hover:not(:focus) {
-  filter: brightness(1.4);
+.menu-link:hover {
+  color: var(--mantine-color-text);
+    border-radius: var(--menu-link-hover-radius);
 }
 
 .menu-link:focus {
@@ -368,15 +380,15 @@ body,
 }
 
 .menu-link:focus-visible {
-  outline: none;
+  outline: 2px solid var(--mantine-primary-color-filled);
+  outline-offset: 2px;
 }
 
 .menu-link.active:hover::before,
 .menu-link.active:hover:not(:focus)::before,
 .menu-link.active::before {
   opacity: 0 !important;
-  filter: none !important;
-  transform: translate(-50%, -50%) scale(0.1) !important;
+  transform: scale(var(--menu-hover-scale-from)) !important;
 }
 
 .menu-link.active:hover,
@@ -386,9 +398,5 @@ body,
 }
 
 .menu-link.active {
-  color: #228BE6 !important;
-}
-
-[data-mantine-color-scheme='dark'] .menu-link.active {
-  color: #228BE6 !important;
+  color: var(--mantine-primary-color-filled) !important;
 }
