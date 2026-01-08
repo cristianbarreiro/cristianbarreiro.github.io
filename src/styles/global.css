@@ -1,4 +1,3 @@
-
 /**
  * ========================================
  * ESTILOS GLOBALES
@@ -74,9 +73,7 @@ p a:hover {
 
 body,
 .mantine-AppShell-root {
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* ========================================
@@ -84,7 +81,7 @@ body,
    ======================================== */
 
 /* Mantine aplica data-mantine-color-scheme en el elemento root (html). */
-:root[data-mantine-color-scheme='dark'] {
+:root[data-mantine-color-scheme="dark"] {
   /* Fondo más suave (y consistente en toda la app) */
   --mantine-color-body: var(--mantine-color-dark-8);
 
@@ -162,7 +159,7 @@ body,
   overflow: hidden;
 
   /* Ajustes rápidos (modo claro por defecto) */
-  --bg-video-opacity: 0.40;
+  --bg-video-opacity: 0.4;
   --bg-video-fade: 1.35s;
   --bg-overlay-top: 0.35;
   --bg-overlay-mid: 0.25;
@@ -223,10 +220,12 @@ body,
   right: 0;
   bottom: 0;
   z-index: 1;
-  background: linear-gradient(180deg,
-      rgba(255, 255, 255, var(--bg-overlay-top)) 0%,
-      rgba(255, 255, 255, var(--bg-overlay-mid)) 50%,
-      rgba(255, 255, 255, var(--bg-overlay-bot)) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, var(--bg-overlay-top)) 0%,
+    rgba(255, 255, 255, var(--bg-overlay-mid)) 50%,
+    rgba(255, 255, 255, var(--bg-overlay-bot)) 100%
+  );
   pointer-events: none;
 }
 
@@ -237,7 +236,7 @@ body,
 }
 
 /* -- 7.5 Modo Oscuro -- */
-[data-mantine-color-scheme='dark'] .main-content-wrapper {
+[data-mantine-color-scheme="dark"] .main-content-wrapper {
   --bg-video-opacity: 0.38;
   --bg-video-fade: 1.35s;
   --bg-overlay-top: 0.88;
@@ -245,11 +244,13 @@ body,
   --bg-overlay-bot: 0.88;
 }
 
-[data-mantine-color-scheme='dark'] .video-overlay {
-  background: linear-gradient(180deg,
-      rgba(26, 27, 30, 0.88) 0%,
-      rgba(26, 27, 30, 0.78) 50%,
-      rgba(26, 27, 30, 0.88) 100%);
+[data-mantine-color-scheme="dark"] .video-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(26, 27, 30, 0.88) 0%,
+    rgba(26, 27, 30, 0.78) 50%,
+    rgba(26, 27, 30, 0.88) 100%
+  );
 }
 
 /* -- 7.6 Accesibilidad: Movimiento Reducido -- */
@@ -266,7 +267,7 @@ body,
 /* -- 8.1 Firefox -- */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #228BE6 var(--mantine-color-default-border);
+  scrollbar-color: #228be6 var(--mantine-color-default-border);
 }
 
 /* -- 8.2 Webkit (Chrome, Safari, Edge) -- */
@@ -281,7 +282,7 @@ body,
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #228BE6;
+  background: #228be6;
   border-radius: 10px;
   border: 2px solid var(--mantine-color-body);
   transition: background 0.2s ease;
@@ -296,20 +297,20 @@ body,
 }
 
 /* -- 8.3 Scrollbar Modo Oscuro -- */
-[data-mantine-color-scheme='dark'] ::-webkit-scrollbar-track {
+[data-mantine-color-scheme="dark"] ::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
 }
 
-[data-mantine-color-scheme='dark'] ::-webkit-scrollbar-thumb {
-  background: #228BE6;
+[data-mantine-color-scheme="dark"] ::-webkit-scrollbar-thumb {
+  background: #228be6;
   border: 2px solid var(--mantine-color-body);
 }
 
-[data-mantine-color-scheme='dark'] ::-webkit-scrollbar-thumb:hover {
+[data-mantine-color-scheme="dark"] ::-webkit-scrollbar-thumb:hover {
   background: #339af0;
 }
 
-[data-mantine-color-scheme='dark'] ::-webkit-scrollbar-thumb:active {
+[data-mantine-color-scheme="dark"] ::-webkit-scrollbar-thumb:active {
   background: #4dabf7;
 }
 
@@ -358,7 +359,11 @@ body,
   border-radius: var(--menu-hover-radius);
 
   /* Overlay neutro basado en el tema (sin hardcodear colores). */
-  background-color: color-mix(in srgb, var(--mantine-color-text) 14%, transparent);
+  background-color: color-mix(
+    in srgb,
+    var(--mantine-color-text) 14%,
+    transparent
+  );
 
   opacity: 0;
   transform: scale(var(--menu-hover-scale-from));
@@ -372,13 +377,13 @@ body,
 
 .menu-link:hover {
   color: var(--mantine-color-text);
-    border-radius: var(--menu-link-hover-radius);
+  border-radius: var(--menu-link-hover-radius);
 }
 
 /* Glow sutil en el texto SOLO en hover (sin afectar active/selected) */
 .menu-link:hover:not(.active) {
-  text-shadow:
-    0 0 15px color-mix(in srgb, var(--mantine-color-text) 40%, transparent),
+  text-shadow: 0 0 15px
+      color-mix(in srgb, var(--mantine-color-text) 40%, transparent),
     0 0 25px color-mix(in srgb, var(--mantine-color-text) 30%, transparent);
 }
 
@@ -399,7 +404,12 @@ body,
       110deg,
       var(--mantine-color-text) 0%,
       var(--mantine-color-text) 38%,
-      color-mix(in srgb, var(--mantine-color-text) 70%, var(--mantine-color-gray-0)) 50%,
+      color-mix(
+          in srgb,
+          var(--mantine-color-text) 70%,
+          var(--mantine-color-gray-0)
+        )
+        50%,
       var(--mantine-color-text) 62%,
       var(--mantine-color-text) 100%
     );
