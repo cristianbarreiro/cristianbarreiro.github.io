@@ -238,7 +238,12 @@ function Contact() {
                                     onChange={handleChange('email')}
                                     error={errors.email}
                                     disabled={loading}
-                                    leftSection={<IconMail size={16} />}
+                                    leftSection={
+                                        <IconMail
+                                            size={16}
+                                            className="icon-mail-rotate"
+                                        />
+                                    }
                                 />
 
                                 {/* Campo mensaje */}
@@ -295,7 +300,7 @@ function Contact() {
                             {/* Email directo */}
                             <Group gap="md">
                                 <ThemeIcon size="lg" radius="md" variant="light">
-                                    <IconMail size={20} />
+                                    <IconMail size={20} className="icon-mail-rotate" />
                                 </ThemeIcon>
                                 <div>
                                     <Text size="sm" fw={500}>

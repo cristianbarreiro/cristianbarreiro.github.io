@@ -92,7 +92,9 @@ function Home() {
                             to="/contact"
                             size="lg"
                             variant="outline"
-                            leftSection={<IconMail size={18} />}
+                            leftSection={
+                                <IconMail size={18} className="icon-mail-rotate" />
+                            }
                         >
                             {t('home.contact')}
                         </Button>
