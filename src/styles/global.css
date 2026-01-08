@@ -375,6 +375,13 @@ body,
     border-radius: var(--menu-link-hover-radius);
 }
 
+/* Glow sutil en el texto SOLO en hover (sin afectar active/selected) */
+.menu-link:hover:not(.active) {
+  text-shadow:
+    0 0 15px color-mix(in srgb, var(--mantine-color-text) 40%, transparent),
+    0 0 25px color-mix(in srgb, var(--mantine-color-text) 30%, transparent);
+}
+
 /* Shimmer SOLO en hover (y NO en el link activo/selected) */
 @keyframes menuLinkTextShimmer {
   0% {
