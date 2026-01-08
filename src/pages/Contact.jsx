@@ -263,7 +263,12 @@ function Contact() {
                                     type="submit"
                                     size="md"
                                     loading={loading}
-                                    leftSection={<IconSend size={18} />}
+                                    leftSection={
+                                        <IconSend
+                                            size={18}
+                                            className="icon-send-jello"
+                                        />
+                                    }
                                 >
                                     {t('contact.send')}
                                 </Button>
