@@ -99,11 +99,6 @@ portfolio-personal/
    npm run preview
    ```
 
-6. **Lint (opcional)**
-  ```bash
-  npm run lint
-  ```
-
 ## 📝 Cómo personalizar el contenido
 
 ### 1. Información personal y redes sociales
@@ -132,9 +127,7 @@ export const siteConfig = {
 
 ### 2. Proyectos
 
-Edita el archivo `src/data/projects.js`.
-
-Este archivo es **bilingüe** (ES/EN) y expone `getProjects(language)`.
+Edita el archivo `src/data/projects.js`:
 
 ```javascript
 export const projects = [
@@ -153,7 +146,7 @@ export const projects = [
 
 ### 3. Habilidades
 
-Edita el archivo `src/data/skills.i18n.js` (fuente ES/EN). `src/data/skills.js` actúa como wrapper.
+Edita el archivo `src/data/skills.js`:
 
 ```javascript
 export const skills = [
@@ -174,7 +167,7 @@ Niveles disponibles: `'Principiante'`, `'Intermedio'`, `'Avanzado'`
 
 ### 4. Experiencia
 
-Edita el archivo `src/data/experience.i18n.js` (fuente ES/EN). `src/data/experience.js` actúa como wrapper.
+Edita el archivo `src/data/experience.js`:
 
 ```javascript
 export const experience = [
