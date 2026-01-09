@@ -31,7 +31,20 @@ export function dualStorageColorSchemeManager({
   return {
     get(defaultValue) {
       const value = readValue();
-      return value ?? defaultValue;
+      const resolved = value ?? defaultValue;
+
+      // Garantiza persistencia doble: si viene de un storage, espejar al otro.
+      if (isBrowser() && VALID.has(resolved)) {
+        const ls = safeLocalStorageGet(key);
+        if (ls !== resolved) safeLocalStorageSet(key, resolved);
+
+        const ck = readCookie(cookieKey);
+        if (ck !== resolved) {
+          writeCookie(cookieKey, resolved, { maxAgeDays: cookieMaxAgeDays });
+        }
+      }
+
+      return resolved;
     },
 
     set(value) {
