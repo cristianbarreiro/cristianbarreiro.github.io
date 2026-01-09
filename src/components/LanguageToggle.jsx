@@ -5,6 +5,7 @@
 
 import { ActionIcon, Text } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
+import { safeLocalStorageSet, writeCookie } from '../utils/storage';
 
 const getLanguageOnly = (language) => {
   if (!language) return 'es';
@@ -19,6 +20,10 @@ function LanguageToggle() {
 
   const handleToggle = async () => {
     await i18n.changeLanguage(next);
+
+    // Persistencia extra (además del detector): localStorage + cookie
+    safeLocalStorageSet('lang', next);
+    writeCookie('lang', next, { maxAgeDays: 365 });
   };
 
   return (

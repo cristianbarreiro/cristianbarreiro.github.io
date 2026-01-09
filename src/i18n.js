@@ -24,9 +24,15 @@ i18n
 
     // Detector: primero localStorage, luego el idioma del navegador.
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
-      caches: ['localStorage'],
+      // Preferimos localStorage; si falla, cookie; luego navegador.
+      order: ['localStorage', 'cookie', 'navigator', 'htmlTag'],
+      // Guardamos en ambos para persistencia extra.
+      caches: ['localStorage', 'cookie'],
       lookupLocalStorage: 'lang',
+      lookupCookie: 'lang',
+      // 1 año (minutos)
+      cookieMinutes: 60 * 24 * 365,
+      cookieOptions: { path: '/', sameSite: 'lax' },
     },
 
     interpolation: {

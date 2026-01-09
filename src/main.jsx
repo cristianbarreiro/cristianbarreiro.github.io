@@ -24,6 +24,7 @@ import App from './App';
 
 // Configuración del sitio (para el color primario)
 import { siteConfig } from './config/siteConfig';
+import { dualStorageColorSchemeManager } from './utils/colorSchemeManager';
 
 /**
  * Tema personalizado de Mantine
@@ -97,7 +98,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <I18nextProvider i18n={i18n}>
       <BrowserRouter>
-        <MantineProvider theme={theme} defaultColorScheme="auto">
+        <MantineProvider
+          theme={theme}
+          defaultColorScheme="auto"
+          colorSchemeManager={dualStorageColorSchemeManager()}
+        >
           <App />
         </MantineProvider>
       </BrowserRouter>
