@@ -1,6 +1,8 @@
 # 🚀 Portfolio Personal - React + Vite + Mantine
 
-Un proyecto base profesional para crear tu portfolio personal como desarrollador web. Construido con React, Vite y Mantine UI.
+Portfolio personal construido con React, Vite y Mantine UI.
+
+**Demo:** https://cristianbarreiro.github.io/
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
 ![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite)
@@ -11,23 +13,33 @@ Un proyecto base profesional para crear tu portfolio personal como desarrollador
 - ⚡️ **Vite** - Build ultrarrápido
 - 🎨 **Mantine UI** - Componentes modernos y accesibles
 - 🌙 **Modo oscuro/claro** - Toggle de tema incluido
+- 🌐 **i18n (ES/EN)** - Traducciones con i18next + selector de idioma
+- 💾 **Persistencia** - Tema e idioma guardados en localStorage + cookie
 - 📱 **Responsive** - Diseño adaptable a móvil y desktop
 - 🧭 **React Router** - Navegación SPA fluida
 - ♿️ **Accesible** - Etiquetas semánticas y contraste adecuado
 - 📝 **Fácil de personalizar** - Datos centralizados en archivos de configuración
+- 📧 **Contacto con EmailJS** - Formulario funcionando sin backend
 
 ## 📚 Estructura del proyecto
 
 ```
 portfolio-personal/
+├── public/
+│   ├── locales/
+│   │   ├── es.json
+│   │   └── en.json
+│   └── videos/
 ├── src/
 │   ├── main.jsx           # Entry point con MantineProvider
 │   ├── App.jsx             # Definición de rutas
+│   ├── i18n.js              # Configuración i18next (idiomas)
 │   ├── components/         # Componentes reutilizables
 │   │   ├── Layout.jsx
 │   │   ├── Navbar.jsx
 │   │   ├── Footer.jsx
 │   │   ├── ThemeToggle.jsx
+│   │   ├── LanguageToggle.jsx
 │   │   ├── ProjectCard.jsx
 │   │   └── SkillTag.jsx
 │   ├── pages/              # Páginas de la aplicación
@@ -38,10 +50,13 @@ portfolio-personal/
 │   │   └── Contact.jsx
 │   ├── data/               # Datos editables
 │   │   ├── projects.js     # Listado de proyectos
-│   │   ├── skills.js       # Habilidades técnicas
-│   │   └── experience.js   # Experiencia laboral/educativa
+│   │   ├── skills.js       # Habilidades técnicas (bilingüe)
+│   │   ├── skills.i18n.js  # Fuente ES/EN para skills
+│   │   ├── experience.js   # Experiencia laboral/educativa (bilingüe)
+│   │   └── experience.i18n.js
 │   ├── config/
 │   │   └── siteConfig.js   # Configuración general del sitio
+│   ├── utils/              # Utilidades (storage, color scheme, etc.)
 │   └── styles/
 │       └── global.css      # Estilos globales mínimos
 ├── index.html
@@ -84,6 +99,11 @@ portfolio-personal/
    npm run preview
    ```
 
+6. **Lint (opcional)**
+  ```bash
+  npm run lint
+  ```
+
 ## 📝 Cómo personalizar el contenido
 
 ### 1. Información personal y redes sociales
@@ -112,7 +132,9 @@ export const siteConfig = {
 
 ### 2. Proyectos
 
-Edita el archivo `src/data/projects.js`:
+Edita el archivo `src/data/projects.js`.
+
+Este archivo es **bilingüe** (ES/EN) y expone `getProjects(language)`.
 
 ```javascript
 export const projects = [
@@ -131,7 +153,7 @@ export const projects = [
 
 ### 3. Habilidades
 
-Edita el archivo `src/data/skills.js`:
+Edita el archivo `src/data/skills.i18n.js` (fuente ES/EN). `src/data/skills.js` actúa como wrapper.
 
 ```javascript
 export const skills = [
@@ -152,7 +174,7 @@ Niveles disponibles: `'Principiante'`, `'Intermedio'`, `'Avanzado'`
 
 ### 4. Experiencia
 
-Edita el archivo `src/data/experience.js`:
+Edita el archivo `src/data/experience.i18n.js` (fuente ES/EN). `src/data/experience.js` actúa como wrapper.
 
 ```javascript
 export const experience = [
@@ -213,56 +235,61 @@ const theme = createTheme({
 
 Consulta la [documentación de Mantine](https://mantine.dev/theming/theme-object/) para más opciones.
 
-## 📧 Integrar el formulario de contacto
+## 🌐 Idiomas (i18n)
 
-El formulario actual no está conectado a un backend. Aquí hay opciones populares:
+El sitio está preparado para **Español** e **Inglés**.
 
-### Opción 1: EmailJS (recomendada para empezar)
+- Traducciones: `public/locales/es.json` y `public/locales/en.json`
+- Configuración i18next: `src/i18n.js`
+- Selector de idioma: `src/components/LanguageToggle.jsx`
 
-1. Crea una cuenta en [EmailJS](https://www.emailjs.com/)
-2. Instala el paquete:
-   ```bash
-   npm install @emailjs/browser
-   ```
-3. Modifica `src/pages/Contact.jsx`:
-   ```javascript
-   import emailjs from '@emailjs/browser';
-   
-   const handleSubmit = async (event) => {
-     event.preventDefault();
-     
-     await emailjs.send(
-       'TU_SERVICE_ID',
-       'TU_TEMPLATE_ID',
-       formData,
-       'TU_PUBLIC_KEY'
-     );
-   };
-   ```
+### Añadir un nuevo idioma
 
-### Opción 2: Formspree
+1. Crea `public/locales/<lng>.json` (por ejemplo `pt.json`)
+2. Añade el idioma en `SUPPORTED_LANGUAGES` dentro de `src/i18n.js`
 
-1. Crea una cuenta en [Formspree](https://formspree.io/)
-2. Cambia el `<form>` para enviar a su endpoint:
-   ```jsx
-   <form action="https://formspree.io/f/TU_FORM_ID" method="POST">
-   ```
+El idioma se persiste con la clave `lang` en **localStorage** y **cookie**.
 
-### Opción 3: Backend propio
+## 📧 Formulario de contacto (EmailJS)
 
-Crea un endpoint en Node.js/Express que reciba los datos y envíe emails con Nodemailer.
+El formulario de contacto **ya está integrado con EmailJS**.
 
-## 🔄 Migración a TypeScript
+- Código: `src/pages/Contact.jsx`
+- Requisitos: tener configurado un servicio y una plantilla en [EmailJS](https://www.emailjs.com/)
 
-Este proyecto está estructurado para facilitar la migración a TypeScript:
+Para usar tus credenciales, sustituye estos valores en `src/pages/Contact.jsx`:
+
+- `EMAILJS_SERVICE_ID`
+- `EMAILJS_TEMPLATE_ID`
+- `EMAILJS_PUBLIC_KEY`
+
+Nota: ahora mismo están en el código. Si quieres, puedo pasarlo a variables de entorno de Vite (`VITE_EMAILJS_*`) para que sea más fácil de mantener.
+
+## 🚀 Despliegue (GitHub Pages)
+
+Este repo incluye scripts para publicar el build en GitHub Pages usando `gh-pages`.
+
+```bash
+npm run deploy
+```
+
+Eso genera `dist/` y publica su contenido. Asegúrate de tener configurado GitHub Pages (Settings → Pages) apuntando a la rama/carpeta que corresponda según tu configuración.
+
+## 🔄 Roadmap: Migración a TypeScript (futuro)
+
+En el futuro planeo migrar el proyecto a TypeScript para mejorar tipado, DX y mantenibilidad.
 
 ### Paso 1: Instalar TypeScript
 
 ```bash
-npm install -D typescript @types/react @types/react-dom
+npm install -D typescript
 ```
 
-### Paso 2: Crear tsconfig.json
+> Nota: `@types/react` y `@types/react-dom` ya están instalados como devDependencies.
+
+### Paso 2: Crear `tsconfig.json`
+
+Ejemplo base (ajustable según preferencia):
 
 ```json
 {
@@ -273,7 +300,6 @@ npm install -D typescript @types/react @types/react-dom
     "module": "ESNext",
     "skipLibCheck": true,
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -283,43 +309,21 @@ npm install -D typescript @types/react @types/react-dom
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src"]
 }
 ```
 
 ### Paso 3: Renombrar archivos
 
 ```bash
-# Renombra archivos .jsx a .tsx
 mv src/main.jsx src/main.tsx
 mv src/App.jsx src/App.tsx
-# ... y así con todos los componentes
+# ...y así con componentes/páginas
 ```
 
-### Paso 4: Añadir tipos básicos
+### Paso 4: Añadir tipos (de forma incremental)
 
-```typescript
-// Ejemplo: types/project.ts
-export interface Project {
-  id: number;
-  title: string;
-  description: string;
-  tags: string[];
-  demoUrl: string;
-  repoUrl: string;
-  featured: boolean;
-}
-
-// Ejemplo: components/ProjectCard.tsx
-interface ProjectCardProps {
-  project: Project;
-}
-
-function ProjectCard({ project }: ProjectCardProps) {
-  // ...
-}
-```
+Idea: empezar por tipos de datos (Projects/Skills/Experience) y props de componentes.
 
 ## 📜 Scripts disponibles
 
@@ -329,6 +333,7 @@ function ProjectCard({ project }: ProjectCardProps) {
 | `npm run build` | Crea el build de producción |
 | `npm run preview` | Previsualiza el build de producción |
 | `npm run lint` | Ejecuta ESLint para detectar errores |
+| `npm run deploy` | Publica `dist/` en GitHub Pages |
 
 ## 🤝 Contribuir
 
@@ -342,8 +347,8 @@ function ProjectCard({ project }: ProjectCardProps) {
 
 ## 📄 Licencia
 
-Este proyecto es de código abierto bajo la licencia MIT. Siéntete libre de usarlo y modificarlo para tu portfolio personal.
+Este repositorio no incluye un archivo `LICENSE` actualmente. Si quieres publicarlo como open source, añade una licencia (por ejemplo MIT) y actualiza esta sección.
 
 ---
 
-Hecho con ❤️ usando React, Vite y Mantine
+Hecho con React, Vite y Mantine
