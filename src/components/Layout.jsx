@@ -7,10 +7,12 @@
 import { useRef, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { AppShell, Container, Box } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
 function Layout() {
+    const { t } = useTranslation();
     const location = useLocation();
     const videoARef = useRef(null);
     const videoBRef = useRef(null);
@@ -436,7 +438,7 @@ function Layout() {
                         className="route-loader-overlay"
                         role="status"
                         aria-live="polite"
-                        aria-label="Cargando"
+                        aria-label={t('common.loading')}
                     >
                         <div className="fh-dots-loader" aria-hidden="true">
                             <span />
@@ -444,7 +446,7 @@ function Layout() {
                             <span />
                         </div>
                         <div className="fh-loading-label">
-                            <span>Loading</span>
+                            <span>{t('common.loading')}</span>
                             <span className="fh-loading-dots" aria-hidden="true">
                                 <span>.</span>
                                 <span>.</span>

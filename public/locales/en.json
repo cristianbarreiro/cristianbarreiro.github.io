@@ -15,6 +15,9 @@
   "language": {
     "toggle": "Switch language ({{next}})"
   },
+  "common": {
+    "loading": "Loading"
+  },
   "home": {
     "presentationAria": "Introduction",
     "summaryAria": "Summary",
