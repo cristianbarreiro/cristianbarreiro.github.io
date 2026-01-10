@@ -24,6 +24,11 @@ function Home() {
     const { colorScheme } = useMantineColorScheme();
     const { t } = useTranslation();
 
+    const greetingText = t('home.greeting');
+    // +2ch de margen para evitar recortes por emoji/kerning.
+    const greetingWidthCh = Array.from(greetingText).length + 2;
+    const fullNameText = siteConfig.fullName;
+
     return (
         <main>
             {/* Hero Section */}
@@ -36,26 +41,33 @@ function Home() {
                     ta="center"
                 >
                     {/* Saludo y nombre */}
-                    <div>
+                    <div className="home-typing-container">
                         <Text
                             size="lg"
                             fw={300}
                             c={theme.primaryColor}
                             mb="xs"
+                            className="home-typing-line1"
+                            style={{ '--typing-width': `${greetingWidthCh}ch` }}
                         >
-                            {t('home.greeting')}
+                            {greetingText}
                         </Text>
                         <Title
                             order={1}
                             size="3.5rem"
                             fw={800}
-                            style={{
-                                background: `linear-gradient(135deg, var(--mantine-color-${theme.primaryColor}-6), var(--mantine-color-${theme.primaryColor}-4))`,
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                            }}
+                            className="home-typing-line2"
                         >
-                            {siteConfig.fullName}
+                            <span
+                                className="home-typing-line2-text"
+                                style={{
+                                    background: `linear-gradient(135deg, var(--mantine-color-${theme.primaryColor}-6), var(--mantine-color-${theme.primaryColor}-4))`,
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                }}
+                            >
+                                {fullNameText}
+                            </span>
                         </Title>
                     </div>
 

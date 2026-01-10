@@ -330,6 +330,124 @@ button:hover .icon-send-jello {
 }
 
 /* ----------------------------------------------
+ * Home: efecto “typing” de saludo + nombre
+ * ---------------------------------------------- */
+
+.home-typing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Línea 1: typing con cursor que desaparece */
+.home-typing-line1 {
+  display: inline-block;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  text-align: center;
+  font-family: var(--mantine-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  border-right: 1px solid var(--mantine-primary-color-filled);
+  animation: home-typing-line1 1.8s steps(30, end) forwards;
+}
+
+@keyframes home-typing-line1 {
+  0% {
+    width: 0;
+  }
+
+  1%,
+  99% {
+    border-right: 1px solid var(--mantine-primary-color-filled);
+  }
+
+  100% {
+    width: var(--typing-width, 18ch);
+    border-right: none;
+  }
+}
+
+/* Línea 2: reveal por clip (sin depender de "ch") */
+.home-typing-line2 {
+  display: inline-block;
+  margin: 0;
+  text-align: center;
+
+  /* Responsive y con buen “impact” en hero */
+  font-size: clamp(2.8rem, 8vw, 5.8rem);
+  line-height: 1.05;
+
+  /* (El gradiente se anima en el span de texto) */
+}
+
+.home-typing-line2-text {
+  display: inline-block;
+  white-space: nowrap;
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+
+  /* Para animar el gradiente (necesario con background-clip:text) */
+  background-size: 520px 100%;
+  background-position: 0 0;
+
+  animation:
+    home-name-reveal 2.2s steps(40, end) 1.9s forwards,
+    home-name-gradient 2.2s linear 1.9s forwards;
+}
+
+@keyframes home-name-reveal {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+
+  1% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes home-name-gradient {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 180px 0;
+  }
+
+  100% {
+    background-position: 420px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-typing-line1 {
+    animation: none !important;
+    width: auto;
+    border-right: none;
+  }
+
+  .home-typing-line2 {
+    animation: none !important;
+  }
+
+  .home-typing-line2-text {
+    animation: none !important;
+    opacity: 1;
+    clip-path: none;
+  }
+}
+
+/* ----------------------------------------------
  * Animación: jello-horizontal (Animista)
  * ---------------------------------------------- */
 
