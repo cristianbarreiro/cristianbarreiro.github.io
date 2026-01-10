@@ -340,6 +340,19 @@ button:hover .icon-send-jello {
   gap: 6px;
 }
 
+/* Si ya se reprodujo el efecto en esta carga de página, mostrar estado final */
+.home-typing-no-anim .home-typing-line1 {
+  animation: none !important;
+  width: auto;
+  border-right: none;
+}
+
+.home-typing-no-anim .home-typing-line2-text {
+  animation: none !important;
+  opacity: 1;
+  clip-path: none;
+}
+
 /* Línea 1: typing con cursor que desaparece */
 .home-typing-line1 {
   display: inline-block;

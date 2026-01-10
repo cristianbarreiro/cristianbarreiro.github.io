@@ -3,6 +3,7 @@
  * Landing page con hero section y resumen
  */
 
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
     Title,
@@ -19,10 +20,36 @@ import { IconArrowRight, IconMail } from '@tabler/icons-react';
 import { siteConfig } from '../config/siteConfig';
 import { useTranslation } from 'react-i18next';
 
+const HOME_TYPING_STORAGE_KEY = 'homeTypingPlayedForLoadId';
+const PAGE_LOAD_ID = String(
+    globalThis?.performance?.timeOrigin ??
+        globalThis?.performance?.timing?.navigationStart ??
+        0
+);
+
 function Home() {
     const theme = useMantineTheme();
     const { colorScheme } = useMantineColorScheme();
     const { t } = useTranslation();
+
+    // Evita repetir el efecto al navegar dentro del SPA.
+    // Se vuelve a permitir al recargar la página (PAGE_LOAD_ID cambia).
+    const [shouldPlayTyping] = useState(() => {
+        try {
+            return localStorage.getItem(HOME_TYPING_STORAGE_KEY) !== PAGE_LOAD_ID;
+        } catch {
+            return true;
+        }
+    });
+
+    useEffect(() => {
+        if (!shouldPlayTyping) return;
+        try {
+            localStorage.setItem(HOME_TYPING_STORAGE_KEY, PAGE_LOAD_ID);
+        } catch {
+            // ignore
+        }
+    }, [shouldPlayTyping]);
 
     const greetingText = t('home.greeting');
     // +2ch de margen para evitar recortes por emoji/kerning.
@@ -41,7 +68,9 @@ function Home() {
                     ta="center"
                 >
                     {/* Saludo y nombre */}
-                    <div className="home-typing-container">
+                    <div
+                        className={`home-typing-container${shouldPlayTyping ? '' : ' home-typing-no-anim'}`}
+                    >
                         <Text
                             size="lg"
                             fw={300}
