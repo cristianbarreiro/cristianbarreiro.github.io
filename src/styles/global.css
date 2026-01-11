@@ -76,6 +76,20 @@ body,
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+:root[data-mantine-color-scheme="light"] {
+  /* Fondo personalizado en modo claro (ejemplo: gris muy claro) */
+  --mantine-color-body: #fafafabb;
+  
+  /* Texto principal (opcional, por defecto es negro) */
+  /* --mantine-color-text: #1a1a1a; */
+  
+  /* Texto secundario */
+  /* --mantine-color-dimmed: #6b7280; */
+  
+  /* Bordes */
+  /* --mantine-color-default-border: #e5e7eb; */
+}
+
 /* ========================================
    3.1 AJUSTES DARK MODE (más soft/moderno)
    ======================================== */
@@ -83,7 +97,7 @@ body,
 /* Mantine aplica data-mantine-color-scheme en el elemento root (html). */
 :root[data-mantine-color-scheme="dark"] {
   /* Fondo más suave (y consistente en toda la app) */
-  --mantine-color-body: #25262b;
+  --mantine-color-body: #131416b6;
 
   /* Texto más “blanquecino” */
   --mantine-color-text: var(--mantine-color-gray-0);
@@ -319,55 +333,45 @@ button:hover .icon-send-jello {
   top: 0;
   z-index: 100;
   
-  /* Glassmorphism con gradiente: más transparente arriba, más opaco abajo */
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(255, 255, 255, 0.5) 100%
-  );
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  /* Más transparencia con blanco más notable */
+  background: rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 
+              0 0 0 1px rgba(255, 255, 255, 0.3) inset;
   
-  /* The frosted glass blur effect - más intenso */
-  backdrop-filter: blur(14px) saturate(150%);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  /* Blur más intenso para efecto glass muy visible */
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   
   transition: all 0.3s ease;
 }
 
 [data-mantine-color-scheme="dark"] .glassmorphic-navbar {
-  background: linear-gradient(
-    180deg,
-    rgba(15, 15, 20, 0.3) 0%,
-    rgba(15, 15, 20, 0.7) 100%
-  );
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  background: #13141686;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.26),
+              0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
 /* Optional: Enhance on scroll */
 .glassmorphic-navbar.scrolled {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.35) 0%,
-    rgba(255, 255, 255, 0.65) 100%
-  );
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15),
+              0 0 0 1px rgba(255, 255, 255, 0.4) inset;
 }
 
 [data-mantine-color-scheme="dark"] .glassmorphic-navbar.scrolled {
-  background: linear-gradient(
-    180deg,
-    rgba(15, 15, 20, 0.4) 0%,
-    rgba(15, 15, 20, 0.8) 100%
-  );
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
+              0 0 0 1px rgba(255, 255, 255, 0.2) inset;
 }
 
 /* Fallback for browsers that don't support backdrop-filter */
-@supports not (backdrop-filter: blur(14px)) {
+@supports not (backdrop-filter: blur(20px)) {
   .glassmorphic-navbar {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.92);
   }
   
   [data-mantine-color-scheme="dark"] .glassmorphic-navbar {
