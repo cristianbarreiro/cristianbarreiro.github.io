@@ -353,6 +353,138 @@ button:hover .icon-send-jello {
   clip-path: none;
 }
 
+/* ----------------------------------------------
+ * Projects: card hover effect (tipo “Prismic”)
+ * ---------------------------------------------- */
+
+:root[data-mantine-color-scheme="dark"] .fh-project-card {
+  --fh-card-background-color: rgba(255, 255, 255, 0.015);
+  --fh-card-border-color: rgba(255, 255, 255, 0.1);
+  --fh-card-border-width: 1px;
+
+  --fh-card-shadow-1: rgba(0, 0, 0, 0.05);
+  --fh-card-shadow-1-y: 3px;
+  --fh-card-shadow-1-blur: 6px;
+  --fh-card-shadow-2: rgba(0, 0, 0, 0.1);
+  --fh-card-shadow-2-y: 8px;
+  --fh-card-shadow-2-blur: 15px;
+
+  --fh-card-hover-border-color: rgba(255, 255, 255, 0.2);
+  --fh-card-hover-shadow-1: rgba(0, 0, 0, 0.04);
+  --fh-card-hover-shadow-1-y: 5px;
+  --fh-card-hover-shadow-1-blur: 10px;
+  --fh-card-hover-shadow-2: rgba(0, 0, 0, 0.3);
+  --fh-card-hover-shadow-2-y: 15px;
+  --fh-card-hover-shadow-2-blur: 25px;
+
+  --fh-card-shine-opacity: 0.12;
+  --fh-card-tile-color: color-mix(in oklab, var(--fh-card-accent, #10b981) 35%, transparent);
+  --fh-card-line-color: rgba(255, 255, 255, 0.08);
+}
+
+:root[data-mantine-color-scheme="light"] .fh-project-card {
+  /* Fondo más sólido en modo claro para mejorar contraste */
+  --fh-card-background-color: rgba(255, 255, 255, 0.3);
+  --fh-card-border-color: rgba(24, 24, 27, 0.08);
+  --fh-card-border-width: 1px;
+
+  --fh-card-shadow-1: rgba(24, 24, 27, 0.02);
+  --fh-card-shadow-1-y: 3px;
+  --fh-card-shadow-1-blur: 6px;
+  --fh-card-shadow-2: rgba(24, 24, 27, 0.04);
+  --fh-card-shadow-2-y: 2px;
+  --fh-card-shadow-2-blur: 7px;
+
+  --fh-card-hover-border-color: rgba(24, 24, 27, 0.15);
+  --fh-card-hover-shadow-1: rgba(24, 24, 27, 0.05);
+  --fh-card-hover-shadow-1-y: 3px;
+  --fh-card-hover-shadow-1-blur: 6px;
+  --fh-card-hover-shadow-2: rgba(24, 24, 27, 0.1);
+  --fh-card-hover-shadow-2-y: 8px;
+  --fh-card-hover-shadow-2-blur: 15px;
+
+  --fh-card-shine-opacity: 0.22;
+  --fh-card-tile-color: color-mix(in oklab, var(--fh-card-accent, #10b981) 30%, transparent);
+  --fh-card-line-color: rgba(40, 40, 44, 0.16);
+}
+
+.fh-project-card {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--fh-card-background-color);
+  box-shadow:
+    0px var(--fh-card-shadow-1-y) var(--fh-card-shadow-1-blur) var(--fh-card-shadow-1),
+    0px var(--fh-card-shadow-2-y) var(--fh-card-shadow-2-blur) var(--fh-card-shadow-2),
+    0 0 0 var(--fh-card-border-width) var(--fh-card-border-color);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fh-project-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Pattern/lines layer */
+.fh-project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  background:
+    linear-gradient(to right, var(--fh-card-line-color) 1px, transparent 1px) 0 0 / 64px 64px,
+    linear-gradient(to bottom, var(--fh-card-line-color) 1px, transparent 1px) 0 0 / 64px 64px,
+    radial-gradient(circle at 18% 12%, var(--fh-card-tile-color), transparent 55%);
+  -webkit-mask-image: radial-gradient(circle at 60% 8%, #000 0%, #000 20%, transparent 68%);
+  mask-image: radial-gradient(circle at 60% 8%, #000 0%, #000 20%, transparent 68%);
+}
+
+/* Shine layer */
+.fh-project-card::after {
+  content: '';
+  position: absolute;
+  inset: -30% -25% 35% -25%;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  filter: blur(34px);
+  background-image: conic-gradient(
+    from 205deg at 50% 50%,
+    rgba(16, 185, 129, 0) 0deg,
+    var(--fh-card-accent, #10b981) 25deg,
+    rgba(52, 211, 153, 0.18) 295deg,
+    rgba(16, 185, 129, 0) 360deg
+  );
+}
+
+.fh-project-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0px var(--fh-card-hover-shadow-1-y) var(--fh-card-hover-shadow-1-blur) var(--fh-card-hover-shadow-1),
+    0px var(--fh-card-hover-shadow-2-y) var(--fh-card-hover-shadow-2-blur) var(--fh-card-hover-shadow-2),
+    0 0 0 var(--fh-card-border-width) var(--fh-card-hover-border-color);
+}
+
+.fh-project-card:hover::before {
+  opacity: 1;
+}
+
+.fh-project-card:hover::after {
+  opacity: var(--fh-card-shine-opacity);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fh-project-card {
+    transition: none;
+  }
+
+  .fh-project-card::before,
+  .fh-project-card::after {
+    transition: none;
+  }
+}
+
 /* Línea 1: typing con cursor que desaparece */
 .home-typing-line1 {
   display: inline-block;

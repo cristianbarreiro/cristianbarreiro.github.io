@@ -30,21 +30,26 @@ function ProjectCard({ project }) {
     const theme = useMantineTheme();
     const { t } = useTranslation();
 
+    const accentColor = `var(--mantine-color-${theme.primaryColor}-6)`;
+    const featuredBorderColor = `var(--mantine-color-${theme.primaryColor}-5)`;
+
     return (
         <Card
             shadow="sm"
             padding="lg"
             radius="md"
             withBorder
+            className="fh-project-card"
             style={{
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                // Borde especial para proyectos destacados
-                borderColor: project.featured
-                    ? `var(--mantine-color-${theme.primaryColor}-5)`
+                // Variables para el efecto hover (estilo “Prismic”).
+                '--fh-card-accent': accentColor,
+                '--fh-card-border-color': project.featured
+                    ? featuredBorderColor
                     : undefined,
-                borderWidth: project.featured ? 2 : 1,
+                '--fh-card-border-width': project.featured ? 2 : 1,
             }}
         >
             {/* Badge de destacado (solo si featured es true) */}
