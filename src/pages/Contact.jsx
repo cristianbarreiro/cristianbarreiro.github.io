@@ -192,7 +192,7 @@ function Contact() {
                         <Title order={1} mb="sm">
                             {t('contact.title')}
                         </Title>
-                        <Text size="lg" c="dimmed">
+                        <Text size="lg" className="section-subtitle" style={{ color: 'var(--mantine-color-gray-0)' }}>
                             {t('contact.subtitle')}
                         </Text>
                     </div>

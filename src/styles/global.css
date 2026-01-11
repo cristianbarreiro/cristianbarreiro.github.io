@@ -79,13 +79,13 @@ body,
 :root[data-mantine-color-scheme="light"] {
   /* Fondo personalizado en modo claro (ejemplo: gris muy claro) */
   --mantine-color-body: #fafafabb;
-  
+
   /* Texto principal (opcional, por defecto es negro) */
   /* --mantine-color-text: #1a1a1a; */
-  
+
   /* Texto secundario */
   /* --mantine-color-dimmed: #6b7280; */
-  
+
   /* Bordes */
   /* --mantine-color-default-border: #e5e7eb; */
 }
@@ -111,11 +111,16 @@ body,
 
 /* Texto descriptivo del hero: mantener light como estaba y suavizar SOLO en dark. */
 .hero-description {
-  color: var(--mantine-color-dimmed);
+  color: var(--mantine-color-gray-0);
 }
 
 :root[data-mantine-color-scheme="dark"] .hero-description {
   color: var(--mantine-color-gray-4);
+}
+
+/* Subtítulos de secciones - forzar gray-0 */
+.section-subtitle {
+  color: var(--mantine-color-gray-0) !important;
 }
 
 /* ========================================
@@ -332,17 +337,17 @@ button:hover .icon-send-jello {
   position: sticky;
   top: 0;
   z-index: 100;
-  
+
   /* Más transparencia con blanco más notable */
   background: rgba(255, 255, 255, 0.45);
   border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 
-              0 0 0 1px rgba(255, 255, 255, 0.589) inset;
-  
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.589) inset;
+
   /* Blur más intenso para efecto glass muy visible */
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  
+
   transition: all 0.3s ease;
 }
 
@@ -350,7 +355,7 @@ button:hover .icon-send-jello {
   background: #13141686;
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.26),
-              0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
@@ -359,13 +364,13 @@ button:hover .icon-send-jello {
 .glassmorphic-navbar.scrolled {
   background: rgba(255, 255, 255, 0.45);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15),
-              0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+    0 0 0 1px rgba(255, 255, 255, 0.4) inset;
 }
 
 [data-mantine-color-scheme="dark"] .glassmorphic-navbar.scrolled {
   background: rgba(255, 255, 255, 0.12);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
-              0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
 }
 
 /* Fallback for browsers that don't support backdrop-filter */
@@ -373,7 +378,7 @@ button:hover .icon-send-jello {
   .glassmorphic-navbar {
     background: rgba(255, 255, 255, 0.92);
   }
-  
+
   [data-mantine-color-scheme="dark"] .glassmorphic-navbar {
     background: rgba(15, 15, 20, 0.95);
   }
@@ -445,7 +450,11 @@ button:hover .icon-send-jello {
   --fh-card-hover-shadow-2-blur: 25px;
 
   --fh-card-shine-opacity: 0.12;
-  --fh-card-tile-color: color-mix(in oklab, var(--fh-card-accent, #10b981) 35%, transparent);
+  --fh-card-tile-color: color-mix(
+    in oklab,
+    var(--fh-card-accent, #10b981) 35%,
+    transparent
+  );
   --fh-card-line-color: rgba(255, 255, 255, 0.08);
 }
 
@@ -471,7 +480,11 @@ button:hover .icon-send-jello {
   --fh-card-hover-shadow-2-blur: 15px;
 
   --fh-card-shine-opacity: 0.22;
-  --fh-card-tile-color: color-mix(in oklab, var(--fh-card-accent, #10b981) 25%, rgba(255, 255, 255, 0.6));
+  --fh-card-tile-color: color-mix(
+    in oklab,
+    var(--fh-card-accent, #10b981) 25%,
+    rgba(255, 255, 255, 0.6)
+  );
   --fh-card-line-color: rgba(255, 255, 255, 0.45);
 }
 
@@ -479,9 +492,10 @@ button:hover .icon-send-jello {
   position: relative;
   overflow: hidden;
   background-color: var(--fh-card-background-color);
-  box-shadow:
-    0px var(--fh-card-shadow-1-y) var(--fh-card-shadow-1-blur) var(--fh-card-shadow-1),
-    0px var(--fh-card-shadow-2-y) var(--fh-card-shadow-2-blur) var(--fh-card-shadow-2),
+  box-shadow: 0px var(--fh-card-shadow-1-y) var(--fh-card-shadow-1-blur)
+      var(--fh-card-shadow-1),
+    0px var(--fh-card-shadow-2-y) var(--fh-card-shadow-2-blur)
+      var(--fh-card-shadow-2),
     0 0 0 var(--fh-card-border-width) var(--fh-card-border-color);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -493,23 +507,42 @@ button:hover .icon-send-jello {
 
 /* Pattern/lines layer */
 .fh-project-card::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   z-index: 0;
   opacity: 0;
   transition: opacity 0.25s ease;
-  background:
-    linear-gradient(to right, var(--fh-card-line-color) 1px, transparent 1px) 0 0 / 64px 64px,
-    linear-gradient(to bottom, var(--fh-card-line-color) 1px, transparent 1px) 0 0 / 64px 64px,
-    radial-gradient(circle at 18% 12%, var(--fh-card-tile-color), transparent 55%);
-  -webkit-mask-image: radial-gradient(circle at 60% 8%, #000 0%, #000 20%, transparent 68%);
-  mask-image: radial-gradient(circle at 60% 8%, #000 0%, #000 20%, transparent 68%);
+  background: linear-gradient(
+        to right,
+        var(--fh-card-line-color) 1px,
+        transparent 1px
+      )
+      0 0 / 64px 64px,
+    linear-gradient(to bottom, var(--fh-card-line-color) 1px, transparent 1px) 0
+      0 / 64px 64px,
+    radial-gradient(
+      circle at 18% 12%,
+      var(--fh-card-tile-color),
+      transparent 55%
+    );
+  -webkit-mask-image: radial-gradient(
+    circle at 60% 8%,
+    #000 0%,
+    #000 20%,
+    transparent 68%
+  );
+  mask-image: radial-gradient(
+    circle at 60% 8%,
+    #000 0%,
+    #000 20%,
+    transparent 68%
+  );
 }
 
 /* Shine layer */
 .fh-project-card::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: -30% -25% 35% -25%;
   z-index: 0;
@@ -527,9 +560,10 @@ button:hover .icon-send-jello {
 
 .fh-project-card:hover {
   transform: translateY(-2px);
-  box-shadow:
-    0px var(--fh-card-hover-shadow-1-y) var(--fh-card-hover-shadow-1-blur) var(--fh-card-hover-shadow-1),
-    0px var(--fh-card-hover-shadow-2-y) var(--fh-card-hover-shadow-2-blur) var(--fh-card-hover-shadow-2),
+  box-shadow: 0px var(--fh-card-hover-shadow-1-y)
+      var(--fh-card-hover-shadow-1-blur) var(--fh-card-hover-shadow-1),
+    0px var(--fh-card-hover-shadow-2-y) var(--fh-card-hover-shadow-2-blur)
+      var(--fh-card-hover-shadow-2),
     0 0 0 var(--fh-card-border-width) var(--fh-card-hover-border-color);
 }
 
@@ -560,7 +594,17 @@ button:hover .icon-send-jello {
   overflow: hidden;
   width: 0;
   text-align: center;
-  font-family: var(--mantine-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-family: var(
+    --mantine-font-family-monospace,
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace
+  );
   font-weight: 800;
   letter-spacing: 0.2px;
   border-right: 1px solid var(--mantine-primary-color-filled);
@@ -607,8 +651,7 @@ button:hover .icon-send-jello {
   background-size: 200% 100%;
   background-position: 0% 50%;
 
-  animation:
-    home-name-reveal 2.2s steps(40, end) 1.9s forwards,
+  animation: home-name-reveal 2.2s steps(40, end) 1.9s forwards,
     home-name-gradient 2.2s linear 1.9s forwards;
 }
 
@@ -767,11 +810,19 @@ button:hover .icon-send-jello {
 
 /* -- 7.1.5 Gradiente Vibrante de Fondo -- */
 .main-content-wrapper::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 20%, #f093fb 40%, #4facfe 60%, #00f2fe 80%, #667eea 100%);
+  background-image: linear-gradient(
+    135deg,
+    #667eea 0%,
+    #764ba2 20%,
+    #f093fb 40%,
+    #4facfe 60%,
+    #00f2fe 80%,
+    #667eea 100%
+  );
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
   opacity: 1;
@@ -859,7 +910,15 @@ button:hover .icon-send-jello {
 }
 
 [data-mantine-color-scheme="dark"] .main-content-wrapper::before {
-  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 20%, #f093fb 40%, #4facfe 60%, #00f2fe 80%, #667eea 100%);
+  background-image: linear-gradient(
+    135deg,
+    #667eea 0%,
+    #764ba2 20%,
+    #f093fb 40%,
+    #4facfe 60%,
+    #00f2fe 80%,
+    #667eea 100%
+  );
   opacity: 0.4;
 }
 
@@ -877,7 +936,7 @@ button:hover .icon-send-jello {
   .background-video {
     display: none;
   }
-  
+
   .main-content-wrapper::before {
     animation: none;
     background-position: 0% 50%;

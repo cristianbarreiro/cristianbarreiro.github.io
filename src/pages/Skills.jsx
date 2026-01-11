@@ -73,7 +73,7 @@ function Skills() {
                         <Title order={1} mb="sm">
                             {t('skills.title')}
                         </Title>
-                        <Text size="lg" c="dimmed">
+                        <Text size="lg" className="section-subtitle" style={{ color: 'var(--mantine-color-gray-0)' }}>
                             {t('skills.subtitle')}
                         </Text>
                     </div>

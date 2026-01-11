@@ -47,7 +47,7 @@ function About() {
                         <Title order={1} mb="sm">
                             {t('about.title')}
                         </Title>
-                        <Text size="lg" c="dimmed">
+                        <Text size="lg" className="section-subtitle" style={{ color: 'var(--mantine-color-gray-0)' }}>
                             {t('site.subtitle')}
                         </Text>
                     </div>

@@ -14,7 +14,6 @@ import {
     Container,
     Paper,
     useMantineTheme,
-    useMantineColorScheme,
 } from '@mantine/core';
 import { IconArrowRight, IconMail } from '@tabler/icons-react';
 import { siteConfig } from '../config/siteConfig';
@@ -29,7 +28,6 @@ const PAGE_LOAD_ID = String(
 
 function Home() {
     const theme = useMantineTheme();
-    const { colorScheme } = useMantineColorScheme();
     const { t } = useTranslation();
 
     // Evita repetir el efecto al navegar dentro del SPA.
@@ -105,7 +103,8 @@ function Home() {
                         order={2}
                         size="h2"
                         fw={400}
-                        c={colorScheme === 'dark' ? 'white' : 'gray.8'}
+                        className="section-subtitle"
+                        style={{ color: '#ffffff' }}
                     >
                         {t('site.title')}
                     </Title>
@@ -115,7 +114,7 @@ function Home() {
                         size="lg"
                         className="hero-description"
                         maw={600}
-                        style={{ lineHeight: 1.7 }}
+                        style={{ lineHeight: 1.7, color: 'var(--mantine-color-gray-0)' }}
                     >
                         {t('site.heroDescription')}
                     </Text>
