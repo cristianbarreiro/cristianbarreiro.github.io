@@ -471,8 +471,8 @@ button:hover .icon-send-jello {
   --fh-card-hover-shadow-2-blur: 15px;
 
   --fh-card-shine-opacity: 0.22;
-  --fh-card-tile-color: color-mix(in oklab, var(--fh-card-accent, #10b981) 30%, transparent);
-  --fh-card-line-color: rgba(40, 40, 44, 0.16);
+  --fh-card-tile-color: color-mix(in oklab, var(--fh-card-accent, #10b981) 25%, rgba(255, 255, 255, 0.6));
+  --fh-card-line-color: rgba(255, 255, 255, 0.45);
 }
 
 .fh-project-card {
