@@ -38,6 +38,10 @@ function About() {
     const workExperience = getWorkExperience(language);
     const education = getEducation(language);
 
+    // Obtener intereses de forma segura
+    const interests = t('site.interests', { returnObjects: true });
+    const interestsList = Array.isArray(interests) ? interests : [];
+
     return (
         <main>
             {/* Encabezado de página */}
@@ -82,7 +86,7 @@ function About() {
                             </Title>
                         </Group>
                         <Group gap="sm">
-                            {t('site.interests', { returnObjects: true }).map((interest) => (
+                            {interestsList.map((interest) => (
                                 <Badge key={interest} variant="light" size="lg" radius="sm">
                                     {interest}
                                 </Badge>
