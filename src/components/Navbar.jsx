@@ -55,15 +55,8 @@ function Navbar() {
     return (
         <>
             {/* Header principal */}
-            <header
-                style={{
-                    position: 'sticky',
-                    top: 0,
-                    zIndex: 100,
-                    backgroundColor: 'var(--mantine-color-body)',
-                    borderBottom: '1px solid var(--mantine-color-default-border)',
-                }}
-            >
+            <header className="glassmorphic-navbar">
+
                 <Container size="lg" py="sm">
                     <Group justify="space-between" align="center">
                         {/* Logo / Nombre */}

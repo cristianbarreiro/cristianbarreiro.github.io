@@ -83,7 +83,7 @@ body,
 /* Mantine aplica data-mantine-color-scheme en el elemento root (html). */
 :root[data-mantine-color-scheme="dark"] {
   /* Fondo más suave (y consistente en toda la app) */
-  --mantine-color-body: var(--mantine-color-dark-8);
+  --mantine-color-body: #25262b;
 
   /* Texto más “blanquecino” */
   --mantine-color-text: var(--mantine-color-gray-0);
@@ -313,6 +313,68 @@ button:hover .icon-send-jello {
    6. ANIMACIONES
    ======================================== */
 
+/* -- 6.1 Navbar Glassmorphism -- */
+.glassmorphic-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  
+  /* Glassmorphism con gradiente: más transparente arriba, más opaco abajo */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.5) 100%
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  
+  /* The frosted glass blur effect - más intenso */
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  
+  transition: all 0.3s ease;
+}
+
+[data-mantine-color-scheme="dark"] .glassmorphic-navbar {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 15, 20, 0.3) 0%,
+    rgba(15, 15, 20, 0.7) 100%
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Optional: Enhance on scroll */
+.glassmorphic-navbar.scrolled {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.65) 100%
+  );
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+[data-mantine-color-scheme="dark"] .glassmorphic-navbar.scrolled {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 15, 20, 0.4) 0%,
+    rgba(15, 15, 20, 0.8) 100%
+  );
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Fallback for browsers that don't support backdrop-filter */
+@supports not (backdrop-filter: blur(14px)) {
+  .glassmorphic-navbar {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  [data-mantine-color-scheme="dark"] .glassmorphic-navbar {
+    background: rgba(15, 15, 20, 0.95);
+  }
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -351,6 +413,7 @@ button:hover .icon-send-jello {
   animation: none !important;
   opacity: 1;
   clip-path: none;
+  background-position: 100% 50%;
 }
 
 /* ----------------------------------------------
@@ -536,8 +599,9 @@ button:hover .icon-send-jello {
   clip-path: inset(0 100% 0 0);
 
   /* Para animar el gradiente (necesario con background-clip:text) */
-  background-size: 520px 100%;
-  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  background-position: 0% 50%;
 
   animation:
     home-name-reveal 2.2s steps(40, end) 1.9s forwards,
@@ -562,15 +626,15 @@ button:hover .icon-send-jello {
 
 @keyframes home-name-gradient {
   0% {
-    background-position: 0 0;
+    background-position: 0% 50%;
   }
 
   50% {
-    background-position: 180px 0;
+    background-position: 55% 50%;
   }
 
   100% {
-    background-position: 420px 0;
+    background-position: 100% 50%;
   }
 }
 
@@ -681,11 +745,11 @@ button:hover .icon-send-jello {
   overflow: hidden;
 
   /* Ajustes rápidos (modo claro por defecto) */
-  --bg-video-opacity: 0.4;
+  --bg-video-opacity: 0.12;
   --bg-video-fade: 1.35s;
-  --bg-overlay-top: 0.35;
-  --bg-overlay-mid: 0.25;
-  --bg-overlay-bot: 0.35;
+  --bg-overlay-top: 0.05;
+  --bg-overlay-mid: 0.02;
+  --bg-overlay-bot: 0.05;
   min-height: calc(100vh - 60px - 200px);
   /* viewport - header - footer */
   width: calc(
@@ -695,6 +759,30 @@ button:hover .icon-send-jello {
   margin-right: calc(-1 * var(--mantine-spacing-md, 16px));
   margin-top: calc(-1 * var(--mantine-spacing-md, 16px));
   padding: var(--mantine-spacing-md, 16px);
+}
+
+/* -- 7.1.5 Gradiente Vibrante de Fondo -- */
+.main-content-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 20%, #f093fb 40%, #4facfe 60%, #00f2fe 80%, #667eea 100%);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+  opacity: 1;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .navbar-logo {
@@ -759,19 +847,24 @@ button:hover .icon-send-jello {
 
 /* -- 7.5 Modo Oscuro -- */
 [data-mantine-color-scheme="dark"] .main-content-wrapper {
-  --bg-video-opacity: 0.38;
+  --bg-video-opacity: 0.1;
   --bg-video-fade: 1.35s;
-  --bg-overlay-top: 0.88;
-  --bg-overlay-mid: 0.78;
-  --bg-overlay-bot: 0.88;
+  --bg-overlay-top: 0.6;
+  --bg-overlay-mid: 0.5;
+  --bg-overlay-bot: 0.6;
+}
+
+[data-mantine-color-scheme="dark"] .main-content-wrapper::before {
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 20%, #f093fb 40%, #4facfe 60%, #00f2fe 80%, #667eea 100%);
+  opacity: 0.4;
 }
 
 [data-mantine-color-scheme="dark"] .video-overlay {
   background: linear-gradient(
     180deg,
-    rgba(26, 27, 30, 0.88) 0%,
-    rgba(26, 27, 30, 0.78) 50%,
-    rgba(26, 27, 30, 0.88) 100%
+    rgba(26, 27, 30, 0.6) 0%,
+    rgba(26, 27, 30, 0.5) 50%,
+    rgba(26, 27, 30, 0.6) 100%
   );
 }
 
@@ -779,6 +872,11 @@ button:hover .icon-send-jello {
 @media (prefers-reduced-motion: reduce) {
   .background-video {
     display: none;
+  }
+  
+  .main-content-wrapper::before {
+    animation: none;
+    background-position: 0% 50%;
   }
 }
 
