@@ -1136,3 +1136,51 @@ button:hover .icon-send-jello {
 .menu-link.active {
   color: var(--mantine-primary-color-filled) !important;
 }
+
+/* ========================================
+   DRAWER MÓVIL GLASSMORPHISM
+   ======================================== */
+
+/* Contenido del Drawer con efecto glass */
+.mantine-Drawer-content {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: -4px 0 30px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset !important;
+}
+
+[data-mantine-color-scheme="dark"] .mantine-Drawer-content {
+  background: rgba(19, 20, 22, 0.75) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: -4px 0 30px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
+}
+
+/* Overlay del Drawer semi-transparente */
+.mantine-Drawer-overlay {
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+}
+
+/* Header del Drawer */
+.mantine-Drawer-header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-mantine-color-scheme="dark"] .mantine-Drawer-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Fallback para navegadores sin soporte de backdrop-filter */
+@supports not (backdrop-filter: blur(20px)) {
+  .mantine-Drawer-content {
+    background: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  [data-mantine-color-scheme="dark"] .mantine-Drawer-content {
+    background: rgba(19, 20, 22, 0.97) !important;
+  }
+}
