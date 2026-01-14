@@ -68,7 +68,7 @@ function About() {
                         </Group>
                         <Text
                             size="md"
-                            c={colorScheme === 'dark' ? 'dimmed' : 'gray.8'}
+                            c={colorScheme === 'dark' ? 'gray.0' : 'dimmed'}
                             style={{ whiteSpace: 'pre-line', lineHeight: 1.8 }}
                         >
                             {t('site.bio')}
