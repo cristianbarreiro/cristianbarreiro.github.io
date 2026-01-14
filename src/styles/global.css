@@ -413,14 +413,17 @@ button:hover .icon-send-jello {
 
 /* Si ya se reprodujo el efecto en esta carga de página, mostrar estado final */
 .home-typing-no-anim .home-typing-line1 {
+  -webkit-animation: none !important;
   animation: none !important;
   width: auto;
   border-right: none;
 }
 
 .home-typing-no-anim .home-typing-line2-text {
+  -webkit-animation: none !important;
   animation: none !important;
   opacity: 1;
+  -webkit-clip-path: none;
   clip-path: none;
   background-position: 100% 50%;
 }
@@ -608,7 +611,24 @@ button:hover .icon-send-jello {
   font-weight: 800;
   letter-spacing: 0.2px;
   border-right: 1px solid var(--mantine-primary-color-filled);
+  -webkit-animation: home-typing-line1 1.8s steps(30, end) forwards;
   animation: home-typing-line1 1.8s steps(30, end) forwards;
+}
+
+@-webkit-keyframes home-typing-line1 {
+  0% {
+    width: 0;
+  }
+
+  1%,
+  99% {
+    border-right: 1px solid var(--mantine-primary-color-filled);
+  }
+
+  100% {
+    width: var(--typing-width, 18ch);
+    border-right: none;
+  }
 }
 
 @keyframes home-typing-line1 {
@@ -644,20 +664,30 @@ button:hover .icon-send-jello {
   display: inline-block;
   white-space: nowrap;
   opacity: 0;
+  
+  /* clip-path con fallback para mejor compatibilidad en Windows */
+  -webkit-clip-path: inset(0 100% 0 0);
   clip-path: inset(0 100% 0 0);
 
   /* Para animar el gradiente (necesario con background-clip:text) */
   background-repeat: no-repeat;
   background-size: 200% 100%;
   background-position: 0% 50%;
+  
+  /* Prefijos para mejor compatibilidad */
+  -webkit-background-clip: text;
+  background-clip: text;
 
   animation: home-name-reveal 2.2s steps(40, end) 1.9s forwards,
     home-name-gradient 2.2s linear 1.9s forwards;
+  -webkit-animation: home-name-reveal 2.2s steps(40, end) 1.9s forwards,
+    home-name-gradient 2.2s linear 1.9s forwards;
 }
 
-@keyframes home-name-reveal {
+@-webkit-keyframes home-name-reveal {
   0% {
     opacity: 0;
+    -webkit-clip-path: inset(0 100% 0 0);
     clip-path: inset(0 100% 0 0);
   }
 
@@ -667,7 +697,40 @@ button:hover .icon-send-jello {
 
   100% {
     opacity: 1;
+    -webkit-clip-path: inset(0 0 0 0);
     clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes home-name-reveal {
+  0% {
+    opacity: 0;
+    -webkit-clip-path: inset(0 100% 0 0);
+    clip-path: inset(0 100% 0 0);
+  }
+
+  1% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@-webkit-keyframes home-name-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 55% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
   }
 }
 
@@ -687,18 +750,22 @@ button:hover .icon-send-jello {
 
 @media (prefers-reduced-motion: reduce) {
   .home-typing-line1 {
+    -webkit-animation: none !important;
     animation: none !important;
     width: auto;
     border-right: none;
   }
 
   .home-typing-line2 {
+    -webkit-animation: none !important;
     animation: none !important;
   }
 
   .home-typing-line2-text {
+    -webkit-animation: none !important;
     animation: none !important;
     opacity: 1;
+    -webkit-clip-path: none;
     clip-path: none;
   }
 }
