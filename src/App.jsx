@@ -8,6 +8,8 @@ import { Routes, Route } from 'react-router-dom';
 // Componente de layout
 import Layout from './components/Layout';
 
+import UnderConstructionModal from './components/UnderConstructionModal';
+
 // Páginas
 import Home from './pages/Home';
 import About from './pages/About';
@@ -30,36 +32,40 @@ function App() {
   const { t } = useTranslation();
 
   return (
-    <Routes>
-      {/* Layout wrapper con Navbar y Footer */}
-      <Route path="/" element={<Layout />}>
-        {/* Página de inicio (index) */}
-        <Route index element={<Home />} />
+    <>
+      <UnderConstructionModal />
 
-        {/* Página Sobre mí */}
-        <Route path="about" element={<About />} />
+      <Routes>
+        {/* Layout wrapper con Navbar y Footer */}
+        <Route path="/" element={<Layout />}>
+          {/* Página de inicio (index) */}
+          <Route index element={<Home />} />
 
-        {/* Página de proyectos */}
-        <Route path="projects" element={<Projects />} />
+          {/* Página Sobre mí */}
+          <Route path="about" element={<About />} />
 
-        {/* Página de habilidades */}
-        <Route path="skills" element={<Skills />} />
+          {/* Página de proyectos */}
+          <Route path="projects" element={<Projects />} />
 
-        {/* Página de contacto */}
-        <Route path="contact" element={<Contact />} />
+          {/* Página de habilidades */}
+          <Route path="skills" element={<Skills />} />
 
-        {/* Ruta 404 - página no encontrada */}
-        <Route
-          path="*"
-          element={
-            <div style={{ textAlign: 'center', padding: '4rem' }}>
-              <h1>404</h1>
-              <p>{t('notFound.message')}</p>
-            </div>
-          }
-        />
-      </Route>
-    </Routes>
+          {/* Página de contacto */}
+          <Route path="contact" element={<Contact />} />
+
+          {/* Ruta 404 - página no encontrada */}
+          <Route
+            path="*"
+            element={
+              <div style={{ textAlign: 'center', padding: '4rem' }}>
+                <h1>404</h1>
+                <p>{t('notFound.message')}</p>
+              </div>
+            }
+          />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
