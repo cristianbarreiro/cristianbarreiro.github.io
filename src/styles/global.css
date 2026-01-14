@@ -422,9 +422,7 @@ button:hover .icon-send-jello {
 .home-typing-no-anim .home-typing-line2-text {
   -webkit-animation: none !important;
   animation: none !important;
-  opacity: 1;
-  -webkit-clip-path: none;
-  clip-path: none;
+  max-width: none;
   background-position: 100% 50%;
 }
 
@@ -663,60 +661,49 @@ button:hover .icon-send-jello {
 .home-typing-line2-text {
   display: inline-block;
   white-space: nowrap;
-  opacity: 0;
+  overflow: hidden;
   
-  /* clip-path con fallback para mejor compatibilidad en Windows */
-  -webkit-clip-path: inset(0 100% 0 0);
-  clip-path: inset(0 100% 0 0);
+  /* Usar max-width en vez de clip-path para mejor compatibilidad Windows */
+  max-width: 0;
 
-  /* Para animar el gradiente (necesario con background-clip:text) */
-  background-repeat: no-repeat;
+  /* Gradiente del texto - movido desde inline styles para compatibilidad */
+  background: linear-gradient(
+    135deg,
+    var(--name-gradient-start, #228be6),
+    var(--name-gradient-end, #74c0fc)
+  );
   background-size: 200% 100%;
   background-position: 0% 50%;
   
   /* Prefijos para mejor compatibilidad */
   -webkit-background-clip: text;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 
-  animation: home-name-reveal 2.2s steps(40, end) 1.9s forwards,
-    home-name-gradient 2.2s linear 1.9s forwards;
   -webkit-animation: home-name-reveal 2.2s steps(40, end) 1.9s forwards,
+    home-name-gradient 2.2s linear 1.9s forwards;
+  animation: home-name-reveal 2.2s steps(40, end) 1.9s forwards,
     home-name-gradient 2.2s linear 1.9s forwards;
 }
 
 @-webkit-keyframes home-name-reveal {
   0% {
-    opacity: 0;
-    -webkit-clip-path: inset(0 100% 0 0);
-    clip-path: inset(0 100% 0 0);
-  }
-
-  1% {
-    opacity: 1;
+    max-width: 0;
   }
 
   100% {
-    opacity: 1;
-    -webkit-clip-path: inset(0 0 0 0);
-    clip-path: inset(0 0 0 0);
+    max-width: 100vw;
   }
 }
 
 @keyframes home-name-reveal {
   0% {
-    opacity: 0;
-    -webkit-clip-path: inset(0 100% 0 0);
-    clip-path: inset(0 100% 0 0);
-  }
-
-  1% {
-    opacity: 1;
+    max-width: 0;
   }
 
   100% {
-    opacity: 1;
-    -webkit-clip-path: inset(0 0 0 0);
-    clip-path: inset(0 0 0 0);
+    max-width: 100vw;
   }
 }
 
@@ -764,9 +751,7 @@ button:hover .icon-send-jello {
   .home-typing-line2-text {
     -webkit-animation: none !important;
     animation: none !important;
-    opacity: 1;
-    -webkit-clip-path: none;
-    clip-path: none;
+    max-width: none;
   }
 }
 

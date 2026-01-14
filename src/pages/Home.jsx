@@ -88,9 +88,8 @@ function Home() {
                             <span
                                 className="home-typing-line2-text"
                                 style={{
-                                    background: `linear-gradient(135deg, var(--mantine-color-${theme.primaryColor}-6), var(--mantine-color-${theme.primaryColor}-4))`,
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent',
+                                    '--name-gradient-start': `var(--mantine-color-${theme.primaryColor}-6)`,
+                                    '--name-gradient-end': `var(--mantine-color-${theme.primaryColor}-4)`,
                                 }}
                             >
                                 {fullNameText}
