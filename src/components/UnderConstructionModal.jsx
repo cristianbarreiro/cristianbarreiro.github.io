@@ -10,6 +10,7 @@ import {
     Box,
 } from '@mantine/core';
 import { IconAlertTriangle } from '@tabler/icons-react';
+import '../styles/underConstructionModal.css';
 
 const STORAGE_KEY = 'underConstructionDismissedForLoadId';
 
@@ -209,46 +210,33 @@ export default function UnderConstructionModal({
     return (
         <Portal>
             {/* Capa que no bloquea clicks en la página */}
-            <Box style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9999 }}>
+            <Box className="uc-modal-overlay">
                 <Box
                     ref={popupRef}
                     onPointerDown={onPointerDown}
                     onPointerMove={onPointerMove}
                     onPointerUp={stopDragging}
                     onPointerCancel={stopDragging}
+                    className={`uc-modal-container ${isDragging ? 'uc-dragging' : ''} ${
+                        reduceMotion
+                            ? 'uc-modal-no-motion'
+                            : closing
+                              ? 'uc-modal-animate-out'
+                              : 'uc-modal-animate-in'
+                    }`}
                     style={{
-                        position: 'fixed',
                         left: position.x,
                         top: position.y,
-                        pointerEvents: 'auto',
-                        width: 'min(520px, calc(100vw - 24px))',
-                        maxHeight: 'calc(100vh - 24px)',
-                        overflow: 'hidden',
-                        cursor: isDragging ? 'grabbing' : 'pointer',
-                        userSelect: isDragging ? 'none' : 'auto',
-                        padding: 2,
-                        borderRadius: 'var(--mantine-radius-md)',
-                        // Borde a rayas: solo visible en el contorno (no por debajo del contenido)
-                        backgroundImage:
-                            'linear-gradient(var(--mantine-color-body), var(--mantine-color-body)), repeating-linear-gradient(45deg, transparent 0 6px, rgba(250, 176, 5, 0.95) 6px 12px)',
-                        backgroundOrigin: 'padding-box, border-box',
-                        backgroundClip: 'padding-box, border-box',
-                        boxShadow: 'var(--mantine-shadow-xl)',
-                        animation: reduceMotion
-                            ? 'none'
-                            : closing
-                              ? `ucModalOut ${ANIMATION_MS}ms ease both`
-                              : `ucModalIn ${ANIMATION_MS}ms ease both`,
-                        willChange: reduceMotion ? undefined : 'transform, opacity',
                     }}
                 >
                     <Paper
                         radius="md"
                         p="md"
+                        className="uc-modal-paper"
                         style={{
-                            maxHeight: 'calc(100vh - 24px - 4px)',
-                            overflow: 'auto',
-                            cursor: 'inherit',
+                            background: 'rgba(15, 15, 15, 0.85)',
+                            backdropFilter: 'blur(16px)',
+                            WebkitBackdropFilter: 'blur(16px)',
                         }}
                     >
                         <Stack gap="md">

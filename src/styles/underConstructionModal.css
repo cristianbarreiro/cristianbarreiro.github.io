@@ -1,0 +1,108 @@
+/**
+ * Estilos para UnderConstructionModal
+ * Modal arrastrable de "página en construcción"
+ */
+
+/* Capa overlay que no bloquea clicks */
+.uc-modal-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Contenedor principal del popup */
+.uc-modal-container {
+    position: fixed;
+    pointer-events: auto;
+    width: min(520px, calc(100vw - 24px));
+    max-height: calc(100vh - 24px);
+    overflow: visible;
+    padding: 4px;
+    border-radius: var(--mantine-radius-md);
+    box-shadow: var(--mantine-shadow-xl);
+    background: transparent;
+}
+
+/* Borde rayado usando pseudo-elemento */
+.uc-modal-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 4px;
+    background: repeating-linear-gradient(
+        45deg,
+        #000000 0px,
+        #000000 10px,
+        #ffc107 10px,
+        #ffc107 20px
+    );
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+}
+
+/* Cursores según estado de arrastre */
+.uc-modal-container.uc-dragging {
+    cursor: grabbing;
+    user-select: none;
+}
+
+.uc-modal-container:not(.uc-dragging) {
+    cursor: pointer;
+    user-select: auto;
+}
+
+/* Paper interior */
+.uc-modal-paper {
+    max-height: calc(100vh - 24px - 8px);
+    overflow: auto;
+    cursor: inherit;
+}
+
+/* Animación de entrada */
+@keyframes ucModalIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Animación de salida */
+@keyframes ucModalOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+}
+
+/* Clases para animaciones */
+.uc-modal-animate-in {
+    animation: ucModalIn 260ms ease both;
+    will-change: transform, opacity;
+}
+
+.uc-modal-animate-out {
+    animation: ucModalOut 260ms ease both;
+    will-change: transform, opacity;
+}
+
+.uc-modal-no-motion {
+    animation: none;
+    will-change: auto;
+}
