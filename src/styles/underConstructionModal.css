@@ -21,7 +21,9 @@
     padding: 4px;
     border-radius: var(--mantine-radius-md);
     box-shadow: var(--mantine-shadow-xl);
-    background: transparent;
+    background: rgba(15, 15, 15, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 /* Borde rayado usando pseudo-elemento */

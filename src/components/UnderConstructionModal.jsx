@@ -234,9 +234,7 @@ export default function UnderConstructionModal({
                         p="md"
                         className="uc-modal-paper"
                         style={{
-                            background: 'rgba(15, 15, 15, 0.85)',
-                            backdropFilter: 'blur(16px)',
-                            WebkitBackdropFilter: 'blur(16px)',
+                            background: 'transparent',
                         }}
                     >
                         <Stack gap="md">
