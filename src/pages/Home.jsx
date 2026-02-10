@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import {
     Title,
     Text,
-    Button,
     Group,
     Stack,
     Container,
@@ -18,6 +17,7 @@ import {
 import { IconArrowRight, IconMail } from '@tabler/icons-react';
 import { siteConfig } from '../config/siteConfig';
 import { useTranslation } from 'react-i18next';
+import RippleButton from '../components/RippleButton';
 
 const HOME_TYPING_STORAGE_KEY = 'homeTypingPlayedForLoadId';
 const PAGE_LOAD_ID = String(
@@ -120,7 +120,7 @@ function Home() {
 
                     {/* Botones CTA (Call to Action) */}
                     <Group mt="md" gap="md">
-                        <Button
+                        <RippleButton
                             component={Link}
                             to="/projects"
                             size="lg"
@@ -132,8 +132,8 @@ function Home() {
                             }
                         >
                             {t('home.viewProjects')}
-                        </Button>
-                        <Button
+                        </RippleButton>
+                        <RippleButton
                             component={Link}
                             to="/contact"
                             size="lg"
@@ -143,7 +143,7 @@ function Home() {
                             }
                         >
                             {t('home.contact')}
-                        </Button>
+                        </RippleButton>
                     </Group>
                 </Stack>
             </section>
@@ -165,7 +165,7 @@ function Home() {
                         <Text size="md" c="dimmed" style={{ whiteSpace: 'pre-line' }}>
                             {t('site.bio').split('\n').slice(0, 2).join('\n')}
                         </Text>
-                        <Button
+                        <RippleButton
                             component={Link}
                             to="/about"
                             variant="subtle"
@@ -178,7 +178,7 @@ function Home() {
                             }
                         >
                             {t('home.knowMore')}
-                        </Button>
+                        </RippleButton>
                     </Paper>
                 </Container>
             </section>

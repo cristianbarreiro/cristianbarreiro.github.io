@@ -16,9 +16,10 @@ import {
     useMantineTheme,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconHome, IconUser, IconFolder, IconCode, IconMail } from '@tabler/icons-react';
+import { IconHome, IconUser, IconFolder, IconCode, IconMail, IconDownload } from '@tabler/icons-react';
 import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
+import RippleButton from './RippleButton';
 import { siteConfig } from '../config/siteConfig';
 import { useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -94,10 +95,35 @@ function Navbar() {
                             ))}
                             <ThemeToggle />
                             <LanguageToggle />
+                            <RippleButton
+                                component="a"
+                                href="/cv_dev_cristian.pdf"
+                                download
+                                size="compact-sm"
+                                variant="default"
+                                radius="xl"
+                                leftSection={<IconDownload size={16} />}
+                                rippleColor="dark"
+                            >
+                                {t('nav.downloadCV')}
+                            </RippleButton>
                         </Group>
 
                         {/* Botones móvil (hamburguesa + toggle tema) */}
                         <Group hiddenFrom="sm">
+                            <RippleButton
+                                component="a"
+                                href="/cv_dev_cristian.pdf"
+                                download
+                                size="compact-sm"
+                                variant="default"
+                                radius="xl"
+                                leftSection={<IconDownload size={16} />}
+                                aria-label={t('nav.downloadCV')}
+                                rippleColor="dark"
+                            >
+                                {t('nav.downloadCV')}
+                            </RippleButton>
                             <ThemeToggle />
                             <LanguageToggle />
                             <Burger

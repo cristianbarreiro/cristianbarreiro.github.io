@@ -14,7 +14,6 @@ import {
     Paper,
     TextInput,
     Textarea,
-    Button,
     Group,
     Alert,
     Anchor,
@@ -31,6 +30,7 @@ import {
 } from '@tabler/icons-react';
 import { siteConfig } from '../config/siteConfig';
 import { useTranslation } from 'react-i18next';
+import RippleButton from '../components/RippleButton';
 
 // Credenciales de EmailJS
 const EMAILJS_SERVICE_ID = 'service_0hsjser';
@@ -259,7 +259,7 @@ function Contact() {
                                 />
 
                                 {/* Botón de envío */}
-                                <Button
+                                <RippleButton
                                     type="submit"
                                     size="md"
                                     loading={loading}
@@ -271,7 +271,7 @@ function Contact() {
                                     }
                                 >
                                     {t('contact.send')}
-                                </Button>
+                                </RippleButton>
 
                                 {/* Mensaje de error */}
                                 {submitError && (
