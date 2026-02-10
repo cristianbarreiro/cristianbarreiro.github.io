@@ -6,7 +6,8 @@
     "skills": "Skills",
     "contact": "Contact",
     "drawerTitle": "Navigation",
-    "openMenu": "Open navigation menu"
+    "openMenu": "Open navigation menu",
+    "downloadCV": "Download CV"
   },
   "theme": {
     "toLight": "Switch to light mode",

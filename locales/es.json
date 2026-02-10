@@ -6,7 +6,8 @@
     "skills": "Habilidades",
     "contact": "Contacto",
     "drawerTitle": "Navegación",
-    "openMenu": "Abrir menú de navegación"
+    "openMenu": "Abrir menú de navegación",
+    "downloadCV": "Descargar CV"
   },
   "theme": {
     "toLight": "Cambiar a modo claro",
