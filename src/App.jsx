@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 
 // Componente de layout
 import Layout from './components/Layout';
+import ThemeSwitch from './components/ThemeSwitch';
 
 import UnderConstructionModal from './components/UnderConstructionModal';
 
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <>
+      <ThemeSwitch />
       <UnderConstructionModal />
 
       <Routes>

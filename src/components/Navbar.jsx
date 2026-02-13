@@ -17,7 +17,7 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconHome, IconUser, IconFolder, IconCode, IconMail, IconDownload } from '@tabler/icons-react';
-import ThemeToggle from './ThemeToggle';
+
 import LanguageToggle from './LanguageToggle';
 import RippleButton from './RippleButton';
 import { siteConfig } from '../config/siteConfig';
@@ -93,7 +93,6 @@ function Navbar() {
                                     {t(link.labelKey)}
                                 </Text>
                             ))}
-                            <ThemeToggle />
                             <LanguageToggle />
                             <RippleButton
                                 component="a"
@@ -124,7 +123,6 @@ function Navbar() {
                             >
                                 {t('nav.downloadCV')}
                             </RippleButton>
-                            <ThemeToggle />
                             <LanguageToggle />
                             <Burger
                                 opened={drawerOpened}

@@ -10,6 +10,10 @@ import { AppShell, Container, Box } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import CircuitBackground from './CircuitBackground';
+
+// Tipo de fondo: 'circuit' (canvas animado) o 'video'
+const BACKGROUND_TYPE = 'circuit';
 
 function Layout() {
     const { t } = useTranslation();
@@ -420,7 +424,7 @@ function Layout() {
             onClickCapture={handleClickCapture}
             styles={{
                 main: {
-                    minHeight: 'calc(100vh - 60px)',
+                    minHeight: '100vh',
                     display: 'flex',
                     flexDirection: 'column',
                 },
@@ -455,37 +459,44 @@ function Layout() {
                         </div>
                     </div>
                 )}
-                {/* Contenedor con video de fondo */}
-                <Box className="main-content-wrapper">
-                    <video
-                        ref={videoARef}
-                        className="background-video video-active"
-                        preload="auto"
-                        muted
-                        playsInline
-                        aria-hidden="true"
-                    >
-                        {/*
-                          Múltiples <source> = fallback automático.
-                          El navegador prueba en orden y elige el PRIMER formato que soporte.
-                          - webm (preferido): suele ser más liviano/estable en Chromium.
-                          - mp4 (fallback): compatibilidad amplia (por ejemplo Safari).
-                        */}
-                        <source src="/videos/background.webm" type="video/webm" />
-                        <source src="/videos/background.mp4" type="video/mp4" />
-                    </video>
+                {/* Contenedor con fondo */}
+                <Box className={`main-content-wrapper ${BACKGROUND_TYPE === 'circuit' ? 'circuit-bg' : ''}`}>
+                    {/* Fondo: Canvas de circuito (principal) o Video (secundario) */}
+                    {BACKGROUND_TYPE === 'circuit' ? (
+                        <CircuitBackground />
+                    ) : (
+                        <>
+                            <video
+                                ref={videoARef}
+                                className="background-video video-active"
+                                preload="auto"
+                                muted
+                                playsInline
+                                aria-hidden="true"
+                            >
+                                {/*
+                                  Múltiples <source> = fallback automático.
+                                  El navegador prueba en orden y elige el PRIMER formato que soporte.
+                                  - webm (preferido): suele ser más liviano/estable en Chromium.
+                                  - mp4 (fallback): compatibilidad amplia (por ejemplo Safari).
+                                */}
+                                <source src="/videos/background.webm" type="video/webm" />
+                                <source src="/videos/background.mp4" type="video/mp4" />
+                            </video>
 
-                    <video
-                        ref={videoBRef}
-                        className="background-video video-inactive"
-                        preload="auto"
-                        muted
-                        playsInline
-                        aria-hidden="true"
-                    >
-                        <source src="/videos/background.webm" type="video/webm" />
-                        <source src="/videos/background.mp4" type="video/mp4" />
-                    </video>
+                            <video
+                                ref={videoBRef}
+                                className="background-video video-inactive"
+                                preload="auto"
+                                muted
+                                playsInline
+                                aria-hidden="true"
+                            >
+                                <source src="/videos/background.webm" type="video/webm" />
+                                <source src="/videos/background.mp4" type="video/mp4" />
+                            </video>
+                        </>
+                    )}
 
                     {/* Overlay sutil para mejorar legibilidad */}
                     <div className="video-overlay" aria-hidden="true" />

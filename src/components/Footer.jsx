@@ -4,7 +4,7 @@
  * Los enlaces vienen de siteConfig.js
  */
 
-import { Container, Group, Text, ActionIcon, Divider, Stack } from '@mantine/core';
+import { Container, Group, Text, ActionIcon, Stack } from '@mantine/core';
 import {
     IconBrandGithub,
     IconBrandLinkedin,
@@ -35,8 +35,7 @@ function Footer() {
     );
 
     return (
-        <footer>
-            <Divider />
+        <footer className="glassmorphic-footer">
             <Container size="lg" py="xl">
                 <Stack align="center" gap="md">
                     {/* Enlaces a redes sociales */}

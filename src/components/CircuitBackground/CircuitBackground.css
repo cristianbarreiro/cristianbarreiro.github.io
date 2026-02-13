@@ -1,0 +1,16 @@
+.circuit-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at center, #140822 0%, #05060f 55%, #02030a 100%);
+}
+
+/* Tema claro - fondo visible con gradiente suave */
+[data-mantine-color-scheme="light"] .circuit-background {
+  background: radial-gradient(circle at center, #e8e0f0 0%, #d8daf0 55%, #e5e8f5 100%);
+  opacity: 1;
+}
