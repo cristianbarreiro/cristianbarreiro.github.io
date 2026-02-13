@@ -3,8 +3,9 @@
  * Botón para alternar entre Español (es) e Inglés (en)
  */
 
-import { ActionIcon, Text } from '@mantine/core';
+import { Button, Group } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
+import { IconLanguage } from '@tabler/icons-react';
 import { safeLocalStorageSet, writeCookie } from '../utils/storage';
 
 const getLanguageOnly = (language) => {
@@ -17,6 +18,7 @@ function LanguageToggle() {
 
   const current = getLanguageOnly(i18n.resolvedLanguage || i18n.language);
   const next = current === 'es' ? 'en' : 'es';
+  const label = current === 'es' ? 'Lenguaje' : 'Language';
 
   const handleToggle = async () => {
     await i18n.changeLanguage(next);
@@ -27,17 +29,16 @@ function LanguageToggle() {
   };
 
   return (
-    <ActionIcon
+    <Button
       onClick={handleToggle}
       variant="default"
-      size="lg"
+      size="compact-sm"
       radius="md"
       aria-label={t('language.toggle', { next: next.toUpperCase() })}
+      leftSection={<IconLanguage size={18} />}
     >
-      <Text size="xs" fw={700} style={{ letterSpacing: 0.5 }}>
-        {current.toUpperCase()}
-      </Text>
-    </ActionIcon>
+      {label}
+    </Button>
   );
 }
 
