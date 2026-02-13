@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
     Portal,
-    Paper,
     Text,
     Group,
     ThemeIcon,
@@ -229,13 +228,9 @@ export default function UnderConstructionModal({
                         top: position.y,
                     }}
                 >
-                    <Paper
-                        radius="md"
-                        p="md"
+                    <Box
                         className="uc-modal-paper"
-                        style={{
-                            background: 'transparent',
-                        }}
+                        p="md"
                     >
                         <Stack gap="md">
                             <Group gap={6} wrap="nowrap" align="center">
@@ -256,7 +251,7 @@ export default function UnderConstructionModal({
                                 />
                             </Group>
                         </Stack>
-                    </Paper>
+                    </Box>
                 </Box>
             </Box>
         </Portal>
