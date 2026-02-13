@@ -13,6 +13,10 @@
     "toLight": "Cambiar a modo claro",
     "toDark": "Cambiar a modo oscuro"
   },
+  "themeSwitch": {
+    "label": "Tema",
+    "toggle": "Cambiar entre tema claro y oscuro"
+  },
   "language": {
     "toggle": "Cambiar idioma ({{next}})"
   },
