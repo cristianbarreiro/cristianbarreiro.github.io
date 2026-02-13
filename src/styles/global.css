@@ -77,17 +77,17 @@ body,
 }
 
 :root[data-mantine-color-scheme="light"] {
-  /* Fondo personalizado en modo claro (ejemplo: gris muy claro) */
+  /* Fondo transparente para dejar ver el canvas */
   --mantine-color-body: #fafafabb;
 
-  /* Texto principal (opcional, por defecto es negro) */
-  /* --mantine-color-text: #1a1a1a; */
+  /* Texto principal oscuro para contraste */
+  --mantine-color-text: #1a1b2e;
 
   /* Texto secundario */
-  /* --mantine-color-dimmed: #6b7280; */
+  --mantine-color-dimmed: #4a5068;
 
   /* Bordes */
-  /* --mantine-color-default-border: #e5e7eb; */
+  --mantine-color-default-border: #d1d5e0;
 }
 
 /* ========================================
@@ -109,18 +109,22 @@ body,
   --mantine-color-default-border: var(--mantine-color-dark-5);
 }
 
-/* Texto descriptivo del hero: mantener light como estaba y suavizar SOLO en dark. */
+/* Texto descriptivo del hero */
 .hero-description {
-  color: var(--mantine-color-gray-0);
+  color: var(--mantine-color-dimmed);
 }
 
 :root[data-mantine-color-scheme="dark"] .hero-description {
   color: var(--mantine-color-gray-4);
 }
 
-/* Subtítulos de secciones - forzar gray-0 */
+/* Subtítulos de secciones */
 .section-subtitle {
-  color: var(--mantine-color-gray-0) !important;
+  color: var(--mantine-color-dimmed) !important;
+}
+
+:root[data-mantine-color-scheme="dark"] .section-subtitle {
+  color: var(--mantine-color-gray-2) !important;
 }
 
 /* ========================================

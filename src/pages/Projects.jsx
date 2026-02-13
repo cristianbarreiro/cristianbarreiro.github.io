@@ -60,7 +60,7 @@ function Projects() {
                         <Title order={1} mb="sm">
                             {t('projects.title')}
                         </Title>
-                        <Text size="lg" className="section-subtitle" style={{ color: 'var(--mantine-color-gray-0)' }}>
+                        <Text size="lg" className="section-subtitle">
                             {t('projects.subtitle')}
                         </Text>
                     </div>

@@ -103,7 +103,6 @@ function Home() {
                         size="h2"
                         fw={400}
                         className="section-subtitle"
-                        style={{ color: '#ffffff' }}
                     >
                         {t('site.title')}
                     </Title>
@@ -113,7 +112,7 @@ function Home() {
                         size="lg"
                         className="hero-description"
                         maw={600}
-                        style={{ lineHeight: 1.7, color: 'var(--mantine-color-gray-0)' }}
+                        style={{ lineHeight: 1.7 }}
                     >
                         {t('site.heroDescription')}
                     </Text>
