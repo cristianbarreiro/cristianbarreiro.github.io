@@ -32,18 +32,6 @@ import { useTranslation } from 'react-i18next';
 
 /** Estilos del carrusel — sin librería externa */
 const carouselStyles = {
-    wrapper: {
-        position: 'relative',
-        width: '100%',
-    },
-    viewport: {
-        overflow: 'hidden',
-        width: '100%',
-        borderRadius: 'var(--mantine-radius-md)',
-        /* Padding para que el shadow del hover no se recorte */
-        padding: '12px 0',
-        margin: '-12px 0',
-    },
     track: (index) => ({
         display: 'flex',
         transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -55,12 +43,6 @@ const carouselStyles = {
         flexShrink: 0,
         padding: '0 8px',
         boxSizing: 'border-box',
-    },
-    navButton: {
-        position: 'absolute',
-        top: '50%',
-        transform: 'translateY(-50%)',
-        zIndex: 2,
     },
 };
 
@@ -232,8 +214,8 @@ function Projects() {
                         </Grid>
                     ) : (
                         /* ========== VISTA CARRUSEL ========== */
-                        <div style={carouselStyles.wrapper}>
-                            {/* Botón Prev */}
+                        <div className="carousel-wrapper">
+                            {/* Botón Prev — lateral en desktop */}
                             <ActionIcon
                                 variant="transparent"
                                 size="xl"
@@ -241,20 +223,13 @@ function Projects() {
                                 onClick={goToPrev}
                                 disabled={!canGoPrev}
                                 aria-label={t('projects.carouselPrev')}
-                                className="carousel-nav-btn"
-                                style={{
-                                    ...carouselStyles.navButton,
-                                    left: -20,
-                                }}
+                                className="carousel-nav-btn carousel-nav-prev carousel-nav-lateral"
                             >
                                 <IconChevronLeft size={22} />
                             </ActionIcon>
 
                             {/* Viewport — oculta todo lo que no es la card activa */}
-                            <Box
-                                style={carouselStyles.viewport}
-                                mx={28}
-                            >
+                            <div className="carousel-viewport">
                                 <div
                                     style={carouselStyles.track(carouselIndex)}
                                     aria-live="polite"
@@ -264,15 +239,15 @@ function Projects() {
                                             key={project.id}
                                             style={carouselStyles.slide}
                                         >
-                                            <Box maw={720} mx="auto">
+                                            <Box className="carousel-slide-inner">
                                                 <ProjectCard project={project} variant="carousel" />
                                             </Box>
                                         </div>
                                     ))}
                                 </div>
-                            </Box>
+                            </div>
 
-                            {/* Botón Next */}
+                            {/* Botón Next — lateral en desktop */}
                             <ActionIcon
                                 variant="transparent"
                                 size="xl"
@@ -280,17 +255,47 @@ function Projects() {
                                 onClick={goToNext}
                                 disabled={!canGoNext}
                                 aria-label={t('projects.carouselNext')}
-                                className="carousel-nav-btn"
-                                style={{
-                                    ...carouselStyles.navButton,
-                                    right: -20,
-                                }}
+                                className="carousel-nav-btn carousel-nav-next carousel-nav-lateral"
                             >
                                 <IconChevronRight size={22} />
                             </ActionIcon>
 
-                            {/* Indicador de posición */}
-                            <Text size="sm" c="dimmed" ta="center" mt="md">
+                            {/* Controles mobile: botones + indicador */}
+                            <Group justify="center" align="center" gap="md" mt="md" className="carousel-mobile-controls">
+                                <ActionIcon
+                                    variant="transparent"
+                                    size="lg"
+                                    radius="xl"
+                                    onClick={goToPrev}
+                                    disabled={!canGoPrev}
+                                    aria-label={t('projects.carouselPrev')}
+                                    className="carousel-nav-btn"
+                                >
+                                    <IconChevronLeft size={20} />
+                                </ActionIcon>
+
+                                <Text size="sm" c="dimmed">
+                                    {t('projects.carouselPosition', {
+                                        current: carouselIndex + 1,
+                                        total: sortedProjects.length,
+                                    })}
+                                </Text>
+
+                                <ActionIcon
+                                    variant="transparent"
+                                    size="lg"
+                                    radius="xl"
+                                    onClick={goToNext}
+                                    disabled={!canGoNext}
+                                    aria-label={t('projects.carouselNext')}
+                                    className="carousel-nav-btn"
+                                >
+                                    <IconChevronRight size={20} />
+                                </ActionIcon>
+                            </Group>
+
+                            {/* Indicador de posición — solo desktop */}
+                            <Text size="sm" c="dimmed" ta="center" mt="md" className="carousel-desktop-indicator">
                                 {t('projects.carouselPosition', {
                                     current: carouselIndex + 1,
                                     total: sortedProjects.length,

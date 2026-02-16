@@ -679,8 +679,44 @@ button:hover .icon-send-jello {
 }
 
 /* ========================================
-   CAROUSEL NAV BUTTONS — Glassmorphism
+   CAROUSEL — Layout & Responsive
    ======================================== */
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+  border-radius: var(--mantine-radius-md);
+  padding: 12px 0;
+  margin: -12px 0;
+}
+
+.carousel-slide-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* ---- Botones laterales (desktop) ---- */
+
+.carousel-nav-lateral {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.carousel-nav-prev { left: -20px; }
+.carousel-nav-next { right: -20px; }
+
+/* Controles mobile ocultos en desktop */
+.carousel-mobile-controls { display: none; }
+.carousel-desktop-indicator { display: block; }
+
+/* ---- Glassmorphism ---- */
 
 .carousel-nav-btn {
   backdrop-filter: blur(12px);
@@ -691,20 +727,62 @@ button:hover .icon-send-jello {
   transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.carousel-nav-btn:hover:not(:disabled) {
+.carousel-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Hover/active con translateY solo para laterales */
+.carousel-nav-lateral:hover:not(:disabled) {
   background: var(--carousel-btn-hover-bg);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
   transform: translateY(-50%) scale(1.1);
 }
 
-.carousel-nav-btn:active:not(:disabled) {
+.carousel-nav-lateral:active:not(:disabled) {
   transform: translateY(-50%) scale(0.95);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
-.carousel-nav-btn:disabled {
-  opacity: 0.35;
-  cursor: default;
+/* Hover/active para botones mobile (sin translateY) */
+.carousel-mobile-controls .carousel-nav-btn:hover:not(:disabled) {
+  background: var(--carousel-btn-hover-bg);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transform: scale(1.1);
+}
+
+.carousel-mobile-controls .carousel-nav-btn:active:not(:disabled) {
+  transform: scale(0.95);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ---- Responsive: mobile & tablet ---- */
+
+@media (max-width: 768px) {
+  /* Ocultar botones laterales */
+  .carousel-nav-lateral {
+    display: none;
+  }
+
+  /* Mostrar controles mobile (botones + indicador juntos) */
+  .carousel-mobile-controls {
+    display: flex;
+  }
+
+  /* Ocultar indicador desktop separado */
+  .carousel-desktop-indicator {
+    display: none;
+  }
+
+  /* Card ocupa todo el ancho disponible */
+  .carousel-slide-inner {
+    max-width: 100%;
+  }
+
+  .carousel-viewport {
+    padding: 8px 0;
+    margin: -8px 0;
+  }
 }
 
 /* Línea 1: typing con cursor que desaparece */
