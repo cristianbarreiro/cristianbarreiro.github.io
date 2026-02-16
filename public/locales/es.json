@@ -51,7 +51,13 @@
     "clearFilter": "Limpiar filtro",
     "showing": "Mostrando {{shown}} de {{total}} proyectos",
     "noResults": "No se encontraron proyectos con la tecnología \"{{tag}}\"",
-    "viewAll": "Ver todos los proyectos"
+    "viewAll": "Ver todos los proyectos",
+    "viewGrid": "Grilla",
+    "viewCarousel": "Carrusel",
+    "viewToggleAria": "Cambiar entre vista de grilla y carrusel",
+    "carouselPrev": "Proyecto anterior",
+    "carouselNext": "Proyecto siguiente",
+    "carouselPosition": "{{current}} de {{total}}"
   },
   "projectCard": {
     "featured": "Destacado",

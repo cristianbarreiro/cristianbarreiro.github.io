@@ -25,23 +25,26 @@ import { useTranslation } from 'react-i18next';
  * @param {string} project.demoUrl - URL de la demo
  * @param {string} project.repoUrl - URL del repositorio
  * @param {boolean} project.featured - Si es proyecto destacado
+ * @param {'default'|'carousel'} variant - Variante visual ('carousel' = más grande y cuadrada)
  */
-function ProjectCard({ project }) {
+function ProjectCard({ project, variant = 'default' }) {
     const theme = useMantineTheme();
     const { t } = useTranslation();
 
+    const isCarousel = variant === 'carousel';
     const accentColor = `var(--mantine-color-${theme.primaryColor}-6)`;
     const featuredBorderColor = `var(--mantine-color-${theme.primaryColor}-5)`;
 
     return (
         <Card
-            shadow="sm"
-            padding="lg"
+            shadow={isCarousel ? 'md' : 'sm'}
+            padding={isCarousel ? 'xl' : 'lg'}
             radius="md"
             withBorder
             className="fh-project-card"
             style={{
                 height: '100%',
+                minHeight: isCarousel ? 360 : undefined,
                 display: 'flex',
                 flexDirection: 'column',
                 // Variables para el efecto hover (estilo “Prismic”).
@@ -65,21 +68,21 @@ function ProjectCard({ project }) {
             )}
 
             {/* Contenido principal de la tarjeta */}
-            <Stack gap="sm" style={{ flex: 1 }}>
+            <Stack gap={isCarousel ? 'md' : 'sm'} style={{ flex: 1 }}>
                 {/* Título del proyecto */}
-                <Text fw={600} size="lg" lineClamp={1}>
+                <Text fw={600} size={isCarousel ? 'xl' : 'lg'} lineClamp={isCarousel ? 2 : 1}>
                     {project.title}
                 </Text>
 
                 {/* Descripción */}
-                <Text size="sm" c="dimmed" lineClamp={3}>
-                    {project.description}
+                <Text size={isCarousel ? 'md' : 'sm'} c="dimmed" lineClamp={isCarousel ? 5 : 3}>
+                    {isCarousel ? (project.longDescription || project.description) : project.description}
                 </Text>
 
                 {/* Tags de tecnologías */}
                 <Group gap="xs" wrap="wrap">
                     {project.tags.map((tag) => (
-                        <Badge key={tag} variant="light" size="sm" radius="sm">
+                        <Badge key={tag} variant="light" size={isCarousel ? 'md' : 'sm'} radius="sm">
                             {tag}
                         </Badge>
                     ))}
@@ -87,7 +90,7 @@ function ProjectCard({ project }) {
             </Stack>
 
             {/* Botones de acción - siempre al final de la tarjeta */}
-            <Group mt="md" gap="sm">
+            <Group mt={isCarousel ? 'lg' : 'md'} gap="sm">
                 {/* Enlace a demo */}
                 {project.demoUrl && (
                     <Button
@@ -96,8 +99,8 @@ function ProjectCard({ project }) {
                         target="_blank"
                         rel="noopener noreferrer"
                         variant="light"
-                        size="xs"
-                        leftSection={<IconExternalLink size={14} />}
+                        size={isCarousel ? 'sm' : 'xs'}
+                        leftSection={<IconExternalLink size={isCarousel ? 16 : 14} />}
                     >
                         {t('projectCard.demo')}
                     </Button>
@@ -111,8 +114,8 @@ function ProjectCard({ project }) {
                         target="_blank"
                         rel="noopener noreferrer"
                         variant="subtle"
-                        size="xs"
-                        leftSection={<IconBrandGithub size={14} />}
+                        size={isCarousel ? 'sm' : 'xs'}
+                        leftSection={<IconBrandGithub size={isCarousel ? 16 : 14} />}
                     >
                         {t('projectCard.code')}
                     </Button>

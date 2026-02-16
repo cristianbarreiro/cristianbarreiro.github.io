@@ -57,7 +57,7 @@ const projectsByLanguage = {
         },
         {
             id: 4,
-            title: 'Proyectos de FrontendMentor',
+            title: 'Perfil de FrontendMentor',
             description:
                 'Desafíos de desarrollo web y diseño, especializados en frontend. Libertad para elegir lenguajes y herramientas.',
             longDescription:
@@ -67,6 +67,28 @@ const projectsByLanguage = {
             demoUrl: 'https://www.frontendmentor.io/profile/cristianbarreiro',
             repoUrl: '',
             featured: false,
+        },
+        {
+            id: 5,
+            title: 'E-commerce Monorepo',
+            description:
+                'Aplicación e-commerce full-stack con catálogo dinámico, vista rápida de productos, carrito, favoritos y panel de backoffice.',
+            longDescription:
+                'Proyecto e-commerce en arquitectura monorepo con frontend en React + TypeScript y backend en Node.js/Express + Prisma. Incluye Home con carruseles dinámicos, filtros por categoría/subcategoría/colecciones, modal de vista rápida, carrito y wishlist, además de backoffice para gestión de productos y colecciones.',
+            image: null,
+            tags: [
+                'TypeScript',
+                'React',
+                'TailwindCSS',
+                'Node.js',
+                'Express',
+                'Prisma',
+                'PostgreSQL',
+                'Vite'
+            ],
+            demoUrl: '',
+            repoUrl: '',
+            featured: true
         },
     ],
     en: [
@@ -132,57 +154,57 @@ export const getProjects = (language = 'es') => {
 
 // Compatibilidad: por defecto exporta ES
 export const projects = getProjects('es');
-    // {
-    //     id: 3,
-    //     title: 'E-commerce Landing',
-    //     description:
-    //         'Landing page responsive para tienda online con carrito de compras básico.',
-    //     longDescription:
-    //         'Página de aterrizaje para un e-commerce ficticio con diseño moderno, catálogo de productos y un carrito de compras funcional implementado con React Context.',
-    //     image: null,
-    //     tags: ['React', 'Mantine', 'Context API', 'Responsive'],
-    //     demoUrl: 'https://demo-ecommerce.ejemplo.com',
-    //     repoUrl: 'https://github.com/tu-usuario/ecommerce-landing',
-    //     featured: false,
-    // },
-    // {
-    //     id: 4,
-    //     title: 'Quiz Interactivo',
-    //     description:
-    //         'Aplicación de preguntas y respuestas con puntuación y diferentes categorías.',
-    //     longDescription:
-    //         'Un quiz interactivo con múltiples categorías, sistema de puntuación, temporizador y tabla de resultados. Los datos de preguntas vienen de una API externa.',
-    //     image: null,
-    //     tags: ['JavaScript', 'HTML', 'CSS', 'API REST'],
-    //     demoUrl: 'https://demo-quiz.ejemplo.com',
-    //     repoUrl: 'https://github.com/tu-usuario/quiz-app',
-    //     featured: false,
-    // },
-    // {
-    //     id: 5,
-    //     title: 'Blog Personal',
-    //     description: 'Blog estático con Markdown y sistema de categorías.',
-    //     longDescription:
-    //         'Un blog personal construido con React que renderiza artículos escritos en Markdown. Incluye sistema de categorías, búsqueda y modo oscuro.',
-    //     image: null,
-    //     tags: ['React', 'Markdown', 'React Router', 'CSS Modules'],
-    //     demoUrl: 'https://demo-blog.ejemplo.com',
-    //     repoUrl: 'https://github.com/tu-usuario/blog-personal',
-    //     featured: false,
-    // },
-    // {
-    //     id: 6,
-    //     title: 'Calculadora Científica',
-    //     description:
-    //         'Calculadora con operaciones básicas y científicas, historial de operaciones.',
-    //     longDescription:
-    //         'Una calculadora completa con operaciones matemáticas básicas y científicas. Incluye historial de operaciones, soporte para teclado y diseño responsive.',
-    //     image: null,
-    //     tags: ['JavaScript', 'HTML', 'CSS', 'Math.js'],
-    //     demoUrl: 'https://demo-calc.ejemplo.com',
-    //     repoUrl: 'https://github.com/tu-usuario/scientific-calculator',
-    //     featured: false,
-    // },
+// {
+//     id: 3,
+//     title: 'E-commerce Landing',
+//     description:
+//         'Landing page responsive para tienda online con carrito de compras básico.',
+//     longDescription:
+//         'Página de aterrizaje para un e-commerce ficticio con diseño moderno, catálogo de productos y un carrito de compras funcional implementado con React Context.',
+//     image: null,
+//     tags: ['React', 'Mantine', 'Context API', 'Responsive'],
+//     demoUrl: 'https://demo-ecommerce.ejemplo.com',
+//     repoUrl: 'https://github.com/tu-usuario/ecommerce-landing',
+//     featured: false,
+// },
+// {
+//     id: 4,
+//     title: 'Quiz Interactivo',
+//     description:
+//         'Aplicación de preguntas y respuestas con puntuación y diferentes categorías.',
+//     longDescription:
+//         'Un quiz interactivo con múltiples categorías, sistema de puntuación, temporizador y tabla de resultados. Los datos de preguntas vienen de una API externa.',
+//     image: null,
+//     tags: ['JavaScript', 'HTML', 'CSS', 'API REST'],
+//     demoUrl: 'https://demo-quiz.ejemplo.com',
+//     repoUrl: 'https://github.com/tu-usuario/quiz-app',
+//     featured: false,
+// },
+// {
+//     id: 5,
+//     title: 'Blog Personal',
+//     description: 'Blog estático con Markdown y sistema de categorías.',
+//     longDescription:
+//         'Un blog personal construido con React que renderiza artículos escritos en Markdown. Incluye sistema de categorías, búsqueda y modo oscuro.',
+//     image: null,
+//     tags: ['React', 'Markdown', 'React Router', 'CSS Modules'],
+//     demoUrl: 'https://demo-blog.ejemplo.com',
+//     repoUrl: 'https://github.com/tu-usuario/blog-personal',
+//     featured: false,
+// },
+// {
+//     id: 6,
+//     title: 'Calculadora Científica',
+//     description:
+//         'Calculadora con operaciones básicas y científicas, historial de operaciones.',
+//     longDescription:
+//         'Una calculadora completa con operaciones matemáticas básicas y científicas. Incluye historial de operaciones, soporte para teclado y diseño responsive.',
+//     image: null,
+//     tags: ['JavaScript', 'HTML', 'CSS', 'Math.js'],
+//     demoUrl: 'https://demo-calc.ejemplo.com',
+//     repoUrl: 'https://github.com/tu-usuario/scientific-calculator',
+//     featured: false,
+// },
 
 
 /**

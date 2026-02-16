@@ -88,6 +88,12 @@ body,
 
   /* Bordes */
   --mantine-color-default-border: #d1d5e0;
+
+  /* Carousel nav buttons — glassmorphism light */
+  --carousel-btn-bg: rgba(255, 255, 255, 0.55);
+  --carousel-btn-border: rgba(0, 0, 0, 0.1);
+  --carousel-btn-color: #1a1b2e;
+  --carousel-btn-hover-bg: rgba(255, 255, 255, 0.75);
 }
 
 /* ========================================
@@ -107,6 +113,12 @@ body,
 
   /* Bordes un poco más suaves */
   --mantine-color-default-border: var(--mantine-color-dark-5);
+
+  /* Carousel nav buttons — glassmorphism dark */
+  --carousel-btn-bg: rgba(0, 0, 0, 0.45);
+  --carousel-btn-border: rgba(255, 255, 255, 0.12);
+  --carousel-btn-color: #f1f1f1;
+  --carousel-btn-hover-bg: rgba(0, 0, 0, 0.65);
 }
 
 /* Texto descriptivo del hero */
@@ -664,6 +676,35 @@ button:hover .icon-send-jello {
   .fh-project-card::after {
     transition: none;
   }
+}
+
+/* ========================================
+   CAROUSEL NAV BUTTONS — Glassmorphism
+   ======================================== */
+
+.carousel-nav-btn {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: var(--carousel-btn-bg);
+  border: 1px solid var(--carousel-btn-border);
+  color: var(--carousel-btn-color);
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-nav-btn:hover:not(:disabled) {
+  background: var(--carousel-btn-hover-bg);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav-btn:active:not(:disabled) {
+  transform: translateY(-50%) scale(0.95);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
 }
 
 /* Línea 1: typing con cursor que desaparece */
