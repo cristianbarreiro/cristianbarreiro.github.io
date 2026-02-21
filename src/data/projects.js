@@ -86,7 +86,7 @@ const projectsByLanguage = {
                 'PostgreSQL',
                 'Vite'
             ],
-            demoUrl: '',
+            demoUrl: 'https://e-commerce-monorepo-three.vercel.app/',
             repoUrl: '',
             featured: true
         },
