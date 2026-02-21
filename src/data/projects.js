@@ -25,8 +25,8 @@ const projectsByLanguage = {
                 'Una aplicación por consola que permite a los usuarios gestionar versiones de archivos y proyectos, similar a Git. Incluye funcionalidades como añadir archivo principal, crear versiones, modificarlas y hacer búsquedas de versiones.',
             image: null,
             tags: ['C', 'C++', 'Librerías del Sistema Operativo', 'Estructuras de Datos'],
-            demoUrl: '#',
-            repoUrl: 'https://github.com/webosinc/Obligatorio_EDA',
+            demoUrl: '',
+            repoUrl: '',
             featured: true,
         },
         {
@@ -38,8 +38,8 @@ const projectsByLanguage = {
                 'Plataforma web que permite a los usuarios crear perfiles, publicar contenido, seguir a otros usuarios y participar en debates sobre diversos temas culturales. Incluye funcionalidades de moderación y personalización de perfiles.',
             image: null,
             tags: ['Laravel', 'API REST', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB'],
-            demoUrl: '#',
-            repoUrl: 'https://github.com/BinaryTech-corp',
+            demoUrl: '',
+            repoUrl: '',
             featured: true,
         },
         {
