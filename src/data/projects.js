@@ -144,6 +144,28 @@ const projectsByLanguage = {
             repoUrl: '',
             featured: false,
         },
+        {
+            id: 5,
+            title: 'E-commerce Monorepo',
+            description:
+                'Full-stack e-commerce application with dynamic catalog, product quick view, cart, wishlist, and backoffice dashboard.',
+            longDescription:
+                'E-commerce project using a monorepo architecture with a React + TypeScript frontend and a Node.js/Express + Prisma backend. It includes a Home page with dynamic carousels, filters by category/subcategory/collections, a quick-view modal, cart and wishlist features, plus a backoffice for product and collection management.',
+            image: null,
+            tags: [
+                'TypeScript',
+                'React',
+                'TailwindCSS',
+                'Node.js',
+                'Express',
+                'Prisma',
+                'PostgreSQL',
+                'Vite'
+            ],
+            demoUrl: 'https://e-commerce-monorepo-three.vercel.app/',
+            repoUrl: '',
+            featured: true,
+        },
     ],
 };
 
