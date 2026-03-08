@@ -70,7 +70,7 @@ const projectsByLanguage = {
         },
         {
             id: 5,
-            title: 'E-commerce Monorepo',
+            title: 'E-commerce ShopHub',
             description:
                 'Aplicación e-commerce full-stack con catálogo dinámico, vista rápida de productos, carrito, favoritos y panel de backoffice.',
             longDescription:
@@ -90,6 +90,28 @@ const projectsByLanguage = {
             repoUrl: '',
             featured: true
         },
+        {
+            id: 6,
+            title: 'E-commerce Perfumes',
+            description:
+                'Aplicación e-commerce full-stack con catálogo dinámico, vista rápida de productos, carrito, favoritos y panel de backoffice.',
+            longDescription:
+                'Proyecto e-commerce en arquitectura monorepo con frontend en React + TypeScript y backend en Node.js/Express + Prisma. Incluye Home con carruseles dinámicos, filtros por categoría/subcategoría/colecciones, modal de vista rápida, carrito y wishlist, además de backoffice para gestión de productos y colecciones.',
+            image: null,
+            tags: [
+                'TypeScript',
+                'React',
+                'TailwindCSS',
+                'Node.js',
+                'Express',
+                'Prisma',
+                'PostgreSQL',
+                'Vite'
+            ],
+            demoUrl: '',
+            repoUrl: '',
+            featured: true
+        }
     ],
     en: [
         {
@@ -146,7 +168,7 @@ const projectsByLanguage = {
         },
         {
             id: 5,
-            title: 'E-commerce Monorepo',
+            title: 'E-commerce ShopHub',
             description:
                 'Full-stack e-commerce application with dynamic catalog, product quick view, cart, wishlist, and backoffice dashboard.',
             longDescription:
@@ -166,6 +188,28 @@ const projectsByLanguage = {
             repoUrl: '',
             featured: true,
         },
+        {
+            id: 6,
+            title: 'E-commerce Perfumes',
+            description:
+                'Full-stack e-commerce application with dynamic catalog, product quick view, cart, wishlist, and backoffice dashboard.',
+            longDescription:
+                'E-commerce project using a monorepo architecture with a React + TypeScript frontend and a Node.js/Express + Prisma backend. It includes a Home page with dynamic carousels, filters by category/subcategory/collections, a quick-view modal, cart and wishlist features, plus a backoffice for product and collection management.',
+            image: null,
+            tags: [
+                'TypeScript',
+                'React',
+                'TailwindCSS',
+                'Node.js',
+                'Express',
+                'Prisma',
+                'PostgreSQL',
+                'Vite'
+            ],
+            demoUrl: '',
+            repoUrl: '',
+            featured: true,
+        }
     ],
 };
 

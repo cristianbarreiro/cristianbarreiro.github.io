@@ -27,15 +27,18 @@ import { useTranslation } from 'react-i18next';
 // Definición de enlaces de navegación
 // Cada enlace tiene: path, label, icon
 const navLinks = [
-    { path: '/', labelKey: 'nav.home', icon: IconHome },
-    { path: '/about', labelKey: 'nav.about', icon: IconUser },
-    { path: '/projects', labelKey: 'nav.projects', icon: IconFolder },
-    { path: '/skills', labelKey: 'nav.skills', icon: IconCode },
-    { path: '/contact', labelKey: 'nav.contact', icon: IconMail },
+    { path: '/', labelKey: 'nav.home', icon: IconHome, enabled: true },
+    { path: '/about', labelKey: 'nav.about', icon: IconUser, enabled: true },
+    { path: '/projects', labelKey: 'nav.projects', icon: IconFolder, enabled: true },
+    { path: '/skills', labelKey: 'nav.skills', icon: IconCode, enabled: false },
+    { path: '/contact', labelKey: 'nav.contact', icon: IconMail, enabled: true },
 ];
+
+const getEnabledNavLinks = () => navLinks.filter((link) => link.enabled);
 
 function Navbar() {
     const { t } = useTranslation();
+    const enabledNavLinks = getEnabledNavLinks();
 
     // Estado para el drawer del menú móvil
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
@@ -79,7 +82,7 @@ function Navbar() {
 
                         {/* Navegación desktop (oculta en móvil) */}
                         <Group gap="sm" visibleFrom="sm">
-                            {navLinks.map((link) => (
+                            {enabledNavLinks.map((link) => (
                                 <Text
                                     key={link.path}
                                     component={Link}
@@ -145,7 +148,7 @@ function Navbar() {
                 zIndex={200}
             >
                 <Stack gap="xs">
-                    {navLinks.map((link) => (
+                    {enabledNavLinks.map((link) => (
                         <NavLink
                             key={link.path}
                             component={Link}
