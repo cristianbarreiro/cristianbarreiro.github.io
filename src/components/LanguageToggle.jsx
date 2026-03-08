@@ -34,8 +34,9 @@ function LanguageToggle() {
       variant="default"
       size="compact-sm"
       radius="md"
+      className="subtle-shake-hover"
       aria-label={t('language.toggle', { next: next.toUpperCase() })}
-      leftSection={<IconLanguage size={18} />}
+      leftSection={<IconLanguage size={18} className="subtle-shake-icon" />}
     >
       {label}
     </Button>

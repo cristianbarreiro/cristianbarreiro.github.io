@@ -8,7 +8,13 @@ import { Button } from '@mantine/core';
 import { useState } from 'react';
 import './RippleButton.css';
 
-export default function RippleButton({ children, onClick, rippleColor = 'light', ...props }) {
+export default function RippleButton({
+    children,
+    onClick,
+    rippleColor = 'light',
+    className,
+    ...props
+}) {
     const [ripples, setRipples] = useState([]);
 
     const handleClick = (e) => {
@@ -37,7 +43,7 @@ export default function RippleButton({ children, onClick, rippleColor = 'light',
 
     return (
         <Button
-            className="ripple-button"
+            className={['ripple-button', className].filter(Boolean).join(' ')}
             onClick={handleClick}
             {...props}
         >

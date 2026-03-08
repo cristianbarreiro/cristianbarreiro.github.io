@@ -104,7 +104,10 @@ function Navbar() {
                                 size="compact-sm"
                                 variant="default"
                                 radius="xl"
-                                leftSection={<IconDownload size={16} />}
+                                className="subtle-shake-hover"
+                                leftSection={
+                                    <IconDownload size={16} className="subtle-shake-icon" />
+                                }
                                 rippleColor="dark"
                             >
                                 {t('nav.downloadCV')}
@@ -120,7 +123,10 @@ function Navbar() {
                                 size="compact-sm"
                                 variant="default"
                                 radius="xl"
-                                leftSection={<IconDownload size={16} />}
+                                className="subtle-shake-hover"
+                                leftSection={
+                                    <IconDownload size={16} className="subtle-shake-icon" />
+                                }
                                 aria-label={t('nav.downloadCV')}
                                 rippleColor="dark"
                             >

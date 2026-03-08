@@ -300,6 +300,16 @@ button:hover .icon-mail-rotate {
   animation: rotate-center 0.6s ease-in-out both;
 }
 
+/* Hover: shake sutil y pequeño solo para íconos específicos (Language / Download CV) */
+.subtle-shake-icon {
+  display: inline-block;
+  transform-origin: center;
+}
+
+.subtle-shake-hover:hover .subtle-shake-icon {
+  animation: subtle-icon-shake 0.34s ease-in-out;
+}
+
 @keyframes rotate-center {
   0% {
     transform: rotate(0);
@@ -309,12 +319,38 @@ button:hover .icon-mail-rotate {
   }
 }
 
+@keyframes subtle-icon-shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-1.2px);
+  }
+
+  50% {
+    transform: translateX(1.2px);
+  }
+
+  75% {
+    transform: translateX(-0.8px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .icon-arrow-right {
     transition: none;
   }
 
   .icon-mail-rotate {
+    animation: none;
+  }
+
+  .subtle-shake-hover:hover .subtle-shake-icon {
     animation: none;
   }
 
