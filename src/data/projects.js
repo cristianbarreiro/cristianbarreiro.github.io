@@ -8,6 +8,7 @@
  * - description: descripción corta
  * - longDescription: descripción detallada (opcional)
  * - image: URL de la imagen del proyecto (opcional)
+ * - images: array de imágenes del proyecto (opcional). Puede ser array de strings o de objetos { src, alt, caption }
  * - tags: array de tecnologías/etiquetas
  * - demoUrl: enlace a la demo en vivo
  * - repoUrl: enlace al repositorio
@@ -24,6 +25,20 @@ const projectsByLanguage = {
             longDescription:
                 'Una aplicación por consola que permite a los usuarios gestionar versiones de archivos y proyectos, similar a Git. Incluye funcionalidades como añadir archivo principal, crear versiones, modificarlas y hacer búsquedas de versiones.',
             image: null,
+            images: [
+                {
+                    src: '/images/projects/sistema_control_versiones/img1.jpg',
+                    alt: 'Captura 1 del Sistema de Control de Versiones',
+                },
+                {
+                    src: '/images/projects/sistema_control_versiones/img2.webp',
+                    alt: 'Captura 2 del Sistema de Control de Versiones',
+                },
+                {
+                    src: '/images/projects/sistema_control_versiones/img3.webp',
+                    alt: 'Captura 3 del Sistema de Control de Versiones',
+                },
+            ],
             tags: ['C', 'C++', 'Librerías del Sistema Operativo', 'Estructuras de Datos'],
             demoUrl: '',
             repoUrl: '',
@@ -57,19 +72,6 @@ const projectsByLanguage = {
         },
         {
             id: 4,
-            title: 'Perfil de FrontendMentor',
-            description:
-                'Desafíos de desarrollo web y diseño, especializados en frontend. Libertad para elegir lenguajes y herramientas.',
-            longDescription:
-                'Colección de proyectos realizados a partir de desafíos de Frontend Mentor, abarcando diversas técnicas y estilos de desarrollo frontend. En el futuro utilizaré frameworks y compiladores CSS para mejorar el diseño y la experiencia de usuario.',
-            image: null,
-            tags: ['Javascript', 'HTML', 'CSS', 'React', 'SCSS', 'TailwindCSS', 'Bootstrap'],
-            demoUrl: 'https://www.frontendmentor.io/profile/cristianbarreiro',
-            repoUrl: '',
-            featured: false,
-        },
-        {
-            id: 5,
             title: 'E-commerce ShopHub',
             description:
                 'Aplicación e-commerce full-stack con catálogo dinámico, vista rápida de productos, carrito, favoritos y panel de backoffice.',
@@ -91,7 +93,7 @@ const projectsByLanguage = {
             featured: true
         },
         {
-            id: 6,
+            id: 5,
             title: 'E-commerce Perfumes',
             description:
                 'Aplicación e-commerce full-stack con catálogo dinámico, vista rápida de productos, carrito, favoritos y panel de backoffice.',
@@ -122,6 +124,20 @@ const projectsByLanguage = {
             longDescription:
                 'A console application that lets users manage file and project versions, similar to Git. It includes features like adding a main file, creating versions, modifying them, and searching versions.',
             image: null,
+            images: [
+                {
+                    src: '/images/projects/sistema_control_versiones/img1.jpg',
+                    alt: 'Version Control System screenshot 1',
+                },
+                {
+                    src: '/images/projects/sistema_control_versiones/img2.webp',
+                    alt: 'Version Control System screenshot 2',
+                },
+                {
+                    src: '/images/projects/sistema_control_versiones/img3.webp',
+                    alt: 'Version Control System screenshot 3',
+                },
+            ],
             tags: ['C', 'C++', 'Operating System Libraries', 'Data Structures'],
             demoUrl: '#',
             repoUrl: 'https://github.com/webosinc/Obligatorio_EDA',

@@ -62,7 +62,14 @@
   "projectCard": {
     "featured": "Destacado",
     "demo": "Demo",
-    "code": "Código"
+    "code": "Código",
+    "images": "Imágenes",
+    "imagesUnavailable": "Sin imágenes disponibles",
+    "closeImages": "Cerrar visor de imágenes",
+    "prevImage": "Imagen anterior",
+    "nextImage": "Imagen siguiente",
+    "imagePosition": "{{current}} de {{total}}",
+    "galleryImageAlt": "Imagen {{index}} de {{project}}"
   },
   "skills": {
     "aria": "Habilidades",

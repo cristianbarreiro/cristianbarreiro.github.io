@@ -62,7 +62,14 @@
   "projectCard": {
     "featured": "Featured",
     "demo": "Demo",
-    "code": "Code"
+    "code": "Code",
+    "images": "Images",
+    "imagesUnavailable": "No images available",
+    "closeImages": "Close image viewer",
+    "prevImage": "Previous image",
+    "nextImage": "Next image",
+    "imagePosition": "{{current}} of {{total}}",
+    "galleryImageAlt": "Image {{index}} of {{project}}"
   },
   "skills": {
     "aria": "Skills",

@@ -10,11 +10,14 @@ import {
     Badge,
     Group,
     Button,
+    ActionIcon,
     Stack,
     useMantineTheme,
 } from '@mantine/core';
-import { IconExternalLink, IconBrandGithub } from '@tabler/icons-react';
+import { useMemo, useState } from 'react';
+import { IconExternalLink, IconBrandGithub, IconPhoto } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
+import ProjectImagesModal from './ProjectImagesModal';
 
 /**
  * Props del componente:
@@ -30,98 +33,161 @@ import { useTranslation } from 'react-i18next';
 function ProjectCard({ project, variant = 'default' }) {
     const theme = useMantineTheme();
     const { t } = useTranslation();
+    const [galleryOpened, setGalleryOpened] = useState(false);
 
     const isCarousel = variant === 'carousel';
     const accentColor = `var(--mantine-color-${theme.primaryColor}-6)`;
     const featuredBorderColor = `var(--mantine-color-${theme.primaryColor}-5)`;
+    const projectImages = useMemo(() => {
+        const rawImages = Array.isArray(project.images) && project.images.length > 0
+            ? project.images
+            : project.image
+              ? [project.image]
+              : [];
+
+        return rawImages
+            .map((item, index) => {
+                if (typeof item === 'string') {
+                    return {
+                        src: item,
+                        alt: t('projectCard.galleryImageAlt', {
+                            project: project.title,
+                            index: index + 1,
+                        }),
+                    };
+                }
+
+                const src = item?.src || item?.url || item?.image;
+                if (!src) {
+                    return null;
+                }
+
+                return {
+                    src,
+                    alt:
+                        item.alt ||
+                        t('projectCard.galleryImageAlt', {
+                            project: project.title,
+                            index: index + 1,
+                        }),
+                    caption: item.caption || '',
+                };
+            })
+            .filter(Boolean);
+    }, [project.image, project.images, project.title, t]);
+    const hasImages = projectImages.length > 0;
 
     return (
-        <Card
-            shadow={isCarousel ? 'md' : 'sm'}
-            padding={isCarousel ? 'xl' : 'lg'}
-            radius="md"
-            withBorder
-            className="fh-project-card glass-hover-card"
-            style={{
-                height: '100%',
-                minHeight: isCarousel ? 360 : undefined,
-                display: 'flex',
-                flexDirection: 'column',
-                // Variables para el efecto hover (estilo “Prismic”).
-                '--fh-card-accent': accentColor,
-                '--fh-card-border-color': project.featured
-                    ? featuredBorderColor
-                    : undefined,
-                '--fh-card-border-width': project.featured ? 2 : 1,
-            }}
-        >
+        <>
+            <Card
+                shadow={isCarousel ? 'md' : 'sm'}
+                padding={isCarousel ? 'xl' : 'lg'}
+                radius="md"
+                withBorder
+                className="fh-project-card glass-hover-card"
+                style={{
+                    height: '100%',
+                    minHeight: isCarousel ? 360 : undefined,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    // Variables para el efecto hover (estilo “Prismic”).
+                    '--fh-card-accent': accentColor,
+                    '--fh-card-border-color': project.featured
+                        ? featuredBorderColor
+                        : undefined,
+                    '--fh-card-border-width': project.featured ? 2 : 1,
+                }}
+            >
             {/* Badge de destacado (solo si featured es true) */}
-            {project.featured && (
-                <Badge
-                    color={theme.primaryColor}
-                    variant="light"
-                    size="sm"
-                    style={{ position: 'absolute', top: 10, right: 10 }}
-                >
-                    {t('projectCard.featured')}
-                </Badge>
-            )}
+                {project.featured && (
+                    <Badge
+                        color={theme.primaryColor}
+                        variant="light"
+                        size="sm"
+                        style={{ position: 'absolute', top: 10, right: 10 }}
+                    >
+                        {t('projectCard.featured')}
+                    </Badge>
+                )}
 
             {/* Contenido principal de la tarjeta */}
-            <Stack gap={isCarousel ? 'md' : 'sm'} style={{ flex: 1 }}>
-                {/* Título del proyecto */}
-                <Text fw={600} size={isCarousel ? 'xl' : 'lg'} lineClamp={isCarousel ? 2 : 1}>
-                    {project.title}
-                </Text>
+                <Stack gap={isCarousel ? 'md' : 'sm'} style={{ flex: 1 }}>
+                    {/* Título del proyecto */}
+                    <Text fw={600} size={isCarousel ? 'xl' : 'lg'} lineClamp={isCarousel ? 2 : 1}>
+                        {project.title}
+                    </Text>
 
-                {/* Descripción */}
-                <Text size={isCarousel ? 'md' : 'sm'} c="dimmed" lineClamp={isCarousel ? 5 : 3}>
-                    {isCarousel ? (project.longDescription || project.description) : project.description}
-                </Text>
+                    {/* Descripción */}
+                    <Text size={isCarousel ? 'md' : 'sm'} c="dimmed" lineClamp={isCarousel ? 5 : 3}>
+                        {isCarousel ? (project.longDescription || project.description) : project.description}
+                    </Text>
 
-                {/* Tags de tecnologías */}
-                <Group gap="xs" wrap="wrap">
-                    {project.tags.map((tag) => (
-                        <Badge key={tag} variant="light" size={isCarousel ? 'md' : 'sm'} radius="sm">
-                            {tag}
-                        </Badge>
-                    ))}
-                </Group>
-            </Stack>
+                    {/* Tags de tecnologías */}
+                    <Group gap="xs" wrap="wrap">
+                        {project.tags.map((tag) => (
+                            <Badge key={tag} variant="light" size={isCarousel ? 'md' : 'sm'} radius="sm">
+                                {tag}
+                            </Badge>
+                        ))}
+                    </Group>
+                </Stack>
 
             {/* Botones de acción - siempre al final de la tarjeta */}
-            <Group mt={isCarousel ? 'lg' : 'md'} gap="sm">
-                {/* Enlace a demo */}
-                {project.demoUrl && (
-                    <Button
-                        component="a"
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        variant="light"
-                        size={isCarousel ? 'sm' : 'xs'}
-                        leftSection={<IconExternalLink size={isCarousel ? 16 : 14} />}
-                    >
-                        {t('projectCard.demo')}
-                    </Button>
-                )}
+                <Group mt={isCarousel ? 'lg' : 'md'} gap="sm" wrap="wrap">
+                    {/* Enlace a demo */}
+                    {project.demoUrl && (
+                        <Button
+                            component="a"
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            variant="light"
+                            size={isCarousel ? 'sm' : 'xs'}
+                            leftSection={<IconExternalLink size={isCarousel ? 16 : 14} />}
+                        >
+                            {t('projectCard.demo')}
+                        </Button>
+                    )}
 
-                {/* Enlace a repositorio */}
-                {project.repoUrl && (
-                    <Button
-                        component="a"
-                        href={project.repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        variant="subtle"
-                        size={isCarousel ? 'sm' : 'xs'}
-                        leftSection={<IconBrandGithub size={isCarousel ? 16 : 14} />}
-                    >
-                        {t('projectCard.code')}
-                    </Button>
-                )}
-            </Group>
-        </Card>
+                    {hasImages && (
+                        <ActionIcon
+                            variant="subtle"
+                            size={isCarousel ? 'lg' : 'md'}
+                            radius="xl"
+                            onClick={() => setGalleryOpened(true)}
+                            aria-label={t('projectCard.images')}
+                            title={t('projectCard.images')}
+                        >
+                            <IconPhoto size={isCarousel ? 18 : 16} />
+                        </ActionIcon>
+                    )}
+
+                    {/* Enlace a repositorio */}
+                    {project.repoUrl && (
+                        <Button
+                            component="a"
+                            href={project.repoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            variant="subtle"
+                            size={isCarousel ? 'sm' : 'xs'}
+                            leftSection={<IconBrandGithub size={isCarousel ? 16 : 14} />}
+                        >
+                            {t('projectCard.code')}
+                        </Button>
+                    )}
+                </Group>
+            </Card>
+
+            {galleryOpened && hasImages && (
+                <ProjectImagesModal
+                    opened={galleryOpened}
+                    onClose={() => setGalleryOpened(false)}
+                    images={projectImages}
+                    projectTitle={project.title}
+                />
+            )}
+        </>
     );
 }
 
