@@ -9,6 +9,7 @@ import {
     Box,
 } from '@mantine/core';
 import { IconAlertTriangle } from '@tabler/icons-react';
+import { useTranslation } from 'react-i18next';
 import '../styles/underConstructionModal.css';
 
 const STORAGE_KEY = 'underConstructionDismissedForLoadId';
@@ -25,11 +26,11 @@ function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
 }
 
-export default function UnderConstructionModal({
-    message = 'This page is under construction.',
-}) {
+export default function UnderConstructionModal({ message }) {
     const ANIMATION_MS = 260;
+    const { t } = useTranslation();
     const pageLoadId = useMemo(() => getPageLoadId(), []);
+    const resolvedMessage = message || t('underConstruction.message');
 
     const popupRef = useRef(null);
     const dragRef = useRef({
@@ -242,10 +243,10 @@ export default function UnderConstructionModal({
                                 >
                                     <IconAlertTriangle size={18} />
                                 </ThemeIcon>
-                                <Text style={{ flex: 1, lineHeight: 1.35 }}>{message}</Text>
+                                <Text style={{ flex: 1, lineHeight: 1.35 }}>{resolvedMessage}</Text>
                                 <CloseButton
                                     onClick={dismiss}
-                                    aria-label="Close"
+                                    aria-label={t('underConstruction.close')}
                                     data-no-drag
                                     style={{ flex: '0 0 auto', marginLeft: 2 }}
                                 />

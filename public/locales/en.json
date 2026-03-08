@@ -87,6 +87,10 @@
   "notFound": {
     "message": "Page not found"
   },
+  "underConstruction": {
+    "message": "This page is under construction.",
+    "close": "Close"
+  },
   "contact": {
     "aria": "Contact",
     "title": "Contact",

@@ -87,6 +87,10 @@
   "notFound": {
     "message": "Página no encontrada"
   },
+  "underConstruction": {
+    "message": "Esta página está en construcción.",
+    "close": "Cerrar"
+  },
   "contact": {
     "aria": "Contacto",
     "title": "Contacto",
