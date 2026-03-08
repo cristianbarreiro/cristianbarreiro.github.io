@@ -518,6 +518,42 @@ button:hover .icon-send-jello {
 }
 
 /* ----------------------------------------------
+ * Home: glassmorphism hover para card principal
+ * ---------------------------------------------- */
+
+.glass-hover-card {
+  transition: background-color 0.25s ease, box-shadow 0.25s ease,
+    backdrop-filter 0.25s ease, -webkit-backdrop-filter 0.25s ease,
+    transform 0.25s ease;
+}
+
+:root[data-mantine-color-scheme="light"] .glass-hover-card:hover {
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow: 0 12px 32px rgba(24, 24, 27, 0.12);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  transform: translateY(-2px);
+}
+
+:root[data-mantine-color-scheme="dark"] .glass-hover-card:hover {
+  background: rgba(19, 20, 22, 0.5);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  transform: translateY(-2px);
+}
+
+@supports not (backdrop-filter: blur(14px)) {
+  :root[data-mantine-color-scheme="light"] .glass-hover-card:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  :root[data-mantine-color-scheme="dark"] .glass-hover-card:hover {
+    background: rgba(19, 20, 22, 0.76);
+  }
+}
+
+/* ----------------------------------------------
  * Projects: card hover effect (tipo “Prismic”)
  * ---------------------------------------------- */
 

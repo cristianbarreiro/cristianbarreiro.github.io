@@ -151,6 +151,7 @@ function Home() {
             <section aria-label={t('home.summaryAria')}>
                 <Container size="sm" py="xl">
                     <Paper
+                        className="glass-hover-card"
                         p="xl"
                         radius="md"
                         withBorder

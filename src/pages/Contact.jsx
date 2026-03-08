@@ -202,7 +202,7 @@ function Contact() {
             <Grid mt="xl" gutter="xl">
                 {/* Formulario de contacto */}
                 <Grid.Col span={{ base: 12, md: 7 }}>
-                    <Paper p="xl" radius="md" withBorder>
+                    <Paper p="xl" radius="md" withBorder className="glass-hover-card">
                         <form onSubmit={handleSubmit}>
                             <Stack gap="md">
                                 {/* Mensaje de éxito */}
@@ -291,7 +291,7 @@ function Contact() {
 
                 {/* Información de contacto alternativa */}
                 <Grid.Col span={{ base: 12, md: 5 }}>
-                    <Paper p="xl" radius="md" withBorder h="100%">
+                    <Paper p="xl" radius="md" withBorder h="100%" className="glass-hover-card">
                         <Stack gap="lg">
                             <div>
                                 <Title order={2} size="h4" mb="sm">

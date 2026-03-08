@@ -57,7 +57,7 @@ function About() {
                     </div>
 
                     {/* Bio completa */}
-                    <Paper p="xl" radius="md" withBorder>
+                    <Paper p="xl" radius="md" withBorder className="glass-hover-card">
                         <Group gap="md" mb="lg">
                             <ThemeIcon size="lg" radius="md" variant="light">
                                 <IconUser size={20} />
@@ -76,7 +76,7 @@ function About() {
                     </Paper>
 
                     {/* Intereses */}
-                    <Paper p="xl" radius="md" withBorder>
+                    <Paper p="xl" radius="md" withBorder className="glass-hover-card">
                         <Group gap="md" mb="lg">
                             <ThemeIcon size="lg" radius="md" variant="light" color="pink">
                                 <IconHeart size={20} />
@@ -101,7 +101,7 @@ function About() {
                 <Grid mt="xl" gutter="xl">
                     {/* Experiencia laboral */}
                     <Grid.Col span={{ base: 12, md: 6 }}>
-                        <Paper p="xl" radius="md" withBorder h="100%">
+                        <Paper p="xl" radius="md" withBorder h="100%" className="glass-hover-card">
                             <Group gap="md" mb="lg">
                                 <ThemeIcon size="lg" radius="md" variant="light" color="green">
                                     <IconBriefcase size={20} />
@@ -139,7 +139,7 @@ function About() {
 
                     {/* Educación */}
                     <Grid.Col span={{ base: 12, md: 6 }}>
-                        <Paper p="xl" radius="md" withBorder h="100%">
+                        <Paper p="xl" radius="md" withBorder h="100%" className="glass-hover-card">
                             <Group gap="md" mb="lg">
                                 <ThemeIcon size="lg" radius="md" variant="light" color="violet">
                                     <IconSchool size={20} />

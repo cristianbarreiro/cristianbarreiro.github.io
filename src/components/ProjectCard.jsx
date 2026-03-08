@@ -41,7 +41,7 @@ function ProjectCard({ project, variant = 'default' }) {
             padding={isCarousel ? 'xl' : 'lg'}
             radius="md"
             withBorder
-            className="fh-project-card"
+            className="fh-project-card glass-hover-card"
             style={{
                 height: '100%',
                 minHeight: isCarousel ? 360 : undefined,
