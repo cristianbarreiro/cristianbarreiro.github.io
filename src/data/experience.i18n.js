@@ -4,40 +4,40 @@
 
 export const experienceByLanguage = {
   es: [
+    // {
+    //   id: 1,
+    //   type: 'work',
+    //   title: 'Pasantía Laboral (prevista) – Tecnólogo en Informática',
+    //   organization: 'UDELAR & UTU',
+    //   location: 'Presencial',
+    //   startDate: '2027-03',
+    //   endDate: null,
+    //   description: [
+    //     'Evaluación de software open source, por ejemplo para redes e infraestructura',
+    //     'Desarrollo de aplicaciones',
+    //     'Testing y verificación de programas',
+    //     'Tareas de mantenimiento de sistemas'
+    //   ],
+    //   skills: ['React', 'Node.js', 'Express', 'MySQL', 'MongoDB', 'Git']
+    // },
+    // {
+    //   id: 1,
+    //   type: 'education',
+    //   title: 'Curso Intensivo Desarrollo Web',
+    //   organization: 'Hack Academy',
+    //   location: 'Online',
+    //   startDate: '2026-01',
+    //   endDate: '2026-05',
+    //   description: [
+    //     'Formación intensiva en stack MERN',
+    //     'Proyecto final: Aplicación web full-stack con React y Node.js',
+    //     'Implementación de APIs RESTful',
+    //     'Trabajo colaborativo con Git y GitHub'
+    //   ],
+    //   skills: ['React', 'Node.js', 'Express', 'MongoDB', 'JavaScript', 'Git']
+    // },
     {
       id: 1,
-      type: 'work',
-      title: 'Pasantía Laboral (prevista) – Tecnólogo en Informática',
-      organization: 'UDELAR & UTU',
-      location: 'Presencial',
-      startDate: '2027-03',
-      endDate: null,
-      description: [
-        'Evaluación de software open source, por ejemplo para redes e infraestructura',
-        'Desarrollo de aplicaciones',
-        'Testing y verificación de programas',
-        'Tareas de mantenimiento de sistemas'
-      ],
-      skills: ['React', 'Node.js', 'Express', 'MySQL', 'MongoDB', 'Git']
-    },
-    {
-      id: 2,
-      type: 'education',
-      title: 'Curso Intensivo Desarrollo Web',
-      organization: 'Hack Academy',
-      location: 'Online',
-      startDate: '2026-01',
-      endDate: '2026-05',
-      description: [
-        'Formación intensiva en stack MERN',
-        'Proyecto final: Aplicación web full-stack con React y Node.js',
-        'Implementación de APIs RESTful',
-        'Trabajo colaborativo con Git y GitHub'
-      ],
-      skills: ['React', 'Node.js', 'Express', 'MongoDB', 'JavaScript', 'Git']
-    },
-    {
-      id: 3,
       type: 'education',
       title: 'Tecnólogo en Informática',
       organization: 'UDELAR & UTU',
@@ -53,7 +53,7 @@ export const experienceByLanguage = {
       skills: ['C', 'C++', 'C#', 'Java', 'Python', 'SQL', 'PostgreSQL']
     },
     {
-      id: 4,
+      id: 2,
       type: 'education',
       title: 'Curso Introductorio Desarrollo Web',
       organization: 'Hack Academy',
@@ -69,7 +69,7 @@ export const experienceByLanguage = {
       skills: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Node.js']
     },
     {
-      id: 5,
+      id: 3,
       type: 'education',
       title: 'Bachillerato Tecnológico Informático',
       organization: 'Escuela Superior de Informática (ESI)',
@@ -86,40 +86,24 @@ export const experienceByLanguage = {
     }
   ],
   en: [
+    // {
+    //   id: 1,
+    //   type: 'work',
+    //   title: 'Internship (planned) – IT Technologist',
+    //   organization: 'UDELAR & UTU',
+    //   location: 'On-site',
+    //   startDate: '2027-03',
+    //   endDate: null,
+    //   description: [
+    //     'Evaluation of open-source software, for example for networking and infrastructure',
+    //     'Application development',
+    //     'Testing and program verification',
+    //     'System maintenance tasks'
+    //   ],
+    //   skills: ['React', 'Node.js', 'Express', 'MySQL', 'MongoDB', 'Git']
+    // },
     {
       id: 1,
-      type: 'work',
-      title: 'Internship (planned) – IT Technologist',
-      organization: 'UDELAR & UTU',
-      location: 'On-site',
-      startDate: '2027-03',
-      endDate: null,
-      description: [
-        'Evaluation of open-source software, for example for networking and infrastructure',
-        'Application development',
-        'Testing and program verification',
-        'System maintenance tasks'
-      ],
-      skills: ['React', 'Node.js', 'Express', 'MySQL', 'MongoDB', 'Git']
-    },
-    {
-      id: 2,
-      type: 'education',
-      title: 'Intensive Web Development Program',
-      organization: 'Hack Academy',
-      location: 'Online',
-      startDate: '2026-01',
-      endDate: '2026-05',
-      description: [
-        'Intensive training in the MERN stack',
-        'Final project: Full-stack web app with React and Node.js',
-        'Implementation of RESTful APIs',
-        'Collaborative work with Git and GitHub'
-      ],
-      skills: ['React', 'Node.js', 'Express', 'MongoDB', 'JavaScript', 'Git']
-    },
-    {
-      id: 3,
       type: 'education',
       title: 'IT Technologist',
       organization: 'UDELAR & UTU',
@@ -135,7 +119,7 @@ export const experienceByLanguage = {
       skills: ['C', 'C++', 'C#', 'Java', 'Python', 'SQL', 'PostgreSQL']
     },
     {
-      id: 4,
+      id: 2,
       type: 'education',
       title: 'Intro Web Development Course',
       organization: 'Hack Academy',
@@ -151,7 +135,7 @@ export const experienceByLanguage = {
       skills: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Node.js']
     },
     {
-      id: 5,
+      id: 3,
       type: 'education',
       title: 'Technical High School in IT',
       organization: 'Escuela Superior de Informática (ESI)',

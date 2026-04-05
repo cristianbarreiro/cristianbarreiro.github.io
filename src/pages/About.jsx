@@ -38,6 +38,10 @@ function About() {
     const workExperience = getWorkExperience(language);
     const education = getEducation(language);
 
+    // Determinar si hay experiencia laboral
+    const hasWorkExperience = workExperience.length > 0;
+    const educationSpan = hasWorkExperience ? { base: 12, md: 6 } : { base: 12, md: 12 };
+
     // Obtener intereses de forma segura
     const interests = t('site.interests', { returnObjects: true });
     const interestsList = Array.isArray(interests) ? interests : [];
@@ -99,46 +103,48 @@ function About() {
             {/* Experiencia y Educación */}
             <section aria-label={t('about.experienceEducationAria')}>
                 <Grid mt="xl" gutter="xl">
-                    {/* Experiencia laboral */}
-                    <Grid.Col span={{ base: 12, md: 6 }}>
-                        <Paper p="xl" radius="md" withBorder h="100%" className="glass-hover-card">
-                            <Group gap="md" mb="lg">
-                                <ThemeIcon size="lg" radius="md" variant="light" color="green">
-                                    <IconBriefcase size={20} />
-                                </ThemeIcon>
-                                <Title order={2} size="h3">
-                                    {t('about.experienceTitle')}
-                                </Title>
-                            </Group>
+                    {/* Experiencia laboral - solo si hay */}
+                    {hasWorkExperience && (
+                        <Grid.Col span={{ base: 12, md: 6 }}>
+                            <Paper p="xl" radius="md" withBorder h="100%" className="glass-hover-card">
+                                <Group gap="md" mb="lg">
+                                    <ThemeIcon size="lg" radius="md" variant="light" color="green">
+                                        <IconBriefcase size={20} />
+                                    </ThemeIcon>
+                                    <Title order={2} size="h3">
+                                        {t('about.experienceTitle')}
+                                    </Title>
+                                </Group>
 
-                            <Timeline active={0} bulletSize={24} lineWidth={2}>
-                                {workExperience.map((exp) => (
-                                    <Timeline.Item
-                                        key={exp.id}
-                                        title={exp.title}
-                                        bullet={<IconBriefcase size={12} />}
-                                    >
-                                        <Text c="dimmed" size="sm" fw={500}>
-                                            {exp.organization}
-                                        </Text>
-                                        <Text size="xs" c="dimmed" mt={4}>
-                                            {formatDate(exp.startDate, i18n.language)} - {formatDate(exp.endDate, i18n.language)}
-                                        </Text>
-                                        <Stack gap="xs" mt="sm">
-                                            {exp.description.slice(0, 2).map((item, index) => (
-                                                <Text key={index} size="sm">
-                                                    • {item}
-                                                </Text>
-                                            ))}
-                                        </Stack>
-                                    </Timeline.Item>
-                                ))}
-                            </Timeline>
-                        </Paper>
-                    </Grid.Col>
+                                <Timeline active={0} bulletSize={24} lineWidth={2}>
+                                    {workExperience.map((exp) => (
+                                        <Timeline.Item
+                                            key={exp.id}
+                                            title={exp.title}
+                                            bullet={<IconBriefcase size={12} />}
+                                        >
+                                            <Text c="dimmed" size="sm" fw={500}>
+                                                {exp.organization}
+                                            </Text>
+                                            <Text size="xs" c="dimmed" mt={4}>
+                                                {formatDate(exp.startDate, i18n.language)} - {formatDate(exp.endDate, i18n.language)}
+                                            </Text>
+                                            <Stack gap="xs" mt="sm">
+                                                {exp.description.slice(0, 2).map((item, index) => (
+                                                    <Text key={index} size="sm">
+                                                        • {item}
+                                                    </Text>
+                                                ))}
+                                            </Stack>
+                                        </Timeline.Item>
+                                    ))}
+                                </Timeline>
+                            </Paper>
+                        </Grid.Col>
+                    )}
 
                     {/* Educación */}
-                    <Grid.Col span={{ base: 12, md: 6 }}>
+                    <Grid.Col span={educationSpan}>
                         <Paper p="xl" radius="md" withBorder h="100%" className="glass-hover-card">
                             <Group gap="md" mb="lg">
                                 <ThemeIcon size="lg" radius="md" variant="light" color="violet">
