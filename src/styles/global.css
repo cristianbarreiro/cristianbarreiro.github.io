@@ -1132,7 +1132,8 @@ button:hover .icon-send-jello {
 
 /* -- 7.1.5 Gradiente Vibrante de Fondo -- */
 /* Desactivar gradiente cuando se usa el canvas como fondo */
-.main-content-wrapper.circuit-bg::before {
+.main-content-wrapper.circuit-bg::before,
+.main-content-wrapper.space-bg::before {
   display: none;
 }
 

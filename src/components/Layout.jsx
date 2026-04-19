@@ -11,9 +11,10 @@ import { useTranslation } from 'react-i18next';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import CircuitBackground from './CircuitBackground';
+import SpaceBackground from './SpaceBackground';
 
-// Tipo de fondo: 'circuit' (canvas animado) o 'video'
-const BACKGROUND_TYPE = 'circuit';
+// Tipo de fondo: 'space' (canvas estrellas/nebula), 'circuit' (canvas circuito) o 'video'
+const BACKGROUND_TYPE = 'space';
 
 function Layout() {
     const { t } = useTranslation();
@@ -460,10 +461,14 @@ function Layout() {
                     </div>
                 )}
                 {/* Contenedor con fondo */}
-                <Box className={`main-content-wrapper ${BACKGROUND_TYPE === 'circuit' ? 'circuit-bg' : ''}`}>
-                    {/* Fondo: Canvas de circuito (principal) o Video (secundario) */}
+                <Box
+                    className={`main-content-wrapper ${BACKGROUND_TYPE === 'circuit' ? 'circuit-bg' : ''} ${BACKGROUND_TYPE === 'space' ? 'space-bg' : ''}`}
+                >
+                    {/* Fondo: espacio, canvas de circuito o video */}
                     {BACKGROUND_TYPE === 'circuit' ? (
                         <CircuitBackground />
+                    ) : BACKGROUND_TYPE === 'space' ? (
+                        <SpaceBackground theme="space" />
                     ) : (
                         <>
                             <video
