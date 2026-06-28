@@ -327,7 +327,7 @@ function SpaceBackground({ theme = 'space' }) {
     };
   }, [theme]);
 
-  return <canvas ref={canvasRef} className="space-background" aria-hidden="true" />;
+  return <canvas key={theme} ref={canvasRef} className="space-background" aria-hidden="true" />;
 }
 
 export default SpaceBackground;

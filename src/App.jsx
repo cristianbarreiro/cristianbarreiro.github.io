@@ -7,7 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 
 // Componente de layout
 import Layout from './components/Layout';
-import ThemeSwitch from './components/ThemeSwitch';
+import ThemeChanger from './components/ThemeChanger';
 
 import UnderConstructionModal from './components/UnderConstructionModal';
 
@@ -34,8 +34,7 @@ function App() {
 
   return (
     <>
-      <ThemeSwitch />
-      <UnderConstructionModal />
+      <ThemeChanger />
 
       <Routes>
         {/* Layout wrapper con Navbar y Footer */}

@@ -47,6 +47,15 @@ Soy una persona adaptable, con pensamiento analítico y un fuerte enfoque en la 
 
     // Año de copyright
     copyrightYear: new Date().getFullYear(),
+
+    // [Desactivadores de funcionalidad]
+    // Cambia a false para desactivar una función.
+    // features: {
+    //   enableLightMode: false,  // false = oculta el botón de modo claro, fuerza modo oscuro
+    // },
+    features: {
+        enableLightMode: false,
+    },
 };
 
 export default siteConfig;

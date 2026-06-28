@@ -1,6 +1,6 @@
 import { useMantineColorScheme } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
-import { useState, useRef, useMemo } from 'react';
+import { useState, useRef } from 'react';
 import { IconSun, IconMoon } from '@tabler/icons-react';
 import './ThemeSwitch.css';
 
@@ -8,8 +8,7 @@ function ThemeSwitch() {
   const { colorScheme, setColorScheme } = useMantineColorScheme();
   const { t } = useTranslation();
   
-  // Estado inicial basado en colorScheme
-  const initialIsLight = useMemo(() => colorScheme === 'light', []);
+  const initialIsLight = colorScheme === 'light';
   const [isLight, setIsLight] = useState(initialIsLight);
   const isAnimating = useRef(false);
 

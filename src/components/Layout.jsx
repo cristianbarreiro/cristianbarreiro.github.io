@@ -12,13 +12,25 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import CircuitBackground from './CircuitBackground';
 import SpaceBackground from './SpaceBackground';
+import { useThemeContext } from '../context/ThemeContext';
 
 // Tipo de fondo: 'space' (canvas estrellas/nebula), 'circuit' (canvas circuito) o 'video'
 const BACKGROUND_TYPE = 'space';
 
+const PRIMARY_TO_THEME = {
+  blue: 'nebula-blue',
+  violet: 'nebula-purple',
+  indigo: 'space',
+  pink: 'nebula-pink',
+  grape: 'galaxy-spiral',
+  red: 'galaxy-magenta',
+};
+
 function Layout() {
     const { t } = useTranslation();
     const location = useLocation();
+    const { primaryColor } = useThemeContext();
+    const spaceTheme = PRIMARY_TO_THEME[primaryColor] ?? 'space';
     const videoARef = useRef(null);
     const videoBRef = useRef(null);
 
@@ -468,7 +480,7 @@ function Layout() {
                     {BACKGROUND_TYPE === 'circuit' ? (
                         <CircuitBackground />
                     ) : BACKGROUND_TYPE === 'space' ? (
-                        <SpaceBackground theme="space" />
+                        <SpaceBackground theme={spaceTheme} key={spaceTheme} />
                     ) : (
                         <>
                             <video

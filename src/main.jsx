@@ -6,7 +6,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { MantineProvider, createTheme } from '@mantine/core';
 
 import { I18nextProvider } from 'react-i18next';
 
@@ -22,68 +21,9 @@ import './styles/global.css';
 // Componente principal
 import App from './App';
 
-// Configuración del sitio (para el color primario)
-import { siteConfig } from './config/siteConfig';
-import { dualStorageColorSchemeManager } from './utils/colorSchemeManager';
-
-/**
- * Tema personalizado de Mantine
- * 
- * Aquí puedes personalizar:
- * - primaryColor: color principal (blue, cyan, grape, green, etc.)
- * - fontFamily: fuente principal
- * - headings: estilos de títulos
- * - components: estilos por defecto de componentes
- * 
- * Documentación: https://mantine.dev/theming/theme-object/
- */
-
-const theme = createTheme({
-  // Color primario (configurable desde siteConfig.js)
-  primaryColor: siteConfig.primaryColor,
-
-  // Fuente principal
-  fontFamily:
-    'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-
-  // Configuración de títulos
-  headings: {
-    fontFamily:
-      'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    fontWeight: '700',
-  },
-
-  // Radio de bordes por defecto
-  defaultRadius: 'md',
-
-  // Espaciados personalizados
-  spacing: {
-    xs: '0.5rem',
-    sm: '0.75rem',
-    md: '1rem',
-    lg: '1.5rem',
-    xl: '2rem',
-  },
-
-  // Personalización de componentes específicos
-  components: {
-    Button: {
-      defaultProps: {
-        radius: 'md',
-      },
-    },
-    Card: {
-      defaultProps: {
-        radius: 'md',
-      },
-    },
-    Paper: {
-      defaultProps: {
-        radius: 'md',
-      },
-    },
-  },
-});
+// Tema dinámico
+import { ThemeProvider } from './context/ThemeContext';
+import ThemeRoot from './components/ThemeRoot';
 
 /**
  * Render de la aplicación
@@ -91,21 +31,20 @@ const theme = createTheme({
  * Estructura:
  * - StrictMode: detecta problemas potenciales
  * - BrowserRouter: habilita el enrutamiento
- * - MantineProvider: provee el tema y estilos de Mantine
+ * - ThemeProvider: provee el color primario seleccionado
+ * - ThemeRoot: MantineProvider con tema dinámico
  */
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <I18nextProvider i18n={i18n}>
-      <BrowserRouter>
-        <MantineProvider
-          theme={theme}
-          defaultColorScheme="auto"
-          colorSchemeManager={dualStorageColorSchemeManager()}
-        >
-          <App />
-        </MantineProvider>
-      </BrowserRouter>
-    </I18nextProvider>
+    <ThemeProvider>
+      <ThemeRoot>
+        <I18nextProvider i18n={i18n}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </I18nextProvider>
+      </ThemeRoot>
+    </ThemeProvider>
   </React.StrictMode>
 );

@@ -3,7 +3,6 @@
  * Landing page con hero section y resumen
  */
 
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
     Title,
@@ -19,40 +18,9 @@ import { siteConfig } from '../config/siteConfig';
 import { useTranslation } from 'react-i18next';
 import RippleButton from '../components/RippleButton';
 
-const HOME_TYPING_STORAGE_KEY = 'homeTypingPlayedForLoadId';
-const PAGE_LOAD_ID = String(
-    globalThis?.performance?.timeOrigin ??
-        globalThis?.performance?.timing?.navigationStart ??
-        0
-);
-
 function Home() {
     const theme = useMantineTheme();
     const { t } = useTranslation();
-
-    // Evita repetir el efecto al navegar dentro del SPA.
-    // Se vuelve a permitir al recargar la página (PAGE_LOAD_ID cambia).
-    const [shouldPlayTyping] = useState(() => {
-        try {
-            return localStorage.getItem(HOME_TYPING_STORAGE_KEY) !== PAGE_LOAD_ID;
-        } catch {
-            return true;
-        }
-    });
-
-    useEffect(() => {
-        if (!shouldPlayTyping) return;
-        try {
-            localStorage.setItem(HOME_TYPING_STORAGE_KEY, PAGE_LOAD_ID);
-        } catch {
-            // ignore
-        }
-    }, [shouldPlayTyping]);
-
-    const greetingText = t('home.greeting');
-    // +2ch de margen para evitar recortes por emoji/kerning.
-    const greetingWidthCh = Array.from(greetingText).length + 2;
-    const fullNameText = siteConfig.fullName;
 
     return (
         <main>
@@ -65,37 +33,27 @@ function Home() {
                     py={{ base: 'xl', md: 80 }}
                     ta="center"
                 >
-                    {/* Saludo y nombre */}
-                    <div
-                        className={`home-typing-container${shouldPlayTyping ? '' : ' home-typing-no-anim'}`}
+                    {/* Nombre */}
+                    <Title
+                        order={1}
+                        size="3.5rem"
+                        fw={800}
+                        className="home-typing-line2"
+                        style={{ margin: 0 }}
                     >
-                        <Text
-                            size="lg"
-                            fw={300}
-                            c={theme.primaryColor}
-                            mb="xs"
-                            className="home-typing-line1"
-                            style={{ '--typing-width': `${greetingWidthCh}ch` }}
+                        <span
+                            className="home-typing-line2-text"
+                            style={{
+                                '--name-gradient-start': `var(--mantine-color-${theme.primaryColor}-6)`,
+                                '--name-gradient-end': `var(--mantine-color-${theme.primaryColor}-4)`,
+                                maxWidth: 'none',
+                                animation: 'none',
+                                WebkitAnimation: 'none',
+                            }}
                         >
-                            {greetingText}
-                        </Text>
-                        <Title
-                            order={1}
-                            size="3.5rem"
-                            fw={800}
-                            className="home-typing-line2"
-                        >
-                            <span
-                                className="home-typing-line2-text"
-                                style={{
-                                    '--name-gradient-start': `var(--mantine-color-${theme.primaryColor}-6)`,
-                                    '--name-gradient-end': `var(--mantine-color-${theme.primaryColor}-4)`,
-                                }}
-                            >
-                                {fullNameText}
-                            </span>
-                        </Title>
-                    </div>
+                            {siteConfig.fullName}
+                        </span>
+                    </Title>
 
                     {/* Subtítulo / rol */}
                     <Title
