@@ -6,7 +6,6 @@ import {
     Text,
     Stack,
     ActionIcon,
-    useMantineColorScheme,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconChevronLeft, IconChevronRight, IconX } from '@tabler/icons-react';
@@ -16,7 +15,6 @@ import './ProjectImagesModal.css';
 
 function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
     const { t } = useTranslation();
-    const { colorScheme } = useMantineColorScheme();
     const { primaryColor } = useThemeContext();
     const isMobile = useMediaQuery('(max-width: 48em)');
     const [activeIndex, setActiveIndex] = useState(0);
@@ -105,12 +103,10 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
                     WebkitBackdropFilter: 'none',
                 },
                 content: {
-                    background:
-                        colorScheme === 'dark'
-                            ? 'rgba(19, 20, 22, 0.25)'
-                            : 'rgba(255, 255, 255, 0.3)',
+                    background: 'rgba(19, 20, 22, 0.525)',
                     backdropFilter: 'blur(20px) saturate(180%)',
                     WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                    boxShadow: '0 4px 30px rgba(0, 0, 0, 0.26), 0 0 0 1px rgba(255, 255, 255, 0.15) inset',
                     animation: 'modalContentIn 350ms cubic-bezier(0.16, 1, 0.3, 1)',
                 },
                 body: {
