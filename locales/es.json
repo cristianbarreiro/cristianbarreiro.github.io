@@ -87,6 +87,20 @@
   "notFound": {
     "message": "Página no encontrada"
   },
+  "themeChanger": {
+    "changeTheme": "Cambiar Tema",
+    "hideThemes": "Ocultar Temas",
+    "appearance": "Apariencia",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "accentColor": "Color de acento",
+    "blue": "Azul",
+    "violet": "Violeta",
+    "indigo": "Índigo",
+    "pink": "Rosa",
+    "grape": "Grape",
+    "red": "Rojo"
+  },
   "underConstruction": {
     "message": "Esta página está en construcción.",
     "close": "Cerrar"

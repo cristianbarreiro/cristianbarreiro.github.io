@@ -87,6 +87,20 @@
   "notFound": {
     "message": "Page not found"
   },
+  "themeChanger": {
+    "changeTheme": "Change Theme",
+    "hideThemes": "Hide Themes",
+    "appearance": "Appearance",
+    "light": "Light",
+    "dark": "Dark",
+    "accentColor": "Accent Color",
+    "blue": "Blue",
+    "violet": "Violet",
+    "indigo": "Indigo",
+    "pink": "Pink",
+    "grape": "Grape",
+    "red": "Red"
+  },
   "underConstruction": {
     "message": "This page is under construction.",
     "close": "Close"
