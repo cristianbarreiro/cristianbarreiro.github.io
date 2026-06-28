@@ -69,6 +69,7 @@
     "prevImage": "Previous image",
     "nextImage": "Next image",
     "imagePosition": "{{current}} of {{total}}",
+    "imageCounter": "{{current}} / {{total}}",
     "galleryImageAlt": "Image {{index}} of {{project}}"
   },
   "skills": {

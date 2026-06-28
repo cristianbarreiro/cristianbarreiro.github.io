@@ -1,33 +1,38 @@
-/**
- * Modal responsive para visualizar imágenes de un proyecto.
- * Soporta navegación con flechas, teclado y contador.
- */
-
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import {
     Modal,
     Box,
     Group,
     Text,
-    ActionIcon,
-    CloseButton,
     Stack,
+    ActionIcon,
     useMantineColorScheme,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
+import { IconChevronLeft, IconChevronRight, IconX } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
+import { useThemeContext } from '../context/ThemeContext';
 import './ProjectImagesModal.css';
 
 function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
     const { t } = useTranslation();
     const { colorScheme } = useMantineColorScheme();
+    const { primaryColor } = useThemeContext();
     const isMobile = useMediaQuery('(max-width: 48em)');
     const [activeIndex, setActiveIndex] = useState(0);
+    const thumbnailsRef = useRef(null);
 
     const totalImages = images.length;
     const currentImage = images[activeIndex] || null;
     const hasMultipleImages = totalImages > 1;
+
+    const goToPrev = useCallback(() => {
+        setActiveIndex((prev) => (prev - 1 + totalImages) % totalImages);
+    }, [totalImages]);
+
+    const goToNext = useCallback(() => {
+        setActiveIndex((prev) => (prev + 1) % totalImages);
+    }, [totalImages]);
 
     useEffect(() => {
         if (!opened || !hasMultipleImages) {
@@ -37,30 +42,48 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
         const handleKeyDown = (event) => {
             if (event.key === 'ArrowLeft') {
                 event.preventDefault();
-                setActiveIndex((prev) => (prev - 1 + totalImages) % totalImages);
+                goToPrev();
             }
-
             if (event.key === 'ArrowRight') {
                 event.preventDefault();
-                setActiveIndex((prev) => (prev + 1) % totalImages);
+                goToNext();
             }
         };
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [opened, hasMultipleImages, totalImages]);
+    }, [opened, hasMultipleImages, goToPrev, goToNext]);
+
+    useEffect(() => {
+        if (!hasMultipleImages || !opened) return;
+        const prevSrc = images[(activeIndex - 1 + totalImages) % totalImages]?.src;
+        const nextSrc = images[(activeIndex + 1) % totalImages]?.src;
+        [prevSrc, nextSrc].forEach((src) => {
+            if (src) {
+                const img = new Image();
+                img.src = src;
+            }
+        });
+    }, [activeIndex, images, hasMultipleImages, totalImages, opened]);
+
+    useEffect(() => {
+        if (thumbnailsRef.current && hasMultipleImages) {
+            const activeThumb = thumbnailsRef.current.querySelector(
+                '.project-images-modal__thumbnail--active'
+            );
+            if (activeThumb) {
+                activeThumb.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center',
+                });
+            }
+        }
+    }, [activeIndex, hasMultipleImages]);
 
     if (!currentImage) {
         return null;
     }
-
-    const goToPrev = () => {
-        setActiveIndex((prev) => (prev - 1 + totalImages) % totalImages);
-    };
-
-    const goToNext = () => {
-        setActiveIndex((prev) => (prev + 1) % totalImages);
-    };
 
     return (
         <Modal
@@ -73,84 +96,135 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
             padding={isMobile ? 'md' : 'lg'}
             radius="xl"
             overlayProps={{
-                backgroundOpacity: 0.55,
-                blur: 10,
+                backgroundOpacity: 0.5,
             }}
             styles={{
+                overlay: {
+                    '--overlay-filter': 'none',
+                    backdropFilter: 'none',
+                    WebkitBackdropFilter: 'none',
+                },
                 content: {
                     background:
                         colorScheme === 'dark'
-                            ? 'rgba(19, 20, 22, 0.92)'
-                            : 'rgba(255, 255, 255, 0.92)',
-                    backdropFilter: 'blur(14px) saturate(160%)',
-                    WebkitBackdropFilter: 'blur(14px) saturate(160%)',
+                            ? 'rgba(19, 20, 22, 0.25)'
+                            : 'rgba(255, 255, 255, 0.3)',
+                    backdropFilter: 'blur(20px) saturate(180%)',
+                    WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                    animation: 'modalContentIn 350ms cubic-bezier(0.16, 1, 0.3, 1)',
                 },
                 body: {
                     padding: 0,
+                    overflow: 'hidden',
                 },
             }}
         >
-            <Box className="project-images-modal" p={isMobile ? 'sm' : 'md'}>
-                <CloseButton
+            <Box
+                className="project-images-modal"
+                p={isMobile ? 'sm' : 'md'}
+                style={{ '--glow-color': `var(--mantine-color-${primaryColor}-6)` }}
+            >
+                <ActionIcon
+                    variant="transparent"
+                    size="xl"
+                    radius="xl"
                     onClick={onClose}
                     aria-label={t('projectCard.closeImages')}
-                    className="project-images-modal__close"
-                    variant="subtle"
-                    size="lg"
-                />
+                    className="carousel-nav-btn project-images-modal__close"
+                >
+                    <IconX size={20} />
+                </ActionIcon>
 
                 <Stack gap="sm">
                     <Box className="project-images-modal__viewport">
                         {hasMultipleImages && (
                             <ActionIcon
-                                variant="filled"
+                                variant="transparent"
+                                size="xl"
                                 radius="xl"
-                                size="lg"
                                 onClick={goToPrev}
                                 aria-label={t('projectCard.prevImage')}
-                                className="project-images-modal__nav project-images-modal__nav--prev"
+                                className="carousel-nav-btn carousel-nav-lateral project-images-modal__nav project-images-modal__nav--prev"
                             >
-                                <IconChevronLeft size={20} />
+                                <IconChevronLeft size={22} />
                             </ActionIcon>
                         )}
 
-                        <img
-                            src={currentImage.src}
-                            alt={currentImage.alt}
-                            className="project-images-modal__image"
-                        />
+                        <Box className="project-images-modal__image-wrapper">
+                            <div className="project-images-modal__glow" />
+                            <img
+                                key={activeIndex}
+                                src={currentImage.src}
+                                alt={currentImage.alt}
+                                className="project-images-modal__image"
+                                loading="lazy"
+                            />
+                        </Box>
 
                         {hasMultipleImages && (
                             <ActionIcon
-                                variant="filled"
+                                variant="transparent"
+                                size="xl"
                                 radius="xl"
-                                size="lg"
                                 onClick={goToNext}
                                 aria-label={t('projectCard.nextImage')}
-                                className="project-images-modal__nav project-images-modal__nav--next"
+                                className="carousel-nav-btn carousel-nav-lateral project-images-modal__nav project-images-modal__nav--next"
                             >
-                                <IconChevronRight size={20} />
+                                <IconChevronRight size={22} />
                             </ActionIcon>
                         )}
                     </Box>
 
-                    <Group justify="space-between" align="flex-start" gap="xs" wrap="wrap">
-                        <div>
-                            <Text fw={600}>{projectTitle}</Text>
-                            {currentImage.caption && (
-                                <Text size="sm" c="dimmed" mt={4}>
-                                    {currentImage.caption}
-                                </Text>
-                            )}
-                        </div>
-
-                        <Text size="sm" c="dimmed">
-                            {t('projectCard.imagePosition', {
-                                current: activeIndex + 1,
-                                total: totalImages,
-                            })}
+                    <Box className="project-images-modal__info">
+                        <Text className="project-images-modal__info-title">
+                            {projectTitle}
                         </Text>
-                    </Group>
+                        {currentImage.caption && (
+                            <Text className="project-images-modal__info-caption">
+                                {currentImage.caption}
+                            </Text>
+                        )}
+                    </Box>
+
+                    {hasMultipleImages && (
+                        <Box className="project-images-modal__counter">
+                            <Text className="project-images-modal__counter-text">
+                                {String(activeIndex + 1).padStart(2, '0')} / {String(totalImages).padStart(2, '0')}
+                            </Text>
+                            <div className="project-images-modal__progress-track">
+                                <div
+                                    className="project-images-modal__progress-bar"
+                                    style={{
+                                        width: `${((activeIndex + 1) / totalImages) * 100}%`,
+                                    }}
+                                />
+                            </div>
+                        </Box>
+                    )}
+
+                    {hasMultipleImages && (
+                        <Box className="project-images-modal__thumbnails" ref={thumbnailsRef}>
+                            <div className="project-images-modal__thumbnails-track">
+                                {images.map((img, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setActiveIndex(index)}
+                                        className={`project-images-modal__thumbnail ${
+                                            index === activeIndex
+                                                ? 'project-images-modal__thumbnail--active'
+                                                : ''
+                                        }`}
+                                        aria-label={t('projectCard.galleryImageAlt', {
+                                            project: projectTitle,
+                                            index: index + 1,
+                                        })}
+                                    >
+                                        <img src={img.src} alt="" loading="lazy" />
+                                    </button>
+                                ))}
+                            </div>
+                        </Box>
+                    )}
 
                     {hasMultipleImages && (
                         <Group justify="center" gap="sm" className="project-images-modal__nav-mobile">
