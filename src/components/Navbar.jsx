@@ -62,7 +62,7 @@ function Navbar() {
             <header className="glassmorphic-navbar">
 
                 <Container size="lg" py="sm">
-                    <Group justify="space-between" align="center">
+                    <Group justify="space-between" align="center" wrap="nowrap">
                         {/* Logo / Nombre */}
                         <Link
                             to="/"
@@ -153,7 +153,7 @@ function Navbar() {
                 title={t('nav.drawerTitle')}
                 zIndex={200}
             >
-                <Stack gap="xs">
+                <Stack gap="xs" pt="xs">
                     {enabledNavLinks.map((link) => (
                         <NavLink
                             key={link.path}
