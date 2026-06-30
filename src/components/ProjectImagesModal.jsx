@@ -131,7 +131,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
                     <IconX size={20} />
                 </ActionIcon>
 
-                <Stack gap="sm">
+                <Stack gap={isMobile ? 'xs' : 'sm'} className="project-images-modal__stack">
                     <Box className="project-images-modal__viewport">
                         {hasMultipleImages && (
                             <ActionIcon

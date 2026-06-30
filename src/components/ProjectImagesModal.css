@@ -240,13 +240,33 @@
 }
 
 @media (max-width: 48em) {
+  .project-images-modal {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-images-modal__stack {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
   .project-images-modal__viewport {
+    flex-shrink: 0;
     padding: 0;
+    border-radius: 14px;
   }
 
   .project-images-modal__image {
-    max-height: 42vh;
-    border-radius: 20px;
+    max-height: 50vh;
+    border-radius: 14px;
+  }
+
+  .project-images-modal__info,
+  .project-images-modal__counter,
+  .project-images-modal__thumbnails {
+    flex-shrink: 0;
   }
 
   .project-images-modal__nav {
@@ -255,17 +275,57 @@
 
   .project-images-modal__nav-mobile {
     display: flex;
+    margin-top: auto;
+    padding-bottom: max(24px, calc(env(safe-area-inset-bottom, 0px) + 16px));
+  }
+
+  .project-images-modal__nav-mobile .mantine-ActionIcon-root {
+    width: 48px;
+    height: 48px;
+  }
+
+  .project-images-modal__info-title {
+    font-size: 0.95rem;
+  }
+
+  .project-images-modal__info-caption {
+    font-size: 0.8rem;
   }
 
   .project-images-modal__thumbnail {
-    width: 56px;
-    height: 42px;
+    width: 52px;
+    height: 48px;
   }
 
   .project-images-modal__close {
-    top: 10px;
-    right: 10px;
-    width: 36px;
-    height: 36px;
+    top: 8px;
+    right: 8px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .project-images-modal__counter-text {
+    font-size: 0.8rem;
+  }
+
+  .project-images-modal__progress-track {
+    max-width: 160px;
+  }
+}
+
+@media (min-width: 48em) and (max-width: 62em) {
+  .project-images-modal__stack {
+    padding-top: clamp(2rem, 6vh, 4rem);
+    padding-bottom: clamp(2rem, 6vh, 4rem);
+    justify-content: center;
+  }
+
+  .project-images-modal__image {
+    max-height: min(65vh, 520px);
+  }
+
+  .project-images-modal__close {
+    top: 18px;
+    right: 18px;
   }
 }
