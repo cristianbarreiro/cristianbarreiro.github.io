@@ -115,7 +115,7 @@ function Navbar() {
                         </Group>
 
                         {/* Botones móvil (hamburguesa + toggle tema) */}
-                        <Group hiddenFrom="sm">
+                        <Group hiddenFrom="sm" wrap="nowrap" gap="xs">
                             <RippleButton
                                 component="a"
                                 href="/cv_dev_cristian.pdf"
