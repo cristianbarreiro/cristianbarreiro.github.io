@@ -40,7 +40,18 @@ const projectsByLanguage = {
                 'Red social para compartir conocimientos y debates, especializada en intercambio cultural. (Proyecto privado)',
             longDescription:
                 'Plataforma web que permite a los usuarios crear perfiles, publicar contenido, seguir a otros usuarios y participar en debates sobre diversos temas culturales. Incluye funcionalidades de moderación y personalización de perfiles.',
-            image: null,
+            image: '/images/projects/socratica/socratica.png',
+            images: [
+                {
+                    src: '/images/projects/socratica/socratica.png',
+                    alt: 'Captura de Socratica Social Network',
+                },
+                {
+                    src: '/videos/socratica/caja negra test.mp4',
+                    alt: 'Video de Socratica Social Network',
+                    type: 'video',
+                },
+            ],
             tags: ['Laravel', 'API REST', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB'],
             demoUrl: '',
             repoUrl: '',
@@ -80,7 +91,7 @@ const projectsByLanguage = {
                 'Aplicación e-commerce full-stack con catálogo dinámico, vista rápida de productos, carrito, favoritos y panel de backoffice.',
             longDescription:
                 'Proyecto e-commerce en arquitectura monorepo con frontend en React + TypeScript y backend en Node.js/Express + Prisma. Incluye Home con carruseles dinámicos, filtros por categoría/subcategoría/colecciones, modal de vista rápida, carrito y wishlist, además de backoffice para gestión de productos y colecciones.',
-            image: null,
+            image: '/images/projects/shophub/principal.jpeg',
             tags: [
                 'TypeScript',
                 'React',
@@ -213,7 +224,18 @@ const projectsByLanguage = {
                 'A social network for sharing knowledge and debates, focused on cultural exchange. (Private project)',
             longDescription:
                 'A web platform where users can create profiles, publish content, follow others, and take part in debates about different cultural topics. Includes moderation and profile customization features.',
-            image: null,
+            image: '/images/projects/socratica/socratica.png',
+            images: [
+                {
+                    src: '/images/projects/socratica/socratica.png',
+                    alt: 'Socratica Social Network screenshot',
+                },
+                {
+                    src: '/videos/socratica/caja negra test.mp4',
+                    alt: 'Socratica Social Network video',
+                    type: 'video',
+                },
+            ],
             tags: ['Laravel', 'REST API', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB'],
             demoUrl: '#',
             repoUrl: 'https://github.com/BinaryTech-corp',
@@ -266,7 +288,7 @@ const projectsByLanguage = {
                 'Full-stack e-commerce application with dynamic catalog, product quick view, cart, wishlist, and backoffice dashboard.',
             longDescription:
                 'E-commerce project using a monorepo architecture with a React + TypeScript frontend and a Node.js/Express + Prisma backend. It includes a Home page with dynamic carousels, filters by category/subcategory/collections, a quick-view modal, cart and wishlist features, plus a backoffice for product and collection management.',
-            image: null,
+            image: '/images/projects/shophub/principal.jpeg',
             tags: [
                 'TypeScript',
                 'React',

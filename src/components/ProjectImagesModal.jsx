@@ -148,13 +148,26 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
 
                         <Box className="project-images-modal__image-wrapper">
                             <div className="project-images-modal__glow" />
-                            <img
-                                key={activeIndex}
-                                src={currentImage.src}
-                                alt={currentImage.alt}
-                                className="project-images-modal__image"
-                                loading="lazy"
-                            />
+                            {currentImage.type === 'video' ? (
+                                <video
+                                    key={activeIndex}
+                                    src={currentImage.src}
+                                    className="project-images-modal__image"
+                                    controls
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                />
+                            ) : (
+                                <img
+                                    key={activeIndex}
+                                    src={currentImage.src}
+                                    alt={currentImage.alt}
+                                    className="project-images-modal__image"
+                                    loading="lazy"
+                                />
+                            )}
                         </Box>
 
                         {hasMultipleImages && (
@@ -215,7 +228,11 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
                                             index: index + 1,
                                         })}
                                     >
-                                        <img src={img.src} alt="" loading="lazy" />
+                                        {img.type === 'video' ? (
+                                            <video src={img.src} muted playsInline />
+                                        ) : (
+                                            <img src={img.src} alt="" loading="lazy" />
+                                        )}
                                     </button>
                                 ))}
                             </div>

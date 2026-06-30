@@ -71,6 +71,7 @@ function ProjectCard({ project, variant = 'default' }) {
                             index: index + 1,
                         }),
                     caption: item.caption || '',
+                    type: item.type,
                 };
             })
             .filter(Boolean);
