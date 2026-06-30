@@ -61,9 +61,9 @@ const projectsByLanguage = {
             id: 3,
             title: 'Web de Automotora',
             description:
-                'Gestionar autos disponibles en el sistema y filtrado. Funcionalidades en página de automotora.',
+                 'Web Automotora (JavaScript + APIs, proyecto final). Proyecto final desarrollado en equipo durante el curso de Desarrollo Web.',
             longDescription:
-                'Aplicación web que permite a los administradores de una automotora gestionar inventario de vehículos y clasificarlos según nombre, precio, marca, etcétera.',
+                 'Proyecto final desarrollado en equipo durante el curso de Desarrollo Web. Participé en la implementación de funcionalidades para la visualización y filtrado de vehículos, consumo de APIs y gestión de información mediante LocalStorage. El proyecto fortaleció mis conocimientos de JavaScript, trabajo colaborativo y desarrollo de interfaces web interactivas.',
             image: null,
             images: [
                 {
@@ -88,9 +88,9 @@ const projectsByLanguage = {
             id: 4,
             title: 'E-commerce ShopHub',
             description:
-                'Aplicación e-commerce full-stack con catálogo dinámico, vista rápida de productos, carrito, favoritos y panel de backoffice.',
+                'E-commerce ShopHub – Footwear Retail Platform. Proyecto personal de una plataforma e-commerce full stack desarrollado con arquitectura monorepo.',
             longDescription:
-                'Proyecto e-commerce en arquitectura monorepo con frontend en React + TypeScript y backend en Node.js/Express + Prisma. Incluye Home con carruseles dinámicos, filtros por categoría/subcategoría/colecciones, modal de vista rápida, carrito y wishlist, además de backoffice para gestión de productos y colecciones.',
+                'Proyecto personal de una plataforma e-commerce full stack desarrollado con arquitectura monorepo. Diseñé e implementé funcionalidades como catálogo dinámico, filtros avanzados, carrito de compras, wishlist y panel de administración. El proyecto me permitió profundizar en el desarrollo de APIs, modelado de bases de datos y organización de aplicaciones escalables.',
             image: '/images/projects/shophub/principal.jpeg',
             tags: [
                 'TypeScript',
@@ -132,9 +132,9 @@ const projectsByLanguage = {
             id: 6,
             title: 'Genius Budget Manager',
             description:
-                'Sistema de gestión de presupuestos de campañas de marketing digital con backend en Java. (Proyecto académico / sistema interno simulado)',
+                'Genius Budget Manager – Sistema de Gestión de Presupuestos de Campañas. Proyecto desarrollado en equipo donde me desempeño como Backend Developer.',
             longDescription:
-                'Plataforma backend para gestión de presupuestos de campañas de marketing digital. Permite controlar asignaciones, gastos y disponibilidad de presupuesto por campaña, con endpoints para consulta, actualización y auditoría. Incluye módulo de reportería en Python para exportación de datos y análisis en Excel/Power BI.',
+                'Proyecto desarrollado en equipo donde me desempeño como Backend Developer. Participé en el diseño e implementación de APIs REST con Spring Boot para la gestión de presupuestos de campañas de marketing, incluyendo funcionalidades de consulta, actualización y auditoría de datos. También colaboré en la generación de reportes y en la documentación de los servicios utilizando Swagger, trabajando bajo una dinámica de desarrollo colaborativo y control de versiones.',
             image: null,
             tags: [
                 'Java',
@@ -166,9 +166,9 @@ const projectsByLanguage = {
             id: 8,
             title: 'Trabajo Obligatorio Arquitectura de Software en C++',
             description:
-                'Proyecto académico integrador aplicando estructuras, lógica y buenas prácticas de programación en C++.',
+                 'Proyecto académico desarrollado en un equipo de cinco integrantes, enfocado en el diseño e implementación de una solución aplicando Programación Orientada a Objetos, estructuras de datos y principios de arquitectura de software.',
             longDescription:
-                'Proyecto académico integrador de la asignatura Programación Avanzada, enfocado en desarrollo de una solución completa aplicando estructuras, lógica y buenas prácticas de programación.',
+                 'Proyecto académico desarrollado en un equipo de cinco integrantes, enfocado en el diseño e implementación de una solución aplicando Programación Orientada a Objetos, estructuras de datos y principios de arquitectura de software. Participé en el desarrollo de funcionalidades, la integración de componentes y la coordinación del trabajo en equipo utilizando buenas prácticas de programación.',
             image: null,
             tags: ['C', 'C++', 'POO'],
             demoUrl: '',
@@ -245,9 +245,9 @@ const projectsByLanguage = {
             id: 3,
             title: 'Car Dealership Website',
             description:
-                'Manage available cars in the system and filtering. Dealership site features.',
+                 'Car Dealership Website (JavaScript + APIs, final project). Final team project developed during the Web Development course.',
             longDescription:
-                'A web app that lets dealership admins manage vehicle inventory and classify it by name, price, brand, etc.',
+                 'Final team project developed during the Web Development course. I participated in implementing vehicle visualization and filtering features, API consumption, and information management using LocalStorage. The project strengthened my JavaScript skills, collaborative work, and interactive web interface development.',
             image: null,
             images: [
                 {
@@ -285,9 +285,9 @@ const projectsByLanguage = {
             id: 5,
             title: 'E-commerce ShopHub',
             description:
-                'Full-stack e-commerce application with dynamic catalog, product quick view, cart, wishlist, and backoffice dashboard.',
+                 'E-commerce ShopHub – Footwear Retail Platform. Personal full-stack e-commerce platform built with a monorepo architecture.',
             longDescription:
-                'E-commerce project using a monorepo architecture with a React + TypeScript frontend and a Node.js/Express + Prisma backend. It includes a Home page with dynamic carousels, filters by category/subcategory/collections, a quick-view modal, cart and wishlist features, plus a backoffice for product and collection management.',
+                 'Personal full-stack e-commerce platform built with a monorepo architecture. I designed and implemented features such as dynamic catalog, advanced filters, shopping cart, wishlist, and admin panel. The project allowed me to deepen my skills in API development, database modeling, and scalable application organization.',
             image: '/images/projects/shophub/principal.jpeg',
             tags: [
                 'TypeScript',
@@ -329,9 +329,9 @@ const projectsByLanguage = {
             id: 7,
             title: 'Genius Budget Manager',
             description:
-                'Campaign budget management system for digital marketing with a Java backend. (Academic project / simulated internal system)',
+                 'Genius Budget Manager – Campaign Budget Management System. Team project where I work as a Backend Developer.',
             longDescription:
-                'Backend platform for managing digital marketing campaign budgets. Controls allocations, expenses, and budget availability per campaign, with endpoints for querying, updating, and auditing. Includes a Python reporting module for data export and analysis in Excel/Power BI.',
+                 'Team project where I work as a Backend Developer. I participated in the design and implementation of REST APIs with Spring Boot for managing marketing campaign budgets, including data query, update, and audit functionalities. I also collaborated on report generation and service documentation using Swagger, working under a collaborative development and version control workflow.',
             image: null,
             tags: [
                 'Java',
@@ -363,9 +363,9 @@ const projectsByLanguage = {
             id: 9,
             title: 'Mandatory Assignment - Software Architecture in C++',
             description:
-                'Integrative academic project applying structures, logic, and good programming practices in C++.',
+                 'Academic project developed in a five-member team, focused on designing and implementing a solution applying Object-Oriented Programming, data structures, and software architecture principles.',
             longDescription:
-                'Integrative academic project for the Advanced Programming course, focused on developing a complete solution applying structures, logic, and good programming practices.',
+                 'Academic project developed in a five-member team, focused on designing and implementing a solution applying Object-Oriented Programming, data structures, and software architecture principles. I participated in feature development, component integration, and team coordination using good programming practices.',
             image: null,
             tags: ['C', 'C++', 'OOP'],
             demoUrl: '',
