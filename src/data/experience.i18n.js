@@ -4,46 +4,46 @@
 
 export const experienceByLanguage = {
   es: [
-    // {
-    //   id: 1,
-    //   type: 'work',
-    //   title: 'Pasantía Laboral (prevista) – Tecnólogo en Informática',
-    //   organization: 'UDELAR & UTU',
-    //   location: 'Presencial',
-    //   startDate: '2027-03',
-    //   endDate: null,
-    //   description: [
-    //     'Evaluación de software open source, por ejemplo para redes e infraestructura',
-    //     'Desarrollo de aplicaciones',
-    //     'Testing y verificación de programas',
-    //     'Tareas de mantenimiento de sistemas'
-    //   ],
-    //   skills: ['React', 'Node.js', 'Express', 'MySQL', 'MongoDB', 'Git']
-    // },
-    // {
-    //   id: 1,
-    //   type: 'education',
-    //   title: 'Curso Intensivo Desarrollo Web',
-    //   organization: 'Hack Academy',
-    //   location: 'Online',
-    //   startDate: '2026-01',
-    //   endDate: '2026-05',
-    //   description: [
-    //     'Formación intensiva en stack MERN',
-    //     'Proyecto final: Aplicación web full-stack con React y Node.js',
-    //     'Implementación de APIs RESTful',
-    //     'Trabajo colaborativo con Git y GitHub'
-    //   ],
-    //   skills: ['React', 'Node.js', 'Express', 'MongoDB', 'JavaScript', 'Git']
-    // },
+    // Experiencia Laboral
     {
       id: 1,
+      type: 'work',
+      title: 'Backend Developer',
+      organization: 'ID For IDEAS',
+      location: '',
+      startDate: '2026-06',
+      endDate: '2026-07',
+      description: [
+        'Desarrollo de funcionalidades backend',
+        'Integración con APIs REST',
+        'Mantenimiento y optimización de código'
+      ],
+      skills: ['JavaScript', 'Node.js', 'Express', 'APIs REST']
+    },
+    {
+      id: 2,
+      type: 'work',
+      title: 'Técnico en Redes',
+      organization: 'Instituto IBEC',
+      location: '',
+      startDate: '2026-05',
+      endDate: '2026-08',
+      description: [
+        'Soporte y mantenimiento de infraestructura de red',
+        'Configuración de equipos de red',
+        'Asistencia técnica a usuarios'
+      ],
+      skills: ['Redes', 'Soporte Técnico', 'Configuración de Redes']
+    },
+    // Educación
+    {
+      id: 3,
       type: 'education',
-      title: 'Tecnólogo en Informática',
-      organization: 'UDELAR & UTU',
-      location: 'Uruguay',
-      startDate: '2025-04',
-      endDate: '2027-11',
+      title: 'Tecnólogo en Informática (Informática)',
+      organization: 'Escuela Superior de Informática & FING',
+      location: 'Buceo, Montevideo',
+      startDate: '2025-01',
+      endDate: null,
       description: [
         'Carrera terciaria en desarrollo de software',
         'Fundamentos de programación orientada a objetos',
@@ -53,7 +53,7 @@ export const experienceByLanguage = {
       skills: ['C', 'C++', 'C#', 'Java', 'Python', 'SQL', 'PostgreSQL']
     },
     {
-      id: 2,
+      id: 4,
       type: 'education',
       title: 'Curso Introductorio Desarrollo Web',
       organization: 'Hack Academy',
@@ -69,13 +69,13 @@ export const experienceByLanguage = {
       skills: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Node.js']
     },
     {
-      id: 3,
+      id: 5,
       type: 'education',
-      title: 'Bachillerato Tecnológico Informático',
-      organization: 'Escuela Superior de Informática (ESI)',
-      location: 'Uruguay',
-      startDate: '2020-03',
-      endDate: '2024-11',
+      title: 'Bachillerato Tecnológico en Informática',
+      organization: 'Escuela Superior de Informática',
+      location: 'Buceo, Montevideo',
+      startDate: '2024-01',
+      endDate: '2024-12',
       description: [
         'Especialización en desarrollo web y programación',
         'Proyecto final con Laravel y PHP',
@@ -83,33 +83,77 @@ export const experienceByLanguage = {
         'Infraestructura de redes y soporte técnico'
       ],
       skills: ['PHP', 'Laravel', 'MySQL', 'JavaScript', 'HTML5', 'CSS3', 'Bash', 'Linux']
+    },
+    {
+      id: 6,
+      type: 'education',
+      title: 'Programación Orientada a Objetos con Python',
+      organization: 'Ceibal',
+      location: '',
+      startDate: '2024-01',
+      endDate: '2024-12',
+      description: [
+        'Curso de programación orientada a objetos con Python',
+        'Conceptos de clases, herencia, polimorfismo y encapsulamiento'
+      ],
+      skills: ['Python', 'POO']
+    },
+    {
+      id: 7,
+      type: 'education',
+      title: 'JavaScript Algorithms and Data Structures',
+      organization: 'freeCodeCamp',
+      location: '',
+      startDate: '2025-01',
+      endDate: '2025-12',
+      description: [
+        'Certificación en algoritmos y estructuras de datos con JavaScript',
+        'Resolución de problemas y desafíos de programación'
+      ],
+      skills: ['JavaScript', 'Algorithms', 'Data Structures']
     }
   ],
   en: [
-    // {
-    //   id: 1,
-    //   type: 'work',
-    //   title: 'Internship (planned) – IT Technologist',
-    //   organization: 'UDELAR & UTU',
-    //   location: 'On-site',
-    //   startDate: '2027-03',
-    //   endDate: null,
-    //   description: [
-    //     'Evaluation of open-source software, for example for networking and infrastructure',
-    //     'Application development',
-    //     'Testing and program verification',
-    //     'System maintenance tasks'
-    //   ],
-    //   skills: ['React', 'Node.js', 'Express', 'MySQL', 'MongoDB', 'Git']
-    // },
+    // Work Experience
     {
       id: 1,
+      type: 'work',
+      title: 'Backend Developer',
+      organization: 'ID For IDEAS',
+      location: '',
+      startDate: '2026-06',
+      endDate: '2026-07',
+      description: [
+        'Backend feature development',
+        'REST API integration',
+        'Code maintenance and optimization'
+      ],
+      skills: ['JavaScript', 'Node.js', 'Express', 'REST APIs']
+    },
+    {
+      id: 2,
+      type: 'work',
+      title: 'Network Technician',
+      organization: 'Instituto IBEC',
+      location: '',
+      startDate: '2026-05',
+      endDate: '2026-08',
+      description: [
+        'Network infrastructure support and maintenance',
+        'Network equipment configuration',
+        'User technical assistance'
+      ],
+      skills: ['Networking', 'Technical Support', 'Network Configuration']
+    },
+    // Education
+    {
+      id: 3,
       type: 'education',
-      title: 'IT Technologist',
-      organization: 'UDELAR & UTU',
-      location: 'Uruguay',
-      startDate: '2025-04',
-      endDate: '2027-11',
+      title: 'IT Technologist (Information Technology)',
+      organization: 'Escuela Superior de Informática & FING',
+      location: 'Buceo, Montevideo',
+      startDate: '2025-01',
+      endDate: null,
       description: [
         'Tertiary degree focused on software development',
         'Object-oriented programming fundamentals',
@@ -119,7 +163,7 @@ export const experienceByLanguage = {
       skills: ['C', 'C++', 'C#', 'Java', 'Python', 'SQL', 'PostgreSQL']
     },
     {
-      id: 2,
+      id: 4,
       type: 'education',
       title: 'Intro Web Development Course',
       organization: 'Hack Academy',
@@ -135,13 +179,13 @@ export const experienceByLanguage = {
       skills: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Node.js']
     },
     {
-      id: 3,
+      id: 5,
       type: 'education',
-      title: 'Technical High School in IT',
-      organization: 'Escuela Superior de Informática (ESI)',
-      location: 'Uruguay',
-      startDate: '2020-03',
-      endDate: '2024-11',
+      title: 'Technical High School in Information Technology',
+      organization: 'Escuela Superior de Informática',
+      location: 'Buceo, Montevideo',
+      startDate: '2024-01',
+      endDate: '2024-12',
       description: [
         'Specialization in web development and programming',
         'Final project with Laravel and PHP',
@@ -149,6 +193,34 @@ export const experienceByLanguage = {
         'Network infrastructure and technical support'
       ],
       skills: ['PHP', 'Laravel', 'MySQL', 'JavaScript', 'HTML5', 'CSS3', 'Bash', 'Linux']
+    },
+    {
+      id: 6,
+      type: 'education',
+      title: 'Object-Oriented Programming with Python',
+      organization: 'Ceibal',
+      location: '',
+      startDate: '2024-01',
+      endDate: '2024-12',
+      description: [
+        'Object-oriented programming course with Python',
+        'Concepts of classes, inheritance, polymorphism, and encapsulation'
+      ],
+      skills: ['Python', 'OOP']
+    },
+    {
+      id: 7,
+      type: 'education',
+      title: 'JavaScript Algorithms and Data Structures',
+      organization: 'freeCodeCamp',
+      location: '',
+      startDate: '2025-01',
+      endDate: '2025-12',
+      description: [
+        'Certification in algorithms and data structures with JavaScript',
+        'Problem-solving and programming challenges'
+      ],
+      skills: ['JavaScript', 'Algorithms', 'Data Structures']
     }
   ]
 };
