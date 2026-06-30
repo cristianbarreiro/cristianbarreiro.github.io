@@ -26,22 +26,11 @@ const projectsByLanguage = {
                 'Una aplicación por consola que permite a los usuarios gestionar versiones de archivos y proyectos, similar a Git. Incluye funcionalidades como añadir archivo principal, crear versiones, modificarlas y hacer búsquedas de versiones.',
             image: null,
             images: [
-                {
-                    src: '/images/projects/sistema_control_versiones/img1.jpg',
-                    alt: 'Captura 1 del Sistema de Control de Versiones',
-                },
-                {
-                    src: '/images/projects/sistema_control_versiones/img2.webp',
-                    alt: 'Captura 2 del Sistema de Control de Versiones',
-                },
-                {
-                    src: '/images/projects/sistema_control_versiones/img3.webp',
-                    alt: 'Captura 3 del Sistema de Control de Versiones',
-                },
+              
             ],
             tags: ['C', 'C++', 'Librerías del Sistema Operativo', 'Estructuras de Datos'],
             demoUrl: '',
-            repoUrl: '',
+            repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_EDA',
             featured: true,
         },
         {
@@ -65,6 +54,20 @@ const projectsByLanguage = {
             longDescription:
                 'Aplicación web que permite a los administradores de una automotora gestionar inventario de vehículos y clasificarlos según nombre, precio, marca, etcétera.',
             image: null,
+            images: [
+                {
+                    src: '/images/projects/automotora/Captura.jpeg',
+                    alt: 'Captura de la Web de Automotora',
+                },
+                {
+                    src: '/images/projects/automotora/Captura1.jpeg',
+                    alt: 'Captura 1 de la Web de Automotora',
+                },
+                {
+                    src: '/images/projects/automotora/Captura2.jpeg',
+                    alt: 'Captura 2 de la Web de Automotora',
+                },
+            ],
             tags: ['Javascript', 'HTML', 'CSS', 'API Fetch', 'LocalStorage'],
             demoUrl: 'https://carsauto.vercel.app',
             repoUrl: 'https://github.com/cristianbarreiro/carsauto',
@@ -113,6 +116,66 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: '',
             featured: true
+        },
+        {
+            id: 6,
+            title: 'Genius Budget Manager',
+            description:
+                'Sistema de gestión de presupuestos de campañas de marketing digital con backend en Java. (Proyecto académico / sistema interno simulado)',
+            longDescription:
+                'Plataforma backend para gestión de presupuestos de campañas de marketing digital. Permite controlar asignaciones, gastos y disponibilidad de presupuesto por campaña, con endpoints para consulta, actualización y auditoría. Incluye módulo de reportería en Python para exportación de datos y análisis en Excel/Power BI.',
+            image: null,
+            tags: [
+                'Java',
+                'Spring Boot',
+                'REST APIs',
+                'Swagger',
+                'Python',
+                'Excel',
+                'Power BI'
+            ],
+            demoUrl: '',
+            repoUrl: '',
+            featured: false
+        },
+        {
+            id: 7,
+            title: 'Sistema de Mensajería (Redes)',
+            description:
+                'Sistema cliente-servidor para envío y recepción de mensajes entre usuarios mediante conexión a servidor.',
+            longDescription:
+                'Sistema cliente-servidor que permite envío y recepción de mensajes entre usuarios utilizando conexión a servidor. Implementa comunicación en red, sockets y manejo de mensajes en tiempo real.',
+            image: null,
+            tags: ['Python', 'Sockets', 'Redes'],
+            demoUrl: '',
+            repoUrl: 'https://github.com/proyectitopa/laboratorio_5',
+            featured: false
+        },
+        {
+            id: 8,
+            title: 'Trabajo Obligatorio Arquitectura de Software en C++',
+            description:
+                'Proyecto académico integrador aplicando estructuras, lógica y buenas prácticas de programación en C++.',
+            longDescription:
+                'Proyecto académico integrador de la asignatura Programación Avanzada, enfocado en desarrollo de una solución completa aplicando estructuras, lógica y buenas prácticas de programación.',
+            image: null,
+            tags: ['C', 'C++', 'POO'],
+            demoUrl: '',
+            repoUrl: 'https://github.com/labredesproyectito/laboratorio_redes',
+            featured: false
+        },
+        {
+            id: 9,
+            title: 'Sistema de Semáforos (Sistemas Operativos)',
+            description:
+                'Simulación de sistema de semáforos para control de procesos concurrentes.',
+            longDescription:
+                'Simulación de sistema de semáforos para control de procesos concurrentes. Implementación de sincronización de procesos y manejo de recursos compartidos.',
+            image: null,
+            tags: ['C', 'C++', 'Librerías del Sistema Operativo'],
+            demoUrl: '',
+            repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_SO-parte-2',
+            featured: false
         }
     ],
     en: [
@@ -140,7 +203,7 @@ const projectsByLanguage = {
             ],
             tags: ['C', 'C++', 'Operating System Libraries', 'Data Structures'],
             demoUrl: '#',
-            repoUrl: 'https://github.com/webosinc/Obligatorio_EDA',
+            repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_EDA',
             featured: true,
         },
         {
@@ -164,6 +227,20 @@ const projectsByLanguage = {
             longDescription:
                 'A web app that lets dealership admins manage vehicle inventory and classify it by name, price, brand, etc.',
             image: null,
+            images: [
+                {
+                    src: '/images/projects/automotora/Captura.jpeg',
+                    alt: 'Car Dealership Website screenshot',
+                },
+                {
+                    src: '/images/projects/automotora/Captura1.jpeg',
+                    alt: 'Car Dealership Website screenshot 1',
+                },
+                {
+                    src: '/images/projects/automotora/Captura2.jpeg',
+                    alt: 'Car Dealership Website screenshot 2',
+                },
+            ],
             tags: ['JavaScript', 'HTML', 'CSS', 'Fetch API', 'LocalStorage'],
             demoUrl: 'https://carsauto.vercel.app',
             repoUrl: 'https://github.com/cristianbarreiro/carsauto',
@@ -225,6 +302,66 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: '',
             featured: true,
+        },
+        {
+            id: 7,
+            title: 'Genius Budget Manager',
+            description:
+                'Campaign budget management system for digital marketing with a Java backend. (Academic project / simulated internal system)',
+            longDescription:
+                'Backend platform for managing digital marketing campaign budgets. Controls allocations, expenses, and budget availability per campaign, with endpoints for querying, updating, and auditing. Includes a Python reporting module for data export and analysis in Excel/Power BI.',
+            image: null,
+            tags: [
+                'Java',
+                'Spring Boot',
+                'REST APIs',
+                'Swagger',
+                'Python',
+                'Excel',
+                'Power BI'
+            ],
+            demoUrl: '',
+            repoUrl: '',
+            featured: false
+        },
+        {
+            id: 8,
+            title: 'Messaging System (Networking)',
+            description:
+                'Client-server system for sending and receiving messages between users via server connection.',
+            longDescription:
+                'A client-server system that allows users to send and receive messages through a server connection. Implements network communication, sockets, and real-time message handling.',
+            image: null,
+            tags: ['Python', 'Sockets', 'Networking'],
+            demoUrl: '',
+            repoUrl: 'https://github.com/proyectitopa/laboratorio_5',
+            featured: false
+        },
+        {
+            id: 9,
+            title: 'Mandatory Assignment - Software Architecture in C++',
+            description:
+                'Integrative academic project applying structures, logic, and good programming practices in C++.',
+            longDescription:
+                'Integrative academic project for the Advanced Programming course, focused on developing a complete solution applying structures, logic, and good programming practices.',
+            image: null,
+            tags: ['C', 'C++', 'OOP'],
+            demoUrl: '',
+            repoUrl: 'https://github.com/labredesproyectito/laboratorio_redes',
+            featured: false
+        },
+        {
+            id: 10,
+            title: 'Traffic Light System (Operating Systems)',
+            description:
+                'Traffic light system simulation for concurrent process control.',
+            longDescription:
+                'Simulation of a traffic light system for concurrent process control. Implementation of process synchronization and shared resource management.',
+            image: null,
+            tags: ['C', 'C++', 'Operating System Libraries'],
+            demoUrl: '',
+            repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_SO-parte-2',
+            featured: false
         }
     ],
 };
