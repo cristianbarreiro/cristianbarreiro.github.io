@@ -750,6 +750,13 @@ button:hover .icon-send-jello {
   }
 }
 
+/* Selected state — when the detail modal is open */
+.fh-project-card--selected {
+  box-shadow: 0 0 0 2px var(--fh-card-accent, #10b981),
+    0px 8px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
 /* ========================================
    CAROUSEL — Layout & Responsive
    ======================================== */
@@ -1510,5 +1517,40 @@ button:hover .icon-send-jello {
 
   [data-mantine-color-scheme="dark"] .mantine-Drawer-content {
     background: rgba(19, 20, 22, 0.97) !important;
+  }
+}
+
+/* ----------------------------------------------
+   Project Detail Modal — glassmorphism
+   ---------------------------------------------- */
+
+.project-detail-modal .mantine-Modal-content {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+}
+
+[data-mantine-color-scheme="dark"] .project-detail-modal .mantine-Modal-content {
+  background: rgba(30, 30, 35, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.project-detail-modal .mantine-Modal-header {
+  background: transparent !important;
+}
+
+.project-detail-modal .mantine-Modal-overlay {
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+}
+
+@supports not (backdrop-filter: blur(20px)) {
+  .project-detail-modal .mantine-Modal-content {
+    background: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  [data-mantine-color-scheme="dark"] .project-detail-modal .mantine-Modal-content {
+    background: rgba(30, 30, 35, 0.97) !important;
   }
 }

@@ -70,7 +70,8 @@
     "nextImage": "Next image",
     "imagePosition": "{{current}} of {{total}}",
     "imageCounter": "{{current}} / {{total}}",
-    "galleryImageAlt": "Image {{index}} of {{project}}"
+    "galleryImageAlt": "Image {{index}} of {{project}}",
+    "viewMore": "View more"
   },
   "skills": {
     "aria": "Skills",

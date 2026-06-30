@@ -70,7 +70,8 @@
     "nextImage": "Imagen siguiente",
     "imagePosition": "{{current}} de {{total}}",
     "imageCounter": "{{current}} / {{total}}",
-    "galleryImageAlt": "Imagen {{index}} de {{project}}"
+    "galleryImageAlt": "Imagen {{index}} de {{project}}",
+    "viewMore": "Ver más"
   },
   "skills": {
     "aria": "Habilidades",

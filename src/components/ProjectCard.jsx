@@ -12,6 +12,7 @@ import {
     Button,
     ActionIcon,
     Stack,
+    Tooltip,
     useMantineTheme,
 } from '@mantine/core';
 import { useMemo, useState } from 'react';
@@ -29,8 +30,10 @@ import ProjectImagesModal from './ProjectImagesModal';
  * @param {string} project.repoUrl - URL del repositorio
  * @param {boolean} project.featured - Si es proyecto destacado
  * @param {'default'|'carousel'} variant - Variante visual ('carousel' = más grande y cuadrada)
+ * @param {function} onSelect - Callback al hacer click en la tarjeta
+ * @param {boolean} isSelected - Si la tarjeta está seleccionada (modal abierto)
  */
-function ProjectCard({ project, variant = 'default' }) {
+function ProjectCard({ project, variant = 'default', onSelect, isSelected = false }) {
     const theme = useMantineTheme();
     const { t } = useTranslation();
     const [galleryOpened, setGalleryOpened] = useState(false);
@@ -80,17 +83,25 @@ function ProjectCard({ project, variant = 'default' }) {
 
     return (
         <>
+            <Tooltip
+                label={t('projectCard.viewMore')}
+                openDelay={600}
+                position="top"
+                offset={8}
+            >
             <Card
                 shadow={isCarousel ? 'md' : 'sm'}
                 padding={isCarousel ? 'xl' : 'lg'}
                 radius="md"
                 withBorder
-                className="fh-project-card glass-hover-card"
+                className={`fh-project-card glass-hover-card${isSelected ? ' fh-project-card--selected' : ''}`}
+                onClick={onSelect}
                 style={{
                     height: '100%',
                     minHeight: isCarousel ? 360 : undefined,
                     display: 'flex',
                     flexDirection: 'column',
+                    cursor: 'pointer',
                     // Variables para el efecto hover (estilo “Prismic”).
                     '--fh-card-accent': accentColor,
                     '--fh-card-border-color': project.featured
@@ -145,6 +156,7 @@ function ProjectCard({ project, variant = 'default' }) {
                             variant="light"
                             size={isCarousel ? 'sm' : 'xs'}
                             leftSection={<IconExternalLink size={isCarousel ? 16 : 14} />}
+                            onClick={(e) => e.stopPropagation()}
                         >
                             {t('projectCard.demo')}
                         </Button>
@@ -155,7 +167,10 @@ function ProjectCard({ project, variant = 'default' }) {
                             variant="subtle"
                             size={isCarousel ? 'lg' : 'md'}
                             radius="xl"
-                            onClick={() => setGalleryOpened(true)}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setGalleryOpened(true);
+                            }}
                             aria-label={t('projectCard.images')}
                             title={t('projectCard.images')}
                         >
@@ -173,12 +188,14 @@ function ProjectCard({ project, variant = 'default' }) {
                             variant="subtle"
                             size={isCarousel ? 'sm' : 'xs'}
                             leftSection={<IconBrandGithub size={isCarousel ? 16 : 14} />}
+                            onClick={(e) => e.stopPropagation()}
                         >
                             {t('projectCard.code')}
                         </Button>
                     )}
                 </Group>
             </Card>
+            </Tooltip>
 
             {galleryOpened && hasImages && (
                 <ProjectImagesModal

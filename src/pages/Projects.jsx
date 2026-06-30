@@ -27,6 +27,7 @@ import {
     IconChevronRight,
 } from '@tabler/icons-react';
 import ProjectCard from '../components/ProjectCard';
+import ProjectDetailModal from '../components/ProjectDetailModal';
 import { getProjects, getAllTags } from '../data/projects';
 import { useTranslation } from 'react-i18next';
 
@@ -62,6 +63,17 @@ function Projects() {
 
     // Índice interno del carrusel
     const [rawCarouselIndex, setCarouselIndex] = useState(0);
+
+    // Proyecto seleccionado para el modal de detalle
+    const [selectedProject, setSelectedProject] = useState(null);
+
+    const handleSelectProject = useCallback((project) => {
+        setSelectedProject(project);
+    }, []);
+
+    const handleDeselectProject = useCallback(() => {
+        setSelectedProject(null);
+    }, []);
 
     // Obtiene todos los tags únicos para el dropdown de filtro
     const allTags = useMemo(() => getAllTags(projects), [projects]);
@@ -208,7 +220,11 @@ function Projects() {
                                     key={project.id}
                                     span={{ base: 12, sm: 6, lg: 4 }}
                                 >
-                                    <ProjectCard project={project} />
+                                    <ProjectCard
+                                        project={project}
+                                        onSelect={() => handleSelectProject(project)}
+                                        isSelected={selectedProject?.id === project.id}
+                                    />
                                 </Grid.Col>
                             ))}
                         </Grid>
@@ -240,7 +256,12 @@ function Projects() {
                                             style={carouselStyles.slide}
                                         >
                                             <Box className="carousel-slide-inner">
-                                                <ProjectCard project={project} variant="carousel" />
+                                                <ProjectCard
+                                                    project={project}
+                                                    variant="carousel"
+                                                    onSelect={() => handleSelectProject(project)}
+                                                    isSelected={selectedProject?.id === project.id}
+                                                />
                                             </Box>
                                         </div>
                                     ))}
@@ -315,6 +336,12 @@ function Projects() {
                     </Stack>
                 )}
             </section>
+
+            <ProjectDetailModal
+                project={selectedProject}
+                opened={!!selectedProject}
+                onClose={handleDeselectProject}
+            />
         </main>
     );
 }
