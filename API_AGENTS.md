@@ -101,12 +101,25 @@ const itemsByLanguage = {
     title: String,           // Nombre del proyecto
     description: String,     // Descripción corta (1-2 líneas)
     longDescription: String, // Descripción detallada
-    image: String | null,    // URL de imagen o null
+    image: String | null,    // URL de imagen principal o null
+    images: Array,           // Array de imágenes/videos adicionales (opcional)
     tags: String[],          // Array de tecnologías
     demoUrl: String,         // URL de demo ('' o '#' si no hay)
     repoUrl: String,         // URL de repositorio ('' si es privado)
     featured: Boolean        // Destacado en la vista principal
 }
+```
+
+**Estructura de cada elemento de `images`:**
+```javascript
+// Puede ser:
+// - String: URL directa de la imagen
+// - Object: {
+//       src: String,        // URL del recurso
+//       alt: String,        // Texto alternativo
+//       caption: String,    // Leyenda opcional
+//       type: String        // 'video' si es video; omitir si es imagen
+//   }
 ```
 
 ### 5.3 Configuración: siteConfig
@@ -115,12 +128,7 @@ const itemsByLanguage = {
 {
     name: String,           // Nombre corto / logo text
     fullName: String,       // Nombre completo
-    title: String,          // Título profesional
-    subtitle: String,       // Subtítulo
     email: String,          // Email de contacto
-    heroDescription: String,// Descripción para hero section
-    bio: String,            // Biografía detallada
-    interests: String[],    // Lista de intereses
     socialLinks: {
         github: String,
         linkedin: String,
@@ -128,9 +136,14 @@ const itemsByLanguage = {
         portfolio: String
     },
     primaryColor: String,   // Color primario de Mantine
-    copyrightYear: Number   // Año de copyright
+    copyrightYear: Number,  // Año de copyright
+    features: {
+        enableLightMode: Boolean // Oculta botón de modo claro; fuerza modo oscuro
+    }
 }
 ```
+
+> **Nota:** `title`, `subtitle`, `heroDescription`, `bio` e `interests` se gestionan vía i18n bajo el namespace `site.*` en `public/locales/{lang}.json`.
 
 ### 5.4 Futuro: API → UI (cuando exista backend)
 

@@ -891,6 +891,39 @@ button:hover .icon-send-jello {
   }
 }
 
+/* ---- Pause / Resume ---- */
+
+.tech-stack-carousel-wrapper {
+  position: relative;
+}
+
+.tech-stack-track.paused {
+  animation-play-state: paused;
+}
+
+.tech-stack-toggle-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.tech-stack-toggle-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.tech-stack-toggle-btn:active {
+  transform: translate(-50%, -50%) scale(0.92);
+}
+
 @media (max-width: 768px) {
   .tech-stack-track {
     gap: 32px;
@@ -908,6 +941,16 @@ button:hover .icon-send-jello {
   .tech-stack-name {
     font-size: 0.7rem;
   }
+
+  .tech-stack-toggle-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .tech-stack-toggle-btn svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -917,6 +960,10 @@ button:hover .icon-send-jello {
 
   .tech-stack-item:hover {
     transform: none;
+  }
+
+  .tech-stack-toggle-btn {
+    display: none;
   }
 }
 

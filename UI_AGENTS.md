@@ -66,9 +66,11 @@ Responsable:   El dominio de datos define la estructura; UI solo renderiza
 ```
 Fuente:        src/config/siteConfig.js
 Acceso:        import { siteConfig } from '../config/siteConfig'
-Campos:        name, fullName, title, subtitle, email, socialLinks, primaryColor, etc.
+Campos:        name, fullName, email, socialLinks, primaryColor, copyrightYear, features
 Mutación:      Prohibida en runtime
 ```
+
+> **Nota:** `title`, `subtitle`, `heroDescription`, `bio` e `interests` se gestionan vía i18n bajo el namespace `site.*` en `public/locales/{lang}.json`.
 
 ### 4.3 Entrada: i18n → UI
 

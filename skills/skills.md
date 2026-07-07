@@ -206,24 +206,19 @@ Validación de formularios consistente y accesible. Garantiza que los datos del 
  * Cada regla recibe un valor y devuelve un mensaje de error o null.
  */
 export const validators = {
-    required: (value) =>
+    required: (field) => (value) =>
         !value || (typeof value === 'string' && !value.trim())
-            ? 'validation.required'
+            ? `contact.validation.${field}Required`
             : null,
 
     email: (value) =>
         value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-            ? 'validation.invalidEmail'
+            ? 'contact.validation.emailInvalid'
             : null,
 
-    minLength: (min) => (value) =>
+    minLength: (field, min) => (value) =>
         value && value.length < min
-            ? 'validation.minLength'
-            : null,
-
-    maxLength: (max) => (value) =>
-        value && value.length > max
-            ? 'validation.maxLength'
+            ? `contact.validation.${field}Min`
             : null,
 };
 
@@ -249,13 +244,13 @@ export function validate(values, schema) {
 
 // Uso con i18n:
 const schema = {
-    name: [validators.required, validators.minLength(2)],
-    email: [validators.required, validators.email],
-    message: [validators.required, validators.minLength(10)],
+    name: [validators.required('name'), validators.minLength('name', 2)],
+    email: [validators.required('email'), validators.email],
+    message: [validators.required('message'), validators.minLength('message', 10)],
 };
 
 const errors = validate(formValues, schema);
-// errors.name → 'validation.required' (clave i18n)
+// errors.name → 'contact.validation.nameRequired' (clave i18n)
 // UI renderiza: t(errors.name) → "Este campo es obligatorio"
 ```
 
@@ -562,8 +557,8 @@ Ejemplos:
 ├── auth.login.email             → "Email"
 ├── auth.login.password          → "Contraseña"
 ├── auth.errors.invalidCredentials → "Credenciales inválidas"
-├── validation.required          → "Este campo es obligatorio"
-├── validation.invalidEmail      → "Email no válido"
+├── contact.validation.nameRequired → "El nombre es requerido"
+├── contact.validation.emailInvalid  → "El email no es válido"
 ├── errors.NETWORK_ERROR         → "Error de conexión"
 └── errors.TIMEOUT               → "Tiempo de espera agotado"
 ```

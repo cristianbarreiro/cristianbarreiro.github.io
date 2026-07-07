@@ -60,6 +60,7 @@ Este repositorio opera bajo un modelo de **co-autoría supervisada**:
 
 ```
 src/
+├── assets/        # Imágenes, SVGs y assets estáticos
 ├── components/    # Componentes reutilizables de UI
 ├── pages/         # Componentes a nivel de ruta
 ├── data/          # Datos estáticos (proyectos, skills, experiencia)
