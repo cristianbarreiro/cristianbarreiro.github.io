@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Container } from '@mantine/core';
+import { Container, ActionIcon } from '@mantine/core';
+import { IconPlayerPauseFilled, IconPlayerPlayFilled } from '@tabler/icons-react';
 import { techStackList } from '../data/techStack';
 
 const CDN_BASE = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons';
@@ -21,21 +23,40 @@ function TechStackItem({ nameKey, devicon }) {
 
 function TechStackCarousel() {
   const { t } = useTranslation();
+  const [paused, setPaused] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   if (!techStackList || techStackList.length === 0) return null;
 
   return (
     <section aria-label={t('techStack.aria')}>
       <Container size="lg" py="md">
-        <div className="tech-stack-carousel">
-          <div className="tech-stack-track">
-            {techStackList.map((item, index) => (
-              <TechStackItem key={`a-${index}`} {...item} />
-            ))}
-            {techStackList.map((item, index) => (
-              <TechStackItem key={`b-${index}`} {...item} />
-            ))}
+        <div
+          className="tech-stack-carousel-wrapper"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          <div className="tech-stack-carousel">
+            <div className={`tech-stack-track${paused ? ' paused' : ''}`}>
+              {techStackList.map((item, index) => (
+                <TechStackItem key={`a-${index}`} {...item} />
+              ))}
+              {techStackList.map((item, index) => (
+                <TechStackItem key={`b-${index}`} {...item} />
+              ))}
+            </div>
           </div>
+          <ActionIcon
+            className={`tech-stack-toggle-btn ${paused || hovered ? 'visible' : ''}`}
+            variant="filled"
+            color="gray"
+            radius="xl"
+            size="md"
+            onClick={() => setPaused(p => !p)}
+            aria-label={t(paused ? 'techStack.play' : 'techStack.pause')}
+          >
+            {paused ? <IconPlayerPlayFilled size={18} /> : <IconPlayerPauseFilled size={18} />}
+          </ActionIcon>
         </div>
       </Container>
     </section>
