@@ -46,7 +46,7 @@ export const formatDateByLanguage = (dateString, language = 'es') => {
     const lang = (language || 'es').split('-')[0];
 
     if (!dateString) {
-        return lang === 'en' ? 'Present' : 'Actualidad';
+        return lang === 'en' ? 'In Progress' : 'Cursando';
     }
 
     const [year, month] = dateString.split('-');

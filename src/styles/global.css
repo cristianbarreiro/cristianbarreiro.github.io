@@ -758,6 +758,117 @@ button:hover .icon-send-jello {
 }
 
 /* ========================================
+   TECH STACK CAROUSEL
+   ======================================== */
+
+.tech-stack-carousel {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 5%,
+    #000 95%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 5%,
+    #000 95%,
+    transparent 100%
+  );
+}
+
+.tech-stack-track {
+  display: flex;
+  gap: 48px;
+  width: max-content;
+  animation: tech-scroll 40s linear infinite;
+}
+
+.tech-stack-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  width: 100px;
+  padding: 12px 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  cursor: default;
+}
+
+.tech-stack-item:hover {
+  transform: translateY(-4px);
+  opacity: 0.9;
+}
+
+.tech-stack-logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  display: block;
+  filter: grayscale(0.15) brightness(0.95);
+  transition: filter 0.25s ease;
+}
+
+.tech-stack-item:hover .tech-stack-logo {
+  filter: grayscale(0) brightness(1.1);
+}
+
+.tech-stack-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--mantine-color-dimmed);
+  white-space: nowrap;
+  text-align: center;
+  transition: color 0.25s ease;
+}
+
+.tech-stack-item:hover .tech-stack-name {
+  color: var(--mantine-color-text);
+}
+
+@keyframes tech-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 24px));
+  }
+}
+
+@media (max-width: 768px) {
+  .tech-stack-track {
+    gap: 32px;
+  }
+
+  .tech-stack-item {
+    width: 80px;
+  }
+
+  .tech-stack-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .tech-stack-name {
+    font-size: 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-stack-track {
+    animation: none;
+  }
+
+  .tech-stack-item:hover {
+    transform: none;
+  }
+}
+
+/* ========================================
    CAROUSEL — Layout & Responsive
    ======================================== */
 

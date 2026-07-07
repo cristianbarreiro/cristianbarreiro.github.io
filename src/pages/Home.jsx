@@ -17,6 +17,7 @@ import { IconArrowRight, IconMail } from '@tabler/icons-react';
 import { siteConfig } from '../config/siteConfig';
 import { useTranslation } from 'react-i18next';
 import RippleButton from '../components/RippleButton';
+import TechStackCarousel from '../components/TechStackCarousel';
 
 function Home() {
     const theme = useMantineTheme();
@@ -101,11 +102,14 @@ function Home() {
                         >
                             {t('home.contact')}
                         </RippleButton>
-                    </Group>
-                </Stack>
-            </section>
+                </Group>
+            </Stack>
+        </section>
 
-            {/* Sección "Sobre mí" breve */}
+        {/* Tech Stack Carousel */}
+        <TechStackCarousel />
+
+        {/* Sección "Sobre mí" breve */}
             <section aria-label={t('home.summaryAria')}>
                 <Container size="sm" py="xl">
                     <Paper

@@ -1,0 +1,16 @@
+export const techStackList = [
+  { nameKey: 'techStack.python', devicon: 'python/python-original' },
+  { nameKey: 'techStack.typescript', devicon: 'typescript/typescript-original' },
+  { nameKey: 'techStack.go', devicon: 'go/go-original-wordmark' },
+  { nameKey: 'techStack.java', devicon: 'java/java-original' },
+  { nameKey: 'techStack.springBoot', devicon: 'spring/spring-original' },
+  { nameKey: 'techStack.nodejs', devicon: 'nodejs/nodejs-original' },
+  { nameKey: 'techStack.laravel', devicon: 'laravel/laravel-original' },
+  { nameKey: 'techStack.react', devicon: 'react/react-original' },
+  { nameKey: 'techStack.postgresql', devicon: 'postgresql/postgresql-original' },
+  { nameKey: 'techStack.mongodb', devicon: 'mongodb/mongodb-original' },
+  { nameKey: 'techStack.docker', devicon: 'docker/docker-original' },
+  { nameKey: 'techStack.aws', devicon: 'amazonwebservices/amazonwebservices-original-wordmark' },
+  { nameKey: 'techStack.git', devicon: 'git/git-original' },
+  { nameKey: 'techStack.linux', devicon: 'linux/linux-original' },
+];

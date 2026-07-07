@@ -22,7 +22,7 @@ export const experienceByLanguage = {
     },
     {
       id: 2,
-      type: 'work',
+      type: 'education',
       title: 'Técnico en Redes',
       organization: 'Instituto IBEC',
       location: '',
@@ -132,7 +132,7 @@ export const experienceByLanguage = {
     },
     {
       id: 2,
-      type: 'work',
+      type: 'education',
       title: 'Network Technician',
       organization: 'Instituto IBEC',
       location: '',

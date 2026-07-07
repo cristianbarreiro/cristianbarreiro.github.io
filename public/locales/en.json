@@ -32,6 +32,23 @@
     "aboutBriefTitle": "A bit about me",
     "knowMore": "Learn more"
   },
+  "techStack": {
+    "aria": "Technologies",
+    "python": "Python",
+    "typescript": "TypeScript",
+    "go": "Go",
+    "java": "Java",
+    "springBoot": "Spring Boot",
+    "nodejs": "Node.js",
+    "laravel": "Laravel",
+    "react": "React",
+    "postgresql": "PostgreSQL",
+    "mongodb": "MongoDB",
+    "docker": "Docker",
+    "aws": "AWS",
+    "git": "Git",
+    "linux": "Linux"
+  },
   "about": {
     "aria": "About",
     "title": "About",
@@ -146,17 +163,17 @@
     "goTo": "Go to {{label}}"
   },
   "site": {
-    "title": "Full-Stack Developer | Web & Software",
+    "title": "Full-Stack Developer",
     "subtitle": "IT Technologist student | Passionate about software development and technology",
     "heroDescription": "Passionate about building modern, accessible web experiences. Always learning new technologies.",
     "bio": "I'm a Programmer and IT Technician, with a background in a Technical High School program in IT and currently pursuing an IT Technologist degree.\n\nI have experience in software development, network administration, equipment maintenance, and technical support. I specialize in building practical, functional solutions focused on real user needs, using languages such as Python, PHP, JavaScript, and C#, along with their respective frameworks and development tools.\n\nI'm an adaptable person with analytical thinking and a strong focus on efficient problem-solving. I enjoy working in collaborative teams, bringing innovative ideas, and taking on technical responsibilities that contribute to project success. I'm motivated to actively participate in different areas of the IT environment, always aiming to improve processes and deliver high-quality solutions.",
     "interests": [
-      "Full-stack development",
-      "UI/UX design",
-      "Open source",
-      "Continuous learning",
-      "Teamwork",
-      "Problem solving"
+      "Full-Stack Development",
+      "Backend Engineering",
+      "Modern Web Technologies",
+      "Cloud Computing",
+      "Team Collaboration",
+      "Continuous Learning"
     ]
   }
 }
