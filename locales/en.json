@@ -29,8 +29,25 @@
     "greeting": "Hi! 👋 I'm",
     "viewProjects": "View projects",
     "contact": "Contact",
-    "aboutBriefTitle": "A bit about me",
-    "knowMore": "Learn more"
+    "aboutBriefTitle": "About Me",
+    "knowMore": "View full profile"
+  },
+  "techStack": {
+    "aria": "Technologies",
+    "python": "Python",
+    "typescript": "TypeScript",
+    "go": "Go",
+    "java": "Java",
+    "springBoot": "Spring Boot",
+    "nodejs": "Node.js",
+    "laravel": "Laravel",
+    "react": "React",
+    "postgresql": "PostgreSQL",
+    "mongodb": "MongoDB",
+    "docker": "Docker",
+    "aws": "AWS",
+    "git": "Git",
+    "linux": "Linux"
   },
   "about": {
     "aria": "About",
@@ -146,17 +163,17 @@
     "goTo": "Go to {{label}}"
   },
   "site": {
-    "title": "Full-Stack Developer | Web & Software",
+    "title": "Full-Stack Developer",
     "subtitle": "IT Technologist student | Passionate about software development and technology",
-    "heroDescription": "Passionate about building modern, accessible web experiences. Always learning new technologies.",
-    "bio": "I'm a Programmer and IT Technician, with a background in a Technical High School program in IT and currently pursuing an IT Technologist degree.\n\nI have experience in software development, network administration, equipment maintenance, and technical support. I specialize in building practical, functional solutions focused on real user needs, using languages such as Python, PHP, JavaScript, and C#, along with their respective frameworks and development tools.\n\nI'm an adaptable person with analytical thinking and a strong focus on efficient problem-solving. I enjoy working in collaborative teams, bringing innovative ideas, and taking on technical responsibilities that contribute to project success. I'm motivated to actively participate in different areas of the IT environment, always aiming to improve processes and deliver high-quality solutions.",
+    "heroDescription": "Building modern web applications with a passion for innovation and continuous learning.",
+    "bio": "I'm a Programmer and IT Technician, graduate of the IT Technical High School program and currently pursuing an IT Technologist degree.\n\nI specialize in web application development and software solutions, with experience in technologies such as Java, Spring Boot, Node.js, React, TypeScript, Python, PHP, and SQL/NoSQL databases. I enjoy designing and building scalable applications, APIs, and systems that solve real-world problems efficiently.\n\nThroughout my education, I've worked on academic and personal projects that strengthened my skills in Full-Stack development, software architecture, databases, version control, and coding best practices.\n\nI consider myself an analytical, proactive person committed to continuous learning. I enjoy teamwork, taking on new technological challenges, and growing as a developer while delivering quality solutions that create value.",
     "interests": [
-      "Full-stack development",
-      "UI/UX design",
-      "Open source",
-      "Continuous learning",
-      "Teamwork",
-      "Problem solving"
+      "Full-Stack Development",
+      "Backend Engineering",
+      "Modern Web Technologies",
+      "Cloud Computing",
+      "Team Collaboration",
+      "Continuous Learning"
     ]
   }
 }
