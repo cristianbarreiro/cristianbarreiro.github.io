@@ -758,6 +758,56 @@ button:hover .icon-send-jello {
 }
 
 /* ========================================
+   GLOW TEXT — destello por carácter en hover
+   ======================================== */
+
+.glow-char {
+  display: inline;
+  transition: text-shadow 0.25s ease;
+  cursor: default;
+}
+
+.glow-char:hover {
+  text-shadow:
+    0 0 8px var(--glow-color, var(--mantine-primary-color-filled)),
+    0 0 30px var(--glow-color, var(--mantine-primary-color-filled)),
+    0 0 70px var(--glow-color, var(--mantine-primary-color-filled)),
+    0 0 120px color-mix(in srgb, var(--glow-color, var(--mantine-primary-color-filled)) 50%, transparent);
+  animation: glow-flash 0.35s ease;
+}
+
+@keyframes glow-flash {
+  0% {
+    text-shadow:
+      0 0 4px var(--glow-color, var(--mantine-primary-color-filled));
+  }
+  40% {
+    text-shadow:
+      0 0 12px var(--glow-color, var(--mantine-primary-color-filled)),
+      0 0 50px var(--glow-color, var(--mantine-primary-color-filled)),
+      0 0 100px var(--glow-color, var(--mantine-primary-color-filled));
+  }
+  100% {
+    text-shadow:
+      0 0 8px var(--glow-color, var(--mantine-primary-color-filled)),
+      0 0 30px var(--glow-color, var(--mantine-primary-color-filled)),
+      0 0 70px var(--glow-color, var(--mantine-primary-color-filled)),
+      0 0 120px color-mix(in srgb, var(--glow-color, var(--mantine-primary-color-filled)) 50%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-char {
+    transition: none;
+  }
+
+  .glow-char:hover {
+    animation: none;
+    text-shadow: none;
+  }
+}
+
+/* ========================================
    TECH STACK CAROUSEL
    ======================================== */
 

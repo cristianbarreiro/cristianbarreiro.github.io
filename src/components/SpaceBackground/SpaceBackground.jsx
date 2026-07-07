@@ -17,6 +17,7 @@ const THEME_CONFIGS = {
       dim: ['rgba(220, 230, 255, {a})', 'rgba(180, 200, 240, {a})', 'rgba(150, 180, 230, {a})'],
     },
     shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(200, 220, 255, {a})', 'rgba(150, 180, 255, {a})'],
+    nebulaColors: ['rgba(70, 75, 92, {a})', 'rgba(90, 95, 112, {a})', 'rgba(55, 60, 78, {a})', 'rgba(110, 115, 132, {a})'],
   },
   'nebula-purple': {
     backgroundColor: '#0d0515',

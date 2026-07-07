@@ -18,6 +18,7 @@ import { siteConfig } from '../config/siteConfig';
 import { useTranslation } from 'react-i18next';
 import RippleButton from '../components/RippleButton';
 import TechStackCarousel from '../components/TechStackCarousel';
+import GlowText from '../components/GlowText';
 
 function Home() {
     const theme = useMantineTheme();
@@ -42,18 +43,21 @@ function Home() {
                         className="home-typing-line2"
                         style={{ margin: 0 }}
                     >
-                        <span
+                        <GlowText
+                            as="span"
                             className="home-typing-line2-text"
                             style={{
                                 '--name-gradient-start': `var(--mantine-color-${theme.primaryColor}-6)`,
                                 '--name-gradient-end': `var(--mantine-color-${theme.primaryColor}-4)`,
+                                '--glow-color': 'rgba(220, 235, 255, 0.95)',
                                 maxWidth: 'none',
+                                overflow: 'visible',
                                 animation: 'none',
                                 WebkitAnimation: 'none',
                             }}
                         >
                             {siteConfig.fullName}
-                        </span>
+                        </GlowText>
                     </Title>
 
                     {/* Subtítulo / rol */}
@@ -102,14 +106,14 @@ function Home() {
                         >
                             {t('home.contact')}
                         </RippleButton>
-                </Group>
-            </Stack>
-        </section>
+                    </Group>
+                </Stack>
+            </section>
 
-        {/* Tech Stack Carousel */}
-        <TechStackCarousel />
+            {/* Tech Stack Carousel */}
+            <TechStackCarousel />
 
-        {/* Sección "Sobre mí" breve */}
+            {/* Sección "Sobre mí" breve */}
             <section aria-label={t('home.summaryAria')}>
                 <Container size="sm" py="xl">
                     <Paper
