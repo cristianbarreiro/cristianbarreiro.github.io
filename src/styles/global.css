@@ -834,7 +834,9 @@ button:hover .icon-send-jello {
   display: flex;
   gap: 48px;
   width: max-content;
-  animation: tech-scroll 40s linear infinite;
+  animation: tech-scroll 55s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .tech-stack-item {
@@ -882,10 +884,10 @@ button:hover .icon-send-jello {
 
 @keyframes tech-scroll {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(calc(-50% - 24px));
+    transform: translate3d(calc(-50% - 24px), 0, 0);
   }
 }
 
