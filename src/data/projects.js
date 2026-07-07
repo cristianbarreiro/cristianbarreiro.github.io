@@ -108,7 +108,7 @@ const projectsByLanguage = {
         },
         {
             id: 5,
-            title: 'E-commerce Perfumes',
+            title: 'E-commerce de Perfumes',
             description:
                 'Aplicación e-commerce full-stack con catálogo dinámico, vista rápida de productos, carrito, favoritos y panel de backoffice.',
             longDescription:
@@ -124,7 +124,7 @@ const projectsByLanguage = {
                 'PostgreSQL',
                 'Vite'
             ],
-            demoUrl: '',
+            demoUrl: 'https://cataleyaperfumes2.vercel.app/',
             repoUrl: '',
             featured: true
         },
@@ -305,7 +305,7 @@ const projectsByLanguage = {
         },
         {
             id: 6,
-            title: 'E-commerce Perfumes',
+            title: 'Perfume E-commerce',
             description:
                 'Full-stack e-commerce application with dynamic catalog, product quick view, cart, wishlist, and backoffice dashboard.',
             longDescription:
@@ -321,7 +321,7 @@ const projectsByLanguage = {
                 'PostgreSQL',
                 'Vite'
             ],
-            demoUrl: '',
+            demoUrl: 'https://cataleyaperfumes2.vercel.app/',
             repoUrl: '',
             featured: true,
         },
