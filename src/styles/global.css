@@ -1272,21 +1272,13 @@ button:hover .icon-send-jello {
 }
 
 /* ========================================
-   7. VIDEO DE FONDO
+   7. CONTENEDOR PRINCIPAL Y FONDO
    ======================================== */
 
-/* -- 7.1 Contenedor Principal -- */
 .main-content-wrapper {
   position: relative;
   flex: 1 1 auto;
   overflow: hidden;
-
-  /* Ajustes rápidos (modo claro por defecto) */
-  --bg-video-opacity: 0.12;
-  --bg-video-fade: 1.35s;
-  --bg-overlay-top: 0.05;
-  --bg-overlay-mid: 0.02;
-  --bg-overlay-bot: 0.05;
 
   /* viewport - header - footer */
   width: calc(
@@ -1298,9 +1290,6 @@ button:hover .icon-send-jello {
   padding: var(--mantine-spacing-md, 16px);
 }
 
-/* -- 7.1.5 Gradiente Vibrante de Fondo -- */
-/* Desactivar gradiente cuando se usa el canvas como fondo */
-.main-content-wrapper.circuit-bg::before,
 .main-content-wrapper.space-bg::before {
   display: none;
 }
@@ -1351,58 +1340,9 @@ button:hover .icon-send-jello {
   }
 }
 
-/* -- 7.2 Elemento de Video -- */
-.background-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  object-fit: cover;
-  pointer-events: none;
-  opacity: 0;
-  will-change: opacity;
-  transition: opacity var(--bg-video-fade) ease-in-out;
-}
-
-.background-video.video-active {
-  opacity: var(--bg-video-opacity);
-}
-
-.background-video.video-inactive {
-  opacity: 0;
-}
-
-/* -- 7.3 Overlay -- */
-.video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, var(--bg-overlay-top)) 0%,
-    rgba(255, 255, 255, var(--bg-overlay-mid)) 50%,
-    rgba(255, 255, 255, var(--bg-overlay-bot)) 100%
-  );
-  pointer-events: none;
-}
-
-/* -- 7.4 Contenido sobre el video -- */
 .content-above-video {
   position: relative;
   z-index: 2;
-}
-
-/* -- 7.5 Modo Oscuro -- */
-[data-mantine-color-scheme="dark"] .main-content-wrapper {
-  --bg-video-opacity: 0.1;
-  --bg-video-fade: 1.35s;
-  --bg-overlay-top: 0.6;
-  --bg-overlay-mid: 0.5;
-  --bg-overlay-bot: 0.6;
 }
 
 [data-mantine-color-scheme="dark"] .main-content-wrapper::before {
@@ -1418,21 +1358,7 @@ button:hover .icon-send-jello {
   opacity: 0.4;
 }
 
-[data-mantine-color-scheme="dark"] .video-overlay {
-  background: linear-gradient(
-    180deg,
-    rgba(26, 27, 30, 0.6) 0%,
-    rgba(26, 27, 30, 0.5) 50%,
-    rgba(26, 27, 30, 0.6) 100%
-  );
-}
-
-/* -- 7.6 Accesibilidad: Movimiento Reducido -- */
 @media (prefers-reduced-motion: reduce) {
-  .background-video {
-    display: none;
-  }
-
   .main-content-wrapper::before {
     animation: none;
     background-position: 0% 50%;
