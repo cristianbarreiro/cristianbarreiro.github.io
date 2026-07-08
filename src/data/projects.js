@@ -113,7 +113,7 @@ const projectsByLanguage = {
                 'Aplicación e-commerce full-stack con catálogo dinámico, vista rápida de productos, carrito, favoritos y panel de backoffice.',
             longDescription:
                 'Proyecto e-commerce en arquitectura monorepo con frontend en React + TypeScript y backend en Node.js/Express + Prisma. Incluye Home con carruseles dinámicos, filtros por categoría/subcategoría/colecciones, modal de vista rápida, carrito y wishlist, además de backoffice para gestión de productos y colecciones.',
-            image: null,
+            image: '/images/projects/cataleya/home.jpeg',
             tags: [
                 'TypeScript',
                 'React',
