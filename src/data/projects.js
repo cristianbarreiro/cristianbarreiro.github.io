@@ -187,6 +187,45 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_SO-parte-2',
             featured: false
+        },
+        {
+            id: 10,
+            title: 'Boutique Exclusivi',
+            description:
+                'E-commerce editorial de calzado premium. Tienda online con catálogo dinámico y diseño oscuro editorial.',
+            longDescription:
+                'Plataforma e-commerce full-stack para marca premium de zapatillas. Desarrollada con React + TypeScript, TailwindCSS, Node.js/Express, Prisma y PostgreSQL. Incluye catálogo dinámico, filtros avanzados, carrito de compras, wishlist y panel de administración. Diseño oscuro editorial minimalista.',
+            image: '/images/projects/boutique_exclusivi/boutique_exclusivi00.jpeg',
+            images: [
+                {
+                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi00.jpeg',
+                    alt: 'Boutique Exclusivi - Vista principal',
+                },
+                {
+                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi01.jpeg',
+                    alt: 'Boutique Exclusivi - Catálogo',
+                },
+                {
+                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi02.jpeg',
+                    alt: 'Boutique Exclusivi - Producto',
+                },
+                {
+                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi03.jpeg',
+                    alt: 'Boutique Exclusivi - Vista detalle',
+                },
+                {
+                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi04.jpeg',
+                    alt: 'Boutique Exclusivi - Carrito',
+                },
+                {
+                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi05.jpeg',
+                    alt: 'Boutique Exclusivi - Panel admin',
+                },
+            ],
+            tags: ['TypeScript', 'React', 'TailwindCSS', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Vite', 'Stripe'],
+            demoUrl: 'https://boutique-exclusivi-ds7v.vercel.app/',
+            repoUrl: '',
+            featured: true
         }
     ],
     en: [
@@ -384,6 +423,45 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_SO-parte-2',
             featured: false
+        },
+        {
+            id: 11,
+            title: 'Boutique Exclusivi',
+            description:
+                'Editorial e-commerce for premium footwear. Online store with dynamic catalog and dark editorial design.',
+            longDescription:
+                'Full-stack e-commerce platform for a premium sneaker brand. Built with React + TypeScript, TailwindCSS, Node.js/Express, Prisma and PostgreSQL. Includes dynamic catalog, advanced filters, shopping cart, wishlist, and admin panel. Minimalist editorial dark design.',
+            image: '/images/projects/boutique_exclusivi/boutique_exclusivi00.jpeg',
+            images: [
+                {
+                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi00.jpeg',
+                    alt: 'Boutique Exclusivi - Main view',
+                },
+                {
+                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi01.jpeg',
+                    alt: 'Boutique Exclusivi - Catalog',
+                },
+                {
+                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi02.jpeg',
+                    alt: 'Boutique Exclusivi - Product view',
+                },
+                {
+                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi03.jpeg',
+                    alt: 'Boutique Exclusivi - Detail view',
+                },
+                {
+                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi04.jpeg',
+                    alt: 'Boutique Exclusivi - Cart',
+                },
+                {
+                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi05.jpeg',
+                    alt: 'Boutique Exclusivi - Admin panel',
+                },
+            ],
+            tags: ['TypeScript', 'React', 'TailwindCSS', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Vite', 'Stripe'],
+            demoUrl: 'https://boutique-exclusivi-ds7v.vercel.app/',
+            repoUrl: 'https://github.com/cristianbarreiro/boutique-exclusivi',
+            featured: true
         }
     ],
 };
