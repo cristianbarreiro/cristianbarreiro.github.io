@@ -19,25 +19,44 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
     const isMobile = useMediaQuery('(max-width: 48em)');
     const [activeIndex, setActiveIndex] = useState(0);
     const thumbnailsRef = useRef(null);
+    const imageRef = useRef(null);
+    const [zoomLevel, setZoomLevel] = useState(0);
+    const [zoomOrigin, setZoomOrigin] = useState({ x: 50, y: 50 });
+
+    const ZOOM_LEVELS = [1, 1.5, 2.5];
+    const ZOOM_LABELS = ['Fit', '150%', '250%'];
 
     const totalImages = images.length;
     const currentImage = images[activeIndex] || null;
     const hasMultipleImages = totalImages > 1;
 
     const goToPrev = useCallback(() => {
+        setZoomLevel(0);
+        setZoomOrigin({ x: 50, y: 50 });
         setActiveIndex((prev) => (prev - 1 + totalImages) % totalImages);
     }, [totalImages]);
 
     const goToNext = useCallback(() => {
+        setZoomLevel(0);
+        setZoomOrigin({ x: 50, y: 50 });
         setActiveIndex((prev) => (prev + 1) % totalImages);
     }, [totalImages]);
 
     useEffect(() => {
-        if (!opened || !hasMultipleImages) {
-            return undefined;
-        }
+        if (!opened) return undefined;
 
         const handleKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                if (zoomLevel > 0) {
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    setZoomLevel(0);
+                    setZoomOrigin({ x: 50, y: 50 });
+                    return;
+                }
+                return;
+            }
+            if (!hasMultipleImages) return;
             if (event.key === 'ArrowLeft') {
                 event.preventDefault();
                 goToPrev();
@@ -50,7 +69,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [opened, hasMultipleImages, goToPrev, goToNext]);
+    }, [opened, hasMultipleImages, goToPrev, goToNext, zoomLevel]);
 
     useEffect(() => {
         if (!hasMultipleImages || !opened) return;
@@ -78,6 +97,15 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
             }
         }
     }, [activeIndex, hasMultipleImages]);
+
+    const handleImageClick = (e) => {
+        if (currentImage.type === 'video') return;
+        const rect = imageRef.current.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        setZoomOrigin({ x, y });
+        setZoomLevel((prev) => (prev + 1) % ZOOM_LEVELS.length);
+    };
 
     if (!currentImage) {
         return null;
@@ -161,12 +189,27 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
                                 />
                             ) : (
                                 <img
+                                    ref={imageRef}
                                     key={activeIndex}
                                     src={currentImage.src}
                                     alt={currentImage.alt}
-                                    className="project-images-modal__image"
+                                    className={`project-images-modal__image${zoomLevel > 0 ? ' project-images-modal__image--zoomed' : ''}`}
                                     loading="lazy"
+                                    onClick={handleImageClick}
+                                    style={
+                                        zoomLevel > 0
+                                            ? {
+                                                  transform: `scale(${ZOOM_LEVELS[zoomLevel]})`,
+                                                  transformOrigin: `${zoomOrigin.x}% ${zoomOrigin.y}%`,
+                                              }
+                                            : undefined
+                                    }
                                 />
+                            )}
+                            {zoomLevel > 0 && (
+                                <div className="project-images-modal__zoom-badge">
+                                    {ZOOM_LABELS[zoomLevel]}
+                                </div>
                             )}
                         </Box>
 
@@ -217,7 +260,11 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
                                 {images.map((img, index) => (
                                     <button
                                         key={index}
-                                        onClick={() => setActiveIndex(index)}
+                                        onClick={() => {
+                                            setZoomLevel(0);
+                                            setZoomOrigin({ x: 50, y: 50 });
+                                            setActiveIndex(index);
+                                        }}
                                         className={`project-images-modal__thumbnail ${
                                             index === activeIndex
                                                 ? 'project-images-modal__thumbnail--active'
