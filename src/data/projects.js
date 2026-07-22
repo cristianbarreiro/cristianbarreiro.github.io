@@ -107,6 +107,28 @@ const projectsByLanguage = {
             featured: true
         },
         {
+            id: 11,
+            title: 'NovaVolt E-commerce',
+            description:
+                'NovaVolt E-commerce – Plataforma de tienda online de electrónica y accesorios. Proyecto personal de frontend React con integración a Supabase para autenticación y estado.',
+            longDescription:
+                'Proyecto personal de tienda online desarrollado con React, Vite y TailwindCSS. Construí catálogo de productos, filtros avanzados, carrito de compras y login con Supabase. El desarrollo incluyó integración de Supabase, manejo de rutas con React Router y una experiencia SPA responsiva con componentes reutilizables.',
+            image: '/images/projects/novavolt/principal.jpeg',
+            tags: [
+                'TypeScript',
+                'React',
+                'TailwindCSS',
+                'Vite',
+                'Supabase',
+                'React Router',
+                'JavaScript',
+                'Frontend'
+            ],
+            demoUrl: 'https://novavoltshop.vercel.app/',
+            repoUrl: '',
+            featured: true
+        },
+        {
             id: 5,
             title: 'E-commerce de Perfumes',
             description:
@@ -339,6 +361,28 @@ const projectsByLanguage = {
                 'Vite'
             ],
             demoUrl: 'https://e-commerce-monorepo-three.vercel.app/',
+            repoUrl: '',
+            featured: false,
+        },
+        {
+            id: 12,
+            title: 'NovaVolt E-commerce',
+            description:
+                'NovaVolt E-commerce – Electronics and accessories online store platform. Personal frontend React project with Supabase integration for authentication and state management.',
+            longDescription:
+                'Personal online store project built with React, Vite and TailwindCSS. I built a product catalog, advanced filters, shopping cart and login with Supabase. The development included Supabase integration, route handling with React Router, and a responsive SPA experience with reusable components.',
+            image: '/images/projects/novavolt/principal.jpeg',
+            tags: [
+                'TypeScript',
+                'React',
+                'TailwindCSS',
+                'Vite',
+                'Supabase',
+                'React Router',
+                'JavaScript',
+                'Frontend'
+            ],
+            demoUrl: 'https://novavoltshop.vercel.app/',
             repoUrl: '',
             featured: true,
         },
