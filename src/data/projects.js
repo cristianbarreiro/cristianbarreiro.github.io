@@ -156,7 +156,7 @@ const projectsByLanguage = {
             description:
                 'Simulación laboral en ID for Ideas desarrollando Genius, una plataforma empresarial compuesta por cuatro repositorios modulares.',
             longDescription:
-                'En la simulación laboral de ID for Ideas participé en el desarrollo de Genius, una plataforma de gestión empresarial compuesta por cuatro repositorios modulares. Incluyó Genius Budget Manager para la gestión de presupuestos, un CRM para clientes, un módulo de Landings y un Dashboard para visualización de métricas. Las tecnologías usadas incluyeron Java 17, Spring Boot, Maven, JavaScript, Node.js, Express, React, Vite, React Router, Recharts, HTML/CSS, PHP, Python, Swagger/OpenAPI, JUnit y Nodemon.',
+                'En la simulación laboral de ID for Ideas participé en el desarrollo de Genius, una plataforma de gestión empresarial compuesta por cuatro repositorios modulares. Incluyó Genius Budget Manager para la gestión de presupuestos, un CRM para clientes, un módulo de Landings y un Dashboard para visualización de métricas. Las tecnologías usadas incluyeron Java 17, Spring Boot, Maven, JavaScript, Node.js, Express, React, Vite, React Router, Recharts, HTML/CSS, PHP, Python, Swagger/OpenAPI, JUnit, Nodemon y Power BI.',
             image: null,
             tags: [
                 'Java 17',
@@ -174,7 +174,8 @@ const projectsByLanguage = {
                 'Python',
                 'Swagger/OpenAPI',
                 'JUnit',
-                'Nodemon'
+                'Nodemon',
+                'Power BI'
             ],
             demoUrl: '',
             repoUrl: '',
@@ -423,7 +424,7 @@ const projectsByLanguage = {
             description:
                  'Work simulation at ID for Ideas building Genius, a business management platform made of four modular repositories.',
             longDescription:
-                 'In the ID for Ideas work simulation, I participated in developing Genius, a business management platform composed of four modular repositories. These included Genius Budget Manager for budget management, a CRM for customer management, a Landings module, and a Dashboard to display metrics. Technologies used included Java 17, Spring Boot, Maven, JavaScript, Node.js, Express, React, Vite, React Router, Recharts, HTML/CSS, PHP, Python, Swagger/OpenAPI, JUnit, and Nodemon.',
+                 'In the ID for Ideas work simulation, I participated in developing Genius, a business management platform composed of four modular repositories. These included Genius Budget Manager for budget management, a CRM for customer management, a Landings module, and a Dashboard to display metrics. Technologies used included Java 17, Spring Boot, Maven, JavaScript, Node.js, Express, React, Vite, React Router, Recharts, HTML/CSS, PHP, Python, Swagger/OpenAPI, JUnit, Nodemon, and Power BI.',
             image: null,
             tags: [
                 'Java 17',
@@ -441,7 +442,8 @@ const projectsByLanguage = {
                 'Python',
                 'Swagger/OpenAPI',
                 'JUnit',
-                'Nodemon'
+                'Nodemon',
+                'Power BI'
             ],
             demoUrl: '',
             repoUrl: '',
