@@ -31,7 +31,7 @@ const projectsByLanguage = {
             tags: ['C', 'C++', 'Librerías del Sistema Operativo', 'Estructuras de Datos'],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_EDA',
-            featured: true,
+            featured: false,
         },
         {
             id: 2,
@@ -152,24 +152,33 @@ const projectsByLanguage = {
         },
         {
             id: 6,
-            title: 'Genius Budget Manager',
+            title: 'Genius - Plataforma de Gestión Empresarial',
             description:
-                'Genius Budget Manager – Sistema de Gestión de Presupuestos de Campañas. Proyecto desarrollado en equipo donde me desempeño como Backend Developer.',
+                'Simulación laboral en ID for Ideas desarrollando Genius, una plataforma empresarial compuesta por cuatro repositorios modulares.',
             longDescription:
-                'Proyecto desarrollado en equipo donde me desempeño como Backend Developer. Participé en el diseño e implementación de APIs REST con Spring Boot para la gestión de presupuestos de campañas de marketing, incluyendo funcionalidades de consulta, actualización y auditoría de datos. También colaboré en la generación de reportes y en la documentación de los servicios utilizando Swagger, trabajando bajo una dinámica de desarrollo colaborativo y control de versiones.',
+                'En la simulación laboral de ID for Ideas participé en el desarrollo de Genius, una plataforma de gestión empresarial compuesta por cuatro repositorios modulares. Incluyó Genius Budget Manager para la gestión de presupuestos, un CRM para clientes, un módulo de Landings y un Dashboard para visualización de métricas. Las tecnologías usadas incluyeron Java 17, Spring Boot, Maven, JavaScript, Node.js, Express, React, Vite, React Router, Recharts, HTML/CSS, PHP, Python, Swagger/OpenAPI, JUnit y Nodemon.',
             image: null,
             tags: [
-                'Java',
+                'Java 17',
                 'Spring Boot',
-                'REST APIs',
-                'Swagger',
+                'Maven',
+                'JavaScript',
+                'Node.js',
+                'Express',
+                'React',
+                'Vite',
+                'React Router',
+                'Recharts',
+                'HTML/CSS',
+                'PHP',
                 'Python',
-                'Excel',
-                'Power BI'
+                'Swagger/OpenAPI',
+                'JUnit',
+                'Nodemon'
             ],
             demoUrl: '',
             repoUrl: '',
-            featured: false
+            featured: true
         },
         {
             id: 7,
@@ -410,20 +419,29 @@ const projectsByLanguage = {
         },
         {
             id: 7,
-            title: 'Genius Budget Manager',
+            title: 'Genius - Business Management Platform',
             description:
-                 'Genius Budget Manager – Campaign Budget Management System. Team project where I work as a Backend Developer.',
+                 'Work simulation at ID for Ideas building Genius, a business management platform made of four modular repositories.',
             longDescription:
-                 'Team project where I work as a Backend Developer. I participated in the design and implementation of REST APIs with Spring Boot for managing marketing campaign budgets, including data query, update, and audit functionalities. I also collaborated on report generation and service documentation using Swagger, working under a collaborative development and version control workflow.',
+                 'In the ID for Ideas work simulation, I participated in developing Genius, a business management platform composed of four modular repositories. These included Genius Budget Manager for budget management, a CRM for customer management, a Landings module, and a Dashboard to display metrics. Technologies used included Java 17, Spring Boot, Maven, JavaScript, Node.js, Express, React, Vite, React Router, Recharts, HTML/CSS, PHP, Python, Swagger/OpenAPI, JUnit, and Nodemon.',
             image: null,
             tags: [
-                'Java',
+                'Java 17',
                 'Spring Boot',
-                'REST APIs',
-                'Swagger',
+                'Maven',
+                'JavaScript',
+                'Node.js',
+                'Express',
+                'React',
+                'Vite',
+                'React Router',
+                'Recharts',
+                'HTML/CSS',
+                'PHP',
                 'Python',
-                'Excel',
-                'Power BI'
+                'Swagger/OpenAPI',
+                'JUnit',
+                'Nodemon'
             ],
             demoUrl: '',
             repoUrl: '',
