@@ -113,7 +113,29 @@ const projectsByLanguage = {
                 'NovaVolt E-commerce – Plataforma de tienda online de electrónica y accesorios. Proyecto personal de frontend React con integración a Supabase para autenticación y estado.',
             longDescription:
                 'Proyecto personal de tienda online desarrollado con React, Vite y TailwindCSS. Construí catálogo de productos, filtros avanzados, carrito de compras y login con Supabase. El desarrollo incluyó integración de Supabase, manejo de rutas con React Router y una experiencia SPA responsiva con componentes reutilizables.',
-            image: '/images/projects/novavolt/principal.jpeg',
+            image: '/images/projects/novavolt/novavolt1_desktop.png',
+            images: [
+                {
+                    src: '/images/projects/novavolt/novavolt1_desktop.png',
+                    alt: 'NovaVolt E-commerce - Desktop 1',
+                },
+                {
+                    src: '/images/projects/novavolt/novavolt2_desktop.png',
+                    alt: 'NovaVolt E-commerce - Desktop 2',
+                },
+                {
+                    src: '/images/projects/novavolt/novavolt3_desktop.png',
+                    alt: 'NovaVolt E-commerce - Desktop 3',
+                },
+                {
+                    src: '/images/projects/novavolt/novavolt1_tablet.png',
+                    alt: 'NovaVolt E-commerce - Tablet',
+                },
+                {
+                    src: '/images/projects/novavolt/novavolt1_mobile.png',
+                    alt: 'NovaVolt E-commerce - Mobile',
+                },
+            ],
             tags: [
                 'TypeScript',
                 'React',
@@ -381,7 +403,29 @@ const projectsByLanguage = {
                 'NovaVolt E-commerce – Electronics and accessories online store platform. Personal frontend React project with Supabase integration for authentication and state management.',
             longDescription:
                 'Personal online store project built with React, Vite and TailwindCSS. I built a product catalog, advanced filters, shopping cart and login with Supabase. The development included Supabase integration, route handling with React Router, and a responsive SPA experience with reusable components.',
-            image: '/images/projects/novavolt/principal.jpeg',
+            image: '/images/projects/novavolt/novavolt1_desktop.png',
+            images: [
+                {
+                    src: '/images/projects/novavolt/novavolt1_desktop.png',
+                    alt: 'NovaVolt E-commerce - Desktop 1',
+                },
+                {
+                    src: '/images/projects/novavolt/novavolt2_desktop.png',
+                    alt: 'NovaVolt E-commerce - Desktop 2',
+                },
+                {
+                    src: '/images/projects/novavolt/novavolt3_desktop.png',
+                    alt: 'NovaVolt E-commerce - Desktop 3',
+                },
+                {
+                    src: '/images/projects/novavolt/novavolt1_tablet.png',
+                    alt: 'NovaVolt E-commerce - Tablet',
+                },
+                {
+                    src: '/images/projects/novavolt/novavolt1_mobile.png',
+                    alt: 'NovaVolt E-commerce - Mobile',
+                },
+            ],
             tags: [
                 'TypeScript',
                 'React',
