@@ -64,18 +64,18 @@ const projectsByLanguage = {
                  'Web Automotora (JavaScript + APIs, proyecto final). Proyecto final desarrollado en equipo durante el curso de Desarrollo Web.',
             longDescription:
                  'Proyecto final desarrollado en equipo durante el curso de Desarrollo Web. Participé en la implementación de funcionalidades para la visualización y filtrado de vehículos, consumo de APIs y gestión de información mediante LocalStorage. El proyecto fortaleció mis conocimientos de JavaScript, trabajo colaborativo y desarrollo de interfaces web interactivas.',
-            image: null,
+            image: '/images/projects/automotora/Captura.png',
             images: [
                 {
-                    src: '/images/projects/automotora/Captura.jpeg',
+                    src: '/images/projects/automotora/Captura.png',
                     alt: 'Captura de la Web de Automotora',
                 },
                 {
-                    src: '/images/projects/automotora/Captura1.jpeg',
+                    src: '/images/projects/automotora/Captura1.png',
                     alt: 'Captura 1 de la Web de Automotora',
                 },
                 {
-                    src: '/images/projects/automotora/Captura2.jpeg',
+                    src: '/images/projects/automotora/Captura2.png',
                     alt: 'Captura 2 de la Web de Automotora',
                 },
             ],
@@ -322,15 +322,15 @@ const projectsByLanguage = {
             image: null,
             images: [
                 {
-                    src: '/images/projects/automotora/Captura.jpeg',
+                    src: '/images/projects/automotora/Captura.png',
                     alt: 'Car Dealership Website screenshot',
                 },
                 {
-                    src: '/images/projects/automotora/Captura1.jpeg',
+                    src: '/images/projects/automotora/Captura1.png',
                     alt: 'Car Dealership Website screenshot 1',
                 },
                 {
-                    src: '/images/projects/automotora/Captura2.jpeg',
+                    src: '/images/projects/automotora/Captura2.png',
                     alt: 'Car Dealership Website screenshot 2',
                 },
             ],
