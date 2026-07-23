@@ -158,6 +158,44 @@ const projectsByLanguage = {
             longDescription:
                 'Proyecto e-commerce en arquitectura monorepo con frontend en React + TypeScript y backend en Node.js/Express + Prisma. Incluye Home con carruseles dinámicos, filtros por categoría/subcategoría/colecciones, modal de vista rápida, carrito y wishlist, además de backoffice para gestión de productos y colecciones.',
             image: '/images/projects/cataleya/home.jpeg',
+            images: [
+                {
+                    src: '/images/projects/cataleya/desktop1.jpeg',
+                    alt: 'Cataleya - Desktop 1',
+                },
+                {
+                    src: '/images/projects/cataleya/desktop2.jpeg',
+                    alt: 'Cataleya - Desktop 2',
+                },
+                {
+                    src: '/images/projects/cataleya/desktop3.jpeg',
+                    alt: 'Cataleya - Desktop 3',
+                },
+                {
+                    src: '/images/projects/cataleya/desktop4.jpeg',
+                    alt: 'Cataleya - Desktop 4',
+                },
+                {
+                    src: '/images/projects/cataleya/desktop5.jpeg',
+                    alt: 'Cataleya - Desktop 5',
+                },
+                {
+                    src: '/images/projects/cataleya/tablet1.jpeg',
+                    alt: 'Cataleya - Tablet 1',
+                },
+                {
+                    src: '/images/projects/cataleya/tablet2.jpeg',
+                    alt: 'Cataleya - Tablet 2',
+                },
+                {
+                    src: '/images/projects/cataleya/mobile1.jpeg',
+                    alt: 'Cataleya - Mobile 1',
+                },
+                {
+                    src: '/images/projects/cataleya/mobile2.jpeg',
+                    alt: 'Cataleya - Mobile 2',
+                },
+            ],
             tags: [
                 'TypeScript',
                 'React',
@@ -250,32 +288,6 @@ const projectsByLanguage = {
             longDescription:
                 'Plataforma e-commerce full-stack para marca premium de zapatillas. Desarrollada con React + TypeScript, TailwindCSS, Node.js/Express, Prisma y PostgreSQL. Incluye catálogo dinámico, filtros avanzados, carrito de compras, wishlist y panel de administración. Diseño oscuro editorial minimalista.',
             image: '/images/projects/boutique_exclusivi/boutique_exclusivi00.jpeg',
-            images: [
-                {
-                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi00.jpeg',
-                    alt: 'Boutique Exclusivi - Vista principal',
-                },
-                {
-                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi01.jpeg',
-                    alt: 'Boutique Exclusivi - Catálogo',
-                },
-                {
-                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi02.jpeg',
-                    alt: 'Boutique Exclusivi - Producto',
-                },
-                {
-                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi03.jpeg',
-                    alt: 'Boutique Exclusivi - Vista detalle',
-                },
-                {
-                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi04.jpeg',
-                    alt: 'Boutique Exclusivi - Carrito',
-                },
-                {
-                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi05.jpeg',
-                    alt: 'Boutique Exclusivi - Panel admin',
-                },
-            ],
             tags: ['TypeScript', 'React', 'TailwindCSS', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Vite', 'Stripe'],
             demoUrl: 'https://boutique-exclusivi-ds7v.vercel.app/',
             repoUrl: '',
@@ -447,7 +459,45 @@ const projectsByLanguage = {
                 'Full-stack e-commerce application with dynamic catalog, product quick view, cart, wishlist, and backoffice dashboard.',
             longDescription:
                 'E-commerce project using a monorepo architecture with a React + TypeScript frontend and a Node.js/Express + Prisma backend. It includes a Home page with dynamic carousels, filters by category/subcategory/collections, a quick-view modal, cart and wishlist features, plus a backoffice for product and collection management.',
-            image: null,
+            image: '/images/projects/cataleya/home.jpeg',
+            images: [
+                {
+                    src: '/images/projects/cataleya/desktop1.jpeg',
+                    alt: 'Cataleya - Desktop 1',
+                },
+                {
+                    src: '/images/projects/cataleya/desktop2.jpeg',
+                    alt: 'Cataleya - Desktop 2',
+                },
+                {
+                    src: '/images/projects/cataleya/desktop3.jpeg',
+                    alt: 'Cataleya - Desktop 3',
+                },
+                {
+                    src: '/images/projects/cataleya/desktop4.jpeg',
+                    alt: 'Cataleya - Desktop 4',
+                },
+                {
+                    src: '/images/projects/cataleya/desktop5.jpeg',
+                    alt: 'Cataleya - Desktop 5',
+                },
+                {
+                    src: '/images/projects/cataleya/tablet1.jpeg',
+                    alt: 'Cataleya - Tablet 1',
+                },
+                {
+                    src: '/images/projects/cataleya/tablet2.jpeg',
+                    alt: 'Cataleya - Tablet 2',
+                },
+                {
+                    src: '/images/projects/cataleya/mobile1.jpeg',
+                    alt: 'Cataleya - Mobile 1',
+                },
+                {
+                    src: '/images/projects/cataleya/mobile2.jpeg',
+                    alt: 'Cataleya - Mobile 2',
+                },
+            ],
             tags: [
                 'TypeScript',
                 'React',
@@ -540,32 +590,6 @@ const projectsByLanguage = {
             longDescription:
                 'Full-stack e-commerce platform for a premium sneaker brand. Built with React + TypeScript, TailwindCSS, Node.js/Express, Prisma and PostgreSQL. Includes dynamic catalog, advanced filters, shopping cart, wishlist, and admin panel. Minimalist editorial dark design.',
             image: '/images/projects/boutique_exclusivi/boutique_exclusivi00.jpeg',
-            images: [
-                {
-                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi00.jpeg',
-                    alt: 'Boutique Exclusivi - Main view',
-                },
-                {
-                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi01.jpeg',
-                    alt: 'Boutique Exclusivi - Catalog',
-                },
-                {
-                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi02.jpeg',
-                    alt: 'Boutique Exclusivi - Product view',
-                },
-                {
-                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi03.jpeg',
-                    alt: 'Boutique Exclusivi - Detail view',
-                },
-                {
-                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi04.jpeg',
-                    alt: 'Boutique Exclusivi - Cart',
-                },
-                {
-                    src: '/images/projects/boutique_exclusivi/boutique_exclusivi05.jpeg',
-                    alt: 'Boutique Exclusivi - Admin panel',
-                },
-            ],
             tags: ['TypeScript', 'React', 'TailwindCSS', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Vite', 'Stripe'],
             demoUrl: 'https://boutique-exclusivi-ds7v.vercel.app/',
             repoUrl: 'https://github.com/cristianbarreiro/boutique-exclusivi',
