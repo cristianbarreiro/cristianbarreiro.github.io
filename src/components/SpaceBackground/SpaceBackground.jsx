@@ -302,12 +302,16 @@ function SpaceBackground({ theme = 'space' }) {
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
+    let resizeTimer;
     const onResize = () => {
-      resizeCanvas();
-      if (reducedMotion) {
-        timeRef.current = 0;
-        drawFrame();
-      }
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        resizeCanvas();
+        if (reducedMotion) {
+          timeRef.current = 0;
+          drawFrame();
+        }
+      }, 150);
     };
 
     window.addEventListener('resize', onResize, { passive: true });
@@ -321,6 +325,7 @@ function SpaceBackground({ theme = 'space' }) {
     }
 
     return () => {
+      clearTimeout(resizeTimer);
       window.removeEventListener('resize', onResize);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
