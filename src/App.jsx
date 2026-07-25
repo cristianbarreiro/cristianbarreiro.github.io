@@ -3,11 +3,13 @@
  * Define las rutas de la aplicación
  */
 
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 // Componente de layout
 import Layout from './components/Layout';
 import ThemeChanger from './components/ThemeChanger';
+import SplashScreen from './components/SplashScreen';
 
 import UnderConstructionModal from './components/UnderConstructionModal';
 
@@ -31,6 +33,11 @@ import { useTranslation } from 'react-i18next';
  */
 function App() {
   const { t } = useTranslation();
+  const [showSplash, setShowSplash] = useState(true);
+
+  if (showSplash) {
+    return <SplashScreen onFinish={() => setShowSplash(false)} />;
+  }
 
   return (
     <>

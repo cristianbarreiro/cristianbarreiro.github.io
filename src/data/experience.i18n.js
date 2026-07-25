@@ -54,7 +54,7 @@ export const experienceByLanguage = {
     },
     {
       id: 4,
-      type: 'education',
+      type: 'course',
       title: 'Curso Introductorio Desarrollo Web',
       organization: 'Hack Academy',
       location: 'Online',
@@ -86,7 +86,7 @@ export const experienceByLanguage = {
     },
     {
       id: 6,
-      type: 'education',
+      type: 'course',
       title: 'Programación Orientada a Objetos con Python',
       organization: 'Ceibal',
       location: '',
@@ -100,7 +100,7 @@ export const experienceByLanguage = {
     },
     {
       id: 7,
-      type: 'education',
+      type: 'course',
       title: 'JavaScript Algorithms and Data Structures',
       organization: 'freeCodeCamp',
       location: '',
@@ -164,7 +164,7 @@ export const experienceByLanguage = {
     },
     {
       id: 4,
-      type: 'education',
+      type: 'course',
       title: 'Intro Web Development Course',
       organization: 'Hack Academy',
       location: 'Online',
@@ -196,7 +196,7 @@ export const experienceByLanguage = {
     },
     {
       id: 6,
-      type: 'education',
+      type: 'course',
       title: 'Object-Oriented Programming with Python',
       organization: 'Ceibal',
       location: '',
@@ -210,7 +210,7 @@ export const experienceByLanguage = {
     },
     {
       id: 7,
-      type: 'education',
+      type: 'course',
       title: 'JavaScript Algorithms and Data Structures',
       organization: 'freeCodeCamp',
       location: '',

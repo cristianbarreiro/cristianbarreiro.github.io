@@ -40,6 +40,11 @@ export const getWorkExperience = (language) => getExperienceByType('work', langu
 export const getEducation = (language) => getExperienceByType('education', language);
 
 /**
+ * Obtiene solo cursos
+ */
+export const getCourses = (language) => getExperienceByType('course', language);
+
+/**
  * Formatea fecha para mostrar
  */
 export const formatDateByLanguage = (dateString, language = 'es') => {

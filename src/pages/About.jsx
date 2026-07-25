@@ -21,10 +21,12 @@ import {
     IconSchool,
     IconHeart,
     IconUser,
+    IconCode,
 } from '@tabler/icons-react';
 import {
     getWorkExperience,
     getEducation,
+    getCourses,
     formatDate,
 } from '../data/experience';
 import { useTranslation } from 'react-i18next';
@@ -37,10 +39,10 @@ function About() {
 
     const workExperience = getWorkExperience(language);
     const education = getEducation(language);
+    const courses = getCourses(language);
 
     // Determinar si hay experiencia laboral
     const hasWorkExperience = workExperience.length > 0;
-    const educationSpan = hasWorkExperience ? { base: 12, md: 6 } : { base: 12, md: 12 };
 
     // Obtener intereses de forma segura
     const interests = t('site.interests', { returnObjects: true });
@@ -100,12 +102,12 @@ function About() {
                 </Stack>
             </section>
 
-            {/* Experiencia y Educación */}
+            {/* Experiencia, Educación y Cursos */}
             <section aria-label={t('about.experienceEducationAria')}>
                 <Grid mt="xl" gutter="xl">
                     {/* Experiencia laboral - solo si hay */}
                     {hasWorkExperience && (
-                        <Grid.Col span={{ base: 12, md: 6 }}>
+                        <Grid.Col span={{ base: 12, md: 4 }}>
                             <Paper p="xl" radius="md" withBorder h="100%" className="glass-hover-card">
                                 <Group gap="md" mb="lg">
                                     <ThemeIcon size="lg" radius="md" variant="light" color="green">
@@ -144,7 +146,7 @@ function About() {
                     )}
 
                     {/* Educación */}
-                    <Grid.Col span={educationSpan}>
+                    <Grid.Col span={{ base: 12, md: 4 }}>
                         <Paper p="xl" radius="md" withBorder h="100%" className="glass-hover-card">
                             <Group gap="md" mb="lg">
                                 <ThemeIcon size="lg" radius="md" variant="light" color="violet">
@@ -170,6 +172,44 @@ function About() {
                                         </Text>
                                         <Stack gap="xs" mt="sm">
                                             {edu.description.slice(0, 2).map((item, index) => (
+                                                <Text key={index} size="sm">
+                                                    • {item}
+                                                </Text>
+                                            ))}
+                                        </Stack>
+                                    </Timeline.Item>
+                                ))}
+                            </Timeline>
+                        </Paper>
+                    </Grid.Col>
+
+                    {/* Cursos */}
+                    <Grid.Col span={{ base: 12, md: 4 }}>
+                        <Paper p="xl" radius="md" withBorder h="100%" className="glass-hover-card">
+                            <Group gap="md" mb="lg">
+                                <ThemeIcon size="lg" radius="md" variant="light" color="blue">
+                                    <IconCode size={20} />
+                                </ThemeIcon>
+                                <Title order={2} size="h3">
+                                    {t('about.coursesTitle')}
+                                </Title>
+                            </Group>
+
+                            <Timeline active={0} bulletSize={24} lineWidth={2}>
+                                {courses.map((course) => (
+                                    <Timeline.Item
+                                        key={course.id}
+                                        title={course.title}
+                                        bullet={<IconCode size={12} />}
+                                    >
+                                        <Text c="dimmed" size="sm" fw={500}>
+                                            {course.organization}
+                                        </Text>
+                                        <Text size="xs" c="dimmed" mt={4}>
+                                            {formatDate(course.startDate, i18n.language)} - {formatDate(course.endDate, i18n.language)}
+                                        </Text>
+                                        <Stack gap="xs" mt="sm">
+                                            {course.description.slice(0, 2).map((item, index) => (
                                                 <Text key={index} size="sm">
                                                     • {item}
                                                 </Text>

@@ -56,9 +56,11 @@
     "title": "About",
     "bioTitle": "Biography",
     "interestsTitle": "Interests",
-    "experienceEducationAria": "Experience and education",
+    "experienceEducationAria": "Experience, education and courses",
     "experienceTitle": "Experience",
-    "educationTitle": "Education"
+    "educationTitle": "Education",
+    "coursesTitle": "Courses",
+    "coursesAria": "Courses and certifications"
   },
   "projects": {
     "aria": "Projects",
