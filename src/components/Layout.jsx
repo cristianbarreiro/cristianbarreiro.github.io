@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import SpaceBackground from './SpaceBackground';
+import { ConveyorLoop } from './ConveyorLoop';
 import { useThemeContext } from '../context/ThemeContext';
 
 const PRIMARY_TO_THEME = {
@@ -110,19 +111,7 @@ function Layout() {
                         aria-live="polite"
                         aria-label={t('common.loading')}
                     >
-                        <div className="fh-dots-loader" aria-hidden="true">
-                            <span />
-                            <span />
-                            <span />
-                        </div>
-                        <div className="fh-loading-label">
-                            <span>{t('common.loading')}</span>
-                            <span className="fh-loading-dots" aria-hidden="true">
-                                <span>.</span>
-                                <span>.</span>
-                                <span>.</span>
-                            </span>
-                        </div>
+                        <ConveyorLoop />
                     </div>
                 )}
                 {/* Contenedor con fondo */}
