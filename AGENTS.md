@@ -40,6 +40,7 @@ Este repositorio opera bajo un modelo de **co-autoría supervisada**:
 | Routing        | React Router DOM 7                            |
 | i18n           | i18next + react-i18next                       |
 | Icons          | @tabler/icons-react                           |
+| Animations     | Framer Motion                                |
 | Contact Form   | EmailJS (client-side)                         |
 | Deployment     | GitHub Pages (`gh-pages`)                     |
 | Node           | ESM (`"type": "module"`)                      |
@@ -65,6 +66,7 @@ src/
 ├── pages/         # Componentes a nivel de ruta
 ├── data/          # Datos estáticos (proyectos, skills, experiencia)
 ├── config/        # Configuración global (siteConfig.js)
+├── context/       # Contextos de React (ThemeContext)
 ├── styles/        # CSS global
 ├── utils/         # Funciones helper (storage, colorScheme)
 ├── i18n.js        # Inicialización de i18next
@@ -239,4 +241,4 @@ Este sistema de agentes está diseñado para crecer. Cuando el proyecto lo requi
 
 ---
 
-*Última actualización: 2026-02-16*
+*Última actualización: 2026-07-27*

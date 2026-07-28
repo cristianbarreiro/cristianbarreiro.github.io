@@ -302,6 +302,7 @@ button:hover .icon-send-jello {
    ======================================== */
 
 /* -- 6.1 Navbar Glassmorphism (Futuristic Trapezoid) -- */
+/* Mantine AppShell header: !important necesario para anular estilos generados internamente por Mantine */
 .mantine-AppShell-header {
   background: transparent !important;
   border: none !important;
