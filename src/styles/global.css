@@ -301,55 +301,137 @@ button:hover .icon-send-jello {
    6. ANIMACIONES
    ======================================== */
 
-/* -- 6.1 Navbar Glassmorphism -- */
+/* -- 6.1 Navbar Glassmorphism (Futuristic Trapezoid) -- */
+.mantine-AppShell-header {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
 .glassmorphic-navbar {
   position: sticky;
   top: 0;
   z-index: 100;
 
-  /* Glass sutil con más transparencia */
-  background: rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06),
-    0 0 0 1px rgba(255, 255, 255, 0.3) inset;
-
-  /* Blur intenso para efecto glass visible */
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: transparent;
+  border-bottom: none;
+  box-shadow: none;
 
   transition: all 0.3s ease;
 }
 
-[data-mantine-color-scheme="dark"] .glassmorphic-navbar {
-  background: #13141686;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.26),
-    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+/* Glow border outline — trapezoid shape */
+.glassmorphic-navbar::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  clip-path: polygon(0 0, 100% 0, 97% 100%, 3% 100%);
+  background: rgba(255, 255, 255, 0.35);
+  z-index: -2;
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+/* Glass panel — main visual surface */
+.glassmorphic-navbar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, 100% 0, 97% 100%, 3% 100%);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.3) inset;
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
+  z-index: -1;
+  pointer-events: none;
+  transition: background 0.3s ease;
 }
 
-/* Optional: Enhance on scroll */
-.glassmorphic-navbar.scrolled {
+/* Dark mode */
+[data-mantine-color-scheme="dark"] .glassmorphic-navbar::after {
+  background: rgba(13, 14, 18, 0.92);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.26),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+}
+
+[data-mantine-color-scheme="dark"] .glassmorphic-navbar::before {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Scroll enhancement */
+.glassmorphic-navbar.scrolled::after {
   background: rgba(255, 255, 255, 0.28);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08),
-    0 0 0 1px rgba(255, 255, 255, 0.35) inset;
 }
 
-[data-mantine-color-scheme="dark"] .glassmorphic-navbar.scrolled {
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+.glassmorphic-navbar.scrolled::before {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+[data-mantine-color-scheme="dark"] .glassmorphic-navbar.scrolled::after {
+  background: rgba(13, 14, 18, 0.95);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.26),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+}
+
+[data-mantine-color-scheme="dark"] .glassmorphic-navbar.scrolled::before {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Tablet — reduced angle */
+@media (max-width: 992px) {
+  .glassmorphic-navbar::before,
+  .glassmorphic-navbar::after {
+    clip-path: polygon(0 0, 100% 0, 98.5% 100%, 1.5% 100%);
+  }
+}
+
+/* Mobile — clean rectangle, no trapezoid clipping */
+@media (max-width: 768px) {
+  .glassmorphic-navbar::before,
+  .glassmorphic-navbar::after {
+    display: none;
+  }
+
+  .glassmorphic-navbar {
+    background: rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  [data-mantine-color-scheme="dark"] .glassmorphic-navbar {
+    background: rgba(13, 14, 18, 0.92);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .glassmorphic-navbar.scrolled {
+    background: rgba(255, 255, 255, 0.28);
+  }
+
+  [data-mantine-color-scheme="dark"] .glassmorphic-navbar.scrolled {
+  background: rgba(13, 14, 18, 0.95);
+  }
 }
 
 /* Fallback for browsers that don't support backdrop-filter */
 @supports not (backdrop-filter: blur(20px)) {
-  .glassmorphic-navbar {
+  .glassmorphic-navbar::after {
     background: rgba(255, 255, 255, 0.92);
   }
 
-  [data-mantine-color-scheme="dark"] .glassmorphic-navbar {
+  [data-mantine-color-scheme="dark"] .glassmorphic-navbar::after {
     background: rgba(15, 15, 20, 0.95);
+  }
+
+  @media (max-width: 768px) {
+    .glassmorphic-navbar {
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    [data-mantine-color-scheme="dark"] .glassmorphic-navbar {
+      background: rgba(15, 15, 20, 0.95);
+    }
   }
 }
 
