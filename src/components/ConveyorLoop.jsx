@@ -39,7 +39,7 @@ export const ConveyorLoop = () => {
             style={{
               width: 6,
               height: 6,
-              backgroundColor: isDark ? '#ffffff' : '#27272a',
+              backgroundColor: 'var(--mantine-primary-color-filled)',
               borderRadius: 999,
               flexShrink: 0,
             }}
