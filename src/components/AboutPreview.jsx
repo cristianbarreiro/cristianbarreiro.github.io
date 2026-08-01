@@ -43,9 +43,10 @@ function AboutPreview() {
     const { t, i18n } = useTranslation();
     const language = i18n.resolvedLanguage || i18n.language;
 
-    // Obtener la primera educación para mostrar resumen
+    // Mostrar el estudio actual (endDate null) o el más reciente
     const education = getEducation(language);
-    const latestEducation = education.length > 0 ? education[0] : null;
+    const latestEducation =
+        education.find((edu) => edu.endDate === null) ?? education[0] ?? null;
 
     // Obtener intereses
     const interests = t('site.interests', { returnObjects: true });

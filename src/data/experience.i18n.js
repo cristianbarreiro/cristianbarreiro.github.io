@@ -7,7 +7,7 @@ export const experienceByLanguage = {
     // Experiencia Laboral
     {
       id: 1,
-      type: 'education',
+      type: 'work',
       title: 'Backend Developer',
       organization: 'ID For IDEAS',
       location: '',
@@ -22,7 +22,7 @@ export const experienceByLanguage = {
     },
     {
       id: 2,
-      type: 'education',
+      type: 'work',
       title: 'Técnico en Redes',
       organization: 'Instituto IBEC',
       location: '',
@@ -117,7 +117,7 @@ export const experienceByLanguage = {
     // Work Experience
     {
       id: 1,
-      type: 'education',
+      type: 'work',
       title: 'Backend Developer',
       organization: 'ID For IDEAS',
       location: '',
@@ -132,7 +132,7 @@ export const experienceByLanguage = {
     },
     {
       id: 2,
-      type: 'education',
+      type: 'work',
       title: 'Network Technician',
       organization: 'Instituto IBEC',
       location: '',
