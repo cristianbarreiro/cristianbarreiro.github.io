@@ -35,12 +35,9 @@ function App() {
   const { t } = useTranslation();
   const [showSplash, setShowSplash] = useState(true);
 
-  if (showSplash) {
-    return <SplashScreen onFinish={() => setShowSplash(false)} />;
-  }
-
   return (
     <>
+      {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
       <ThemeChanger />
 
       <Routes>
