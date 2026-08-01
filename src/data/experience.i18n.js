@@ -39,7 +39,7 @@ export const experienceByLanguage = {
     {
       id: 3,
       type: 'education',
-      title: 'Tecnólogo en Informática (Informática)',
+      title: 'Tecnólogo en Informática',
       organization: 'Escuela Superior de Informática & FING',
       location: 'Buceo, Montevideo',
       startDate: '2025-01',
@@ -149,7 +149,7 @@ export const experienceByLanguage = {
     {
       id: 3,
       type: 'education',
-      title: 'IT Technologist (Information Technology)',
+      title: 'IT Technologist',
       organization: 'Escuela Superior de Informática & FING',
       location: 'Buceo, Montevideo',
       startDate: '2025-01',
