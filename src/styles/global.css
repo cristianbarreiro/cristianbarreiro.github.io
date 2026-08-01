@@ -1468,6 +1468,20 @@ button:hover .icon-send-jello {
   background: #4dabf7;
 }
 
+/* -- 8.4 Scrollbar oculta en mobile (scroll sigue activo) -- */
+@media (max-width: 768px) {
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
+
 /* ========================================
    9. EFECTOS EN LOS NAV-LINKS
    ======================================== */
