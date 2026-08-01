@@ -30,7 +30,50 @@
     "viewProjects": "Ver proyectos",
     "contact": "Contactar",
     "aboutBriefTitle": "Sobre mí",
-    "knowMore": "Ver perfil completo"
+    "knowMore": "Ver perfil completo",
+    "techStackTitle": "Stack Tecnológico",
+    "techStackSubtitle": "Tecnologías y herramientas con las que construyo soluciones",
+    "techStackAria": "Stack tecnológico",
+    "techStackCategory": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Base de Datos",
+      "tools": "Herramientas"
+    },
+    "aboutPreviewTitle": "Sobre mí",
+    "aboutPreviewSubtitle": "Desarrollador apasionado por crear soluciones que generan impacto",
+    "aboutPreviewAria": "Vista previa sobre mí",
+    "aboutPreviewJourney": "Programador y Técnico en Informática, actualmente cursando la carrera de Tecnólogo en Informática. Apasionado por el desarrollo Full-Stack y la creación de aplicaciones modernas.",
+    "aboutPreviewEducationLabel": "Formación",
+    "aboutPreviewInterestsLabel": "Intereses",
+    "aboutPreviewCta": "Ver perfil completo",
+    "featuredTitle": "Proyectos Destacados",
+    "featuredSubtitle": "Una selección de mis mejores trabajos",
+    "featuredAria": "Proyectos destacados",
+    "featuredViewAll": "Ver todos los proyectos",
+    "devApproachTitle": "Cómo Trabajo",
+    "devApproachSubtitle": "Mi enfoque como desarrollador",
+    "devApproachAria": "Enfoque de desarrollo",
+    "devApproach": {
+      "cleanCode": {
+        "title": "Código Limpio",
+        "description": "Escribo código legible, mantenible y bien documentado. Priorizo la claridad y las buenas prácticas en cada línea."
+      },
+      "problemSolving": {
+        "title": "Resolución de Problemas",
+        "description": "Analizo los desafíos desde múltiples perspectivas para encontrar soluciones eficientes y elegantes."
+      },
+      "continuousLearning": {
+        "title": "Aprendizaje Continuo",
+        "description": "Me mantengo actualizado con las últimas tecnologías y mejores prácticas del desarrollo de software."
+      },
+      "scalable": {
+        "title": "Soluciones Escalables",
+        "description": "Diseño arquitecturas pensadas para crecer, priorizando rendimiento y escalabilidad."
+      }
+    },
+    "contactSectionTitle": "Construyamos algo juntos",
+    "contactSectionSubtitle": "¿Tienes un proyecto en mente? Me encantaría escucharte"
   },
   "techStack": {
     "aria": "Tecnologías",
@@ -38,14 +81,18 @@
     "play": "Reanudar carrusel",
     "python": "Python",
     "typescript": "TypeScript",
+    "javascript": "JavaScript",
     "go": "Go",
     "java": "Java",
     "springBoot": "Spring Boot",
     "nodejs": "Node.js",
+    "express": "Express",
     "laravel": "Laravel",
     "react": "React",
+    "tailwind": "Tailwind CSS",
     "postgresql": "PostgreSQL",
     "mongodb": "MongoDB",
+    "supabase": "Supabase",
     "docker": "Docker",
     "aws": "AWS",
     "git": "Git",

@@ -30,7 +30,50 @@
     "viewProjects": "View projects",
     "contact": "Contact",
     "aboutBriefTitle": "About Me",
-    "knowMore": "View full profile"
+    "knowMore": "View full profile",
+    "techStackTitle": "Tech Stack",
+    "techStackSubtitle": "Technologies and tools I use to build solutions",
+    "techStackAria": "Technology stack",
+    "techStackCategory": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database",
+      "tools": "Tools"
+    },
+    "aboutPreviewTitle": "About Me",
+    "aboutPreviewSubtitle": "A developer passionate about building solutions that make an impact",
+    "aboutPreviewAria": "About me preview",
+    "aboutPreviewJourney": "Programmer and IT Technician, currently pursuing an IT Technologist degree. Passionate about Full-Stack development and building modern applications.",
+    "aboutPreviewEducationLabel": "Education",
+    "aboutPreviewInterestsLabel": "Interests",
+    "aboutPreviewCta": "View full profile",
+    "featuredTitle": "Featured Projects",
+    "featuredSubtitle": "A selection of my best work",
+    "featuredAria": "Featured projects",
+    "featuredViewAll": "View all projects",
+    "devApproachTitle": "How I Work",
+    "devApproachSubtitle": "My approach as a developer",
+    "devApproachAria": "Development approach",
+    "devApproach": {
+      "cleanCode": {
+        "title": "Clean Code",
+        "description": "I write readable, maintainable, and well-documented code. I prioritize clarity and best practices in every line."
+      },
+      "problemSolving": {
+        "title": "Problem Solving",
+        "description": "I analyze challenges from multiple angles to find efficient and elegant solutions."
+      },
+      "continuousLearning": {
+        "title": "Continuous Learning",
+        "description": "I stay up to date with the latest technologies and best practices in software development."
+      },
+      "scalable": {
+        "title": "Scalable Solutions",
+        "description": "I design architectures built to grow, prioritizing performance and scalability."
+      }
+    },
+    "contactSectionTitle": "Let's build something together",
+    "contactSectionSubtitle": "Have a project in mind? I'd love to hear from you"
   },
   "techStack": {
     "aria": "Technologies",
@@ -38,14 +81,18 @@
     "play": "Resume carousel",
     "python": "Python",
     "typescript": "TypeScript",
+    "javascript": "JavaScript",
     "go": "Go",
     "java": "Java",
     "springBoot": "Spring Boot",
     "nodejs": "Node.js",
+    "express": "Express",
     "laravel": "Laravel",
     "react": "React",
+    "tailwind": "Tailwind CSS",
     "postgresql": "PostgreSQL",
     "mongodb": "MongoDB",
+    "supabase": "Supabase",
     "docker": "Docker",
     "aws": "AWS",
     "git": "Git",

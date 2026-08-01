@@ -65,7 +65,7 @@ const sanitize = (text) => {
     return withoutControlChars.trim();
 };
 
-function Contact() {
+function Contact({ embedded = false }) {
     const { t } = useTranslation();
 
     // Estado del formulario
@@ -183,9 +183,13 @@ function Contact() {
         }
     };
 
+    // Wrapper: <main> cuando es página, <div> cuando es sección embebida
+    const Wrapper = embedded ? 'div' : 'main';
+
     return (
-        <main>
-            {/* Encabezado de página */}
+        <Wrapper>
+            {/* Encabezado de página — solo en modo standalone */}
+            {!embedded && (
             <section aria-label={t('contact.aria')}>
                 <Stack gap="xl">
                     <div>
@@ -198,6 +202,7 @@ function Contact() {
                     </div>
                 </Stack>
             </section>
+            )}
 
             <Grid mt="xl" gutter="xl">
                 {/* Formulario de contacto */}
@@ -383,7 +388,7 @@ function Contact() {
                     </Paper>
                 </Grid.Col>
             </Grid>
-        </main>
+        </Wrapper>
     );
 }
 

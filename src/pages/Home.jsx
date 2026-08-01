@@ -1,6 +1,9 @@
 /**
  * Página Home
- * Landing page con hero section y resumen
+ * Landing page con estructura de portfolio profesional completa
+ *
+ * Flujo de secciones:
+ * Hero → Tech Stack → About Preview → Featured Projects → Dev Approach → Contact
  */
 
 import { Link } from 'react-router-dom';
@@ -10,15 +13,18 @@ import {
     Group,
     Stack,
     Container,
-    Paper,
     useMantineTheme,
 } from '@mantine/core';
 import { IconArrowRight, IconMail } from '@tabler/icons-react';
 import { siteConfig } from '../config/siteConfig';
 import { useTranslation } from 'react-i18next';
 import RippleButton from '../components/RippleButton';
-import TechStackCarousel from '../components/TechStackCarousel';
 import GlowText from '../components/GlowText';
+import TechStackGrid from '../components/TechStackGrid';
+import AboutPreview from '../components/AboutPreview';
+import FeaturedProjects from '../components/FeaturedProjects';
+import DevApproach from '../components/DevApproach';
+import Contact from './Contact';
 
 function Home() {
     const theme = useMantineTheme();
@@ -26,7 +32,7 @@ function Home() {
 
     return (
         <main>
-            {/* Hero Section */}
+            {/* ===== 1. Hero Section ===== */}
             <section aria-label={t('home.presentationAria')}>
                 <Stack
                     align="center"
@@ -110,42 +116,36 @@ function Home() {
                 </Stack>
             </section>
 
-            {/* Tech Stack Carousel */}
-            <TechStackCarousel />
+            {/* ===== 2. Tech Stack Grid ===== */}
+            <TechStackGrid />
 
-            {/* Sección "Sobre mí" breve */}
-            <section aria-label={t('home.summaryAria')}>
-                <Container size="sm" py="xl">
-                    <Paper
-                        className="glass-hover-card"
-                        p="xl"
-                        radius="md"
-                        withBorder
-                        style={{
-                            borderColor: `var(--mantine-color-${theme.primaryColor}-3)`,
-                        }}
-                    >
-                        <Title order={3} size="h4" mb="md">
-                            {t('home.aboutBriefTitle')}
+            {/* ===== 3. About Preview ===== */}
+            <AboutPreview />
+
+            {/* ===== 4. Featured Projects ===== */}
+            <FeaturedProjects />
+
+            {/* ===== 5. Development Approach ===== */}
+            <DevApproach />
+
+            {/* ===== 6. Contact Section (reusable) ===== */}
+            <section className="home-section" aria-label={t('home.contactSectionTitle')}>
+                <Container size="lg">
+                    <Stack align="center" ta="center" mb="xl" gap="xs">
+                        <Title order={2} size="h2" fw={700}>
+                            {t('home.contactSectionTitle')}
                         </Title>
-                        <Text size="md" c="dimmed" style={{ whiteSpace: 'pre-line' }}>
-                            {t('site.bio').split('\n').slice(0, 2).join('\n')}
+                        <Text size="md" className="section-subtitle" maw={500}>
+                            {t('home.contactSectionSubtitle')}
                         </Text>
-                        <RippleButton
-                            component={Link}
-                            to="/about"
-                            variant="subtle"
-                            mt="md"
-                            rightSection={
-                                <IconArrowRight
-                                    size={16}
-                                    className="icon-arrow-right"
-                                />
-                            }
-                        >
-                            {t('home.knowMore')}
-                        </RippleButton>
-                    </Paper>
+                        <div
+                            className="home-section-accent-line"
+                            style={{
+                                background: `linear-gradient(90deg, transparent, var(--mantine-color-${theme.primaryColor}-5), transparent)`,
+                            }}
+                        />
+                    </Stack>
+                    <Contact embedded />
                 </Container>
             </section>
         </main>

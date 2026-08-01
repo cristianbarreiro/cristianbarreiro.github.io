@@ -1690,3 +1690,99 @@ button:hover .icon-send-jello {
     background: rgba(30, 30, 35, 0.97) !important;
   }
 }
+
+/* ========================================
+   HOMEPAGE SECTIONS
+   ======================================== */
+
+/* Espaciado consistente entre secciones de la homepage */
+.home-section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .home-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* Línea de acento decorativa debajo de títulos de sección */
+.home-section-accent-line {
+  width: 60px;
+  height: 3px;
+  border-radius: 2px;
+  margin-top: 0.75rem;
+}
+
+/* ----------------------------------------------
+ * Tech Stack Grid — tarjetas con glow
+ * ---------------------------------------------- */
+
+.tech-grid-card {
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-grid-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+:root[data-mantine-color-scheme="dark"] .tech-grid-card::before {
+  box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.08);
+}
+
+.tech-grid-card:hover::before {
+  opacity: 1;
+}
+
+:root[data-mantine-color-scheme="dark"] .tech-grid-card:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.1),
+              0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-mantine-color-scheme="light"] .tech-grid-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.08),
+              0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Ícono de tecnología */
+.tech-grid-icon {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 0 transparent);
+}
+
+.tech-grid-card:hover .tech-grid-icon {
+  transform: scale(1.1);
+}
+
+:root[data-mantine-color-scheme="dark"] .tech-grid-card:hover .tech-grid-icon {
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.35));
+}
+
+/* ----------------------------------------------
+ * Dev Approach cards
+ * ---------------------------------------------- */
+
+.dev-approach-card {
+  transition: background-color 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease, transform 0.25s ease;
+}
+
+:root[data-mantine-color-scheme="dark"] .dev-approach-card:hover {
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
