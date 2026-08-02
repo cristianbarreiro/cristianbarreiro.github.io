@@ -238,60 +238,6 @@
   opacity: 1;
 }
 
-/* ── Mobile fallback ─────────────────────────────────── */
-.tech-globe-fallback {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  width: 100%;
-}
-
-.tech-fallback-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
-  gap: 0.75rem;
-  width: 100%;
-  max-width: 480px;
-}
-
-.tech-fallback-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.75rem 0.5rem;
-  border-radius: 12px;
-  background: rgba(10, 14, 23, 0.65);
-  border: 1px solid rgba(59, 130, 246, 0.12);
-  cursor: pointer;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
-  text-align: center;
-}
-
-.tech-fallback-card:hover,
-.tech-fallback-card--active {
-  border-color: rgba(59, 130, 246, 0.4);
-  box-shadow: 0 0 14px rgba(59, 130, 246, 0.15);
-  transform: translateY(-2px);
-}
-
-.tech-fallback-card img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-}
-
-.tech-fallback-label {
-  font-size: 0.62rem;
-  color: rgba(180, 210, 255, 0.7);
-  font-weight: 500;
-  line-height: 1.2;
-}
-
 /* ── Animations ─────────────────────────────────────── */
 @keyframes globe-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
@@ -302,8 +248,8 @@
 @media (prefers-reduced-motion: reduce) {
   .tech-node-badge,
   .tech-globe-empty-icon {
-    animation: none !important;
-    transition: none !important;
+    animation: none;
+    transition: none;
   }
 }
 
@@ -317,6 +263,183 @@
   background: rgba(240, 245, 255, 0.9);
 }
 
-:root[data-mantine-color-scheme="light"] .tech-fallback-card {
+/* ═══════════════════════════════════════════════════════
+   MOBILE FALLBACK — Accordion por categorías
+   ═══════════════════════════════════════════════════════ */
+
+.tech-mobile-fallback {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* ── Category accordion header ──────────────────────── */
+.tech-mobile-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(10, 14, 23, 0.6);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  appearance: none;
+  text-align: left;
+}
+
+.tech-mobile-cat-header--open {
+  background: rgba(15, 25, 50, 0.75);
+  border-color: rgba(59, 130, 246, 0.25);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.tech-mobile-cat-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tech-mobile-cat-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(200, 215, 240, 0.9);
+  flex: 1;
+  letter-spacing: 0.02em;
+}
+
+.tech-mobile-cat-count {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(150, 180, 220, 0.5);
+  background: rgba(59, 130, 246, 0.08);
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+}
+
+.tech-mobile-cat-chevron {
+  font-size: 1rem;
+  color: rgba(150, 180, 220, 0.5);
+  transition: transform 0.25s ease;
+  line-height: 1;
+}
+
+.tech-mobile-cat-chevron--open {
+  transform: rotate(90deg);
+}
+
+/* ── Tech chips row ─────────────────────────────────── */
+.tech-mobile-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0.75rem 0.75rem 0.85rem;
+  background: rgba(8, 12, 22, 0.45);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  border-top: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.tech-mobile-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(10, 14, 23, 0.7);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+  appearance: none;
+  text-align: left;
+}
+
+.tech-mobile-chip:hover {
+  background: rgba(15, 25, 50, 0.85);
+  border-color: rgba(59, 130, 246, 0.35);
+  transform: translateY(-1px);
+}
+
+.tech-mobile-chip--active {
+  background: rgba(20, 35, 70, 0.9);
+  transform: translateY(-1px);
+}
+
+.tech-mobile-chip img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.tech-mobile-chip-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(180, 210, 255, 0.85);
+  white-space: nowrap;
+}
+
+/* ── Light theme ────────────────────────────────────── */
+:root[data-mantine-color-scheme="light"] .tech-mobile-cat-header {
   background: rgba(240, 245, 255, 0.85);
+  border-color: rgba(59, 130, 246, 0.15);
+}
+
+:root[data-mantine-color-scheme="light"] .tech-mobile-chips {
+  background: rgba(245, 248, 255, 0.75);
+}
+
+:root[data-mantine-color-scheme="light"] .tech-mobile-chip {
+  background: rgba(240, 245, 255, 0.9);
+}
+
+:root[data-mantine-color-scheme="light"] .tech-mobile-cat-label,
+:root[data-mantine-color-scheme="light"] .tech-mobile-chip-label {
+  color: rgba(30, 50, 90, 0.85);
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Mobile (<480px): info panel compact ───────────── */
+@media (max-width: 480px) {
+  .tech-globe-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .tech-globe-info-panel {
+    min-height: 0;
+    padding: 1.25rem;
+  }
+
+  .tech-globe-panel-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .tech-mobile-cat-header {
+    padding: 0.65rem 0.85rem;
+  }
+}
+
+/* ── Tablet (768px–900px): single-column but roomy ─── */
+@media (min-width: 768px) and (max-width: 899px) {
+  .tech-globe-canvas-wrapper {
+    max-width: 420px;
+  }
+
+  .tech-globe-info-panel {
+    min-height: 260px;
+  }
 }
