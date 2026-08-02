@@ -20,7 +20,7 @@ import { siteConfig } from '../config/siteConfig';
 import { useTranslation } from 'react-i18next';
 import RippleButton from '../components/RippleButton';
 import GlowText from '../components/GlowText';
-import TechStackGrid from '../components/TechStackGrid';
+import TechStackSection from '../components/TechGlobe';
 import AboutPreview from '../components/AboutPreview';
 import FeaturedProjects from '../components/FeaturedProjects';
 import DevApproach from '../components/DevApproach';
@@ -116,8 +116,8 @@ function Home() {
                 </Stack>
             </section>
 
-            {/* ===== 2. Tech Stack Grid ===== */}
-            <TechStackGrid />
+            {/* ===== 2. Tech Stack Globe ===== */}
+            <TechStackSection />
 
             {/* ===== 3. About Preview ===== */}
             <AboutPreview />

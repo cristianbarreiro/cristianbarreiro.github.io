@@ -38,7 +38,8 @@
       "frontend": "Frontend",
       "backend": "Backend",
       "database": "Base de Datos",
-      "tools": "Herramientas"
+      "tools": "Herramientas",
+      "languages": "Lenguajes"
     },
     "aboutPreviewTitle": "Sobre mí",
     "aboutPreviewSubtitle": "Desarrollador apasionado por crear soluciones que generan impacto",
@@ -73,7 +74,14 @@
       }
     },
     "contactSectionTitle": "Construyamos algo juntos",
-    "contactSectionSubtitle": "¿Tienes un proyecto en mente? Me encantaría escucharte"
+    "contactSectionSubtitle": "¿Tienes un proyecto en mente? Me encantaría escucharte",
+    "techGlobe": {
+      "selectPrompt": "Haz click en una tecnología para explorarla",
+      "relatedProjects": "Proyectos relacionados",
+      "noProjects": "Sin proyectos vinculados aún",
+      "panelAria": "Panel de información de tecnología",
+      "gridAria": "Grilla de tecnologías"
+    }
   },
   "techStack": {
     "aria": "Tecnologías",
@@ -86,17 +94,51 @@
     "java": "Java",
     "springBoot": "Spring Boot",
     "nodejs": "Node.js",
-    "express": "Express",
+    "express": "Express.js",
     "laravel": "Laravel",
     "react": "React",
     "tailwind": "Tailwind CSS",
+    "vite": "Vite",
+    "html5": "HTML5",
+    "css3": "CSS3",
     "postgresql": "PostgreSQL",
     "mongodb": "MongoDB",
     "supabase": "Supabase",
     "docker": "Docker",
     "aws": "AWS",
     "git": "Git",
-    "linux": "Linux"
+    "github": "GitHub",
+    "vercel": "Vercel",
+    "swagger": "Swagger",
+    "postman": "Postman",
+    "linux": "Linux",
+    "cpp": "C++"
+  },
+  "techDesc": {
+    "react": "Librería principal para construir interfaces de usuario reactivas y basadas en componentes. Utilizada en todos mis proyectos frontend modernos.",
+    "typescript": "Superset tipado de JavaScript que mejora la mantenibilidad y detecta errores en tiempo de compilación. Base de mis proyectos frontend actuales.",
+    "javascript": "Lenguaje fundamental del desarrollo web. Lo uso tanto en frontend como en backend con Node.js y en proyectos de scripting.",
+    "java": "Lenguaje principal para desarrollo backend empresarial. Utilizado con Spring Boot para construir APIs REST robustas y escalables.",
+    "springBoot": "Framework de Java para crear aplicaciones backend de producción. Utilizado en Genius Platform para APIs REST y arquitectura de microservicios.",
+    "nodejs": "Entorno de ejecución JavaScript del lado del servidor. Utilizado para construir APIs rápidas y servicios de backend en tiempo real.",
+    "express": "Framework minimalista para Node.js. Permite construir APIs REST de forma rápida y flexible con middleware personalizable.",
+    "tailwind": "Framework CSS de utilidad primero. Permite construir diseños modernos y responsivos directamente en el markup.",
+    "vite": "Bundler moderno ultrarrápido con HMR instantáneo. Es mi herramienta de build preferida para proyectos React.",
+    "html5": "Lenguaje de marcado estándar de la web. Fundamento de toda interfaz de usuario con elementos semánticos modernos.",
+    "css3": "Hoja de estilos que da vida a las interfaces. Utilizo variables CSS, animaciones y diseño responsivo avanzado.",
+    "postgresql": "Base de datos relacional robusta y de código abierto. Utilizada en producción para proyectos con datos complejos y relaciones.",
+    "mongodb": "Base de datos NoSQL orientada a documentos. Ideal para datos flexibles y aplicaciones con esquemas dinámicos.",
+    "supabase": "Plataforma Backend-as-a-Service con PostgreSQL. Utilizada para autenticación, almacenamiento y base de datos en tiempo real.",
+    "docker": "Plataforma de contenedores para empaquetar y desplegar aplicaciones de forma consistente en cualquier entorno.",
+    "git": "Sistema de control de versiones distribuido. Parte fundamental de mi flujo de trabajo en todos los proyectos.",
+    "github": "Plataforma de alojamiento de código y colaboración. Uso GitHub para control de versiones, CI/CD y gestión de proyectos.",
+    "aws": "Plataforma de servicios en la nube de Amazon. Experiencia con servicios básicos de despliegue y almacenamiento.",
+    "vercel": "Plataforma de despliegue para aplicaciones frontend modernas. Ideal para proyectos React con integración continua.",
+    "swagger": "Herramienta para diseñar, documentar y probar APIs REST. Integrada con Spring Boot para documentación automática.",
+    "postman": "Cliente HTTP para probar y documentar APIs. Esencial en el ciclo de desarrollo backend.",
+    "python": "Lenguaje de propósito general utilizado en proyectos de scripting, automatización y sistemas de mensajería.",
+    "cpp": "Lenguaje de bajo nivel utilizado en proyectos académicos de estructuras de datos, algoritmos y sistemas.",
+    "go": "Lenguaje compilado de Google, diseñado para sistemas concurrentes y servicios de alta performance. En aprendizaje activo."
   },
   "about": {
     "aria": "Sobre mí",
@@ -214,7 +256,7 @@
     "goTo": "Ir a {{label}}"
   },
   "site": {
-    "title": "Desarrollador Full-Stack",
+    "title": "DESARROLLADOR FULL-STACK | INGENIERO DE SOFTWARE",
     "subtitle": "Estudiante de Tecnólogo en Informática | Apasionado por el desarrollo de software y la tecnología",
     "heroDescription": "Construyendo aplicaciones web modernas con pasión por la innovación y el aprendizaje continuo.",
     "bio": "Soy Programador y Técnico en Informática, graduado del Bachillerato Tecnológico en Informática y actualmente estudiante de la carrera de Tecnólogo en Informática.\n\nMe especializo en el desarrollo de aplicaciones web y soluciones de software, con experiencia en tecnologías como Java, Spring Boot, Node.js, React, TypeScript, Python, PHP y bases de datos SQL y NoSQL. Disfruto diseñar e implementar aplicaciones escalables, APIs y sistemas que resuelvan problemas reales de forma eficiente.\n\nA lo largo de mi formación he participado en proyectos académicos y personales que me permitieron fortalecer mis conocimientos en desarrollo Full-Stack, arquitectura de software, bases de datos, control de versiones y buenas prácticas de programación.\n\nMe considero una persona analítica, proactiva y comprometida con el aprendizaje continuo. Disfruto trabajar en equipo, enfrentar nuevos desafíos tecnológicos y seguir creciendo como desarrollador, aportando soluciones de calidad que generen valor.",
