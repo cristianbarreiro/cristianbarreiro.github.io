@@ -18,10 +18,10 @@ import { getDeviconUrl } from '../../data/globeTechStack';
 
 /* ─────────────────────────────────────────
    Globe Mesh — esfera digital con wireframe + glow
+   Recibe globeRef para exponerlo a la escena y usarlo como occluder
 ───────────────────────────────────────── */
-function GlobeMesh({ reducedMotion }) {
-  const meshRef = useRef();
-  const wireRef = useRef();
+function GlobeMesh({ reducedMotion, globeRef }) {
+  const wireRef  = useRef();
   const ring1Ref = useRef();
   const ring2Ref = useRef();
   const ring3Ref = useRef();
@@ -30,7 +30,7 @@ function GlobeMesh({ reducedMotion }) {
     if (reducedMotion) return;
     const t = clock.getElapsedTime();
 
-    if (meshRef.current) meshRef.current.rotation.y = t * 0.06;
+    if (globeRef.current) globeRef.current.rotation.y = t * 0.06;
     if (wireRef.current)  wireRef.current.rotation.y  = t * 0.06;
     if (ring1Ref.current) ring1Ref.current.rotation.z = t * 0.12;
     if (ring2Ref.current) ring2Ref.current.rotation.x = t * 0.09;
@@ -42,9 +42,9 @@ function GlobeMesh({ reducedMotion }) {
 
   return (
     <group>
-      {/* Core sphere — charcoal metallic */}
-      <mesh ref={meshRef}>
-        <sphereGeometry args={[1.35, 48, 48]} />
+      {/* Core sphere — charcoal metallic — ref compartido para oclusión */}
+      <mesh ref={globeRef}>
+        <sphereGeometry args={[1.0, 48, 48]} />
         <meshStandardMaterial
           color="#090d18"
           roughness={0.55}
@@ -55,7 +55,7 @@ function GlobeMesh({ reducedMotion }) {
 
       {/* Wireframe grid overlay */}
       <mesh ref={wireRef}>
-        <sphereGeometry args={[1.36, 20, 20]} />
+        <sphereGeometry args={[1.01, 20, 20]} />
         <meshBasicMaterial
           color="#1e4a8c"
           wireframe
@@ -66,19 +66,19 @@ function GlobeMesh({ reducedMotion }) {
 
       {/* Energy ring 1 — horizontal */}
       <mesh ref={ring1Ref} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[1.55, 0.008, 6, 120]} />
+        <torusGeometry args={[1.15, 0.008, 6, 120]} />
         <meshBasicMaterial color="#3b82f6" transparent opacity={0.35} />
       </mesh>
 
       {/* Energy ring 2 — tilted */}
       <mesh ref={ring2Ref} rotation={[0.8, 0.4, 0]}>
-        <torusGeometry args={[1.6, 0.005, 6, 120]} />
+        <torusGeometry args={[1.2, 0.005, 6, 120]} />
         <meshBasicMaterial color="#67e8f9" transparent opacity={0.2} />
       </mesh>
 
       {/* Energy ring 3 — animated orbit */}
       <mesh ref={ring3Ref} rotation={[0.3, 0, 0.7]}>
-        <torusGeometry args={[1.65, 0.004, 6, 120]} />
+        <torusGeometry args={[1.25, 0.004, 6, 120]} />
         <meshBasicMaterial color="#60a5fa" transparent opacity={0.15} />
       </mesh>
 
@@ -97,8 +97,8 @@ const PARTICLE_COUNT = 90;
 const _particlePositions = (() => {
   const arr = new Float32Array(PARTICLE_COUNT * 3);
   for (let i = 0; i < PARTICLE_COUNT; i++) {
-    const r = 3.2 + (i / PARTICLE_COUNT) * 1.2; // determinístico
-    const theta = (i * 2.399963) % (Math.PI * 2); // ángulo dorado
+    const r = 3.2 + (i / PARTICLE_COUNT) * 1.2;
+    const theta = (i * 2.399963) % (Math.PI * 2);
     const phi = Math.acos(1 - 2 * ((i + 0.5) / PARTICLE_COUNT));
     arr[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
     arr[i * 3 + 1] = r * Math.cos(phi);
@@ -138,8 +138,9 @@ function GlobeParticles({ reducedMotion }) {
 
 /* ─────────────────────────────────────────
    TechNode — nodo HTML flotante en el espacio 3D
+   Recibe globeRef para ocluir el badge cuando está detrás de la esfera
 ───────────────────────────────────────── */
-function TechNode({ tech, selectedId, onSelect, reducedMotion }) {
+function TechNode({ tech, selectedId, onSelect, reducedMotion, globeRef }) {
   const groupRef = useRef();
   const isActive = selectedId === tech.id;
 
@@ -154,7 +155,7 @@ function TechNode({ tech, selectedId, onSelect, reducedMotion }) {
 
   // Velocidades orbitales por anillo (más cercano = más rápido)
   const orbitSpeeds = [0.18, 0.11, 0.07];
-  // floatOffset es determinístico por índice — evita Math.random() en render
+  // floatOffset determinístico por posición angular — sin Math.random() en render
   const floatOffset = (tech._theta ?? 0) * 1.618;
 
   useFrame(({ clock }) => {
@@ -162,7 +163,6 @@ function TechNode({ tech, selectedId, onSelect, reducedMotion }) {
     const t = clock.getElapsedTime();
 
     if (!reducedMotion) {
-      // Orbital rotation around Y axis
       const speed = orbitSpeeds[tech.orbit] ?? 0.08;
       orbitAngle.current += 0.016 * speed;
 
@@ -190,7 +190,7 @@ function TechNode({ tech, selectedId, onSelect, reducedMotion }) {
         center
         distanceFactor={6}
         zIndexRange={[10, 0]}
-        occlude={false}
+        occlude={[globeRef]}
         style={{ pointerEvents: 'auto' }}
       >
         <div
@@ -222,9 +222,12 @@ function TechNode({ tech, selectedId, onSelect, reducedMotion }) {
 
 /* ─────────────────────────────────────────
    Scene — la escena Three.js completa
+   Crea el globeRef aquí y lo pasa a GlobeMesh y a cada TechNode
 ───────────────────────────────────────── */
 function Scene({ technologies, selectedId, onSelectTech, reducedMotion }) {
   const { gl } = useThree();
+  // Ref compartido: apunta al mesh de la esfera principal
+  const globeRef = useRef();
 
   useEffect(() => {
     gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -238,13 +241,13 @@ function Scene({ technologies, selectedId, onSelectTech, reducedMotion }) {
       <pointLight position={[-4, 3, -4]} intensity={0.6} color="#3b82f6" distance={10} />
       <pointLight position={[4, -2, 4]}  intensity={0.4} color="#67e8f9" distance={8} />
 
-      {/* Globe */}
-      <GlobeMesh reducedMotion={reducedMotion} />
+      {/* Globe — le pasamos globeRef para que exponga su mesh */}
+      <GlobeMesh reducedMotion={reducedMotion} globeRef={globeRef} />
 
       {/* Particles */}
       <GlobeParticles reducedMotion={reducedMotion} />
 
-      {/* Tech nodes */}
+      {/* Tech nodes — cada uno recibe globeRef para la oclusión */}
       {technologies.map((tech) => (
         <TechNode
           key={tech.id}
@@ -252,6 +255,7 @@ function Scene({ technologies, selectedId, onSelectTech, reducedMotion }) {
           selectedId={selectedId}
           onSelect={onSelectTech}
           reducedMotion={reducedMotion}
+          globeRef={globeRef}
         />
       ))}
 
@@ -285,7 +289,7 @@ function TechGlobe({ technologies, selectedTech, onSelectTech, reducedMotion }) 
         camera={{ position: [0, 0, 6], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
         frameloop={reducedMotion ? 'never' : 'always'}
-        style={{ width: '100%', height: '100%', borderRadius: '50%' }}
+        style={{ width: '100%', height: '100%' }}
         dpr={[1, 2]}
       >
         <Scene

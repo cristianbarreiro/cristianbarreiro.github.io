@@ -288,7 +288,7 @@ export const globeTechnologies = [
  * Usa distribución de ángulo dorado para espaciado uniforme
  */
 export function computeNodePositions(technologies) {
-  const orbitRadii = [1.7, 2.3, 2.9];
+  const orbitRadii = [1.3, 1.75, 1.9];
   const orbits = [[], [], []];
 
   technologies.forEach((tech) => orbits[tech.orbit].push(tech));

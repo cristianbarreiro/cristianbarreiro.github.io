@@ -28,9 +28,9 @@
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
-  max-width: 480px;
+  max-width: 580px;
   margin: 0 auto;
-  border-radius: 50%;
+  overflow: visible;
 }
 
 .tech-globe-canvas-wrapper::before {
