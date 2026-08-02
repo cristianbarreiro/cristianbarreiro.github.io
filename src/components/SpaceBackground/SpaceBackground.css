@@ -4,7 +4,8 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100vh; /* fallback para navegadores sin dvh */
+  height: 100dvh; /* sigue el viewport visible real en móvil (barra de URL) */
   z-index: -1;
   pointer-events: none;
 }

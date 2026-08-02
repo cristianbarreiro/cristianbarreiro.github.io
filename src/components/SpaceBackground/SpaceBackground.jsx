@@ -94,13 +94,35 @@ function SpaceBackground({ theme = 'space' }) {
 
     const resizeCanvas = () => {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = Math.floor(width * dpr);
-      canvas.height = Math.floor(height * dpr);
+      const newWidth = window.innerWidth;
+      const newHeight = window.innerHeight;
+      canvas.width = Math.floor(newWidth * dpr);
+      canvas.height = Math.floor(newHeight * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      initStars();
-      initNebulaClouds();
+
+      const isFirstInit = width === 0 && height === 0;
+      const scaleX = isFirstInit ? 1 : newWidth / width;
+      const scaleY = isFirstInit ? 1 : newHeight / height;
+
+      width = newWidth;
+      height = newHeight;
+
+      if (isFirstInit) {
+        initStars();
+        initNebulaClouds();
+        return;
+      }
+
+      starsRef.current.forEach((star) => {
+        star.x *= scaleX;
+        star.y *= scaleY;
+      });
+
+      nebulaCloudsRef.current.forEach((cloud) => {
+        cloud.x *= scaleX;
+        cloud.y *= scaleY;
+        cloud.radius *= Math.max(scaleX, scaleY);
+      });
     };
 
     const initStars = () => {
