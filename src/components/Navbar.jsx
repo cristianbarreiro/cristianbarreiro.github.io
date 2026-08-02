@@ -36,9 +36,20 @@ const navLinks = [
 
 const getEnabledNavLinks = () => navLinks.filter((link) => link.enabled);
 
+const getLanguageOnly = (language) => {
+    if (!language) return 'es';
+    return language.split('-')[0];
+};
+
+const getCVHref = (language) => {
+    const lang = getLanguageOnly(language);
+    return lang === 'en' ? '/eng_cv_dev_cristianbarreiro.pdf' : '/esp_cv_dev_cristianbarreiro.pdf';
+};
+
 function Navbar() {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const enabledNavLinks = getEnabledNavLinks();
+    const cvHref = getCVHref(i18n.resolvedLanguage || i18n.language);
 
     // Estado para el drawer del menú móvil
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
@@ -99,7 +110,7 @@ function Navbar() {
                             <LanguageToggle />
                             <RippleButton
                                 component="a"
-                                href="/cv_dev_cristian.pdf"
+                                href={cvHref}
                                 download
                                 size="compact-sm"
                                 variant="default"
@@ -118,7 +129,7 @@ function Navbar() {
                         <Group hiddenFrom="sm" wrap="nowrap" gap="xs">
                             <RippleButton
                                 component="a"
-                                href="/cv_dev_cristian.pdf"
+                                href={cvHref}
                                 download
                                 size="compact-sm"
                                 variant="default"
