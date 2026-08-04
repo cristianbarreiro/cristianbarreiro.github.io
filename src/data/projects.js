@@ -84,7 +84,7 @@ const projectsByLanguage = {
                     type: 'video',
                 },
             ],
-            tags: ['Laravel', 'API REST', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB'],
+            tags: ['Laravel', 'API REST', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB', 'MVC'],
             demoUrl: '',
             repoUrl: '',
             featured: false,
@@ -275,7 +275,7 @@ const projectsByLanguage = {
         },
         {
             id: 7,
-            title: 'Sistema de Mensajería (Redes)',
+            title: 'Sistema de Mensajería',
             description:
                 'Sistema cliente-servidor para envío y recepción de mensajes entre usuarios mediante conexión a servidor.',
             longDescription:
@@ -283,25 +283,25 @@ const projectsByLanguage = {
             image: null,
             tags: ['Python', 'Sockets', 'Redes'],
             demoUrl: '',
-            repoUrl: 'https://github.com/proyectitopa/laboratorio_5',
+            repoUrl: 'https://github.com/labredesproyectito/laboratorio_redes',
             featured: false
         },
         {
             id: 8,
-            title: 'Trabajo Obligatorio Arquitectura de Software en C++',
+            title: 'Sistema de gestión bibliotecaria',
             description:
                  'Proyecto académico desarrollado en un equipo de cinco integrantes, enfocado en el diseño e implementación de una solución aplicando Programación Orientada a Objetos, estructuras de datos y principios de arquitectura de software.',
             longDescription:
                  'Proyecto académico desarrollado en un equipo de cinco integrantes, enfocado en el diseño e implementación de una solución aplicando Programación Orientada a Objetos, estructuras de datos y principios de arquitectura de software. Participé en el desarrollo de funcionalidades, la integración de componentes y la coordinación del trabajo en equipo utilizando buenas prácticas de programación.',
             image: null,
-            tags: ['C', 'C++', 'POO'],
+            tags: ['C', 'C++', 'POO', 'Interfaces', 'Factory Pattern'],
             demoUrl: '',
-            repoUrl: 'https://github.com/labredesproyectito/laboratorio_redes',
+            repoUrl: 'https://github.com/proyectitopa/laboratorio_5',
             featured: false
         },
         {
             id: 9,
-            title: 'Sistema de Semáforos (Sistemas Operativos)',
+            title: 'Sistema de Semáforos',
             description:
                 'Simulación de sistema de semáforos para control de procesos concurrentes.',
             longDescription:
@@ -341,7 +341,7 @@ const projectsByLanguage = {
             tags: ['C', 'C++', 'Operating System Libraries', 'Data Structures'],
             demoUrl: '#',
             repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_EDA',
-            featured: true,
+            featured: false,
         },
         {
             id: 13,
@@ -394,7 +394,7 @@ const projectsByLanguage = {
                     type: 'video',
                 },
             ],
-            tags: ['Laravel', 'REST API', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB'],
+            tags: ['Laravel', 'REST API', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB', 'MVC'],
             demoUrl: '#',
             repoUrl: 'https://github.com/BinaryTech-corp',
             featured: false,
@@ -428,19 +428,6 @@ const projectsByLanguage = {
         },
         {
             id: 4,
-            title: 'Frontend Mentor Projects',
-            description:
-                'Web development and design challenges focused on frontend. Freedom to choose languages and tools.',
-            longDescription:
-                'A collection of projects built from Frontend Mentor challenges, covering different techniques and frontend styles. In the future I will use frameworks and CSS tooling to improve design and user experience.',
-            image: null,
-            tags: ['JavaScript', 'HTML', 'CSS', 'React', 'SCSS', 'TailwindCSS', 'Bootstrap'],
-            demoUrl: 'https://www.frontendmentor.io/profile/cristianbarreiro',
-            repoUrl: '',
-            featured: false,
-        },
-        {
-            id: 5,
             title: 'E-commerce ShopHub',
             description:
                  'E-commerce ShopHub – Footwear Retail Platform. Personal full-stack e-commerce platform built with a monorepo architecture.',
@@ -459,10 +446,10 @@ const projectsByLanguage = {
             ],
             demoUrl: 'https://e-commerce-monorepo-three.vercel.app/',
             repoUrl: '',
-            featured: false,
+            featured: true,
         },
         {
-            id: 12,
+            id: 11,
             title: 'NovaVolt E-commerce',
             description:
                 'NovaVolt E-commerce – Electronics and accessories online store platform. Personal frontend React project with Supabase integration for authentication and state management.',
@@ -506,7 +493,7 @@ const projectsByLanguage = {
             featured: true,
         },
         {
-            id: 6,
+            id: 5,
             title: 'Perfume E-commerce',
             description:
                 'Full-stack e-commerce application with dynamic catalog, product quick view, cart, wishlist, and backoffice dashboard.',
@@ -566,7 +553,7 @@ const projectsByLanguage = {
             featured: true,
         },
         {
-            id: 7,
+            id: 6,
             title: 'Genius - Business Management Platform',
             description:
                  'Work simulation at ID for Ideas building Genius, a business management platform made of four modular repositories.',
@@ -594,11 +581,11 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: '',
-            featured: false
+            featured: true
         },
         {
-            id: 8,
-            title: 'Messaging System (Networking)',
+            id: 7,
+            title: 'Messaging System',
             description:
                 'Client-server system for sending and receiving messages between users via server connection.',
             longDescription:
@@ -606,24 +593,24 @@ const projectsByLanguage = {
             image: null,
             tags: ['Python', 'Sockets', 'Networking'],
             demoUrl: '',
-            repoUrl: 'https://github.com/proyectitopa/laboratorio_5',
+            repoUrl: 'https://github.com/labredesproyectito/laboratorio_redes',
             featured: false
         },
         {
-            id: 9,
-            title: 'Mandatory Assignment - Software Architecture in C++',
+            id: 8,
+            title: 'Library Management System',
             description:
                  'Academic project developed in a five-member team, focused on designing and implementing a solution applying Object-Oriented Programming, data structures, and software architecture principles.',
             longDescription:
                  'Academic project developed in a five-member team, focused on designing and implementing a solution applying Object-Oriented Programming, data structures, and software architecture principles. I participated in feature development, component integration, and team coordination using good programming practices.',
             image: null,
-            tags: ['C', 'C++', 'OOP'],
+            tags: ['C', 'C++', 'POO', 'Interfaces', 'Factory Pattern'],
             demoUrl: '',
-            repoUrl: 'https://github.com/labredesproyectito/laboratorio_redes',
+            repoUrl: 'https://github.com/proyectitopa/laboratorio_5',
             featured: false
         },
         {
-            id: 10,
+            id: 9,
             title: 'Traffic Light System (Operating Systems)',
             description:
                 'Traffic light system simulation for concurrent process control.',
@@ -636,7 +623,7 @@ const projectsByLanguage = {
             featured: false
         },
         {
-            id: 11,
+            id: 10,
             title: 'Boutique Exclusivi',
             description:
                 'Editorial e-commerce for premium footwear. Online store with dynamic catalog and dark editorial design.',
@@ -645,15 +632,39 @@ const projectsByLanguage = {
             image: '/images/projects/boutique_exclusivi/boutique_exclusivi00.jpeg',
             tags: ['TypeScript', 'React', 'TailwindCSS', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Vite', 'Stripe'],
             demoUrl: 'https://boutique-exclusivi-ds7v.vercel.app/',
-            repoUrl: 'https://github.com/cristianbarreiro/boutique-exclusivi',
+            repoUrl: '',
             featured: true
         }
     ],
 };
 
+const sortProjectsByCanonicalOrder = (list = []) => {
+    return [...list].sort((a, b) => {
+        if (a.featured !== b.featured) {
+            return Number(b.featured) - Number(a.featured);
+        }
+
+        return Number(a.id) - Number(b.id);
+    });
+};
+
 export const getProjects = (language = 'es') => {
     const lang = (language || 'es').split('-')[0];
-    return projectsByLanguage[lang] || projectsByLanguage.es;
+    
+    // Sort ES projects first to establish the canonical sorted sequence
+    const esSorted = sortProjectsByCanonicalOrder(projectsByLanguage.es);
+    
+    if (lang === 'es') {
+        return esSorted;
+    }
+    
+    const targetSource = projectsByLanguage[lang] || projectsByLanguage.es;
+    
+    // Reorder target language items to match the exact order of their corresponding ES items.
+    return esSorted.map(esProj => {
+        const origIndex = projectsByLanguage.es.findIndex(p => p.id === esProj.id);
+        return targetSource[origIndex] || esProj;
+    });
 };
 
 // Compatibilidad: por defecto exporta ES
