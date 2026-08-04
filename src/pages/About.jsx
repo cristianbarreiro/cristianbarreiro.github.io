@@ -14,7 +14,6 @@ import {
     Grid,
     Timeline,
     ThemeIcon,
-    useMantineColorScheme,
 } from '@mantine/core';
 import {
     IconBriefcase,
@@ -33,7 +32,6 @@ import { useTranslation } from 'react-i18next';
 
 function About() {
     const { t, i18n } = useTranslation();
-    const { colorScheme } = useMantineColorScheme();
 
     const language = i18n.resolvedLanguage || i18n.language;
 
@@ -74,7 +72,7 @@ function About() {
                         </Group>
                         <Text
                             size="md"
-                            c={colorScheme === 'dark' ? 'gray.0' : 'dimmed'}
+                            c="gray.0"
                             style={{ whiteSpace: 'pre-line', lineHeight: 1.8 }}
                         >
                             {t('site.bio')}

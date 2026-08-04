@@ -1,10 +1,8 @@
 import { useEffect, useRef } from 'react';
-import { useMantineColorScheme } from '@mantine/core';
 import './CircuitBackground.css';
 
 function CircuitBackground() {
   const canvasRef = useRef(null);
-  const { colorScheme } = useMantineColorScheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -12,12 +10,9 @@ function CircuitBackground() {
 
     const ctx = canvas.getContext('2d', { alpha: true });
 
-    // Paletas de colores según el tema
-    const isLight = colorScheme === 'light';
-    const neonPalette = isLight 
-      ? ['#4d65ff', '#8b5cf6', '#d946ef'] // Colores más oscuros para modo claro
-      : ['#45f3ff', '#8b5cf6', '#ff4fd8']; // Colores neón para modo oscuro
-    const dimLineAlpha = isLight ? 0.15 : 0.09;
+    // Paleta de colores neón para modo oscuro
+    const neonPalette = ['#45f3ff', '#8b5cf6', '#ff4fd8'];
+    const dimLineAlpha = 0.09;
     const baseLineWidth = 1.2;
 
     // Pulse timing constants. The pulse loops forever and advances using a sine-eased phase.
@@ -182,7 +177,7 @@ function CircuitBackground() {
         cancelAnimationFrame(animationId);
       }
     };
-  }, [colorScheme]);
+  }, []);
 
   return <canvas ref={canvasRef} className="circuit-background" aria-hidden="true" />;
 }

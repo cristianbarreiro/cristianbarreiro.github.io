@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { MantineProvider, createTheme } from '@mantine/core';
 import { useThemeContext } from '../context/ThemeContext';
-import { dualStorageColorSchemeManager } from '../utils/colorSchemeManager';
 
 const BASE_THEME = {
   fontFamily:
@@ -43,8 +42,8 @@ function ThemeRoot({ children }) {
   return (
     <MantineProvider
       theme={theme}
-      defaultColorScheme="auto"
-      colorSchemeManager={dualStorageColorSchemeManager()}
+      defaultColorScheme="dark"
+      forceColorScheme="dark"
     >
       {children}
     </MantineProvider>

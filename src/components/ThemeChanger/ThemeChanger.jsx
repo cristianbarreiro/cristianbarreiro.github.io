@@ -1,9 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { useMantineColorScheme } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
-import { IconPalette, IconSun, IconMoon, IconCheck } from '@tabler/icons-react';
+import { IconPalette, IconCheck } from '@tabler/icons-react';
 import { useThemeContext } from '../../context/ThemeContext';
-import { siteConfig } from '../../config/siteConfig';
 import './ThemeChanger.css';
 
 const COLOR_OPTIONS = [
@@ -20,7 +18,6 @@ function ThemeChanger() {
   const panelRef = useRef(null);
   const buttonRef = useRef(null);
   const { t } = useTranslation();
-  const { colorScheme, setColorScheme } = useMantineColorScheme();
   const { primaryColor, setPrimaryColor } = useThemeContext();
 
   const close = useCallback(() => setOpen(false), []);
@@ -64,15 +61,6 @@ function ThemeChanger() {
     };
   }, [handleClickOutside, handleEscape, handleScroll]);
 
-  const isLight = colorScheme === 'light';
-  const enableLightMode = siteConfig.features?.enableLightMode !== false;
-
-  useEffect(() => {
-    if (!enableLightMode && isLight) {
-      setColorScheme('dark');
-    }
-  }, [enableLightMode, isLight, setColorScheme]);
-
   return (
     <>
       <button
@@ -93,32 +81,6 @@ function ThemeChanger() {
         role="dialog"
         aria-label={t('themeChanger.changeTheme')}
       >
-        <div className="theme-changer-section">
-          <span className="theme-changer-section-label">{t('themeChanger.appearance')}</span>
-          <div className="theme-changer-scheme-toggle">
-            {enableLightMode && (
-              <button
-                type="button"
-                className={`theme-changer-scheme-btn ${isLight ? 'is-active' : ''}`}
-                onClick={() => setColorScheme('light')}
-                aria-label={t('theme.toLight')}
-              >
-                <IconSun size={16} stroke={1.5} />
-                {t('themeChanger.light')}
-              </button>
-            )}
-            <button
-              type="button"
-              className={`theme-changer-scheme-btn ${!isLight ? 'is-active' : ''}`}
-              onClick={() => setColorScheme('dark')}
-              aria-label={t('theme.toDark')}
-            >
-              <IconMoon size={16} stroke={1.5} />
-              {t('themeChanger.dark')}
-            </button>
-          </div>
-        </div>
-
         <div className="theme-changer-section">
           <span className="theme-changer-section-label">{t('themeChanger.accentColor')}</span>
           <div className="theme-changer-colors">
