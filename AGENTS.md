@@ -25,6 +25,7 @@ Este repositorio opera bajo un modelo de **co-autoría supervisada**:
 - Cada cambio debe ser atómico, reversible y explicable.
 - La IA no toma decisiones de producto — solo decisiones de implementación dentro de los límites definidos.
 - Ante ambigüedad, el agente debe **preguntar**, nunca asumir.
+- **Respeto a eliminaciones del usuario:** Si el usuario elimina código, lógica o cambios de un archivo, la IA NO debe insistir en re-armar o re-introducir dicho código. En caso de considerar que algo eliminado es necesario, se debe **consultar explícitamente al usuario** antes de realizar cualquier propuesta o modificación sobre lo eliminado.
 - El contexto siempre es más importante que la velocidad.
 
 ---
@@ -119,6 +120,7 @@ public/
 - Si el cambio afecta más de un dominio, documentar la dependencia cruzada.
 - Si se necesita un paquete nuevo, justificar con: *por qué*, *alternativas evaluadas*, *tamaño del bundle*.
 - No refactorizar código ajeno a la tarea actual sin aprobación explícita.
+- **Respetar código eliminado:** Si el usuario eliminó un bloque de código, función o cambio, no intentar re-armarlo ni re-introducirlo. Consultar previamente si se cree que es indispensable.
 
 ### 4.3 Después del Cambio
 
@@ -205,6 +207,7 @@ public/
 - ❌ Desplegar a un proveedor diferente a GitHub Pages sin aprobación.
 - ❌ Usar `!important` en CSS salvo caso extremo documentado.
 - ❌ Commitear archivos `.env`, claves o tokens.
+- ❌ Re-introducir o insistir en armar código, funciones o cambios que el usuario haya eliminado previamente sin su consulta y aprobación explícita.
 
 ### 6.2 Requiere Aprobación Explícita
 
@@ -241,4 +244,4 @@ Este sistema de agentes está diseñado para crecer. Cuando el proyecto lo requi
 
 ---
 
-*Última actualización: 2026-07-27*
+*Última actualización: 2026-08-04*

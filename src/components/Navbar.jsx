@@ -21,7 +21,7 @@ import { IconHome, IconUser, IconFolder, IconCode, IconMail, IconDownload } from
 import LanguageToggle from './LanguageToggle';
 import RippleButton from './RippleButton';
 import { siteConfig } from '../config/siteConfig';
-import { useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 // Definición de enlaces de navegación
@@ -60,6 +60,7 @@ function Navbar() {
     const theme = useMantineTheme();
 
     const inicioRef = useRef(null);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
         if (location.pathname === '/' && inicioRef.current) {
@@ -67,10 +68,26 @@ function Navbar() {
         }
     }, [location.pathname]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 0) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const headerClassName = `glassmorphic-navbar${isScrolled ? ' scrolled' : ''}`;
+
     return (
         <>
-            {/* Header principal */}
-            <header className="glassmorphic-navbar">
+            {/* Header principal con efecto Shrinking Header */}
+            <header id="navbar" className={headerClassName}>
 
                 <Container size="lg" py="sm">
                     <Group justify="space-between" align="center" wrap="nowrap">

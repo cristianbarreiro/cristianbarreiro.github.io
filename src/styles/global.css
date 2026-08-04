@@ -318,7 +318,17 @@ button:hover .icon-send-jello {
   border-bottom: none;
   box-shadow: none;
 
-  transition: all 0.3s ease;
+  transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, border-color 0.3s ease;
+  will-change: padding;
+}
+
+.glassmorphic-navbar .mantine-Container-root {
+  transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glassmorphic-navbar.scrolled .mantine-Container-root {
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
 }
 
 /* Glow border outline — trapezoid shape */
@@ -1381,6 +1391,11 @@ button:hover .icon-send-jello {
   image-rendering: -webkit-optimize-contrast;
   transform: scale(2.2);
   transform-origin: left center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glassmorphic-navbar.scrolled .navbar-logo {
+  transform: scale(1.7);
 }
 
 @media (max-width: 36em) {
