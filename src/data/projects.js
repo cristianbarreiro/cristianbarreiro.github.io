@@ -34,6 +34,38 @@ const projectsByLanguage = {
             featured: false,
         },
         {
+            id: 13,
+            title: 'cdevUY Technology Platform',
+            description:
+                'Plataforma tecnológica moderna para mostrar servicios de desarrollo de software, soluciones digitales y proyectos tecnológicos personalizados.',
+            longDescription:
+                'Plataforma corporativa completa desarrollada para cdevUY, una empresa tecnológica enfocada en construir soluciones digitales modernas. La plataforma presenta servicios, capacidades de desarrollo, proyectos y experiencia tecnológica a través de una experiencia interactiva y de alto rendimiento. Incluye arquitectura moderna, diseño responsive, secciones dinámicas y una presencia digital profesional para clientes empresariales.',
+            image: '/images/projects/cdevuy/cdevuy.png',
+            images: [
+                {
+                    src: '/images/projects/cdevuy/cdevuy.png',
+                    alt: 'Captura de cdevUY Technology Platform',
+                },
+                {
+                    src: '/videos/cdevuy/cdevuy-demo.mp4',
+                    alt: 'Video de demostración de cdevUY Technology Platform',
+                    type: 'video',
+                },
+            ],
+            tags: [
+                'React',
+                'Vite',
+                'TypeScript',
+                'TailwindCSS',
+                'Framer Motion',
+                'Supabase',
+                'Cloud Infrastructure',
+            ],
+            demoUrl: 'https://cdevuy.vercel.app/',
+            repoUrl: '',
+            featured: true,
+        },
+        {
             id: 2,
             title: 'Socratica Social Network',
             description:
@@ -55,7 +87,7 @@ const projectsByLanguage = {
             tags: ['Laravel', 'API REST', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB'],
             demoUrl: '',
             repoUrl: '',
-            featured: true,
+            featured: false,
         },
         {
             id: 3,
@@ -323,6 +355,38 @@ const projectsByLanguage = {
             featured: true,
         },
         {
+            id: 13,
+            title: 'cdevUY Technology Platform',
+            description:
+                'A modern technology platform for showcasing software development services, digital solutions, and custom technology projects.',
+            longDescription:
+                'A complete corporate platform developed for cdevUY, a technology company focused on building modern digital solutions. The platform presents services, development capabilities, projects, and technology expertise through a high-performance and interactive experience. Includes a modern architecture, responsive design, dynamic sections, and a professional digital presence for business clients.',
+            image: '/images/projects/cdevuy/cdevuy.png',
+            images: [
+                {
+                    src: '/images/projects/cdevuy/cdevuy.png',
+                    alt: 'cdevUY Technology Platform screenshot',
+                },
+                {
+                    src: '/videos/cdevuy/cdevuy-demo.mp4',
+                    alt: 'cdevUY platform demonstration video',
+                    type: 'video',
+                },
+            ],
+            tags: [
+                'React',
+                'Vite',
+                'TypeScript',
+                'TailwindCSS',
+                'Framer Motion',
+                'Supabase',
+                'Cloud Infrastructure',
+            ],
+            demoUrl: 'https://cdevuy.vercel.app/',
+            repoUrl: '',
+            featured: true,
+        },
+        {
             id: 2,
             title: 'Socratica Social Network',
             description:
@@ -344,7 +408,7 @@ const projectsByLanguage = {
             tags: ['Laravel', 'REST API', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB'],
             demoUrl: '#',
             repoUrl: 'https://github.com/BinaryTech-corp',
-            featured: true,
+            featured: false,
         },
         {
             id: 3,

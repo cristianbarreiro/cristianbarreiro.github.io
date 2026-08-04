@@ -21,7 +21,13 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
     const thumbnailsRef = useRef(null);
     const imageRef = useRef(null);
     const [zoomLevel, setZoomLevel] = useState(0);
-    const [zoomOrigin, setZoomOrigin] = useState({ x: 50, y: 50 });
+    const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
+    const [isDraggingState, setIsDraggingState] = useState(false);
+
+    const isDraggingRef = useRef(false);
+    const hasDraggedRef = useRef(false);
+    const dragStartRef = useRef({ x: 0, y: 0 });
+    const panStartRef = useRef({ x: 0, y: 0 });
 
     const ZOOM_LEVELS = [1, 1.5, 2.5];
     const ZOOM_LABELS = ['Fit', '150%', '250%'];
@@ -30,17 +36,32 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
     const currentImage = images[activeIndex] || null;
     const hasMultipleImages = totalImages > 1;
 
-    const goToPrev = useCallback(() => {
+    const resetZoomAndPan = useCallback(() => {
         setZoomLevel(0);
-        setZoomOrigin({ x: 50, y: 50 });
+        setPanOffset({ x: 0, y: 0 });
+        isDraggingRef.current = false;
+        hasDraggedRef.current = false;
+        setIsDraggingState(false);
+    }, []);
+
+    const getMaxPan = useCallback((scale) => {
+        if (!imageRef.current || scale <= 1) return { maxPanX: 0, maxPanY: 0 };
+        const width = imageRef.current.offsetWidth;
+        const height = imageRef.current.offsetHeight;
+        const maxPanX = (width * scale - width) / 2;
+        const maxPanY = (height * scale - height) / 2;
+        return { maxPanX, maxPanY };
+    }, []);
+
+    const goToPrev = useCallback(() => {
+        resetZoomAndPan();
         setActiveIndex((prev) => (prev - 1 + totalImages) % totalImages);
-    }, [totalImages]);
+    }, [totalImages, resetZoomAndPan]);
 
     const goToNext = useCallback(() => {
-        setZoomLevel(0);
-        setZoomOrigin({ x: 50, y: 50 });
+        resetZoomAndPan();
         setActiveIndex((prev) => (prev + 1) % totalImages);
-    }, [totalImages]);
+    }, [totalImages, resetZoomAndPan]);
 
     useEffect(() => {
         if (!opened) return undefined;
@@ -50,8 +71,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
                 if (zoomLevel > 0) {
                     event.preventDefault();
                     event.stopImmediatePropagation();
-                    setZoomLevel(0);
-                    setZoomOrigin({ x: 50, y: 50 });
+                    resetZoomAndPan();
                     return;
                 }
                 return;
@@ -69,7 +89,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [opened, hasMultipleImages, goToPrev, goToNext, zoomLevel]);
+    }, [opened, hasMultipleImages, goToPrev, goToNext, zoomLevel, resetZoomAndPan]);
 
     useEffect(() => {
         if (!hasMultipleImages || !opened) return;
@@ -100,11 +120,101 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
 
     const handleImageClick = (e) => {
         if (currentImage.type === 'video') return;
-        const rect = imageRef.current.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        setZoomOrigin({ x, y });
-        setZoomLevel((prev) => (prev + 1) % ZOOM_LEVELS.length);
+        if (hasDraggedRef.current) {
+            hasDraggedRef.current = false;
+            return;
+        }
+
+        const nextZoom = (zoomLevel + 1) % ZOOM_LEVELS.length;
+        setZoomLevel(nextZoom);
+
+        if (nextZoom === 0) {
+            setPanOffset({ x: 0, y: 0 });
+        } else if (imageRef.current) {
+            const rect = imageRef.current.getBoundingClientRect();
+            const scale = ZOOM_LEVELS[nextZoom];
+            const clickX = e.clientX - (rect.left + rect.width / 2);
+            const clickY = e.clientY - (rect.top + rect.height / 2);
+
+            const width = imageRef.current.offsetWidth;
+            const height = imageRef.current.offsetHeight;
+            const maxPanX = (width * scale - width) / 2;
+            const maxPanY = (height * scale - height) / 2;
+
+            const targetX = Math.max(-maxPanX, Math.min(maxPanX, -clickX * (scale - 1)));
+            const targetY = Math.max(-maxPanY, Math.min(maxPanY, -clickY * (scale - 1)));
+
+            setPanOffset({ x: targetX, y: targetY });
+        }
+    };
+
+    const handleMouseDown = (e) => {
+        if (zoomLevel === 0 || currentImage.type === 'video') return;
+        e.preventDefault();
+        isDraggingRef.current = true;
+        hasDraggedRef.current = false;
+        setIsDraggingState(true);
+        dragStartRef.current = { x: e.clientX, y: e.clientY };
+        panStartRef.current = { ...panOffset };
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDraggingRef.current || zoomLevel === 0) return;
+        const deltaX = e.clientX - dragStartRef.current.x;
+        const deltaY = e.clientY - dragStartRef.current.y;
+
+        if (Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4) {
+            hasDraggedRef.current = true;
+        }
+
+        const scale = ZOOM_LEVELS[zoomLevel];
+        const { maxPanX, maxPanY } = getMaxPan(scale);
+
+        const nextX = Math.max(-maxPanX, Math.min(maxPanX, panStartRef.current.x + deltaX));
+        const nextY = Math.max(-maxPanY, Math.min(maxPanY, panStartRef.current.y + deltaY));
+
+        setPanOffset({ x: nextX, y: nextY });
+    };
+
+    const handleMouseUp = () => {
+        if (isDraggingRef.current) {
+            isDraggingRef.current = false;
+            setIsDraggingState(false);
+        }
+    };
+
+    const handleTouchStart = (e) => {
+        if (zoomLevel === 0 || currentImage.type === 'video' || e.touches.length !== 1) return;
+        isDraggingRef.current = true;
+        hasDraggedRef.current = false;
+        setIsDraggingState(true);
+        dragStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        panStartRef.current = { ...panOffset };
+    };
+
+    const handleTouchMove = (e) => {
+        if (!isDraggingRef.current || zoomLevel === 0 || e.touches.length !== 1) return;
+        const deltaX = e.touches[0].clientX - dragStartRef.current.x;
+        const deltaY = e.touches[0].clientY - dragStartRef.current.y;
+
+        if (Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4) {
+            hasDraggedRef.current = true;
+        }
+
+        const scale = ZOOM_LEVELS[zoomLevel];
+        const { maxPanX, maxPanY } = getMaxPan(scale);
+
+        const nextX = Math.max(-maxPanX, Math.min(maxPanX, panStartRef.current.x + deltaX));
+        const nextY = Math.max(-maxPanY, Math.min(maxPanY, panStartRef.current.y + deltaY));
+
+        setPanOffset({ x: nextX, y: nextY });
+    };
+
+    const handleTouchEnd = () => {
+        if (isDraggingRef.current) {
+            isDraggingRef.current = false;
+            setIsDraggingState(false);
+        }
     };
 
     if (!currentImage) {
@@ -193,14 +303,23 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
                                     key={activeIndex}
                                     src={currentImage.src}
                                     alt={currentImage.alt}
-                                    className={`project-images-modal__image${zoomLevel > 0 ? ' project-images-modal__image--zoomed' : ''}`}
+                                    className={`project-images-modal__image${
+                                        zoomLevel > 0 ? ' project-images-modal__image--zoomed' : ''
+                                    }${isDraggingState ? ' project-images-modal__image--dragging' : ''}`}
                                     loading="lazy"
                                     onClick={handleImageClick}
+                                    onMouseDown={handleMouseDown}
+                                    onMouseMove={handleMouseMove}
+                                    onMouseUp={handleMouseUp}
+                                    onMouseLeave={handleMouseUp}
+                                    onTouchStart={handleTouchStart}
+                                    onTouchMove={handleTouchMove}
+                                    onTouchEnd={handleTouchEnd}
                                     style={
                                         zoomLevel > 0
                                             ? {
-                                                  transform: `scale(${ZOOM_LEVELS[zoomLevel]})`,
-                                                  transformOrigin: `${zoomOrigin.x}% ${zoomOrigin.y}%`,
+                                                  transform: `translate(${panOffset.x}px, ${panOffset.y}px) scale(${ZOOM_LEVELS[zoomLevel]})`,
+                                                  transformOrigin: 'center center',
                                               }
                                             : undefined
                                     }
@@ -261,8 +380,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
                                     <button
                                         key={index}
                                         onClick={() => {
-                                            setZoomLevel(0);
-                                            setZoomOrigin({ x: 50, y: 50 });
+                                            resetZoomAndPan();
                                             setActiveIndex(index);
                                         }}
                                         className={`project-images-modal__thumbnail ${
