@@ -21,7 +21,7 @@ const projectsByLanguage = {
             id: 1,
             title: 'Sistema de Control de Versiones',
             description:
-                'Aplicación de sistema de control de versiones similar a Git en versión consola. (Proyecto privado)',
+                'Aplicación de sistema de control de versiones similar a Git en versión consola.',
             longDescription:
                 'Una aplicación por consola que permite a los usuarios gestionar versiones de archivos y proyectos, similar a Git. Incluye funcionalidades como añadir archivo principal, crear versiones, modificarlas y hacer búsquedas de versiones.',
             image: null,
@@ -331,23 +331,12 @@ const projectsByLanguage = {
             id: 1,
             title: 'Version Control System',
             description:
-                'Console-based version control system similar to Git. (Private project)',
+                'Console-based version control system similar to Git.',
             longDescription:
                 'A console application that lets users manage file and project versions, similar to Git. It includes features like adding a main file, creating versions, modifying them, and searching versions.',
             image: null,
             images: [
-                {
-                    src: '/images/projects/sistema_control_versiones/img1.jpg',
-                    alt: 'Version Control System screenshot 1',
-                },
-                {
-                    src: '/images/projects/sistema_control_versiones/img2.webp',
-                    alt: 'Version Control System screenshot 2',
-                },
-                {
-                    src: '/images/projects/sistema_control_versiones/img3.webp',
-                    alt: 'Version Control System screenshot 3',
-                },
+                
             ],
             tags: ['C', 'C++', 'Operating System Libraries', 'Data Structures'],
             demoUrl: '#',
