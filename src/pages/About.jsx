@@ -9,7 +9,6 @@ import {
     Text,
     Stack,
     Group,
-    Badge,
     Paper,
     Grid,
     Timeline,
@@ -18,7 +17,6 @@ import {
 import {
     IconBriefcase,
     IconSchool,
-    IconHeart,
     IconUser,
     IconCode,
 } from '@tabler/icons-react';
@@ -41,10 +39,6 @@ function About() {
 
     // Determinar si hay experiencia laboral
     const hasWorkExperience = workExperience.length > 0;
-
-    // Obtener intereses de forma segura
-    const interests = t('site.interests', { returnObjects: true });
-    const interestsList = Array.isArray(interests) ? interests : [];
 
     return (
         <main>
@@ -77,25 +71,6 @@ function About() {
                         >
                             {t('site.bio')}
                         </Text>
-                    </Paper>
-
-                    {/* Intereses */}
-                    <Paper p="xl" radius="md" withBorder className="glass-hover-card">
-                        <Group gap="md" mb="lg">
-                            <ThemeIcon size="lg" radius="md" variant="light" color="pink">
-                                <IconHeart size={20} />
-                            </ThemeIcon>
-                            <Title order={2} size="h3">
-                                {t('about.interestsTitle')}
-                            </Title>
-                        </Group>
-                        <Group gap="sm">
-                            {interestsList.map((interest) => (
-                                <Badge key={interest} variant="light" size="lg" radius="sm">
-                                    {interest}
-                                </Badge>
-                            ))}
-                        </Group>
                     </Paper>
                 </Stack>
             </section>
