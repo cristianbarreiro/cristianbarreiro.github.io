@@ -19,7 +19,6 @@ import { IconArrowRight, IconMail } from '@tabler/icons-react';
 import { siteConfig } from '../config/siteConfig';
 import { useTranslation } from 'react-i18next';
 import RippleButton from '../components/RippleButton';
-import GlowText from '../components/GlowText';
 import TechStackSection from '../components/TechGlobe';
 import AboutPreview from '../components/AboutPreview';
 import FeaturedProjects from '../components/FeaturedProjects';
@@ -44,37 +43,21 @@ function Home() {
                     {/* Nombre */}
                     <Title
                         order={1}
-                        size="3.5rem"
-                        fw={800}
-                        className="home-typing-line2"
-                        style={{ margin: 0 }}
+                        className="hero-title"
                     >
-                        <GlowText
-                            as="span"
-                            className="home-typing-line2-text"
-                            style={{
-                                '--name-gradient-start': `var(--mantine-color-${theme.primaryColor}-6)`,
-                                '--name-gradient-end': `var(--mantine-color-${theme.primaryColor}-4)`,
-                                '--glow-color': 'rgba(220, 235, 255, 0.95)',
-                                maxWidth: 'none',
-                                overflow: 'visible',
-                                animation: 'none',
-                                WebkitAnimation: 'none',
-                            }}
-                        >
-                            {siteConfig.fullName}
-                        </GlowText>
+                        {siteConfig.fullName}
                     </Title>
 
                     {/* Subtítulo / rol */}
-                    <Title
-                        order={2}
-                        size="h2"
-                        fw={400}
-                        className="section-subtitle"
-                    >
-                        {t('site.title')}
-                    </Title>
+                    <div className="hero-subtitle-container">
+                        <span className="hero-subtitle-badge-dot" aria-hidden="true" />
+                        <Title
+                            order={2}
+                            className="hero-subtitle-text"
+                        >
+                            {t('site.title')}
+                        </Title>
+                    </div>
 
                     {/* Descripción del hero */}
                     <Text

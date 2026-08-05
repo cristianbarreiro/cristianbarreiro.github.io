@@ -1142,6 +1142,82 @@ button:hover .icon-send-jello {
   }
 }
 
+/* ========================================
+   HERO TITLE & SUBTITLE — PREMIUM STYLING
+   ======================================== */
+
+.hero-title {
+  font-size: clamp(2.8rem, 7.5vw, 5.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  margin: 0;
+  padding: 0.1em 0.2em;
+  background: linear-gradient(135deg, #22d3ee 0%, #60a5fa 50%, #818cf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 24px rgba(34, 211, 238, 0.4));
+  transition: filter 0.3s ease;
+}
+
+.hero-title:hover {
+  filter: drop-shadow(0 0 32px rgba(34, 211, 238, 0.6));
+}
+
+:root[data-mantine-color-scheme="light"] .hero-title {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 4px 12px rgba(37, 99, 235, 0.2));
+}
+
+.hero-subtitle-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1.25rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+:root[data-mantine-color-scheme="light"] .hero-subtitle-container {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.hero-subtitle-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22d3ee;
+  box-shadow: 0 0 10px #22d3ee;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+:root[data-mantine-color-scheme="light"] .hero-subtitle-badge-dot {
+  background-color: #0284c7;
+  box-shadow: 0 0 8px rgba(2, 132, 199, 0.5);
+}
+
+.hero-subtitle-text {
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--mantine-color-text);
+  margin: 0;
+}
+
 /* Línea 2: reveal por clip (sin depender de "ch") */
 .home-typing-line2 {
   display: inline-block;
