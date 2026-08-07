@@ -211,7 +211,18 @@
     "indigo": "Indigo",
     "pink": "Pink",
     "grape": "Grape",
-    "red": "Red"
+    "red": "Red",
+    "backgroundTheme": "Background Theme",
+    "bgSpaceTitle": "3D WebGL Space",
+    "bgSpaceDesc": "Dynamic space environment with 3D particles & nebulae",
+    "bgGradientTitle": "Animated Gradient",
+    "bgGradientDesc": "Fluid moving color gradients",
+    "bgMinimalTitle": "Minimal Dark",
+    "bgMinimalDesc": "Clean dark background focused on high readability",
+    "bgParticlesTitle": "Particle Network",
+    "bgParticlesDesc": "Interactive tech node matrix",
+    "current": "Active",
+    "comingSoon": "Coming Soon"
   },
   "underConstruction": {
     "message": "This page is under construction.",

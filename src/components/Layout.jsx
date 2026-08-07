@@ -13,6 +13,7 @@ import Footer from './Footer';
 import SpaceBackground from './SpaceBackground';
 import { ConveyorLoop } from './ConveyorLoop';
 import { useThemeContext } from '../context/ThemeContext';
+import { getBackgroundThemeConfig } from '../config/backgroundThemes';
 
 const PRIMARY_TO_THEME = {
   blue: 'nebula-blue',
@@ -26,7 +27,9 @@ const PRIMARY_TO_THEME = {
 function Layout() {
     const { t } = useTranslation();
     const location = useLocation();
-    const { primaryColor } = useThemeContext();
+    const { primaryColor, backgroundTheme } = useThemeContext();
+    const activeBgConfig = getBackgroundThemeConfig(backgroundTheme);
+    const BackgroundComponent = activeBgConfig.component || SpaceBackground;
     const spaceTheme = PRIMARY_TO_THEME[primaryColor] ?? 'space';
 
     const [routeLoading, setRouteLoading] = useState(false);
@@ -116,7 +119,7 @@ function Layout() {
                 )}
                 {/* Contenedor con fondo */}
                 <Box className="main-content-wrapper space-bg">
-                    <SpaceBackground theme={spaceTheme} key={spaceTheme} />
+                    <BackgroundComponent theme={spaceTheme} key={`${backgroundTheme}-${spaceTheme}`} />
 
                     {/* Contenido de la página */}
                     <Container size="lg" py="xl" className="content-above-video">

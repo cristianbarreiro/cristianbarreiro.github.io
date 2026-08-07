@@ -2,41 +2,71 @@
 import { createContext, useContext, useState, useCallback } from 'react';
 import { siteConfig } from '../config/siteConfig';
 import {
+  DEFAULT_BACKGROUND_THEME,
+  BACKGROUND_THEMES,
+} from '../config/backgroundThemes';
+import {
   safeLocalStorageGet,
   safeLocalStorageSet,
   readCookie,
   writeCookie,
 } from '../utils/storage';
 
-const STORAGE_KEY = 'site-primary-color';
-const COOKIE_KEY = 'site-primary-color';
+const PRIMARY_COLOR_KEY = 'site-primary-color';
+const BG_THEME_KEY = 'site-background-theme';
 const COOKIE_MAX_AGE_DAYS = 365;
 
 const ThemeContext = createContext(null);
 
 function getPersistedPrimaryColor() {
-  const ls = safeLocalStorageGet(STORAGE_KEY);
+  const ls = safeLocalStorageGet(PRIMARY_COLOR_KEY);
   if (ls) return ls;
-  const ck = readCookie(COOKIE_KEY);
+  const ck = readCookie(PRIMARY_COLOR_KEY);
   if (ck) return ck;
   return siteConfig.primaryColor;
 }
 
 function persistPrimaryColor(value) {
-  safeLocalStorageSet(STORAGE_KEY, value);
-  writeCookie(COOKIE_KEY, value, { maxAgeDays: COOKIE_MAX_AGE_DAYS });
+  safeLocalStorageSet(PRIMARY_COLOR_KEY, value);
+  writeCookie(PRIMARY_COLOR_KEY, value, { maxAgeDays: COOKIE_MAX_AGE_DAYS });
+}
+
+function getPersistedBackgroundTheme() {
+  const ls = safeLocalStorageGet(BG_THEME_KEY);
+  if (ls && BACKGROUND_THEMES.some((t) => t.id === ls)) return ls;
+  const ck = readCookie(BG_THEME_KEY);
+  if (ck && BACKGROUND_THEMES.some((t) => t.id === ck)) return ck;
+  return DEFAULT_BACKGROUND_THEME;
+}
+
+function persistBackgroundTheme(value) {
+  safeLocalStorageSet(BG_THEME_KEY, value);
+  writeCookie(BG_THEME_KEY, value, { maxAgeDays: COOKIE_MAX_AGE_DAYS });
 }
 
 export function ThemeProvider({ children }) {
   const [primaryColor, setPrimaryColorState] = useState(getPersistedPrimaryColor);
+  const [backgroundTheme, setBackgroundThemeState] = useState(getPersistedBackgroundTheme);
 
   const setPrimaryColor = useCallback((color) => {
     setPrimaryColorState(color);
     persistPrimaryColor(color);
   }, []);
 
+  const setBackgroundTheme = useCallback((themeId) => {
+    setBackgroundThemeState(themeId);
+    persistBackgroundTheme(themeId);
+  }, []);
+
   return (
-    <ThemeContext.Provider value={{ primaryColor, setPrimaryColor }}>
+    <ThemeContext.Provider
+      value={{
+        primaryColor,
+        setPrimaryColor,
+        backgroundTheme,
+        setBackgroundTheme,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

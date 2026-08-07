@@ -211,7 +211,18 @@
     "indigo": "Índigo",
     "pink": "Rosa",
     "grape": "Grape",
-    "red": "Rojo"
+    "red": "Rojo",
+    "backgroundTheme": "Tema de Fondo",
+    "bgSpaceTitle": "Espacio WebGL 3D",
+    "bgSpaceDesc": "Entorno espacial dinámico con partículas y nebulosas",
+    "bgGradientTitle": "Gradiente Animado",
+    "bgGradientDesc": "Gradientes de color fluidos en movimiento",
+    "bgMinimalTitle": "Oscuro Minimalista",
+    "bgMinimalDesc": "Fondo limpio enfocado en alta legibilidad",
+    "bgParticlesTitle": "Red de Partículas",
+    "bgParticlesDesc": "Matriz interactiva de nodos tecnológicos",
+    "current": "Activo",
+    "comingSoon": "Próximamente"
   },
   "underConstruction": {
     "message": "Esta página está en construcción.",

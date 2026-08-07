@@ -1,7 +1,15 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IconPalette, IconCheck } from '@tabler/icons-react';
+import {
+  IconPalette,
+  IconCheck,
+  IconWorld,
+  IconSparkles,
+  IconLayout,
+  IconAtom,
+} from '@tabler/icons-react';
 import { useThemeContext } from '../../context/ThemeContext';
+import { BACKGROUND_THEMES } from '../../config/backgroundThemes';
 import './ThemeChanger.css';
 
 const COLOR_OPTIONS = [
@@ -13,12 +21,20 @@ const COLOR_OPTIONS = [
   { key: 'red', color: '#fa5252' },
 ];
 
+const ICON_MAP = {
+  world: IconWorld,
+  sparkles: IconSparkles,
+  layout: IconLayout,
+  atom: IconAtom,
+};
+
 function ThemeChanger() {
   const [open, setOpen] = useState(false);
   const panelRef = useRef(null);
   const buttonRef = useRef(null);
   const { t } = useTranslation();
-  const { primaryColor, setPrimaryColor } = useThemeContext();
+  const { primaryColor, setPrimaryColor, backgroundTheme, setBackgroundTheme } =
+    useThemeContext();
 
   const close = useCallback(() => setOpen(false), []);
 
@@ -81,6 +97,7 @@ function ThemeChanger() {
         role="dialog"
         aria-label={t('themeChanger.changeTheme')}
       >
+        {/* Sección 1: Color de Acento */}
         <div className="theme-changer-section">
           <span className="theme-changer-section-label">{t('themeChanger.accentColor')}</span>
           <div className="theme-changer-colors">
@@ -97,6 +114,53 @@ function ThemeChanger() {
                   aria-pressed={isSelected}
                 >
                   {isSelected && <IconCheck size={16} stroke={2.5} />}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Sección 2: Tema de Fondo */}
+        <div className="theme-changer-section" style={{ marginTop: 16 }}>
+          <span className="theme-changer-section-label">
+            {t('themeChanger.backgroundTheme')}
+          </span>
+          <div className="theme-changer-bg-list">
+            {BACKGROUND_THEMES.map((themeItem) => {
+              const isSelected = backgroundTheme === themeItem.id;
+              const isAvailable = themeItem.available;
+              const IconComp = ICON_MAP[themeItem.icon] || IconWorld;
+
+              return (
+                <button
+                  key={themeItem.id}
+                  type="button"
+                  disabled={!isAvailable}
+                  className={`theme-changer-bg-card ${isSelected ? 'is-selected' : ''} ${!isAvailable ? 'is-disabled' : ''}`}
+                  onClick={() => isAvailable && setBackgroundTheme(themeItem.id)}
+                  aria-pressed={isSelected}
+                >
+                  <div className="theme-changer-bg-card-header">
+                    <div className="theme-changer-bg-icon">
+                      <IconComp size={15} />
+                    </div>
+                    <span className="theme-changer-bg-title">
+                      {t(themeItem.nameKey)}
+                    </span>
+                    {isSelected && (
+                      <span className="theme-changer-bg-badge is-active">
+                        <IconCheck size={10} /> {t('themeChanger.current')}
+                      </span>
+                    )}
+                    {!isAvailable && (
+                      <span className="theme-changer-bg-badge is-coming">
+                        {t('themeChanger.comingSoon')}
+                      </span>
+                    )}
+                  </div>
+                  <p className="theme-changer-bg-desc">
+                    {t(themeItem.descriptionKey)}
+                  </p>
                 </button>
               );
             })}
