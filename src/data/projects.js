@@ -24,6 +24,7 @@ const projectsByLanguage = {
                 'Aplicación de sistema de control de versiones similar a Git en versión consola.',
             longDescription:
                 'Una aplicación por consola que permite a los usuarios gestionar versiones de archivos y proyectos, similar a Git. Incluye funcionalidades como añadir archivo principal, crear versiones, modificarlas y hacer búsquedas de versiones.',
+            date: '2025',
             image: null,
             images: [
               
@@ -40,6 +41,7 @@ const projectsByLanguage = {
                 'Plataforma tecnológica moderna para mostrar servicios de desarrollo de software, soluciones digitales y proyectos tecnológicos personalizados.',
             longDescription:
                 'Plataforma corporativa completa desarrollada para cdevUY, una empresa tecnológica enfocada en construir soluciones digitales modernas. La plataforma presenta servicios, capacidades de desarrollo, proyectos y experiencia tecnológica a través de una experiencia interactiva y de alto rendimiento. Incluye arquitectura moderna, diseño responsive, secciones dinámicas y una presencia digital profesional para clientes empresariales.',
+            date: '2026',
             image: '/images/projects/cdevuy/cdevuy.png',
             images: [
                 {
@@ -72,6 +74,7 @@ const projectsByLanguage = {
                 'Red social para compartir conocimientos y debates, especializada en intercambio cultural. (Proyecto privado)',
             longDescription:
                 'Plataforma web que permite a los usuarios crear perfiles, publicar contenido, seguir a otros usuarios y participar en debates sobre diversos temas culturales. Incluye funcionalidades de moderación y personalización de perfiles.',
+            date: '2024',
             image: '/images/projects/socratica/socratica.png',
             images: [
                 {
@@ -96,6 +99,7 @@ const projectsByLanguage = {
                  'Web Automotora (JavaScript + APIs, proyecto final). Proyecto final desarrollado en equipo durante el curso de Desarrollo Web.',
             longDescription:
                  'Proyecto final desarrollado en equipo durante el curso de Desarrollo Web. Participé en la implementación de funcionalidades para la visualización y filtrado de vehículos, consumo de APIs y gestión de información mediante LocalStorage. El proyecto fortaleció mis conocimientos de JavaScript, trabajo colaborativo y desarrollo de interfaces web interactivas.',
+            date: '2025',
             image: '/images/projects/automotora/Captura.png',
             images: [
                 {
@@ -123,6 +127,7 @@ const projectsByLanguage = {
                 'E-commerce ShopHub – Footwear Retail Platform. Proyecto personal de una plataforma e-commerce full stack desarrollado con arquitectura monorepo.',
             longDescription:
                 'Proyecto personal de una plataforma e-commerce full stack desarrollado con arquitectura monorepo. Diseñé e implementé funcionalidades como catálogo dinámico, filtros avanzados, carrito de compras, wishlist y panel de administración. El proyecto me permitió profundizar en el desarrollo de APIs, modelado de bases de datos y organización de aplicaciones escalables.',
+            date: '2025',
             image: '/images/projects/shophub/principal.jpeg',
             tags: [
                 'TypeScript',
@@ -145,6 +150,7 @@ const projectsByLanguage = {
                 'NovaVolt E-commerce – Plataforma de tienda online de electrónica y accesorios. Proyecto personal de frontend React con integración a Supabase para autenticación y estado.',
             longDescription:
                 'Proyecto personal de tienda online desarrollado con React, Vite y TailwindCSS. Construí catálogo de productos, filtros avanzados, carrito de compras y login con Supabase. El desarrollo incluyó integración de Supabase, manejo de rutas con React Router y una experiencia SPA responsiva con componentes reutilizables.',
+            date: '2026',
             image: '/images/projects/novavolt/novavolt1_desktop.png',
             images: [
                 {
@@ -189,6 +195,7 @@ const projectsByLanguage = {
                 'Aplicación e-commerce full-stack con catálogo dinámico, vista rápida de productos, carrito, favoritos y panel de backoffice.',
             longDescription:
                 'Proyecto e-commerce en arquitectura monorepo con frontend en React + TypeScript y backend en Node.js/Express + Prisma. Incluye Home con carruseles dinámicos, filtros por categoría/subcategoría/colecciones, modal de vista rápida, carrito y wishlist, además de backoffice para gestión de productos y colecciones.',
+            date: '2026',
             image: '/images/projects/cataleya/home.jpeg',
             images: [
                 {
@@ -249,6 +256,7 @@ const projectsByLanguage = {
                 'Simulación laboral en ID for Ideas desarrollando Genius, una plataforma empresarial compuesta por cuatro repositorios modulares.',
             longDescription:
                 'En la simulación laboral de ID for Ideas participé en el desarrollo de Genius, una plataforma de gestión empresarial compuesta por cuatro repositorios modulares. Incluyó Genius Budget Manager para la gestión de presupuestos, un CRM para clientes, un módulo de Landings y un Dashboard para visualización de métricas. Las tecnologías usadas incluyeron Java 17, Spring Boot, Maven, JavaScript, Node.js, Express, React, Vite, React Router, Recharts, HTML/CSS, PHP, Python, Swagger/OpenAPI, JUnit, Nodemon y Power BI.',
+            date: '15 de junio 2026 a 17 de julio 2026',
             image: null,
             tags: [
                 'Java 17',
@@ -280,6 +288,7 @@ const projectsByLanguage = {
                 'Sistema cliente-servidor para envío y recepción de mensajes entre usuarios mediante conexión a servidor.',
             longDescription:
                 'Sistema cliente-servidor que permite envío y recepción de mensajes entre usuarios utilizando conexión a servidor. Implementa comunicación en red, sockets y manejo de mensajes en tiempo real.',
+            date: '2026',
             image: null,
             tags: ['Python', 'Sockets', 'Redes'],
             demoUrl: '',
@@ -293,6 +302,7 @@ const projectsByLanguage = {
                  'Proyecto académico desarrollado en un equipo de cinco integrantes, enfocado en el diseño e implementación de una solución aplicando Programación Orientada a Objetos, estructuras de datos y principios de arquitectura de software.',
             longDescription:
                  'Proyecto académico desarrollado en un equipo de cinco integrantes, enfocado en el diseño e implementación de una solución aplicando Programación Orientada a Objetos, estructuras de datos y principios de arquitectura de software. Participé en el desarrollo de funcionalidades, la integración de componentes y la coordinación del trabajo en equipo utilizando buenas prácticas de programación.',
+            date: '2025',
             image: null,
             tags: ['C', 'C++', 'POO', 'Interfaces', 'Factory Pattern'],
             demoUrl: '',
@@ -306,6 +316,7 @@ const projectsByLanguage = {
                 'Simulación de sistema de semáforos para control de procesos concurrentes.',
             longDescription:
                 'Simulación de sistema de semáforos para control de procesos concurrentes. Implementación de sincronización de procesos y manejo de recursos compartidos.',
+            date: '2025',
             image: null,
             tags: ['C', 'C++', 'Librerías del Sistema Operativo'],
             demoUrl: '',
@@ -319,6 +330,7 @@ const projectsByLanguage = {
                 'E-commerce editorial de calzado premium. Tienda online con catálogo dinámico y diseño oscuro editorial.',
             longDescription:
                 'Plataforma e-commerce full-stack para marca premium de zapatillas. Desarrollada con React + TypeScript, TailwindCSS, Node.js/Express, Prisma y PostgreSQL. Incluye catálogo dinámico, filtros avanzados, carrito de compras, wishlist y panel de administración. Diseño oscuro editorial minimalista.',
+            date: '2026',
             image: '/images/projects/boutique_exclusivi/boutique_exclusivi00.jpeg',
             tags: ['TypeScript', 'React', 'TailwindCSS', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Vite', 'Stripe'],
             demoUrl: 'https://boutique-exclusivi-ds7v.vercel.app/',
@@ -334,6 +346,7 @@ const projectsByLanguage = {
                 'Console-based version control system similar to Git.',
             longDescription:
                 'A console application that lets users manage file and project versions, similar to Git. It includes features like adding a main file, creating versions, modifying them, and searching versions.',
+            date: '2025',
             image: null,
             images: [
                 
@@ -350,6 +363,7 @@ const projectsByLanguage = {
                 'A modern technology platform for showcasing software development services, digital solutions, and custom technology projects.',
             longDescription:
                 'A complete corporate platform developed for cdevUY, a technology company focused on building modern digital solutions. The platform presents services, development capabilities, projects, and technology expertise through a high-performance and interactive experience. Includes a modern architecture, responsive design, dynamic sections, and a professional digital presence for business clients.',
+            date: '2026',
             image: '/images/projects/cdevuy/cdevuy.png',
             images: [
                 {
@@ -382,6 +396,7 @@ const projectsByLanguage = {
                 'A social network for sharing knowledge and debates, focused on cultural exchange. (Private project)',
             longDescription:
                 'A web platform where users can create profiles, publish content, follow others, and take part in debates about different cultural topics. Includes moderation and profile customization features.',
+            date: '2024',
             image: '/images/projects/socratica/socratica.png',
             images: [
                 {
@@ -406,6 +421,7 @@ const projectsByLanguage = {
                  'Car Dealership Website (JavaScript + APIs, final project). Final team project developed during the Web Development course.',
             longDescription:
                  'Final team project developed during the Web Development course. I participated in implementing vehicle visualization and filtering features, API consumption, and information management using LocalStorage. The project strengthened my JavaScript skills, collaborative work, and interactive web interface development.',
+            date: '2025',
             image: null,
             images: [
                 {
@@ -433,6 +449,7 @@ const projectsByLanguage = {
                  'E-commerce ShopHub – Footwear Retail Platform. Personal full-stack e-commerce platform built with a monorepo architecture.',
             longDescription:
                  'Personal full-stack e-commerce platform built with a monorepo architecture. I designed and implemented features such as dynamic catalog, advanced filters, shopping cart, wishlist, and admin panel. The project allowed me to deepen my skills in API development, database modeling, and scalable application organization.',
+            date: '2025',
             image: '/images/projects/shophub/principal.jpeg',
             tags: [
                 'TypeScript',
@@ -455,6 +472,7 @@ const projectsByLanguage = {
                 'NovaVolt E-commerce – Electronics and accessories online store platform. Personal frontend React project with Supabase integration for authentication and state management.',
             longDescription:
                 'Personal online store project built with React, Vite and TailwindCSS. I built a product catalog, advanced filters, shopping cart and login with Supabase. The development included Supabase integration, route handling with React Router, and a responsive SPA experience with reusable components.',
+            date: '2026',
             image: '/images/projects/novavolt/novavolt1_desktop.png',
             images: [
                 {
@@ -499,6 +517,7 @@ const projectsByLanguage = {
                 'Full-stack e-commerce application with dynamic catalog, product quick view, cart, wishlist, and backoffice dashboard.',
             longDescription:
                 'E-commerce project using a monorepo architecture with a React + TypeScript frontend and a Node.js/Express + Prisma backend. It includes a Home page with dynamic carousels, filters by category/subcategory/collections, a quick-view modal, cart and wishlist features, plus a backoffice for product and collection management.',
+            date: '2026',
             image: '/images/projects/cataleya/home.jpeg',
             images: [
                 {
@@ -559,6 +578,7 @@ const projectsByLanguage = {
                  'Work simulation at ID for Ideas building Genius, a business management platform made of four modular repositories.',
             longDescription:
                  'In the ID for Ideas work simulation, I participated in developing Genius, a business management platform composed of four modular repositories. These included Genius Budget Manager for budget management, a CRM for customer management, a Landings module, and a Dashboard to display metrics. Technologies used included Java 17, Spring Boot, Maven, JavaScript, Node.js, Express, React, Vite, React Router, Recharts, HTML/CSS, PHP, Python, Swagger/OpenAPI, JUnit, Nodemon, and Power BI.',
+            date: 'June 15, 2026 - July 17, 2026',
             image: null,
             tags: [
                 'Java 17',
@@ -590,6 +610,7 @@ const projectsByLanguage = {
                 'Client-server system for sending and receiving messages between users via server connection.',
             longDescription:
                 'A client-server system that allows users to send and receive messages through a server connection. Implements network communication, sockets, and real-time message handling.',
+            date: '2026',
             image: null,
             tags: ['Python', 'Sockets', 'Networking'],
             demoUrl: '',
@@ -603,6 +624,7 @@ const projectsByLanguage = {
                  'Academic project developed in a five-member team, focused on designing and implementing a solution applying Object-Oriented Programming, data structures, and software architecture principles.',
             longDescription:
                  'Academic project developed in a five-member team, focused on designing and implementing a solution applying Object-Oriented Programming, data structures, and software architecture principles. I participated in feature development, component integration, and team coordination using good programming practices.',
+            date: '2025',
             image: null,
             tags: ['C', 'C++', 'POO', 'Interfaces', 'Factory Pattern'],
             demoUrl: '',
@@ -616,6 +638,7 @@ const projectsByLanguage = {
                 'Traffic light system simulation for concurrent process control.',
             longDescription:
                 'Simulation of a traffic light system for concurrent process control. Implementation of process synchronization and shared resource management.',
+            date: '2025',
             image: null,
             tags: ['C', 'C++', 'Operating System Libraries'],
             demoUrl: '',
@@ -629,6 +652,7 @@ const projectsByLanguage = {
                 'Editorial e-commerce for premium footwear. Online store with dynamic catalog and dark editorial design.',
             longDescription:
                 'Full-stack e-commerce platform for a premium sneaker brand. Built with React + TypeScript, TailwindCSS, Node.js/Express, Prisma and PostgreSQL. Includes dynamic catalog, advanced filters, shopping cart, wishlist, and admin panel. Minimalist editorial dark design.',
+            date: '2026',
             image: '/images/projects/boutique_exclusivi/boutique_exclusivi00.jpeg',
             tags: ['TypeScript', 'React', 'TailwindCSS', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Vite', 'Stripe'],
             demoUrl: 'https://boutique-exclusivi-ds7v.vercel.app/',

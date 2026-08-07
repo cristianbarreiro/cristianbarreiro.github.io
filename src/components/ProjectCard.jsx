@@ -16,9 +16,10 @@ import {
     useMantineTheme,
 } from '@mantine/core';
 import { useMemo, useState } from 'react';
-import { IconExternalLink, IconBrandGithub, IconPhoto } from '@tabler/icons-react';
+import { IconExternalLink, IconBrandGithub, IconPhoto, IconCalendar } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 import ProjectImagesModal from './ProjectImagesModal';
+import { formatProjectDate } from '../utils/formatDate';
 
 /**
  * Props del componente:
@@ -128,6 +129,19 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                     <Text fw={600} size={isCarousel ? 'xl' : 'lg'} lineClamp={isCarousel ? 2 : 1}>
                         {project.title}
                     </Text>
+
+                    {/* Fecha / Cronología del proyecto */}
+                    {formatProjectDate(project.date) && (
+                        <Group gap={6} align="center" style={{ marginTop: -4, marginBottom: -2 }}>
+                            <IconCalendar
+                                size={14}
+                                style={{ color: 'var(--mantine-color-dimmed)', opacity: 0.75, flexShrink: 0 }}
+                            />
+                            <Text size="xs" c="dimmed" fw={500}>
+                                {formatProjectDate(project.date)}
+                            </Text>
+                        </Group>
+                    )}
 
                     {/* Descripción */}
                     <Text size={isCarousel ? 'md' : 'sm'} c="dimmed" lineClamp={isCarousel ? 5 : 3}>

@@ -1,8 +1,9 @@
 import { Modal, Text, Badge, Group, Button, Stack, Title } from '@mantine/core';
 import { useMemo, useState } from 'react';
-import { IconExternalLink, IconBrandGithub, IconPhoto } from '@tabler/icons-react';
+import { IconExternalLink, IconBrandGithub, IconPhoto, IconCalendar } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 import ProjectImagesModal from './ProjectImagesModal';
+import { formatProjectDate } from '../utils/formatDate';
 
 function ProjectDetailModal({ project, opened, onClose }) {
     const { t } = useTranslation();
@@ -83,6 +84,18 @@ function ProjectDetailModal({ project, opened, onClose }) {
                         )}
 
                         <Title order={2}>{project.title}</Title>
+
+                        {formatProjectDate(project.date) && (
+                            <Group gap={6} align="center" style={{ marginTop: -8 }}>
+                                <IconCalendar
+                                    size={16}
+                                    style={{ color: 'var(--mantine-color-dimmed)', opacity: 0.85, flexShrink: 0 }}
+                                />
+                                <Text size="sm" c="dimmed" fw={500}>
+                                    {formatProjectDate(project.date)}
+                                </Text>
+                            </Group>
+                        )}
 
                         <Text size="md" style={{ lineHeight: 1.7 }}>
                             {project.longDescription || project.description}

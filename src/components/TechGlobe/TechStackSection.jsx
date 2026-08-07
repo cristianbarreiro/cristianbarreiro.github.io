@@ -7,7 +7,7 @@
  * Layout mobile:  fallback grid (arriba) + panel info (abajo)
  */
 
-import { useState, useMemo, useCallback, Suspense, lazy } from 'react';
+import { useState, useMemo, useCallback, useEffect, Suspense, lazy } from 'react';
 import { Container, Title, Text, Stack, useMantineTheme } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { computeNodePositions, globeTechnologies } from '../../data/globeTechStack';
@@ -20,11 +20,12 @@ const TechGlobe = lazy(() => import('./TechGlobe'));
 
 /** Detecta si el dispositivo soporta WebGL */
 function detectWebGL() {
+  if (typeof window === 'undefined') return false;
   try {
     const canvas = document.createElement('canvas');
     return !!(
       window.WebGLRenderingContext &&
-      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+      (canvas.getContext('webgl2') || canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
     );
   } catch {
     return false;
@@ -49,6 +50,7 @@ function TechStackSection() {
   const { t } = useTranslation();
 
   const [selectedTech, setSelectedTech] = useState(null);
+  const [hasWebGL, setHasWebGL] = useState(() => !detectMobile() && detectWebGL());
 
   // Calcular posiciones una sola vez
   const technologies = useMemo(
@@ -56,9 +58,16 @@ function TechStackSection() {
     []
   );
 
-  // Detección de capacidades
-  const isMobile      = useMemo(() => detectMobile(), []);
-  const hasWebGL      = useMemo(() => !isMobile && detectWebGL(), [isMobile]);
+  // Escuchar cambios de tamaño de ventana
+  useEffect(() => {
+    const handleResize = () => {
+      setHasWebGL(!detectMobile() && detectWebGL());
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const reducedMotion = useMemo(() => detectReducedMotion(), []);
 
   const handleSelectTech = useCallback((tech) => {
