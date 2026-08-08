@@ -181,7 +181,14 @@
     "imagePosition": "{{current}} of {{total}}",
     "imageCounter": "{{current}} / {{total}}",
     "galleryImageAlt": "Image {{index}} of {{project}}",
-    "viewMore": "View more"
+    "viewMore": "View more",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "zoomReset": "Reset zoom",
+    "fitView": "Fit to view",
+    "toggleThumbnails": "Toggle thumbnails",
+    "videoMedia": "Video",
+    "imageMedia": "Image"
   },
   "skills": {
     "aria": "Skills",
