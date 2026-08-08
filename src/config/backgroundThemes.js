@@ -1,4 +1,5 @@
 import SpaceBackground from '../components/SpaceBackground';
+import MinimalBackground from '../components/MinimalBackground';
 
 /**
  * Registro configurable de temas de fondo para la aplicación.
@@ -30,8 +31,8 @@ export const BACKGROUND_THEMES = [
     descriptionKey: 'themeChanger.bgMinimalDesc',
     type: 'minimal',
     icon: 'layout',
-    component: null,
-    available: false,
+    component: MinimalBackground,
+    available: true,
   },
   {
     id: 'particles',
@@ -44,7 +45,7 @@ export const BACKGROUND_THEMES = [
   },
 ];
 
-export const DEFAULT_BACKGROUND_THEME = 'space';
+export const DEFAULT_BACKGROUND_THEME = 'minimal';
 
 /**
  * Obtiene la configuración del tema de fondo por su ID
