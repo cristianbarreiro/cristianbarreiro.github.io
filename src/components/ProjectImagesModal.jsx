@@ -210,7 +210,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
         });
     };
 
-    // Click on image toggles zoom level smoothly
+    // Click on image toggles zoom level smoothly (Single click zoom <-> fit)
     const handleImageClick = (e) => {
         if (currentImage?.type === 'video') return;
         if (hasDraggedRef.current) {
@@ -222,15 +222,11 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
             const rect = viewportRef.current?.getBoundingClientRect();
             const clickX = rect ? e.clientX - (rect.left + rect.width / 2) : 0;
             const clickY = rect ? e.clientY - (rect.top + rect.height / 2) : 0;
-            const targetScale = 1.65;
-            const targetPan = clampPan(-clickX * 0.65, -clickY * 0.65, targetScale);
+            const targetScale = 1.75;
+            const targetPan = clampPan(-clickX * 0.75, -clickY * 0.75, targetScale);
 
             setZoomScale(targetScale);
             setPanOffset(targetPan);
-        } else if (zoomScale < 2.2) {
-            const targetScale = 2.5;
-            setZoomScale(targetScale);
-            setPanOffset((prev) => clampPan(prev.x, prev.y, targetScale));
         } else {
             resetZoomAndPan();
         }
