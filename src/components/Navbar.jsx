@@ -6,6 +6,7 @@
 
 import { Link, useLocation } from 'react-router-dom';
 import {
+    Box,
     Group,
     Burger,
     Container,
@@ -20,7 +21,6 @@ import { IconHome, IconUser, IconFolder, IconCode, IconMail, IconDownload } from
 
 import LanguageToggle from './LanguageToggle';
 import RippleButton from './RippleButton';
-import { siteConfig } from '../config/siteConfig';
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -88,28 +88,13 @@ function Navbar() {
         <>
             {/* Header principal con efecto Shrinking Header */}
             <header id="navbar" className={headerClassName}>
-
                 <Container size="lg" py="sm">
-                    <Group justify="space-between" align="center" wrap="nowrap">
-                        {/* Logo / Nombre */}
-                        <Link
-                            to="/"
-                            style={{
-                                textDecoration: 'none',
-                                display: 'flex',
-                                alignItems: 'center',
-                                minWidth: 0,
-                            }}>
-                            <img
-                                src="/logo.svg"
-                                alt={siteConfig.name}
-                                className="navbar-logo"
-                            />
-                        </Link>
+                    <Box style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+                        {/* Columna Izquierda: Espaciador flex-1 para centrado de navegación desktop */}
+                        <Box visibleFrom="sm" style={{ flex: '1 1 0%', minWidth: 0 }} />
 
-
-                        {/* Navegación desktop (oculta en móvil) */}
-                        <Group gap="sm" visibleFrom="sm">
+                        {/* Columna Central: Navegación desktop centrada horizontalmente */}
+                        <Group gap="sm" visibleFrom="sm" style={{ flex: '0 0 auto', justifyContent: 'center' }}>
                             {enabledNavLinks.map((link) => (
                                 <Text
                                     key={link.path}
@@ -124,6 +109,10 @@ function Navbar() {
                                     {t(link.labelKey)}
                                 </Text>
                             ))}
+                        </Group>
+
+                        {/* Columna Derecha: Acciones desktop (Idioma + Descarga CV) */}
+                        <Group gap="sm" visibleFrom="sm" justify="flex-end" style={{ flex: '1 1 0%', minWidth: 0 }}>
                             <LanguageToggle />
                             <RippleButton
                                 component="a"
@@ -142,8 +131,8 @@ function Navbar() {
                             </RippleButton>
                         </Group>
 
-                        {/* Botones móvil (hamburguesa + toggle tema) */}
-                        <Group hiddenFrom="sm" wrap="nowrap" gap="xs">
+                        {/* Botones Móvil (centrados horizontalmente) */}
+                        <Group hiddenFrom="sm" wrap="nowrap" gap="xs" justify="center" style={{ width: '100%' }}>
                             <RippleButton
                                 component="a"
                                 href={cvHref}
@@ -168,7 +157,7 @@ function Navbar() {
                                 aria-label={t('nav.openMenu')}
                             />
                         </Group>
-                    </Group>
+                    </Box>
                 </Container>
             </header>
 

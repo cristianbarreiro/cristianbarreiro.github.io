@@ -27,7 +27,7 @@ const projectsByLanguage = {
             date: '2025',
             image: null,
             images: [
-              
+
             ],
             tags: ['C', 'C++', 'Librerías del Sistema Operativo', 'Estructuras de Datos'],
             demoUrl: '',
@@ -41,7 +41,7 @@ const projectsByLanguage = {
                 'Ecosistema tecnológico full stack desarrollado para cdev Studio, compuesto por aplicaciones frontend independientes y microservicios backend para la gestión de clientes, proyectos y autenticación.',
             longDescription:
                 'Proyecto de plataforma tecnológica para cdev Studio, un ecosistema digital diseñado para centralizar la presentación de servicios, gestión de clientes y administración de proyectos tecnológicos. La solución fue desarrollada con una arquitectura moderna basada en múltiples aplicaciones frontend independientes — landing corporativa, client dashboard y backoffice administrativo — conectadas mediante microservicios backend especializados. Implementé autenticación segura con JWT y control de acceso basado en roles (RBAC), APIs REST documentadas con OpenAPI, persistencia en PostgreSQL con migraciones versionadas y seeds automatizados. El proyecto permitió aplicar principios de arquitectura escalable, separación de responsabilidades y desarrollo de aplicaciones full stack mantenibles.',
-            date: '2024',
+            date: '2026',
             image: '/images/projects/cdevstudio/cdevstudio.png',
             images: [
                 {
@@ -100,9 +100,9 @@ const projectsByLanguage = {
             id: 3,
             title: 'Web de Automotora',
             description:
-                 'Web Automotora (JavaScript + APIs, proyecto final). Proyecto final desarrollado en equipo durante el curso de Desarrollo Web.',
+                'Web Automotora (JavaScript + APIs, proyecto final). Proyecto final desarrollado en equipo durante el curso de Desarrollo Web.',
             longDescription:
-                 'Proyecto final desarrollado en equipo durante el curso de Desarrollo Web. Participé en la implementación de funcionalidades para la visualización y filtrado de vehículos, consumo de APIs y gestión de información mediante LocalStorage. El proyecto fortaleció mis conocimientos de JavaScript, trabajo colaborativo y desarrollo de interfaces web interactivas.',
+                'Proyecto final desarrollado en equipo durante el curso de Desarrollo Web. Participé en la implementación de funcionalidades para la visualización y filtrado de vehículos, consumo de APIs y gestión de información mediante LocalStorage. El proyecto fortaleció mis conocimientos de JavaScript, trabajo colaborativo y desarrollo de interfaces web interactivas.',
             date: '2025',
             image: '/images/projects/automotora/Captura.png',
             images: [
@@ -303,9 +303,9 @@ const projectsByLanguage = {
             id: 8,
             title: 'Sistema de gestión bibliotecaria',
             description:
-                 'Proyecto académico desarrollado en un equipo de cinco integrantes, enfocado en el diseño e implementación de una solución aplicando Programación Orientada a Objetos, estructuras de datos y principios de arquitectura de software.',
+                'Proyecto académico desarrollado en un equipo de cinco integrantes, enfocado en el diseño e implementación de una solución aplicando Programación Orientada a Objetos, estructuras de datos y principios de arquitectura de software.',
             longDescription:
-                 'Proyecto académico desarrollado en un equipo de cinco integrantes, enfocado en el diseño e implementación de una solución aplicando Programación Orientada a Objetos, estructuras de datos y principios de arquitectura de software. Participé en el desarrollo de funcionalidades, la integración de componentes y la coordinación del trabajo en equipo utilizando buenas prácticas de programación.',
+                'Proyecto académico desarrollado en un equipo de cinco integrantes, enfocado en el diseño e implementación de una solución aplicando Programación Orientada a Objetos, estructuras de datos y principios de arquitectura de software. Participé en el desarrollo de funcionalidades, la integración de componentes y la coordinación del trabajo en equipo utilizando buenas prácticas de programación.',
             date: '2025',
             image: null,
             tags: ['C', 'C++', 'POO', 'Interfaces', 'Factory Pattern'],
@@ -353,7 +353,7 @@ const projectsByLanguage = {
             date: '2025',
             image: null,
             images: [
-                
+
             ],
             tags: ['C', 'C++', 'Operating System Libraries', 'Data Structures'],
             demoUrl: '#',
@@ -426,9 +426,9 @@ const projectsByLanguage = {
             id: 3,
             title: 'Car Dealership Website',
             description:
-                 'Car Dealership Website (JavaScript + APIs, final project). Final team project developed during the Web Development course.',
+                'Car Dealership Website (JavaScript + APIs, final project). Final team project developed during the Web Development course.',
             longDescription:
-                 'Final team project developed during the Web Development course. I participated in implementing vehicle visualization and filtering features, API consumption, and information management using LocalStorage. The project strengthened my JavaScript skills, collaborative work, and interactive web interface development.',
+                'Final team project developed during the Web Development course. I participated in implementing vehicle visualization and filtering features, API consumption, and information management using LocalStorage. The project strengthened my JavaScript skills, collaborative work, and interactive web interface development.',
             date: '2025',
             image: null,
             images: [
@@ -454,9 +454,9 @@ const projectsByLanguage = {
             id: 4,
             title: 'E-commerce ShopHub',
             description:
-                 'E-commerce ShopHub – Footwear Retail Platform. Personal full-stack e-commerce platform built with a monorepo architecture.',
+                'E-commerce ShopHub – Footwear Retail Platform. Personal full-stack e-commerce platform built with a monorepo architecture.',
             longDescription:
-                 'Personal full-stack e-commerce platform built with a monorepo architecture. I designed and implemented features such as dynamic catalog, advanced filters, shopping cart, wishlist, and admin panel. The project allowed me to deepen my skills in API development, database modeling, and scalable application organization.',
+                'Personal full-stack e-commerce platform built with a monorepo architecture. I designed and implemented features such as dynamic catalog, advanced filters, shopping cart, wishlist, and admin panel. The project allowed me to deepen my skills in API development, database modeling, and scalable application organization.',
             date: '2025',
             image: '/images/projects/shophub/principal.jpeg',
             tags: [
@@ -583,9 +583,9 @@ const projectsByLanguage = {
             id: 6,
             title: 'Genius - Business Management Platform',
             description:
-                 'Work simulation at ID for Ideas building Genius, a business management platform made of four modular repositories.',
+                'Work simulation at ID for Ideas building Genius, a business management platform made of four modular repositories.',
             longDescription:
-                 'In the ID for Ideas work simulation, I participated in developing Genius, a business management platform composed of four modular repositories. These included Genius Budget Manager for budget management, a CRM for customer management, a Landings module, and a Dashboard to display metrics. Technologies used included Java 17, Spring Boot, Maven, JavaScript, Node.js, Express, React, Vite, React Router, Recharts, HTML/CSS, PHP, Python, Swagger/OpenAPI, JUnit, Nodemon, and Power BI.',
+                'In the ID for Ideas work simulation, I participated in developing Genius, a business management platform composed of four modular repositories. These included Genius Budget Manager for budget management, a CRM for customer management, a Landings module, and a Dashboard to display metrics. Technologies used included Java 17, Spring Boot, Maven, JavaScript, Node.js, Express, React, Vite, React Router, Recharts, HTML/CSS, PHP, Python, Swagger/OpenAPI, JUnit, Nodemon, and Power BI.',
             date: 'June 15, 2026 - July 17, 2026',
             image: null,
             tags: [
@@ -629,9 +629,9 @@ const projectsByLanguage = {
             id: 8,
             title: 'Library Management System',
             description:
-                 'Academic project developed in a five-member team, focused on designing and implementing a solution applying Object-Oriented Programming, data structures, and software architecture principles.',
+                'Academic project developed in a five-member team, focused on designing and implementing a solution applying Object-Oriented Programming, data structures, and software architecture principles.',
             longDescription:
-                 'Academic project developed in a five-member team, focused on designing and implementing a solution applying Object-Oriented Programming, data structures, and software architecture principles. I participated in feature development, component integration, and team coordination using good programming practices.',
+                'Academic project developed in a five-member team, focused on designing and implementing a solution applying Object-Oriented Programming, data structures, and software architecture principles. I participated in feature development, component integration, and team coordination using good programming practices.',
             date: '2025',
             image: null,
             tags: ['C', 'C++', 'POO', 'Interfaces', 'Factory Pattern'],
@@ -682,16 +682,16 @@ const sortProjectsByCanonicalOrder = (list = []) => {
 
 export const getProjects = (language = 'es') => {
     const lang = (language || 'es').split('-')[0];
-    
+
     // Sort ES projects first to establish the canonical sorted sequence
     const esSorted = sortProjectsByCanonicalOrder(projectsByLanguage.es);
-    
+
     if (lang === 'es') {
         return esSorted;
     }
-    
+
     const targetSource = projectsByLanguage[lang] || projectsByLanguage.es;
-    
+
     // Reorder target language items to match the exact order of their corresponding ES items.
     return esSorted.map(esProj => {
         const origIndex = projectsByLanguage.es.findIndex(p => p.id === esProj.id);

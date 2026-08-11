@@ -175,6 +175,8 @@
     "code": "Code",
     "images": "Images",
     "imagesUnavailable": "No images available",
+    "mediaUnavailable": "Content not available yet...",
+    "mediaUnavailableDesc": "The file for this content is not yet available.",
     "closeImages": "Close image viewer",
     "prevImage": "Previous image",
     "nextImage": "Next image",

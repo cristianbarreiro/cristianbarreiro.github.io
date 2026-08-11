@@ -7,6 +7,7 @@ import {
     ActionIcon,
     Tooltip,
     Badge,
+    Stack,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import {
@@ -20,6 +21,8 @@ import {
     IconVideo,
     IconPhoto,
     IconPlayerPlay,
+    IconVideoOff,
+    IconPhotoOff,
 } from '@tabler/icons-react';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -40,6 +43,8 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
     const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
     const [isDraggingState, setIsDraggingState] = useState(false);
     const [showThumbnails, setShowThumbnails] = useState(true);
+    const [mediaError, setMediaError] = useState(false);
+    const [thumbErrors, setThumbErrors] = useState({});
 
     const viewportRef = useRef(null);
     const mediaRef = useRef(null);
@@ -65,6 +70,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
         hasDraggedRef.current = false;
         setIsDraggingState(false);
         touchDistanceRef.current = null;
+        setMediaError(false);
     }, []);
 
     // Calculate maximum allowed pan offsets to prevent media from leaving the canvas viewport
@@ -195,7 +201,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
 
     // Mouse wheel zoom handling
     const handleWheel = (e) => {
-        if (!currentImage || currentImage.type === 'video') return;
+        if (!currentImage || currentImage.type === 'video' || mediaError) return;
         e.preventDefault();
 
         const delta = -e.deltaY * 0.0025;
@@ -212,7 +218,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
 
     // Click on image toggles zoom level smoothly (Single click zoom <-> fit)
     const handleImageClick = (e) => {
-        if (currentImage?.type === 'video') return;
+        if (currentImage?.type === 'video' || mediaError) return;
         if (hasDraggedRef.current) {
             hasDraggedRef.current = false;
             return;
@@ -234,7 +240,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
 
     // Mouse Dragging for Pan
     const handleMouseDown = (e) => {
-        if (zoomScale <= 1.0 || currentImage?.type === 'video') return;
+        if (zoomScale <= 1.0 || currentImage?.type === 'video' || mediaError) return;
         e.preventDefault();
         isDraggingRef.current = true;
         hasDraggedRef.current = false;
@@ -244,7 +250,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
     };
 
     const handleMouseMove = (e) => {
-        if (!isDraggingRef.current || zoomScale <= 1.0) return;
+        if (!isDraggingRef.current || zoomScale <= 1.0 || mediaError) return;
         const deltaX = e.clientX - dragStartRef.current.x;
         const deltaY = e.clientY - dragStartRef.current.y;
 
@@ -268,7 +274,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
 
     // Mobile Touch Gestures: Touch Drag, Pinch Zoom, and Swipe Navigation
     const handleTouchStart = (e) => {
-        if (currentImage?.type === 'video') return;
+        if (currentImage?.type === 'video' || mediaError) return;
 
         if (e.touches.length === 1) {
             // Record swipe start or drag start
@@ -291,7 +297,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
     };
 
     const handleTouchMove = (e) => {
-        if (currentImage?.type === 'video') return;
+        if (currentImage?.type === 'video' || mediaError) return;
 
         if (e.touches.length === 1 && isDraggingRef.current && zoomScale > 1.0) {
             const deltaX = e.touches[0].clientX - dragStartRef.current.x;
@@ -412,7 +418,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
 
                         {/* Interactive Toolbar Controls */}
                         <Group gap={6} align="center" className="project-media-viewer__controls">
-                            {currentImage.type !== 'video' && (
+                            {currentImage.type !== 'video' && !mediaError && (
                                 <Group gap={4} className="project-media-viewer__zoom-group">
                                     <Tooltip label={t('projectCard.zoomOut')} openDelay={400}>
                                         <ActionIcon
@@ -534,7 +540,23 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
                                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                                 className="project-media-viewer__media-wrapper"
                             >
-                                {currentImage.type === 'video' ? (
+                                {mediaError || !currentImage.src ? (
+                                    <Box className="project-media-viewer__unavailable">
+                                        <Stack align="center" gap="sm">
+                                            {currentImage.type === 'video' ? (
+                                                <IconVideoOff size={48} style={{ opacity: 0.75 }} />
+                                            ) : (
+                                                <IconPhotoOff size={48} style={{ opacity: 0.75 }} />
+                                            )}
+                                            <Text fw={600} size="md" ta="center" className="project-media-viewer__unavailable-title">
+                                                {t('projectCard.mediaUnavailable')}
+                                            </Text>
+                                            <Text size="xs" c="dimmed" ta="center" style={{ maxWidth: 280, lineHeight: 1.5 }}>
+                                                {t('projectCard.mediaUnavailableDesc')}
+                                            </Text>
+                                        </Stack>
+                                    </Box>
+                                ) : currentImage.type === 'video' ? (
                                     <video
                                         ref={mediaRef}
                                         src={currentImage.src}
@@ -544,6 +566,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
                                         loop
                                         muted
                                         playsInline
+                                        onError={() => setMediaError(true)}
                                     />
                                 ) : (
                                     <img
@@ -554,6 +577,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
                                             zoomScale > 1.0 ? 'project-media-viewer__media--zoomed' : ''
                                         } ${isDraggingState ? 'project-media-viewer__media--dragging' : ''}`}
                                         loading="eager"
+                                        onError={() => setMediaError(true)}
                                         onClick={handleImageClick}
                                         onMouseDown={handleMouseDown}
                                         onMouseMove={handleMouseMove}
@@ -610,34 +634,51 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
                     {hasMultipleImages && showThumbnails && (
                         <Box className="project-media-viewer__thumbnails" ref={thumbnailsRef}>
                             <div className="project-media-viewer__thumbnails-track">
-                                {images.map((img, index) => (
-                                    <button
-                                        key={index}
-                                        type="button"
-                                        onClick={() => {
-                                            resetZoomAndPan();
-                                            setActiveIndex(index);
-                                        }}
-                                        className={`project-media-viewer__thumb ${
-                                            index === activeIndex ? 'project-media-viewer__thumb--active' : ''
-                                        }`}
-                                        aria-label={t('projectCard.galleryImageAlt', {
-                                            project: projectTitle,
-                                            index: index + 1,
-                                        })}
-                                    >
-                                        {img.type === 'video' ? (
-                                            <div className="project-media-viewer__thumb-video">
-                                                <video src={img.src} muted playsInline />
-                                                <div className="project-media-viewer__thumb-play-overlay">
-                                                    <IconPlayerPlay size={14} />
+                                {images.map((img, index) => {
+                                    const isThumbError = thumbErrors[index];
+                                    return (
+                                        <button
+                                            key={index}
+                                            type="button"
+                                            onClick={() => {
+                                                resetZoomAndPan();
+                                                setActiveIndex(index);
+                                            }}
+                                            className={`project-media-viewer__thumb ${
+                                                index === activeIndex ? 'project-media-viewer__thumb--active' : ''
+                                            }`}
+                                            aria-label={t('projectCard.galleryImageAlt', {
+                                                project: projectTitle,
+                                                index: index + 1,
+                                            })}
+                                        >
+                                            {isThumbError || !img.src ? (
+                                                <div className="project-media-viewer__thumb-fallback">
+                                                    {img.type === 'video' ? <IconVideoOff size={16} /> : <IconPhotoOff size={16} />}
                                                 </div>
-                                            </div>
-                                        ) : (
-                                            <img src={img.src} alt="" loading="lazy" />
-                                        )}
-                                    </button>
-                                ))}
+                                            ) : img.type === 'video' ? (
+                                                <div className="project-media-viewer__thumb-video">
+                                                    <video
+                                                        src={img.src}
+                                                        muted
+                                                        playsInline
+                                                        onError={() => setThumbErrors((prev) => ({ ...prev, [index]: true }))}
+                                                    />
+                                                    <div className="project-media-viewer__thumb-play-overlay">
+                                                        <IconPlayerPlay size={14} />
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <img
+                                                    src={img.src}
+                                                    alt=""
+                                                    loading="lazy"
+                                                    onError={() => setThumbErrors((prev) => ({ ...prev, [index]: true }))}
+                                                />
+                                            )}
+                                        </button>
+                                    );
+                                })}
                             </div>
                         </Box>
                     )}
@@ -648,3 +689,4 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
 }
 
 export default ProjectImagesModal;
+
