@@ -15,14 +15,15 @@ import {
 const PRIMARY_COLOR_KEY = 'site-primary-color';
 const BG_THEME_KEY = 'site-background-theme';
 const COOKIE_MAX_AGE_DAYS = 365;
+const VALID_PRIMARY_COLORS = ['blue', 'green', 'cyan', 'grape', 'yellow', 'red'];
 
 const ThemeContext = createContext(null);
 
 function getPersistedPrimaryColor() {
   const ls = safeLocalStorageGet(PRIMARY_COLOR_KEY);
-  if (ls) return ls;
+  if (ls && VALID_PRIMARY_COLORS.includes(ls)) return ls;
   const ck = readCookie(PRIMARY_COLOR_KEY);
-  if (ck) return ck;
+  if (ck && VALID_PRIMARY_COLORS.includes(ck)) return ck;
   return siteConfig.primaryColor;
 }
 

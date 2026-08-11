@@ -13,11 +13,11 @@ import { BACKGROUND_THEMES } from '../../config/backgroundThemes';
 import './ThemeChanger.css';
 
 const COLOR_OPTIONS = [
-  { key: 'blue', color: '#228be6' },
-  { key: 'violet', color: '#7950f2' },
-  { key: 'indigo', color: '#4c6ef5' },
-  { key: 'pink', color: '#e64980' },
+  { key: 'blue', color: '#0088ff' },
+  { key: 'green', color: '#20c997' },
+  { key: 'cyan', color: '#22b8cf' },
   { key: 'grape', color: '#be4bdb' },
+  { key: 'yellow', color: '#fab005' },
   { key: 'red', color: '#fa5252' },
 ];
 
