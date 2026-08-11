@@ -21,10 +21,7 @@ import { getDeviconUrl } from '../../data/globeTechStack';
    Recibe globeRef para exponerlo a la escena y usarlo como occluder
 ───────────────────────────────────────── */
 function GlobeMesh({ reducedMotion, globeRef }) {
-  const wireRef  = useRef();
-  const ring1Ref = useRef();
-  const ring2Ref = useRef();
-  const ring3Ref = useRef();
+  const wireRef = useRef();
 
   useFrame(({ clock }) => {
     if (reducedMotion) return;
@@ -32,12 +29,6 @@ function GlobeMesh({ reducedMotion, globeRef }) {
 
     if (globeRef.current) globeRef.current.rotation.y = t * 0.06;
     if (wireRef.current)  wireRef.current.rotation.y  = t * 0.06;
-    if (ring1Ref.current) ring1Ref.current.rotation.z = t * 0.12;
-    if (ring2Ref.current) ring2Ref.current.rotation.x = t * 0.09;
-    if (ring3Ref.current) {
-      ring3Ref.current.rotation.z = -t * 0.07;
-      ring3Ref.current.rotation.x = Math.sin(t * 0.3) * 0.3;
-    }
   });
 
   return (
@@ -62,24 +53,6 @@ function GlobeMesh({ reducedMotion, globeRef }) {
           transparent
           opacity={0.12}
         />
-      </mesh>
-
-      {/* Energy ring 1 — horizontal */}
-      <mesh ref={ring1Ref} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[1.15, 0.008, 6, 120]} />
-        <meshBasicMaterial color="#3b82f6" transparent opacity={0.35} />
-      </mesh>
-
-      {/* Energy ring 2 — tilted */}
-      <mesh ref={ring2Ref} rotation={[0.8, 0.4, 0]}>
-        <torusGeometry args={[1.2, 0.005, 6, 120]} />
-        <meshBasicMaterial color="#67e8f9" transparent opacity={0.2} />
-      </mesh>
-
-      {/* Energy ring 3 — animated orbit */}
-      <mesh ref={ring3Ref} rotation={[0.3, 0, 0.7]}>
-        <torusGeometry args={[1.25, 0.004, 6, 120]} />
-        <meshBasicMaterial color="#60a5fa" transparent opacity={0.15} />
       </mesh>
 
       {/* Rim glow — point light at center for Fresnel-like edge */}
