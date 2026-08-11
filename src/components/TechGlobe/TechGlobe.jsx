@@ -13,6 +13,7 @@
 import { useRef, useMemo, useCallback, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Html, OrbitControls } from '@react-three/drei';
+import { useMantineTheme } from '@mantine/core';
 import * as THREE from 'three';
 import { getDeviconUrl } from '../../data/globeTechStack';
 
@@ -20,7 +21,7 @@ import { getDeviconUrl } from '../../data/globeTechStack';
    Globe Mesh — esfera digital con wireframe + glow
    Recibe globeRef para exponerlo a la escena y usarlo como occluder
 ───────────────────────────────────────── */
-function GlobeMesh({ reducedMotion, globeRef }) {
+function GlobeMesh({ reducedMotion, globeRef, primaryColorHex }) {
   const wireRef = useRef();
 
   useFrame(({ clock }) => {
@@ -48,15 +49,15 @@ function GlobeMesh({ reducedMotion, globeRef }) {
       <mesh ref={wireRef}>
         <sphereGeometry args={[1.01, 20, 20]} />
         <meshBasicMaterial
-          color="#1e4a8c"
+          color={primaryColorHex}
           wireframe
           transparent
-          opacity={0.12}
+          opacity={0.22}
         />
       </mesh>
 
       {/* Rim glow — point light at center for Fresnel-like edge */}
-      <pointLight color="#3b82f6" intensity={1.8} distance={4} decay={2} />
+      <pointLight color={primaryColorHex} intensity={2.0} distance={4} decay={2} />
     </group>
   );
 }
@@ -80,7 +81,7 @@ const _particlePositions = (() => {
   return arr;
 })();
 
-function GlobeParticles({ reducedMotion }) {
+function GlobeParticles({ reducedMotion, particleColorHex }) {
   const pointsRef = useRef();
   const positions = _particlePositions;
 
@@ -99,10 +100,10 @@ function GlobeParticles({ reducedMotion }) {
         />
       </bufferGeometry>
       <pointsMaterial
-        color="#60a5fa"
+        color={particleColorHex}
         size={0.03}
         transparent
-        opacity={0.55}
+        opacity={0.65}
         sizeAttenuation
       />
     </points>
@@ -199,8 +200,14 @@ function TechNode({ tech, selectedId, onSelect, reducedMotion, globeRef }) {
 ───────────────────────────────────────── */
 function Scene({ technologies, selectedId, onSelectTech, reducedMotion }) {
   const { gl } = useThree();
+  const theme = useMantineTheme();
   // Ref compartido: apunta al mesh de la esfera principal
   const globeRef = useRef();
+
+  // Obtener tonos de color primario dinámicos de Mantine
+  const primaryShades = theme.colors[theme.primaryColor] || theme.colors.blue;
+  const primaryColorHex = primaryShades[6] || primaryShades[5] || '#3b82f6';
+  const lightColorHex = primaryShades[3] || primaryShades[2] || '#67e8f9';
 
   useEffect(() => {
     gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -211,14 +218,14 @@ function Scene({ technologies, selectedId, onSelectTech, reducedMotion }) {
       {/* Lighting */}
       <ambientLight intensity={0.25} color="#e8f0ff" />
       <directionalLight position={[5, 5, 5]} intensity={0.4} color="#ffffff" />
-      <pointLight position={[-4, 3, -4]} intensity={0.6} color="#3b82f6" distance={10} />
-      <pointLight position={[4, -2, 4]}  intensity={0.4} color="#67e8f9" distance={8} />
+      <pointLight position={[-4, 3, -4]} intensity={0.6} color={primaryColorHex} distance={10} />
+      <pointLight position={[4, -2, 4]}  intensity={0.4} color={lightColorHex} distance={8} />
 
-      {/* Globe — le pasamos globeRef para que exponga su mesh */}
-      <GlobeMesh reducedMotion={reducedMotion} globeRef={globeRef} />
+      {/* Globe — le pasamos globeRef y color de acento dinámico */}
+      <GlobeMesh reducedMotion={reducedMotion} globeRef={globeRef} primaryColorHex={primaryColorHex} />
 
-      {/* Particles */}
-      <GlobeParticles reducedMotion={reducedMotion} />
+      {/* Particles — le pasamos el tono claro del color primario */}
+      <GlobeParticles reducedMotion={reducedMotion} particleColorHex={lightColorHex} />
 
       {/* Tech nodes — cada uno recibe globeRef para la oclusión */}
       {technologies.map((tech) => (
