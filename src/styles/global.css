@@ -1153,26 +1153,36 @@ button:hover .icon-send-jello {
   line-height: 1.08;
   margin: 0;
   padding: 0.1em 0.2em;
-  background: linear-gradient(135deg, #22d3ee 0%, #60a5fa 50%, #818cf8 100%);
+  background: linear-gradient(
+    135deg,
+    var(--mantine-primary-color-3, var(--mantine-primary-color-filled)) 0%,
+    var(--mantine-primary-color-filled) 50%,
+    var(--mantine-primary-color-7, var(--mantine-primary-color-filled)) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  filter: drop-shadow(0 0 24px rgba(34, 211, 238, 0.4));
-  transition: filter 0.3s ease;
+  filter: drop-shadow(0 0 24px color-mix(in srgb, var(--mantine-primary-color-filled) 45%, transparent));
+  transition: filter 0.3s ease, background 0.3s ease;
 }
 
 .hero-title:hover {
-  filter: drop-shadow(0 0 32px rgba(34, 211, 238, 0.6));
+  filter: drop-shadow(0 0 32px color-mix(in srgb, var(--mantine-primary-color-filled) 65%, transparent));
 }
 
 :root[data-mantine-color-scheme="light"] .hero-title {
-  background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #4f46e5 100%);
+  background: linear-gradient(
+    135deg,
+    var(--mantine-primary-color-6, var(--mantine-primary-color-filled)) 0%,
+    var(--mantine-primary-color-7, var(--mantine-primary-color-filled)) 50%,
+    var(--mantine-primary-color-9, var(--mantine-primary-color-filled)) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  filter: drop-shadow(0 4px 12px rgba(37, 99, 235, 0.2));
+  filter: drop-shadow(0 4px 12px color-mix(in srgb, var(--mantine-primary-color-filled) 25%, transparent));
 }
 
 .hero-subtitle-container {
@@ -1199,15 +1209,16 @@ button:hover .icon-send-jello {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #22d3ee;
-  box-shadow: 0 0 10px #22d3ee;
+  background-color: var(--mantine-primary-color-filled);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--mantine-primary-color-filled) 80%, transparent);
   display: inline-block;
   flex-shrink: 0;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 :root[data-mantine-color-scheme="light"] .hero-subtitle-badge-dot {
-  background-color: #0284c7;
-  box-shadow: 0 0 8px rgba(2, 132, 199, 0.5);
+  background-color: var(--mantine-primary-color-filled);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--mantine-primary-color-filled) 60%, transparent);
 }
 
 .hero-subtitle-text {
