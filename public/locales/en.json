@@ -230,6 +230,8 @@
     "bgMinimalDesc": "Clean dark background focused on high readability",
     "bgParticlesTitle": "Particle Network",
     "bgParticlesDesc": "Interactive tech node matrix",
+    "showNebula": "Show nebula",
+    "showColorAmbience": "Color ambience",
     "current": "Active",
     "comingSoon": "Coming Soon"
   },

@@ -230,6 +230,8 @@
     "bgMinimalDesc": "Fondo limpio enfocado en alta legibilidad",
     "bgParticlesTitle": "Red de Partículas",
     "bgParticlesDesc": "Matriz interactiva de nodos tecnológicos",
+    "showNebula": "Mostrar nebulosa",
+    "showColorAmbience": "Ambientación de color",
     "current": "Activo",
     "comingSoon": "Próximamente"
   },

@@ -33,8 +33,16 @@ function ThemeChanger() {
   const panelRef = useRef(null);
   const buttonRef = useRef(null);
   const { t } = useTranslation();
-  const { primaryColor, setPrimaryColor, backgroundTheme, setBackgroundTheme } =
-    useThemeContext();
+  const {
+    primaryColor,
+    setPrimaryColor,
+    backgroundTheme,
+    setBackgroundTheme,
+    showNebula,
+    setShowNebula,
+    showColorAmbience,
+    setShowColorAmbience,
+  } = useThemeContext();
 
   const close = useCallback(() => setOpen(false), []);
 
@@ -132,36 +140,60 @@ function ThemeChanger() {
               const IconComp = ICON_MAP[themeItem.icon] || IconWorld;
 
               return (
-                <button
-                  key={themeItem.id}
-                  type="button"
-                  disabled={!isAvailable}
-                  className={`theme-changer-bg-card ${isSelected ? 'is-selected' : ''} ${!isAvailable ? 'is-disabled' : ''}`}
-                  onClick={() => isAvailable && setBackgroundTheme(themeItem.id)}
-                  aria-pressed={isSelected}
-                >
-                  <div className="theme-changer-bg-card-header">
-                    <div className="theme-changer-bg-icon">
-                      <IconComp size={15} />
+                <div key={themeItem.id} className="theme-changer-bg-item">
+                  <button
+                    type="button"
+                    disabled={!isAvailable}
+                    className={`theme-changer-bg-card ${isSelected ? 'is-selected' : ''} ${!isAvailable ? 'is-disabled' : ''}`}
+                    onClick={() => isAvailable && setBackgroundTheme(themeItem.id)}
+                    aria-pressed={isSelected}
+                  >
+                    <div className="theme-changer-bg-card-header">
+                      <div className="theme-changer-bg-icon">
+                        <IconComp size={15} />
+                      </div>
+                      <span className="theme-changer-bg-title">
+                        {t(themeItem.nameKey)}
+                      </span>
+                      {isSelected && (
+                        <span className="theme-changer-bg-badge is-active">
+                          <IconCheck size={10} /> {t('themeChanger.current')}
+                        </span>
+                      )}
+                      {!isAvailable && (
+                        <span className="theme-changer-bg-badge is-coming">
+                          {t('themeChanger.comingSoon')}
+                        </span>
+                      )}
                     </div>
-                    <span className="theme-changer-bg-title">
-                      {t(themeItem.nameKey)}
-                    </span>
-                    {isSelected && (
-                      <span className="theme-changer-bg-badge is-active">
-                        <IconCheck size={10} /> {t('themeChanger.current')}
-                      </span>
-                    )}
-                    {!isAvailable && (
-                      <span className="theme-changer-bg-badge is-coming">
-                        {t('themeChanger.comingSoon')}
-                      </span>
-                    )}
-                  </div>
-                  <p className="theme-changer-bg-desc">
-                    {t(themeItem.descriptionKey)}
-                  </p>
-                </button>
+                    <p className="theme-changer-bg-desc">
+                      {t(themeItem.descriptionKey)}
+                    </p>
+                  </button>
+
+                  {isSelected && themeItem.id === 'space' && (
+                    <div className="theme-changer-nebula-option">
+                      <label className="theme-changer-checkbox-label">
+                        <input
+                          type="checkbox"
+                          checked={showNebula}
+                          onChange={(e) => setShowNebula(e.target.checked)}
+                          className="theme-changer-checkbox"
+                        />
+                        <span>{t('themeChanger.showNebula')}</span>
+                      </label>
+                      <label className="theme-changer-checkbox-label">
+                        <input
+                          type="checkbox"
+                          checked={showColorAmbience}
+                          onChange={(e) => setShowColorAmbience(e.target.checked)}
+                          className="theme-changer-checkbox"
+                        />
+                        <span>{t('themeChanger.showColorAmbience')}</span>
+                      </label>
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>

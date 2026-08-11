@@ -6,62 +6,89 @@
 import { useEffect, useRef } from 'react';
 import './SpaceBackground.css';
 
-/** @typedef {'space' | 'nebula-purple' | 'nebula-blue' | 'nebula-pink' | 'galaxy-spiral' | 'galaxy-magenta'} BackgroundTheme */
+/** @typedef {'space' | 'nebula-purple' | 'nebula-blue' | 'nebula-pink' | 'nebula-green' | 'nebula-cyan' | 'nebula-yellow' | 'galaxy-spiral' | 'galaxy-magenta'} BackgroundTheme */
 
 /** @type {Record<BackgroundTheme, { backgroundColor: string; starColors: { bright: string[]; dim: string[] }; shootingStarColors: string[]; nebulaColors?: string[]; galaxyColors?: string[] }>} */
 const THEME_CONFIGS = {
   space: {
-    backgroundColor: '#0a0a0f',
+    backgroundColor: '#07080c',
     starColors: {
-      bright: ['rgba(255, 255, 255, {a})', 'rgba(200, 220, 255, {a})', 'rgba(150, 180, 255, {a})'],
-      dim: ['rgba(220, 230, 255, {a})', 'rgba(180, 200, 240, {a})', 'rgba(150, 180, 230, {a})'],
+      bright: ['rgba(255, 255, 255, {a})', 'rgba(220, 235, 255, {a})', 'rgba(180, 210, 255, {a})'],
+      dim: ['rgba(220, 230, 255, {a})', 'rgba(180, 200, 240, {a})', 'rgba(140, 170, 220, {a})'],
     },
-    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(200, 220, 255, {a})', 'rgba(150, 180, 255, {a})'],
-    nebulaColors: ['rgba(70, 75, 92, {a})', 'rgba(90, 95, 112, {a})', 'rgba(55, 60, 78, {a})', 'rgba(110, 115, 132, {a})'],
+    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(200, 225, 255, {a})', 'rgba(150, 190, 255, {a})'],
+    nebulaColors: ['rgba(50, 60, 85, {a})', 'rgba(75, 88, 115, {a})', 'rgba(35, 45, 68, {a})', 'rgba(95, 110, 140, {a})'],
   },
   'nebula-purple': {
-    backgroundColor: '#0d0515',
+    backgroundColor: '#07050d',
     starColors: {
-      bright: ['rgba(255, 200, 255, {a})', 'rgba(220, 180, 255, {a})', 'rgba(180, 140, 255, {a})'],
-      dim: ['rgba(200, 160, 240, {a})', 'rgba(170, 130, 220, {a})', 'rgba(140, 100, 200, {a})'],
+      bright: ['rgba(255, 255, 255, {a})', 'rgba(240, 210, 255, {a})', 'rgba(190, 140, 255, {a})'],
+      dim: ['rgba(210, 170, 240, {a})', 'rgba(170, 130, 200, {a})', 'rgba(130, 90, 160, {a})'],
     },
-    shootingStarColors: ['rgba(255, 200, 255, {a})', 'rgba(220, 180, 255, {a})', 'rgba(180, 140, 255, {a})'],
-    nebulaColors: ['rgba(138, 43, 226, {a})', 'rgba(147, 51, 234, {a})', 'rgba(168, 85, 247, {a})', 'rgba(192, 132, 252, {a})'],
+    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(230, 180, 255, {a})', 'rgba(170, 100, 250, {a})'],
+    nebulaColors: ['rgba(120, 35, 200, {a})', 'rgba(145, 45, 225, {a})', 'rgba(175, 80, 245, {a})', 'rgba(205, 140, 255, {a})'],
   },
   'nebula-blue': {
-    backgroundColor: '#020818',
+    backgroundColor: '#050712',
     starColors: {
-      bright: ['rgba(200, 240, 255, {a})', 'rgba(180, 220, 255, {a})', 'rgba(140, 200, 255, {a})'],
-      dim: ['rgba(160, 200, 240, {a})', 'rgba(130, 180, 220, {a})', 'rgba(100, 160, 200, {a})'],
+      bright: ['rgba(255, 255, 255, {a})', 'rgba(215, 238, 255, {a})', 'rgba(140, 200, 255, {a})'],
+      dim: ['rgba(200, 225, 255, {a})', 'rgba(150, 190, 240, {a})', 'rgba(100, 150, 210, {a})'],
     },
-    shootingStarColors: ['rgba(200, 240, 255, {a})', 'rgba(180, 220, 255, {a})', 'rgba(140, 200, 255, {a})'],
-    nebulaColors: ['rgba(37, 99, 235, {a})', 'rgba(59, 130, 246, {a})', 'rgba(96, 165, 250, {a})', 'rgba(147, 197, 253, {a})'],
+    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(180, 225, 255, {a})', 'rgba(90, 170, 255, {a})'],
+    nebulaColors: ['rgba(24, 75, 185, {a})', 'rgba(15, 110, 225, {a})', 'rgba(70, 160, 245, {a})', 'rgba(130, 195, 255, {a})'],
+  },
+  'nebula-green': {
+    backgroundColor: '#040b08',
+    starColors: {
+      bright: ['rgba(255, 255, 255, {a})', 'rgba(220, 255, 245, {a})', 'rgba(140, 240, 205, {a})'],
+      dim: ['rgba(200, 245, 230, {a})', 'rgba(140, 210, 185, {a})', 'rgba(90, 170, 145, {a})'],
+    },
+    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(180, 250, 225, {a})', 'rgba(90, 230, 185, {a})'],
+    nebulaColors: ['rgba(16, 125, 95, {a})', 'rgba(32, 175, 135, {a})', 'rgba(52, 211, 153, {a})', 'rgba(110, 231, 183, {a})'],
+  },
+  'nebula-cyan': {
+    backgroundColor: '#040a10',
+    starColors: {
+      bright: ['rgba(255, 255, 255, {a})', 'rgba(215, 245, 255, {a})', 'rgba(130, 225, 255, {a})'],
+      dim: ['rgba(190, 235, 250, {a})', 'rgba(130, 195, 225, {a})', 'rgba(80, 155, 190, {a})'],
+    },
+    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(170, 240, 255, {a})', 'rgba(80, 215, 255, {a})'],
+    nebulaColors: ['rgba(14, 116, 144, {a})', 'rgba(6, 182, 212, {a})', 'rgba(56, 189, 248, {a})', 'rgba(165, 243, 252, {a})'],
+  },
+  'nebula-yellow': {
+    backgroundColor: '#080602',
+    starColors: {
+      bright: ['rgba(255, 255, 255, {a})', 'rgba(255, 245, 210, {a})', 'rgba(255, 220, 130, {a})'],
+      dim: ['rgba(240, 220, 170, {a})', 'rgba(200, 175, 110, {a})', 'rgba(160, 135, 70, {a})'],
+    },
+    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(255, 235, 170, {a})', 'rgba(250, 195, 40, {a})'],
+    nebulaColors: ['rgba(170, 105, 10, {a})', 'rgba(215, 140, 15, {a})', 'rgba(240, 175, 30, {a})', 'rgba(250, 210, 60, {a})'],
   },
   'nebula-pink': {
-    backgroundColor: '#120510',
+    backgroundColor: '#0b040a',
     starColors: {
-      bright: ['rgba(255, 220, 240, {a})', 'rgba(255, 180, 220, {a})', 'rgba(255, 140, 200, {a})'],
-      dim: ['rgba(240, 160, 200, {a})', 'rgba(220, 130, 180, {a})', 'rgba(200, 100, 160, {a})'],
+      bright: ['rgba(255, 255, 255, {a})', 'rgba(255, 220, 245, {a})', 'rgba(255, 150, 210, {a})'],
+      dim: ['rgba(235, 180, 215, {a})', 'rgba(195, 130, 175, {a})', 'rgba(155, 90, 135, {a})'],
     },
-    shootingStarColors: ['rgba(255, 220, 240, {a})', 'rgba(255, 180, 220, {a})', 'rgba(255, 140, 200, {a})'],
-    nebulaColors: ['rgba(219, 39, 119, {a})', 'rgba(236, 72, 153, {a})', 'rgba(244, 114, 182, {a})', 'rgba(251, 207, 232, {a})'],
+    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(255, 200, 235, {a})', 'rgba(245, 120, 190, {a})'],
+    nebulaColors: ['rgba(160, 30, 100, {a})', 'rgba(215, 45, 130, {a})', 'rgba(240, 100, 175, {a})', 'rgba(251, 200, 230, {a})'],
   },
   'galaxy-spiral': {
-    backgroundColor: '#050510',
+    backgroundColor: '#06060c',
     starColors: {
-      bright: ['rgba(255, 240, 220, {a})', 'rgba(255, 220, 200, {a})', 'rgba(255, 200, 180, {a})'],
-      dim: ['rgba(240, 200, 180, {a})', 'rgba(220, 180, 160, {a})', 'rgba(200, 160, 140, {a})'],
+      bright: ['rgba(255, 255, 255, {a})', 'rgba(255, 235, 215, {a})', 'rgba(255, 205, 175, {a})'],
+      dim: ['rgba(240, 205, 185, {a})', 'rgba(215, 175, 155, {a})', 'rgba(190, 150, 130, {a})'],
     },
-    shootingStarColors: ['rgba(255, 240, 220, {a})', 'rgba(255, 220, 200, {a})', 'rgba(255, 200, 180, {a})'],
+    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(255, 230, 210, {a})', 'rgba(255, 195, 170, {a})'],
     galaxyColors: ['rgba(139, 92, 246, {a})', 'rgba(167, 139, 250, {a})', 'rgba(196, 181, 253, {a})', 'rgba(221, 214, 254, {a})'],
   },
   'galaxy-magenta': {
-    backgroundColor: '#0f0510',
+    backgroundColor: '#0a040b',
     starColors: {
-      bright: ['rgba(255, 200, 255, {a})', 'rgba(255, 150, 220, {a})', 'rgba(220, 100, 200, {a})'],
-      dim: ['rgba(240, 160, 200, {a})', 'rgba(220, 130, 180, {a})', 'rgba(200, 100, 160, {a})'],
+      bright: ['rgba(255, 255, 255, {a})', 'rgba(255, 205, 255, {a})', 'rgba(240, 140, 220, {a})'],
+      dim: ['rgba(235, 170, 210, {a})', 'rgba(205, 130, 185, {a})', 'rgba(175, 90, 155, {a})'],
     },
-    shootingStarColors: ['rgba(255, 200, 255, {a})', 'rgba(255, 150, 220, {a})', 'rgba(220, 100, 200, {a})'],
+    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(255, 180, 230, {a})', 'rgba(230, 100, 210, {a})'],
     galaxyColors: ['rgba(192, 38, 211, {a})', 'rgba(217, 70, 239, {a})', 'rgba(232, 121, 249, {a})', 'rgba(250, 204, 21, {a})'],
   },
 };
@@ -69,8 +96,9 @@ const THEME_CONFIGS = {
 /**
  * @param {object} props
  * @param {BackgroundTheme} [props.theme]
+ * @param {boolean} [props.showNebula]
  */
-function SpaceBackground({ theme = 'space' }) {
+function SpaceBackground({ theme = 'space', showNebula = false }) {
   const canvasRef = useRef(null);
   const animationFrameRef = useRef(0);
   const starsRef = useRef([]);
@@ -147,7 +175,7 @@ function SpaceBackground({ theme = 'space' }) {
     };
 
     const initNebulaClouds = () => {
-      if (!themeConfig.nebulaColors && !themeConfig.galaxyColors) {
+      if (!showNebula || (!themeConfig.nebulaColors && !themeConfig.galaxyColors)) {
         nebulaCloudsRef.current = [];
         return;
       }
@@ -161,10 +189,10 @@ function SpaceBackground({ theme = 'space' }) {
         nebulaCloudsRef.current.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: 150 + Math.random() * 300,
-          opacity: 0.15 + Math.random() * 0.25,
+          radius: 180 + Math.random() * 280,
+          opacity: 0.10 + Math.random() * 0.18,
           angle: Math.random() * Math.PI * 2,
-          rotationSpeed: (Math.random() - 0.5) * 0.0005,
+          rotationSpeed: (Math.random() - 0.5) * 0.0004,
           pulseOffset: Math.random() * Math.PI * 2,
           colorIndex: Math.floor(Math.random() * colorCount),
         });
@@ -196,16 +224,18 @@ function SpaceBackground({ theme = 'space' }) {
 
       const gradient = ctx.createRadialGradient(cloud.x, cloud.y, 0, cloud.x, cloud.y, currentRadius);
 
-      const color1 = colors[cloud.colorIndex].replace('{a}', String(cloud.opacity * 0.4));
-      const color2 = colors[(cloud.colorIndex + 1) % colors.length].replace('{a}', String(cloud.opacity * 0.2));
+      const color1 = colors[cloud.colorIndex].replace('{a}', String(cloud.opacity * 0.32));
+      const color2 = colors[(cloud.colorIndex + 1) % colors.length].replace('{a}', String(cloud.opacity * 0.14));
       const color3 = colors[(cloud.colorIndex + 2) % colors.length].replace('{a}', '0');
 
       gradient.addColorStop(0, color1);
-      gradient.addColorStop(0.5, color2);
+      gradient.addColorStop(0.55, color2);
       gradient.addColorStop(1, color3);
 
       ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, width, height);
+      ctx.beginPath();
+      ctx.arc(cloud.x, cloud.y, currentRadius, 0, Math.PI * 2);
+      ctx.fill();
     };
 
     const drawStar = (star, time) => {
@@ -353,9 +383,9 @@ function SpaceBackground({ theme = 'space' }) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [theme]);
+  }, [theme, showNebula]);
 
-  return <canvas key={theme} ref={canvasRef} className="space-background" aria-hidden="true" />;
+  return <canvas key={`${theme}-${showNebula}`} ref={canvasRef} className="space-background" aria-hidden="true" />;
 }
 
 export default SpaceBackground;

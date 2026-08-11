@@ -17,20 +17,22 @@ import { getBackgroundThemeConfig } from '../config/backgroundThemes';
 
 const PRIMARY_TO_THEME = {
   blue: 'nebula-blue',
+  green: 'nebula-green',
+  cyan: 'nebula-cyan',
   violet: 'nebula-purple',
-  indigo: 'space',
   pink: 'nebula-pink',
   grape: 'galaxy-spiral',
+  yellow: 'nebula-yellow',
   red: 'galaxy-magenta',
 };
 
 function Layout() {
     const { t } = useTranslation();
     const location = useLocation();
-    const { primaryColor, backgroundTheme } = useThemeContext();
+    const { primaryColor, backgroundTheme, showNebula, showColorAmbience } = useThemeContext();
     const activeBgConfig = getBackgroundThemeConfig(backgroundTheme);
     const BackgroundComponent = activeBgConfig.component || SpaceBackground;
-    const spaceTheme = PRIMARY_TO_THEME[primaryColor] ?? 'space';
+    const spaceTheme = showColorAmbience ? (PRIMARY_TO_THEME[primaryColor] ?? 'space') : 'space';
 
     const [routeLoading, setRouteLoading] = useState(false);
     const navStartTsRef = useRef(0);
@@ -119,7 +121,7 @@ function Layout() {
                 )}
                 {/* Contenedor con fondo */}
                 <Box className="main-content-wrapper space-bg">
-                    <BackgroundComponent theme={spaceTheme} key={`${backgroundTheme}-${spaceTheme}`} />
+                    <BackgroundComponent theme={spaceTheme} showNebula={showNebula} key={`${backgroundTheme}-${spaceTheme}-${showNebula}-${showColorAmbience}`} />
 
                     {/* Contenido de la página */}
                     <Container size="lg" py="xl" className="content-above-video">

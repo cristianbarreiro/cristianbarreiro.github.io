@@ -310,3 +310,77 @@
   background: rgba(59, 130, 246, 0.12);
   border-color: #2563eb;
 }
+
+.theme-changer-bg-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.theme-changer-nebula-option {
+  margin-top: 4px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(138, 180, 255, 0.06);
+  border: 1px dashed rgba(138, 180, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.theme-changer-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #ebf0ff;
+  cursor: pointer;
+  user-select: none;
+}
+
+.theme-changer-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 4px;
+  border: 1px solid rgba(138, 180, 255, 0.4);
+  background: rgba(10, 14, 22, 0.6);
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  transition: all 150ms ease;
+}
+
+.theme-changer-checkbox:checked {
+  background: var(--mantine-primary-color-filled, #3b82f6);
+  border-color: var(--mantine-primary-color-filled, #3b82f6);
+}
+
+.theme-changer-checkbox:checked::before {
+  content: "";
+  width: 7px;
+  height: 4px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg) translate(0.5px, -0.5px);
+}
+
+[data-mantine-color-scheme="light"] .theme-changer-nebula-option {
+  background: rgba(102, 132, 220, 0.06);
+  border-color: rgba(102, 132, 220, 0.2);
+}
+
+[data-mantine-color-scheme="light"] .theme-changer-checkbox-label {
+  color: #1d2850;
+}
+
+[data-mantine-color-scheme="light"] .theme-changer-checkbox {
+  border-color: rgba(102, 132, 220, 0.4);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+[data-mantine-color-scheme="light"] .theme-changer-checkbox:checked {
+  background: var(--mantine-primary-color-filled, #2563eb);
+  border-color: var(--mantine-primary-color-filled, #2563eb);
+}
