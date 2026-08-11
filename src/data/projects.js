@@ -36,21 +36,21 @@ const projectsByLanguage = {
         },
         {
             id: 13,
-            title: 'CDev Studio Platform',
+            title: 'cdev Studio Platform',
             description:
-                'Monorrepo híbrido con landing comercial cdevUY, portal cliente SaaS, backoffice administrativo y microservicios backend desacoplados con PostgreSQL.',
+                'Ecosistema tecnológico full stack desarrollado para cdev Studio, compuesto por aplicaciones frontend independientes y microservicios backend para la gestión de clientes, proyectos y autenticación.',
             longDescription:
-                'Ecosistema tecnológico completo (cdev-platform) compuesto por tres aplicaciones frontend independientes — landing cdevUY (:3000), client-dashboard (:3001) y backoffice (:3002) — y tres microservicios Express + TypeScript: auth-api (JWT/RBAC), projects-api y clients-api (:4001–4003). Incluye capa de persistencia PostgreSQL con migraciones SQL versionadas, seeds idempotentes, orquestación de desarrollo con concurrently, contratos OpenAPI y documentación técnica centralizada en docs/.',
+                'Proyecto de plataforma tecnológica para cdev Studio, un ecosistema digital diseñado para centralizar la presentación de servicios, gestión de clientes y administración de proyectos tecnológicos. La solución fue desarrollada con una arquitectura moderna basada en múltiples aplicaciones frontend independientes — landing corporativa, client dashboard y backoffice administrativo — conectadas mediante microservicios backend especializados. Implementé autenticación segura con JWT y control de acceso basado en roles (RBAC), APIs REST documentadas con OpenAPI, persistencia en PostgreSQL con migraciones versionadas y seeds automatizados. El proyecto permitió aplicar principios de arquitectura escalable, separación de responsabilidades y desarrollo de aplicaciones full stack mantenibles.',
             date: '2024',
-            image: '/images/projects/cdevuy/cdevuy.png',
+            image: '/images/projects/cdevstudio/cdevstudio.png',
             images: [
                 {
-                    src: '/images/projects/cdevuy/cdevuy.png',
-                    alt: 'Captura de CDev Studio Platform',
+                    src: '/images/projects/cdevstudio/cdevstudio.png',
+                    alt: 'Captura de cdev Studio Platform',
                 },
                 {
-                    src: '/videos/cdevuy/cdevuy-demo.mp4',
-                    alt: 'Video de demostración de CDev Studio Platform',
+                    src: '/videos/cdevstudio/cdevstudio-demo.mp4',
+                    alt: 'Video de demostración de cdev Studio Platform',
                     type: 'video',
                 },
             ],
@@ -63,7 +63,9 @@ const projectsByLanguage = {
                 'Express',
                 'PostgreSQL',
                 'JWT',
+                'RBAC',
                 'Microservices',
+                'OpenAPI',
             ],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/cdevstudio_platform',
@@ -360,21 +362,21 @@ const projectsByLanguage = {
         },
         {
             id: 13,
-            title: 'CDev Studio Platform',
+            title: 'cdev Studio Platform',
             description:
-                'Hybrid monorepo featuring cdevUY commercial landing page, SaaS client portal, administrative backoffice, and decoupled Express + PostgreSQL microservices.',
+                'Full-stack technology ecosystem developed for cdev Studio, composed of independent frontend applications and backend microservices for client, project, and authentication management.',
             longDescription:
-                'Complete technology ecosystem (cdev-platform) composed of three independent frontend applications — cdevUY landing (:3000), client-dashboard (:3001), and backoffice (:3002) — and three Express + TypeScript microservices: auth-api (JWT/RBAC), projects-api, and clients-api (:4001–4003). Features a PostgreSQL persistence layer with versioned SQL migrations, idempotent seeds, concurrent development orchestration, OpenAPI contracts, and centralized technical documentation in docs/.',
+                'Technology platform project for cdev Studio, a digital ecosystem designed to centralize service presentation, client management, and tech project administration. The solution was developed with a modern architecture based on multiple independent frontend applications — corporate landing page, client dashboard, and administrative backoffice — connected through specialized backend microservices. I implemented secure authentication with JWT and Role-Based Access Control (RBAC), REST APIs documented with OpenAPI, PostgreSQL persistence with versioned migrations, and automated seeds. The project enabled the application of scalable architecture principles, separation of concerns, and maintainable full-stack application development.',
             date: '2024',
-            image: '/images/projects/cdevuy/cdevuy.png',
+            image: '/images/projects/cdevstudio/cdevstudio.png',
             images: [
                 {
-                    src: '/images/projects/cdevuy/cdevuy.png',
-                    alt: 'CDev Studio Platform screenshot',
+                    src: '/images/projects/cdevstudio/cdevstudio.png',
+                    alt: 'cdev Studio Platform screenshot',
                 },
                 {
-                    src: '/videos/cdevuy/cdevuy-demo.mp4',
-                    alt: 'CDev Studio Platform demonstration video',
+                    src: '/videos/cdevstudio/cdevstudio-demo.mp4',
+                    alt: 'cdev Studio Platform demonstration video',
                     type: 'video',
                 },
             ],
@@ -387,7 +389,9 @@ const projectsByLanguage = {
                 'Express',
                 'PostgreSQL',
                 'JWT',
+                'RBAC',
                 'Microservices',
+                'OpenAPI',
             ],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/cdevstudio_platform',
