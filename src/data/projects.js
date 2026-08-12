@@ -339,7 +339,7 @@ const projectsByLanguage = {
             tags: ['TypeScript', 'React', 'TailwindCSS', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Vite', 'Stripe'],
             demoUrl: 'https://boutique-exclusivi-ds7v.vercel.app/',
             repoUrl: '',
-            featured: true
+            featured: false
         },
         {
             id: 14,
@@ -349,12 +349,8 @@ const projectsByLanguage = {
             longDescription:
                 'Herramienta de seguridad y privacidad nativa para Windows diseñada para desactivar y bloquear el acceso al micrófono y a la cámara web de forma instantánea. La aplicación utiliza APIs oficiales del sistema operativo (Win32 P/Invoke con CfgMgr32.dll y directivas AppPrivacy en el registro HKLM) para garantizar una latencia cero y eliminar avisos UAC adicionales tras el inicio único con privilegios de administrador. Implementa detección precisa de dispositivos mediante Class GUIDs, arquitectura por capas (Domain-Driven Design), interfaz moderna con Fluent Dark Theme, barra de título e icono de bandeja personalizados, atajos de teclado globales (Ctrl+Alt+B), sistema de multilenguaje dinámico en XAML y diagnóstico estructurado de fallos con Serilog.',
             date: '2026',
-            image: '/images/projects/privlock/privlock_interface.png',
+            image: '/images/projects/privlock/privlock_info.png',
             images: [
-                {
-                    src: '/images/projects/privlock/privlock_interface.png',
-                    alt: 'Captura de la interfaz principal de PrivLock',
-                },
                 {
                     src: '/images/projects/privlock/privlock_info.png',
                     alt: 'Diagnóstico e información de hardware de PrivLock',
@@ -362,6 +358,15 @@ const projectsByLanguage = {
                 {
                     src: '/images/projects/privlock/privlock_setup.png',
                     alt: 'Vista de configuración y estado de PrivLock',
+                },
+                {
+                    src: '/images/projects/privlock/privlock_interface.png',
+                    alt: 'Captura de la interfaz principal de PrivLock',
+                },
+                {
+                    src: '/videos/privlock/privlock_presentation.mp4',
+                    alt: 'Video de presentación de PrivLock',
+                    type: 'video',
                 },
             ],
             tags: [
@@ -704,7 +709,7 @@ const projectsByLanguage = {
             tags: ['TypeScript', 'React', 'TailwindCSS', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Vite', 'Stripe'],
             demoUrl: 'https://boutique-exclusivi-ds7v.vercel.app/',
             repoUrl: '',
-            featured: true
+            featured: false
         },
         {
             id: 14,
@@ -714,12 +719,8 @@ const projectsByLanguage = {
             longDescription:
                 'Native Windows security and privacy tool designed to instantly disable and block access to the webcam and microphone. The application leverages official OS APIs (Win32 P/Invoke with CfgMgr32.dll and AppPrivacy policies in the HKLM registry) to guarantee zero latency and eliminate additional UAC prompts after a single elevated launch as administrator. Features accurate device detection using Class GUIDs, layered architecture (Domain-Driven Design), modern Fluent Dark Theme interface, custom titlebar and tray icon, global keyboard shortcuts (Ctrl+Alt+B), dynamic XAML multi-language system, and structured diagnostic logging with Serilog.',
             date: '2026',
-            image: '/images/projects/privlock/privlock_interface.png',
+            image: '/images/projects/privlock/privlock_info.png',
             images: [
-                {
-                    src: '/images/projects/privlock/privlock_interface.png',
-                    alt: 'PrivLock main interface screenshot',
-                },
                 {
                     src: '/images/projects/privlock/privlock_info.png',
                     alt: 'PrivLock hardware info and diagnostics screenshot',
@@ -727,6 +728,15 @@ const projectsByLanguage = {
                 {
                     src: '/images/projects/privlock/privlock_setup.png',
                     alt: 'PrivLock setup and state view screenshot',
+                },
+                {
+                    src: '/images/projects/privlock/privlock_interface.png',
+                    alt: 'PrivLock main interface screenshot',
+                },
+                {
+                    src: '/videos/privlock/privlock_presentation.mp4',
+                    alt: 'PrivLock presentation video',
+                    type: 'video',
                 },
             ],
             tags: [
@@ -754,7 +764,7 @@ const sortProjectsByCanonicalOrder = (list = []) => {
             return Number(b.featured) - Number(a.featured);
         }
 
-        return Number(a.id) - Number(b.id);
+        return Number(b.id) - Number(a.id);
     });
 };
 
