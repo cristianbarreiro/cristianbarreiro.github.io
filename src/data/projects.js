@@ -145,7 +145,34 @@ const projectsByLanguage = {
             ],
             demoUrl: 'https://e-commerce-monorepo-three.vercel.app/',
             repoUrl: '',
-            featured: true
+            featured: false
+        },
+        {
+            id: 15,
+            title: 'MCP Secure Delete',
+            description:
+                'Secure file deletion tool built as a Model Context Protocol (MCP) server for AI assistants.',
+            longDescription:
+                'Security-focused project that implements a Model Context Protocol (MCP) server to provide controlled and secure file deletion capabilities for AI-powered tools. The project explores safe automation workflows by adding validation layers, controlled file operations and secure resource handling when interacting with the local filesystem through MCP-compatible clients.',
+            date: '2025',
+            image: '/images/projects/mcp-secure-delete/Captura.png',
+            images: [
+                {
+                    src: '/images/projects/mcp-secure-delete/Captura.png',
+                    alt: 'Screenshot of MCP Secure Delete project',
+                },
+            ],
+            tags: [
+                'TypeScript',
+                'Node.js',
+                'Model Context Protocol',
+                'MCP Server',
+                'Cybersecurity',
+                'File System Security',
+            ],
+            demoUrl: '',
+            repoUrl: 'https://github.com/cristianbarreiro/mcp-secure-delete',
+            featured: false,
         },
         {
             id: 11,
@@ -515,7 +542,34 @@ const projectsByLanguage = {
             ],
             demoUrl: 'https://e-commerce-monorepo-three.vercel.app/',
             repoUrl: '',
-            featured: true,
+            featured: false,
+        },
+        {
+            id: 15,
+            title: 'MCP Secure Delete',
+            description:
+                'Secure file deletion tool built as a Model Context Protocol (MCP) server for AI assistants.',
+            longDescription:
+                'Security-focused project that implements a Model Context Protocol (MCP) server to provide controlled and secure file deletion capabilities for AI-powered tools. The project explores safe automation workflows by adding validation layers, controlled file operations and secure resource handling when interacting with the local filesystem through MCP-compatible clients.',
+            date: '2025',
+            image: '/images/projects/mcp-secure-delete/Captura.png',
+            images: [
+                {
+                    src: '/images/projects/mcp-secure-delete/Captura.png',
+                    alt: 'Screenshot of MCP Secure Delete project',
+                },
+            ],
+            tags: [
+                'TypeScript',
+                'Node.js',
+                'Model Context Protocol',
+                'MCP Server',
+                'Cybersecurity',
+                'File System Security',
+            ],
+            demoUrl: '',
+            repoUrl: 'https://github.com/cristianbarreiro/mcp-secure-delete',
+            featured: false,
         },
         {
             id: 11,
