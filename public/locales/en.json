@@ -141,15 +141,71 @@
     "go": "Compiled language from Google, designed for concurrent systems and high-performance services. Actively learning."
   },
   "about": {
-    "aria": "About",
-    "title": "About",
-    "bioTitle": "Biography",
-    "interestsTitle": "Interests",
-    "experienceEducationAria": "Experience, education and courses",
-    "experienceTitle": "Experience",
-    "educationTitle": "Education",
-    "coursesTitle": "Courses",
-    "coursesAria": "Courses and certifications"
+    "aria": "Cristian Barreiro's professional developer profile",
+    "title": "Professional Profile",
+    "subtitle": "Programmer, IT Technician & IT Technologist Student",
+    "hero": {
+      "badge": "Professional Profile",
+      "tagline": "Full-Stack & Systems-Oriented Developer",
+      "location": "Montevideo, Uruguay",
+      "status": "IT Technologist Student (FING & ESI)",
+      "summary": "Software developer with a solid technical foundation in web engineering, client-server architectures, and native desktop applications. Combining university tertiary education with hands-on project experience, microservices, and value-driven digital solutions."
+    },
+    "metrics": {
+      "eduTitle": "Tertiary Education",
+      "eduSub": "FING & Computer Technical Institute",
+      "projTitle": "14+ Built Projects",
+      "projSub": "Full-Stack, Systems & Desktop",
+      "expTitle": "Simulation & Support",
+      "expSub": "Hands-on experience at ID For IDEAS & IBEC"
+    },
+    "pillars": {
+      "sectionTitle": "Core Technical Pillars",
+      "sectionSubtitle": "Principles and engineering capabilities backed by real code and practical projects",
+      "pillar1Title": "Full-Stack & REST API Architecture",
+      "pillar1Desc": "Designing scalable web applications with reactive frontends (React 19, TypeScript) and modular backend architectures (Java Spring Boot, Node.js/Express, PostgreSQL, Supabase).",
+      "pillar2Title": "Systems Engineering & Native Desktop",
+      "pillar2Desc": "Building desktop and systems software (.NET 10 WPF, C/C++, Python Sockets, MCP servers) applying memory management, concurrency, and OS native APIs.",
+      "pillar3Title": "Infrastructure & Professional Discipline",
+      "pillar3Desc": "Training in network support, Linux administration, Bash automation, and agile methodologies focused on continuous delivery and teamwork."
+    },
+    "timeline": {
+      "sectionTitle": "Career & Learning Journey",
+      "sectionSubtitle": "Progressive technical evolution from core foundations to advanced software engineering",
+      "filterAll": "All",
+      "filterWork": "Experience",
+      "filterEducation": "Education",
+      "filterCourse": "Courses & Certifications",
+      "ongoingTag": "In Progress",
+      "completedTag": "Completed",
+      "relatedProject": "View Related Project"
+    },
+    "proof": {
+      "sectionTitle": "Practical Software Proof",
+      "sectionSubtitle": "How education and experience translate into functional, real-world software",
+      "card1Title": "cdev Studio Platform & Genius Platform",
+      "card1Category": "Full-Stack & Microservices Ecosystem",
+      "card1Desc": "Modular architectures with JWT auth, RBAC access control, OpenAPI docs, and relational persistence in PostgreSQL.",
+      "card2Title": "PrivLock (.NET 10 WPF) & MCP Security Tools",
+      "card2Category": "Security & Native Windows Engineering",
+      "card2Desc": "Native desktop application leveraging Win32 P/Invoke, hardware-level PnP device control, and MCP protocols for AI assistants.",
+      "card3Title": "Monorepo E-commerce Platforms",
+      "card3Category": "High-Impact Web Applications",
+      "card3Desc": "Dynamic online retail platforms (NovaVolt, Cataleya Perfumes) built with React, TypeScript, Supabase, Prisma, and interactive shopping flows.",
+      "exploreProjectsCta": "Explore All Projects (14+)",
+      "viewProjectDetails": "View Project"
+    },
+    "techFocus": {
+      "sectionTitle": "Core Technical Competencies",
+      "sectionSubtitle": "Key technologies actively used in software development",
+      "viewStackCta": "View Full Tech Stack"
+    },
+    "horizon": {
+      "title": "Where Am I Heading?",
+      "description": "Looking to join software engineering teams where I can contribute to Full-Stack development, backend APIs, and desktop solutions, bringing technical rigor, initiative, and continuous growth.",
+      "contactCta": "Get In Touch",
+      "downloadCvCta": "Download CV"
+    }
   },
   "projects": {
     "aria": "Projects",

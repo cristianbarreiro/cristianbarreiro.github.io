@@ -45,6 +45,15 @@ export const getEducation = (language) => getExperienceByType('education', langu
 export const getCourses = (language) => getExperienceByType('course', language);
 
 /**
+ * Obtiene experiencia por categoría para la timeline interactiva
+ */
+export const getExperienceByCategory = (category = 'all', language = 'es') => {
+    const list = getExperience(language);
+    if (!category || category === 'all') return list;
+    return list.filter((item) => (item.category || item.type) === category);
+};
+
+/**
  * Formatea fecha para mostrar
  */
 export const formatDateByLanguage = (dateString, language = 'es') => {

@@ -4,223 +4,267 @@
 
 export const experienceByLanguage = {
   es: [
-    // Experiencia Laboral
+    // Experiencia Laboral & Simulación
     {
       id: 1,
       type: 'work',
+      category: 'work',
       title: 'Backend Developer',
       organization: 'ID For IDEAS',
-      location: '',
+      location: 'Montevideo (Remoto)',
+      badgeText: 'Simulación Profesional',
+      status: 'completed',
       startDate: '2026-06',
       endDate: '2026-07',
+      relatedProjectId: 6,
       description: [
-        'Desarrollo de funcionalidades backend',
-        'Integración con APIs REST',
-        'Mantenimiento y optimización de código'
+        'Desarrollo de microservicios y módulos backend para la plataforma de gestión empresarial Genius.',
+        'Integración y documentación de APIs REST utilizando Java Spring Boot, Node.js y Swagger/OpenAPI.',
+        'Mantenimiento, pruebas unitarias con JUnit y optimización de arquitectura de datos.'
       ],
-      skills: ['JavaScript', 'Node.js', 'Express', 'APIs REST']
+      skills: ['Java 17', 'Spring Boot', 'Node.js', 'Express', 'APIs REST', 'Swagger', 'JUnit']
     },
     {
       id: 2,
       type: 'work',
+      category: 'work',
       title: 'Técnico en Redes',
       organization: 'Instituto IBEC',
-      location: '',
+      location: 'Montevideo',
+      badgeText: 'Infraestructura & Soporte',
+      status: 'completed',
       startDate: '2026-05',
       endDate: '2026-08',
       description: [
-        'Soporte y mantenimiento de infraestructura de red',
-        'Configuración de equipos de red',
-        'Asistencia técnica a usuarios'
+        'Soporte, diagnóstico y mantenimiento de infraestructura de red local.',
+        'Configuración de routers, switches, subredes y equipos informáticos.',
+        'Asistencia técnica directa a usuarios y resolución de incidencias de conectividad.'
       ],
-      skills: ['Redes', 'Soporte Técnico', 'Configuración de Redes']
+      skills: ['Redes', 'Soporte Técnico', 'Configuración de Equipos', 'Hardware', 'Linux']
     },
-    // Educación
+    // Educación Terciaria y Secundaria
     {
       id: 3,
       type: 'education',
+      category: 'education',
       title: 'Tecnólogo en Informática',
-      organization: 'Escuela Superior de Informática & FING',
+      organization: 'Escuela Superior de Informática & FING (Udelar)',
       location: 'Buceo, Montevideo',
+      badgeText: 'Carrera Terciaria (En curso)',
+      status: 'ongoing',
       startDate: '2025-01',
       endDate: null,
       description: [
-        'Carrera terciaria en desarrollo de software',
-        'Fundamentos de programación orientada a objetos',
-        'Diseño y gestión de bases de datos relacionales',
-        'Desarrollo de aplicaciones de escritorio y web'
+        'Carrera universitaria/terciaria focalizada en ingeniería de software, arquitectura de sistemas y ciencias de la computación.',
+        'Dominio de Programación Orientada a Objetos, estructuras de datos avanzadas y algoritmos.',
+        'Diseño, modelado y gestión de bases de datos relacionales con SQL y PostgreSQL.',
+        'Desarrollo de sistemas cliente-servidor y aplicaciones concurrentes en C, C++, Java y Python.'
       ],
-      skills: ['C', 'C++', 'C#', 'Java', 'Python', 'SQL', 'PostgreSQL']
-    },
-    {
-      id: 4,
-      type: 'course',
-      title: 'Curso Introductorio Desarrollo Web',
-      organization: 'Hack Academy',
-      location: 'Online',
-      startDate: '2025-01',
-      endDate: '2025-03',
-      description: [
-        'Fundamentos de desarrollo web frontend y backend',
-        'Proyecto final: Sistema web para automotora',
-        'Introducción a frameworks modernos',
-        'Metodologías de trabajo en equipo'
-      ],
-      skills: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Node.js']
+      skills: ['Java', 'C', 'C++', 'C#', 'Python', 'SQL', 'PostgreSQL', 'Estructuras de Datos', 'POO']
     },
     {
       id: 5,
       type: 'education',
+      category: 'education',
       title: 'Bachillerato Tecnológico en Informática',
       organization: 'Escuela Superior de Informática',
       location: 'Buceo, Montevideo',
+      badgeText: 'Título Técnico',
+      status: 'completed',
       startDate: '2024-01',
       endDate: '2024-12',
       description: [
-        'Especialización en desarrollo web y programación',
-        'Proyecto final con Laravel y PHP',
-        'Administración de sistemas Linux y scripting Bash',
-        'Infraestructura de redes y soporte técnico'
+        'Especialización técnica en desarrollo de software, redes y sistemas operativos.',
+        'Desarrollo de proyecto final web con arquitectura MVC usando Laravel y PHP.',
+        'Administración de servidores Linux, automatización con scripts Bash e infraestructura.'
       ],
       skills: ['PHP', 'Laravel', 'MySQL', 'JavaScript', 'HTML5', 'CSS3', 'Bash', 'Linux']
     },
+    // Cursos y Certificaciones
     {
-      id: 6,
+      id: 4,
       type: 'course',
-      title: 'Programación Orientada a Objetos con Python',
-      organization: 'Ceibal',
-      location: '',
-      startDate: '2024-01',
-      endDate: '2024-12',
+      category: 'course',
+      title: 'Curso Introductorio Desarrollo Web',
+      organization: 'Hack Academy',
+      location: 'Online',
+      badgeText: 'Desarrollo Web Full-Stack',
+      status: 'completed',
+      startDate: '2025-01',
+      endDate: '2025-03',
+      relatedProjectId: 3,
       description: [
-        'Curso de programación orientada a objetos con Python',
-        'Conceptos de clases, herencia, polimorfismo y encapsulamiento'
+        'Fundamentos de desarrollo web moderno frontend y backend.',
+        'Proyecto final colaborativo: Sistema web para automotora consumiendo APIs e integrando LocalStorage.',
+        'Introducción a componentes reactivos y metodologías de trabajo en equipo.'
       ],
-      skills: ['Python', 'POO']
+      skills: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Node.js', 'Fetch API']
     },
     {
       id: 7,
       type: 'course',
+      category: 'course',
       title: 'JavaScript Algorithms and Data Structures',
       organization: 'freeCodeCamp',
-      location: '',
+      location: 'Online',
+      badgeText: 'Certificación Internacional',
+      status: 'completed',
       startDate: '2025-01',
       endDate: '2025-12',
       description: [
-        'Certificación en algoritmos y estructuras de datos con JavaScript',
-        'Resolución de problemas y desafíos de programación'
+        'Certificación intensiva en algoritmos, estructuras de datos y resolución de problemas complejos.',
+        'Programación funcional, manipulación de estructuras de memoria y optimización de código en JS.'
       ],
-      skills: ['JavaScript', 'Algorithms', 'Data Structures']
+      skills: ['JavaScript', 'Algoritmos', 'Estructuras de Datos', 'ES6+']
+    },
+    {
+      id: 6,
+      type: 'course',
+      category: 'course',
+      title: 'Programación Orientada a Objetos con Python',
+      organization: 'Ceibal',
+      location: 'Online',
+      badgeText: 'Especialización',
+      status: 'completed',
+      startDate: '2024-01',
+      endDate: '2024-12',
+      description: [
+        'Curso de arquitectura de software y programación orientada a objetos con Python.',
+        'Implementación práctica de clases, herencia, polimorfismo, encapsulamiento y modularidad.'
+      ],
+      skills: ['Python', 'POO', 'Arquitectura de Software']
     }
   ],
   en: [
-    // Work Experience
+    // Work Experience & Simulation
     {
       id: 1,
       type: 'work',
+      category: 'work',
       title: 'Backend Developer',
       organization: 'ID For IDEAS',
-      location: '',
+      location: 'Montevideo (Remote)',
+      badgeText: 'Work Simulation',
+      status: 'completed',
       startDate: '2026-06',
       endDate: '2026-07',
+      relatedProjectId: 6,
       description: [
-        'Backend feature development',
-        'REST API integration',
-        'Code maintenance and optimization'
+        'Development of microservices and backend modules for the Genius business management platform.',
+        'Integration and documentation of REST APIs using Java Spring Boot, Node.js, and Swagger/OpenAPI.',
+        'Code maintenance, unit testing with JUnit, and data architecture optimization.'
       ],
-      skills: ['JavaScript', 'Node.js', 'Express', 'REST APIs']
+      skills: ['Java 17', 'Spring Boot', 'Node.js', 'Express', 'REST APIs', 'Swagger', 'JUnit']
     },
     {
       id: 2,
       type: 'work',
+      category: 'work',
       title: 'Network Technician',
       organization: 'Instituto IBEC',
-      location: '',
+      location: 'Montevideo',
+      badgeText: 'Infrastructure & Support',
+      status: 'completed',
       startDate: '2026-05',
       endDate: '2026-08',
       description: [
-        'Network infrastructure support and maintenance',
-        'Network equipment configuration',
-        'User technical assistance'
+        'Support, diagnostics, and maintenance of local network infrastructure.',
+        'Configuration of routers, switches, subnets, and computer equipment.',
+        'Direct user technical assistance and resolution of connectivity incidents.'
       ],
-      skills: ['Networking', 'Technical Support', 'Network Configuration']
+      skills: ['Networking', 'Technical Support', 'Hardware Configuration', 'Hardware', 'Linux']
     },
-    // Education
+    // Tertiary & Secondary Education
     {
       id: 3,
       type: 'education',
+      category: 'education',
       title: 'IT Technologist',
-      organization: 'Escuela Superior de Informática & FING',
+      organization: 'Escuela Superior de Informática & FING (Udelar)',
       location: 'Buceo, Montevideo',
+      badgeText: 'Tertiary Degree (Ongoing)',
+      status: 'ongoing',
       startDate: '2025-01',
       endDate: null,
       description: [
-        'Tertiary degree focused on software development',
-        'Object-oriented programming fundamentals',
-        'Design and management of relational databases',
-        'Desktop and web application development'
+        'Tertiary/University degree focused on software engineering, system architecture, and computer science.',
+        'Mastery of Object-Oriented Programming, advanced data structures, and algorithms.',
+        'Design, modeling, and management of relational databases with SQL and PostgreSQL.',
+        'Development of client-server systems and concurrent applications in C, C++, Java, and Python.'
       ],
-      skills: ['C', 'C++', 'C#', 'Java', 'Python', 'SQL', 'PostgreSQL']
-    },
-    {
-      id: 4,
-      type: 'course',
-      title: 'Intro Web Development Course',
-      organization: 'Hack Academy',
-      location: 'Online',
-      startDate: '2025-01',
-      endDate: '2025-03',
-      description: [
-        'Frontend and backend web development fundamentals',
-        'Final project: Car dealership web system',
-        'Introduction to modern frameworks',
-        'Teamwork methodologies'
-      ],
-      skills: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Node.js']
+      skills: ['Java', 'C', 'C++', 'C#', 'Python', 'SQL', 'PostgreSQL', 'Data Structures', 'OOP']
     },
     {
       id: 5,
       type: 'education',
+      category: 'education',
       title: 'Technical High School in Information Technology',
       organization: 'Escuela Superior de Informática',
       location: 'Buceo, Montevideo',
+      badgeText: 'Technical Degree',
+      status: 'completed',
       startDate: '2024-01',
       endDate: '2024-12',
       description: [
-        'Specialization in web development and programming',
-        'Final project with Laravel and PHP',
-        'Linux system administration and Bash scripting',
-        'Network infrastructure and technical support'
+        'Technical specialization in software development, networks, and operating systems.',
+        'Final web project with MVC architecture using Laravel and PHP.',
+        'Linux server administration, automation with Bash scripts, and infrastructure.'
       ],
       skills: ['PHP', 'Laravel', 'MySQL', 'JavaScript', 'HTML5', 'CSS3', 'Bash', 'Linux']
     },
+    // Courses & Certifications
     {
-      id: 6,
+      id: 4,
       type: 'course',
-      title: 'Object-Oriented Programming with Python',
-      organization: 'Ceibal',
-      location: '',
-      startDate: '2024-01',
-      endDate: '2024-12',
+      category: 'course',
+      title: 'Intro Web Development Course',
+      organization: 'Hack Academy',
+      location: 'Online',
+      badgeText: 'Full-Stack Web Dev',
+      status: 'completed',
+      startDate: '2025-01',
+      endDate: '2025-03',
+      relatedProjectId: 3,
       description: [
-        'Object-oriented programming course with Python',
-        'Concepts of classes, inheritance, polymorphism, and encapsulation'
+        'Fundamentals of modern frontend and backend web development.',
+        'Collaborative final project: Car dealership web system consuming APIs and integrating LocalStorage.',
+        'Introduction to reactive components and teamwork methodologies.'
       ],
-      skills: ['Python', 'OOP']
+      skills: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Node.js', 'Fetch API']
     },
     {
       id: 7,
       type: 'course',
+      category: 'course',
       title: 'JavaScript Algorithms and Data Structures',
       organization: 'freeCodeCamp',
-      location: '',
+      location: 'Online',
+      badgeText: 'International Certification',
+      status: 'completed',
       startDate: '2025-01',
       endDate: '2025-12',
       description: [
-        'Certification in algorithms and data structures with JavaScript',
-        'Problem-solving and programming challenges'
+        'Intensive certification in algorithms, data structures, and complex problem-solving.',
+        'Functional programming, memory structure manipulation, and code optimization in JS.'
       ],
-      skills: ['JavaScript', 'Algorithms', 'Data Structures']
+      skills: ['JavaScript', 'Algorithms', 'Data Structures', 'ES6+']
+    },
+    {
+      id: 6,
+      type: 'course',
+      category: 'course',
+      title: 'Object-Oriented Programming with Python',
+      organization: 'Ceibal',
+      location: 'Online',
+      badgeText: 'Specialization',
+      status: 'completed',
+      startDate: '2024-01',
+      endDate: '2024-12',
+      description: [
+        'Software architecture and object-oriented programming course with Python.',
+        'Practical implementation of classes, inheritance, polymorphism, encapsulation, and modularity.'
+      ],
+      skills: ['Python', 'OOP', 'Software Architecture']
     }
   ]
 };
@@ -229,3 +273,4 @@ export const getExperience = (language = 'es') => {
   const lang = (language || 'es').split('-')[0];
   return experienceByLanguage[lang] || experienceByLanguage.es;
 };
+

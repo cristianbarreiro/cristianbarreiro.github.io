@@ -141,15 +141,71 @@
     "go": "Lenguaje compilado de Google, diseñado para sistemas concurrentes y servicios de alta performance. En aprendizaje activo."
   },
   "about": {
-    "aria": "Sobre mí",
-    "title": "Sobre mí",
-    "bioTitle": "Biografía",
-    "interestsTitle": "Intereses",
-    "experienceEducationAria": "Experiencia, educación y cursos",
-    "experienceTitle": "Experiencia",
-    "educationTitle": "Educación",
-    "coursesTitle": "Cursos",
-    "coursesAria": "Cursos y certificaciones"
+    "aria": "Perfil profesional de Cristian Barreiro",
+    "title": "Perfil Profesional",
+    "subtitle": "Programador, Técnico en Informática y Estudiante de Tecnólogo en Informática",
+    "hero": {
+      "badge": "Perfil Profesional",
+      "tagline": "Desarrollador Full-Stack & Orientado a Sistemas",
+      "location": "Montevideo, Uruguay",
+      "status": "Estudiante de Tecnólogo en Informática (FING & ESI)",
+      "summary": "Desarrollador de software con sólida base técnica en ingeniería web, arquitecturas cliente-servidor y aplicaciones de escritorio nativas. Combino formación terciaria universitaria con experiencia en proyectos reales, microservicios y soluciones orientadas a valor."
+    },
+    "metrics": {
+      "eduTitle": "Formación Terciaria",
+      "eduSub": "FING & Escuela Superior de Informática",
+      "projTitle": "14+ Proyectos",
+      "projSub": "Full-Stack, Sistemas & Desktop",
+      "expTitle": "Simulación & Soporte",
+      "expSub": "Experiencia en ID For IDEAS & IBEC"
+    },
+    "pillars": {
+      "sectionTitle": "Pilares de Enfoque Técnico",
+      "sectionSubtitle": "Principios y capacidades respaldadas por código y proyectos reales",
+      "pillar1Title": "Desarrollo Full-Stack & APIs REST",
+      "pillar1Desc": "Diseño de aplicaciones web escalables con frontend reactivo (React 19, TypeScript) y arquitectura backend modular (Java Spring Boot, Node.js/Express, PostgreSQL, Supabase).",
+      "pillar2Title": "Ingeniería de Sistemas & Desktop",
+      "pillar2Desc": "Construcción de software de sistema y escritorio (.NET 10 WPF, C/C++, Sockets en Python, MCP servers) aplicando gestión de memoria, concurrencia y APIs del SO.",
+      "pillar3Title": "Infraestructura & Disciplina",
+      "pillar3Desc": "Formación en soporte de redes, administración Linux, automatización Bash y metodologías ágiles enfocadas en entrega continua y trabajo en equipo."
+    },
+    "timeline": {
+      "sectionTitle": "Trayectoria Profesional y Formación",
+      "sectionSubtitle": "Evolución técnica progresiva desde fundamentos hasta desarrollo avanzado",
+      "filterAll": "Todos",
+      "filterWork": "Experiencia",
+      "filterEducation": "Educación",
+      "filterCourse": "Cursos & Certificaciones",
+      "ongoingTag": "En Curso",
+      "completedTag": "Completado",
+      "relatedProject": "Ver Proyecto Vinculado"
+    },
+    "proof": {
+      "sectionTitle": "Evidencia Práctica de Software",
+      "sectionSubtitle": "Cómo la formación y la experiencia se traducen en soluciones funcionales",
+      "card1Title": "cdev Studio Platform & Genius Platform",
+      "card1Category": "Ecosistema Full-Stack & Microservicios",
+      "card1Desc": "Arquitecturas modulares con autenticación JWT, RBAC, documentación OpenAPI y persistencia relacional en PostgreSQL.",
+      "card2Title": "PrivLock (.NET 10 WPF) & Herramientas MCP",
+      "card2Category": "Seguridad & Desarrollo Nativo Windows",
+      "card2Desc": "Aplicación de escritorio nativa con integración P/Invoke (Win32), control PnP a nivel de hardware y protocolo MCP para asistentes de IA.",
+      "card3Title": "Plataformas E-commerce Monorepo",
+      "card3Category": "Aplicaciones Web de Alto Impacto",
+      "card3Desc": "Desarrollo de tiendas online dinámicas (NovaVolt, Perfumes Cataleya) con React, TypeScript, Supabase, Prisma y catálogos interactivos.",
+      "exploreProjectsCta": "Explorar Todos los Proyectos (14+)",
+      "viewProjectDetails": "Ver Proyecto"
+    },
+    "techFocus": {
+      "sectionTitle": "Dominio Técnico & Herramientas",
+      "sectionSubtitle": "Tecnologías clave utilizadas activamente en desarrollo",
+      "viewStackCta": "Ver Stack Tecnológico Completo"
+    },
+    "horizon": {
+      "title": "¿Hacia Dónde Me Dirijo?",
+      "description": "Busco incorporarme a equipos de ingeniería de software donde pueda aportar en desarrollo Full-Stack, backend de APIs y soluciones de escritorio, aportando criterio técnico, proactividad y aprendizaje continuo.",
+      "contactCta": "Iniciar Conversación",
+      "downloadCvCta": "Descargar CV"
+    }
   },
   "projects": {
     "aria": "Proyectos",
