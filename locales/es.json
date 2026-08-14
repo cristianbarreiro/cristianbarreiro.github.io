@@ -1,0 +1,357 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "contact": "Contacto",
+    "drawerTitle": "Navegación",
+    "openMenu": "Abrir menú de navegación",
+    "downloadCV": "Descargar CV"
+  },
+  "theme": {
+    "toLight": "Cambiar a modo claro",
+    "toDark": "Cambiar a modo oscuro"
+  },
+  "themeSwitch": {
+    "label": "Tema",
+    "toggle": "Cambiar entre tema claro y oscuro"
+  },
+  "language": {
+    "toggle": "Cambiar idioma ({{next}})"
+  },
+  "common": {
+    "loading": "Cargando"
+  },
+  "splash": {
+    "srOnly": "Cargando portfolio de Cristian Barreiro",
+    "role": "FULL-STACK SOFTWARE DEVELOPER",
+    "status": "SISTEMA INICIALIZADO • PORTFOLIO EN LÍNEA",
+    "skipHint": "Presiona Esc o haz clic para saltar"
+  },
+  "home": {
+    "presentationAria": "Presentación",
+    "summaryAria": "Resumen",
+    "greeting": "¡Hola! 👋 Soy",
+    "viewProjects": "Ver proyectos",
+    "contact": "Contactar",
+    "aboutBriefTitle": "Sobre mí",
+    "knowMore": "Ver perfil completo",
+    "techStackTitle": "Stack Tecnológico",
+    "techStackSubtitle": "Tecnologías y herramientas con las que construyo soluciones",
+    "techStackAria": "Stack tecnológico",
+    "techStackCategory": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Base de Datos",
+      "tools": "Herramientas",
+      "languages": "Lenguajes"
+    },
+    "aboutPreviewTitle": "Sobre mí",
+    "aboutPreviewSubtitle": "Desarrollador apasionado por crear soluciones que generan impacto",
+    "aboutPreviewAria": "Vista previa sobre mí",
+    "aboutPreviewJourney": "Desarrollo soluciones digitales combinando creatividad, lógica y tecnología. Me especializo en crear aplicaciones web modernas, desde la arquitectura del sistema hasta la experiencia del usuario.",
+    "aboutPreviewEducationLabel": "Formación",
+    "aboutPreviewInterestsLabel": "Intereses",
+    "aboutPreviewCta": "Ver perfil completo",
+    "featuredTitle": "Proyectos Destacados",
+    "featuredSubtitle": "Una selección de mis mejores trabajos",
+    "featuredAria": "Proyectos destacados",
+    "featuredViewAll": "Ver todos los proyectos",
+    "devApproachTitle": "Cómo Trabajo",
+    "devApproachSubtitle": "Mi enfoque como desarrollador",
+    "devApproachAria": "Enfoque de desarrollo",
+    "devApproach": {
+      "cleanCode": {
+        "title": "Código Limpio",
+        "description": "Escribo código legible, mantenible y bien documentado. Priorizo la claridad y las buenas prácticas en cada línea."
+      },
+      "problemSolving": {
+        "title": "Resolución de Problemas",
+        "description": "Analizo los desafíos desde múltiples perspectivas para encontrar soluciones eficientes y elegantes."
+      },
+      "continuousLearning": {
+        "title": "Aprendizaje Continuo",
+        "description": "Me mantengo actualizado con las últimas tecnologías y mejores prácticas del desarrollo de software."
+      },
+      "scalable": {
+        "title": "Soluciones Escalables",
+        "description": "Diseño arquitecturas pensadas para crecer, priorizando rendimiento y escalabilidad."
+      }
+    },
+    "contactSectionTitle": "Construyamos algo juntos",
+    "contactSectionSubtitle": "¿Tienes un proyecto en mente? Me encantaría escucharte",
+    "techGlobe": {
+      "selectPrompt": "Haz click en una tecnología para explorarla",
+      "relatedProjects": "Proyectos relacionados",
+      "noProjects": "Sin proyectos vinculados aún",
+      "panelAria": "Panel de información de tecnología",
+      "gridAria": "Grilla de tecnologías"
+    }
+  },
+  "techStack": {
+    "aria": "Tecnologías",
+    "pause": "Pausar carrusel",
+    "play": "Reanudar carrusel",
+    "python": "Python",
+    "typescript": "TypeScript",
+    "javascript": "JavaScript",
+    "go": "Go",
+    "java": "Java",
+    "springBoot": "Spring Boot",
+    "nodejs": "Node.js",
+    "express": "Express.js",
+    "laravel": "Laravel",
+    "react": "React",
+    "tailwind": "Tailwind CSS",
+    "vite": "Vite",
+    "html5": "HTML5",
+    "css3": "CSS3",
+    "postgresql": "PostgreSQL",
+    "mongodb": "MongoDB",
+    "supabase": "Supabase",
+    "docker": "Docker",
+    "aws": "AWS",
+    "git": "Git",
+    "github": "GitHub",
+    "vercel": "Vercel",
+    "swagger": "Swagger",
+    "postman": "Postman",
+    "linux": "Linux",
+    "cpp": "C++"
+  },
+  "techDesc": {
+    "react": "Librería principal para construir interfaces de usuario reactivas y basadas en componentes. Utilizada en todos mis proyectos frontend modernos.",
+    "typescript": "Superset tipado de JavaScript que mejora la mantenibilidad y detecta errores en tiempo de compilación. Base de mis proyectos frontend actuales.",
+    "javascript": "Lenguaje fundamental del desarrollo web. Lo uso tanto en frontend como en backend con Node.js y en proyectos de scripting.",
+    "java": "Lenguaje principal para desarrollo backend empresarial. Utilizado con Spring Boot para construir APIs REST robustas y escalables.",
+    "springBoot": "Framework de Java para crear aplicaciones backend de producción. Utilizado en Genius Platform para APIs REST y arquitectura de microservicios.",
+    "nodejs": "Entorno de ejecución JavaScript del lado del servidor. Utilizado para construir APIs rápidas y servicios de backend en tiempo real.",
+    "express": "Framework minimalista para Node.js. Permite construir APIs REST de forma rápida y flexible con middleware personalizable.",
+    "tailwind": "Framework CSS de utilidad primero. Permite construir diseños modernos y responsivos directamente en el markup.",
+    "vite": "Bundler moderno ultrarrápido con HMR instantáneo. Es mi herramienta de build preferida para proyectos React.",
+    "html5": "Lenguaje de marcado estándar de la web. Fundamento de toda interfaz de usuario con elementos semánticos modernos.",
+    "css3": "Hoja de estilos que da vida a las interfaces. Utilizo variables CSS, animaciones y diseño responsivo avanzado.",
+    "postgresql": "Base de datos relacional robusta y de código abierto. Utilizada en producción para proyectos con datos complejos y relaciones.",
+    "mongodb": "Base de datos NoSQL orientada a documentos. Ideal para datos flexibles y aplicaciones con esquemas dinámicos.",
+    "supabase": "Plataforma Backend-as-a-Service con PostgreSQL. Utilizada para autenticación, almacenamiento y base de datos en tiempo real.",
+    "docker": "Plataforma de contenedores para empaquetar y desplegar aplicaciones de forma consistente en cualquier entorno.",
+    "git": "Sistema de control de versiones distribuido. Parte fundamental de mi flujo de trabajo en todos los proyectos.",
+    "github": "Plataforma de alojamiento de código y colaboración. Uso GitHub para control de versiones, CI/CD y gestión de proyectos.",
+    "aws": "Plataforma de servicios en la nube de Amazon. Experiencia con servicios básicos de despliegue y almacenamiento.",
+    "vercel": "Plataforma de despliegue para aplicaciones frontend modernas. Ideal para proyectos React con integración continua.",
+    "swagger": "Herramienta para diseñar, documentar y probar APIs REST. Integrada con Spring Boot para documentación automática.",
+    "postman": "Cliente HTTP para probar y documentar APIs. Esencial en el ciclo de desarrollo backend.",
+    "python": "Lenguaje de propósito general utilizado en proyectos de scripting, automatización y sistemas de mensajería.",
+    "cpp": "Lenguaje de bajo nivel utilizado en proyectos académicos de estructuras de datos, algoritmos y sistemas.",
+    "go": "Lenguaje compilado de Google, diseñado para sistemas concurrentes y servicios de alta performance. En aprendizaje activo."
+  },
+  "about": {
+    "aria": "Perfil profesional de Cristian Barreiro",
+    "title": "Perfil Profesional",
+    "subtitle": "Programador, Técnico en Informática y Estudiante de Tecnólogo en Informática",
+    "hero": {
+      "badge": "Perfil Profesional",
+      "tagline": "Desarrollador Full-Stack & Orientado a Sistemas",
+      "location": "Montevideo, Uruguay",
+      "status": "Estudiante de Tecnólogo en Informática",
+      "summary": "Desarrollador de software con sólida base técnica en ingeniería web, arquitecturas cliente-servidor y aplicaciones de escritorio nativas. Combino formación terciaria universitaria con experiencia en proyectos reales, microservicios y soluciones orientadas a valor."
+    },
+    "metrics": {
+      "eduTitle": "Formación Terciaria",
+      "eduSub": "FING & Escuela Superior de Informática",
+      "projTitle": "14+ Proyectos",
+      "projSub": "Full-Stack, Sistemas & Desktop",
+      "expTitle": "Simulación & Soporte",
+      "expSub": "Experiencia en ID For IDEAS & IBEC"
+    },
+    "pillars": {
+      "sectionTitle": "Pilares de Enfoque Técnico",
+      "sectionSubtitle": "Principios y capacidades respaldadas por código y proyectos reales",
+      "pillar1Title": "Desarrollo Full-Stack & APIs REST",
+      "pillar1Desc": "Diseño de aplicaciones web escalables con frontend reactivo (React 19, TypeScript) y arquitectura backend modular (Java Spring Boot, Node.js/Express, PostgreSQL, Supabase).",
+      "pillar2Title": "Ingeniería de Sistemas & Desktop",
+      "pillar2Desc": "Construcción de software de sistema y escritorio (.NET 10 WPF, C/C++, Sockets en Python, MCP servers) aplicando gestión de memoria, concurrencia y APIs del SO.",
+      "pillar3Title": "Infraestructura & Disciplina",
+      "pillar3Desc": "Formación en soporte de redes, administración Linux, automatización Bash y metodologías ágiles enfocadas en entrega continua y trabajo en equipo."
+    },
+    "timeline": {
+      "sectionTitle": "Trayectoria Profesional y Formación",
+      "sectionSubtitle": "Evolución técnica progresiva desde fundamentos hasta desarrollo avanzado",
+      "filterAll": "Todos",
+      "filterWork": "Experiencia",
+      "filterEducation": "Educación",
+      "filterCourse": "Cursos & Certificaciones",
+      "ongoingTag": "En Curso",
+      "completedTag": "Completado",
+      "relatedProject": "Ver Proyecto Vinculado"
+    },
+    "proof": {
+      "sectionTitle": "Evidencia Práctica de Software",
+      "sectionSubtitle": "Cómo la formación y la experiencia se traducen en soluciones funcionales",
+      "card1Title": "cdev Studio Platform & Genius Platform",
+      "card1Category": "Ecosistema Full-Stack & Microservicios",
+      "card1Desc": "Arquitecturas modulares con autenticación JWT, RBAC, documentación OpenAPI y persistencia relacional en PostgreSQL.",
+      "card2Title": "PrivLock (.NET 10 WPF) & Herramientas MCP",
+      "card2Category": "Seguridad & Desarrollo Nativo Windows",
+      "card2Desc": "Aplicación de escritorio nativa con integración P/Invoke (Win32), control PnP a nivel de hardware y protocolo MCP para asistentes de IA.",
+      "card3Title": "Plataformas E-commerce Monorepo",
+      "card3Category": "Aplicaciones Web de Alto Impacto",
+      "card3Desc": "Desarrollo de tiendas online dinámicas (NovaVolt, Perfumes Cataleya) con React, TypeScript, Supabase, Prisma y catálogos interactivos.",
+      "exploreProjectsCta": "Explorar Todos los Proyectos (14+)",
+      "viewProjectDetails": "Ver Proyecto"
+    },
+    "techFocus": {
+      "sectionTitle": "Dominio Técnico & Herramientas",
+      "sectionSubtitle": "Tecnologías clave utilizadas activamente en desarrollo",
+      "viewStackCta": "Ver Stack Tecnológico Completo"
+    },
+    "horizon": {
+      "title": "¿Hacia Dónde Me Dirijo?",
+      "description": "Busco incorporarme a equipos de ingeniería de software donde pueda aportar en desarrollo Full-Stack, backend de APIs y soluciones de escritorio, aportando criterio técnico, proactividad y aprendizaje continuo.",
+      "contactCta": "Iniciar Conversación",
+      "downloadCvCta": "Descargar CV"
+    }
+  },
+  "projects": {
+    "aria": "Proyectos",
+    "listAria": "Lista de proyectos",
+    "title": "Proyectos",
+    "subtitle": "Una selección de proyectos personales y de aprendizaje",
+    "filterLabel": "Filtrar por tecnología",
+    "filterPlaceholder": "Todas las tecnologías",
+    "clearFilter": "Limpiar filtro",
+    "showing": "Mostrando {{shown}} de {{total}} proyectos",
+    "noResults": "No se encontraron proyectos con la tecnología \"{{tag}}\"",
+    "viewAll": "Ver todos los proyectos",
+    "viewGrid": "Grilla",
+    "viewCarousel": "Carrusel",
+    "viewList": "Lista",
+    "viewToggleAria": "Cambiar entre vista de grilla, carrusel y lista",
+    "carouselPrev": "Proyecto anterior",
+    "carouselNext": "Proyecto siguiente",
+    "carouselPosition": "{{current}} de {{total}}"
+  },
+  "projectCard": {
+    "featured": "Destacado",
+    "demo": "Demo",
+    "code": "Código",
+    "images": "Imágenes",
+    "imagesUnavailable": "Sin imágenes disponibles",
+    "mediaUnavailable": "Contenido aún no disponible...",
+    "mediaUnavailableDesc": "El archivo de este contenido aún no se encuentra disponible.",
+    "closeImages": "Cerrar visor de imágenes",
+    "prevImage": "Imagen anterior",
+    "nextImage": "Imagen siguiente",
+    "imagePosition": "{{current}} de {{total}}",
+    "imageCounter": "{{current}} / {{total}}",
+    "galleryImageAlt": "Imagen {{index}} de {{project}}",
+    "viewMore": "Ver más",
+    "zoomIn": "Acercar",
+    "zoomOut": "Alejar",
+    "zoomReset": "Restablecer zoom",
+    "fitView": "Ajustar vista",
+    "toggleThumbnails": "Alternar miniaturas",
+    "videoMedia": "Video",
+    "imageMedia": "Imagen"
+  },
+  "skills": {
+    "aria": "Habilidades",
+    "title": "Habilidades",
+    "subtitle": "Tecnologías y herramientas con las que trabajo",
+    "categoriesAria": "Categorías de habilidades",
+    "allSkillsAria": "Todas las habilidades",
+    "quickViewTitle": "Vista rápida",
+    "level": {
+      "beginner": "Principiante",
+      "intermediate": "Intermedio",
+      "advanced": "Avanzado"
+    }
+  },
+  "notFound": {
+    "message": "Página no encontrada"
+  },
+  "themeChanger": {
+    "changeTheme": "Cambiar Tema",
+    "hideThemes": "Ocultar Temas",
+    "appearance": "Apariencia",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "accentColor": "Color Kyber",
+    "blue": "Azul Jedi (Principal)",
+    "green": "Verde Jedi",
+    "cyan": "Cian Kyber",
+    "grape": "Púrpura Mace Windu",
+    "yellow": "Amarillo Centinela",
+    "red": "Rojo Sith",
+    "backgroundTheme": "Tema de Fondo",
+    "bgSpaceTitle": "Espacio WebGL 3D",
+    "bgSpaceDesc": "Entorno espacial dinámico con partículas y nebulosas",
+    "bgGradientTitle": "Gradiente Animado",
+    "bgGradientDesc": "Gradientes de color fluidos en movimiento",
+    "bgMinimalTitle": "Oscuro Minimalista",
+    "bgMinimalDesc": "Fondo limpio enfocado en alta legibilidad",
+    "bgParticlesTitle": "Red de Partículas",
+    "bgParticlesDesc": "Matriz interactiva de nodos tecnológicos",
+    "showNebula": "Mostrar nebulosa",
+    "showColorAmbience": "Ambientación de color",
+    "current": "Activo",
+    "comingSoon": "Próximamente"
+  },
+  "underConstruction": {
+    "message": "Esta página está en construcción.",
+    "close": "Cerrar"
+  },
+  "contact": {
+    "aria": "Contacto",
+    "title": "Contacto",
+    "subtitle": "¿Tienes un proyecto en mente o quieres colaborar? ¡Escríbeme!",
+    "successTitle": "¡Mensaje enviado!",
+    "successBody": "Gracias por contactarme. Te responderé lo antes posible.",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "emailLabel": "Email",
+    "emailPlaceholder": "tu@email.com",
+    "messageLabel": "Mensaje",
+    "messagePlaceholder": "Cuéntame sobre tu proyecto o idea...",
+    "send": "Enviar mensaje",
+    "errorTitle": "Error al enviar",
+    "errorBody": "Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo.",
+    "otherWaysTitle": "Otras formas de contacto",
+    "otherWaysSubtitle": "También puedes encontrarme en estas plataformas:",
+    "directEmail": "Email",
+    "viewProfile": "Ver perfil",
+    "connect": "Conectar",
+    "follow": "Seguir",
+    "validation": {
+      "nameRequired": "El nombre es requerido",
+      "emailRequired": "El email es requerido",
+      "emailInvalid": "El email no es válido",
+      "messageRequired": "El mensaje es requerido",
+      "messageMin": "El mensaje debe tener al menos 10 caracteres"
+    }
+  },
+  "footer": {
+    "labels": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter",
+      "portfolio": "Sitio web"
+    },
+    "goTo": "Ir a {{label}}"
+  },
+  "site": {
+    "title": "Desarrollador Full-Stack | Ingeniero de Software",
+    "subtitle": "Estudiante de Tecnólogo en Informática | Apasionado por el desarrollo de software y la tecnología",
+    "heroDescription": "Construyendo aplicaciones web modernas con pasión por la innovación y el aprendizaje continuo.",
+    "bio": "Soy Cristian Barreiro, desarrollador Full-Stack y estudiante de Tecnólogo en Informática, con formación en Bachillerato Tecnológico Informático y experiencia desarrollando soluciones de software.\n\nMe especializo en la creación de aplicaciones web, APIs y sistemas digitales, trabajando con tecnologías como Java, Spring Boot, React, TypeScript, Node.js y bases de datos SQL y NoSQL. A lo largo de mi formación he desarrollado proyectos propios y académicos, participando en el diseño, desarrollo e implementación de soluciones completas de principio a fin.\n\nTengo experiencia trabajando con metodologías ágiles, control de versiones y buenas prácticas de desarrollo, participando en equipos donde la planificación, la comunicación y la entrega de resultados fueron fundamentales. También desarrollo proyectos independientes, explorando nuevas herramientas y tecnologías para crear soluciones eficientes y adaptadas a necesidades reales.\n\nMi enfoque está en transformar ideas y problemas en productos digitales funcionales, combinando desarrollo, aprendizaje continuo y criterio técnico para construir soluciones de calidad.",
+    "interests": [
+      "Desarrollo Full-Stack",
+      "Ingeniería Backend",
+      "Tecnologías Web Modernas",
+      "Computación en la Nube",
+      "Colaboración en Equipo",
+      "Aprendizaje Continuo"
+    ]
+  }
+}
