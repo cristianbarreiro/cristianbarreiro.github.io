@@ -199,4 +199,4 @@ Antes de considerar una tarea de UI como terminada:
 
 ---
 
-*Última actualización: 2026-02-16*
+*Última actualización: 2026-08-14*

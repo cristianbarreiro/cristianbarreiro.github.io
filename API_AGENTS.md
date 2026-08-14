@@ -268,4 +268,4 @@ Antes de considerar una tarea de datos/API como terminada:
 
 ---
 
-*Última actualización: 2026-02-16*
+*Última actualización: 2026-08-14*

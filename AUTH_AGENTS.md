@@ -257,4 +257,4 @@ Cuando el owner apruebe la implementación de auth:
 
 ---
 
-*Última actualización: 2026-02-16*
+*Última actualización: 2026-08-14*

@@ -14,8 +14,9 @@ export const skills = getSkills('es');
 /**
  * Obtiene todas las habilidades en un array plano
  */
-export const getAllSkills = () => {
-    return skills.flatMap((category) =>
+export const getAllSkills = (language = 'es') => {
+    const list = getSkills(language);
+    return list.flatMap((category) =>
         category.items.map((item) => ({
             ...item,
             category: category.category,

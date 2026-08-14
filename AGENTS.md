@@ -262,4 +262,4 @@ Cuando el proyecto lo requiera:
 
 ---
 
-*Última actualización: 2026-08-05*
+*Última actualización: 2026-08-14*
