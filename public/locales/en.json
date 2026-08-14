@@ -226,7 +226,8 @@
     "viewAll": "View all projects",
     "viewGrid": "Grid",
     "viewCarousel": "Carousel",
-    "viewToggleAria": "Switch between grid and carousel view",
+    "viewList": "List",
+    "viewToggleAria": "Switch between grid, carousel, and list view",
     "carouselPrev": "Previous project",
     "carouselNext": "Next project",
     "carouselPosition": "{{current}} of {{total}}"

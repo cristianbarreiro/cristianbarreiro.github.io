@@ -23,6 +23,7 @@ import {
     IconX,
     IconLayoutGrid,
     IconCarouselHorizontal,
+    IconList,
     IconChevronLeft,
     IconChevronRight,
 } from '@tabler/icons-react';
@@ -164,7 +165,7 @@ function Projects() {
                             )}
                         </Group>
 
-                        {/* Toggle Grid / Carrusel */}
+                        {/* Toggle Grid / Carrusel / Lista */}
                         <SegmentedControl
                             value={viewMode}
                             onChange={setViewMode}
@@ -184,6 +185,15 @@ function Projects() {
                                         <Group gap={6} wrap="nowrap">
                                             <IconCarouselHorizontal size={16} />
                                             <span>{t('projects.viewCarousel')}</span>
+                                        </Group>
+                                    ),
+                                },
+                                {
+                                    value: 'list',
+                                    label: (
+                                        <Group gap={6} wrap="nowrap">
+                                            <IconList size={16} />
+                                            <span>{t('projects.viewList')}</span>
                                         </Group>
                                     ),
                                 },
@@ -209,7 +219,7 @@ function Projects() {
                 </Stack>
             </section>
 
-            {/* Proyectos — Vista Grid o Carrusel */}
+            {/* Proyectos — Vista Grid, Lista o Carrusel */}
             <section aria-label={t('projects.listAria')} style={{ marginTop: '2rem' }}>
                 {sortedProjects.length > 0 ? (
                     viewMode === 'grid' ? (
@@ -228,6 +238,19 @@ function Projects() {
                                 </Grid.Col>
                             ))}
                         </Grid>
+                    ) : viewMode === 'list' ? (
+                        /* ========== VISTA LISTA ========== */
+                        <Stack gap="sm">
+                            {sortedProjects.map((project) => (
+                                <ProjectCard
+                                    key={project.id}
+                                    project={project}
+                                    variant="list"
+                                    onSelect={() => handleSelectProject(project)}
+                                    isSelected={selectedProject?.id === project.id}
+                                />
+                            ))}
+                        </Stack>
                     ) : (
                         /* ========== VISTA CARRUSEL ========== */
                         <div className="carousel-wrapper">

@@ -226,7 +226,8 @@
     "viewAll": "Ver todos los proyectos",
     "viewGrid": "Grilla",
     "viewCarousel": "Carrusel",
-    "viewToggleAria": "Cambiar entre vista de grilla y carrusel",
+    "viewList": "Lista",
+    "viewToggleAria": "Cambiar entre vista de grilla, carrusel y lista",
     "carouselPrev": "Proyecto anterior",
     "carouselNext": "Proyecto siguiente",
     "carouselPosition": "{{current}} de {{total}}"

@@ -30,7 +30,7 @@ import { formatProjectDate } from '../utils/formatDate';
  * @param {string} project.demoUrl - URL de la demo
  * @param {string} project.repoUrl - URL del repositorio
  * @param {boolean} project.featured - Si es proyecto destacado
- * @param {'default'|'carousel'} variant - Variante visual ('carousel' = más grande y cuadrada)
+ * @param {'default'|'carousel'|'list'} variant - Variante visual ('carousel' = más grande y cuadrada, 'list' = fila horizontal compacta)
  * @param {function} onSelect - Callback al hacer click en la tarjeta
  * @param {boolean} isSelected - Si la tarjeta está seleccionada (modal abierto)
  */
@@ -40,6 +40,7 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
     const [galleryOpened, setGalleryOpened] = useState(false);
 
     const isCarousel = variant === 'carousel';
+    const isList = variant === 'list';
     const accentColor = `var(--mantine-color-${theme.primaryColor}-6)`;
     const featuredBorderColor = `var(--mantine-color-${theme.primaryColor}-5)`;
     const projectImages = useMemo(() => {
@@ -81,6 +82,131 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
             .filter(Boolean);
     }, [project.image, project.images, project.title, t]);
     const hasImages = projectImages.length > 0;
+
+    if (isList) {
+        return (
+            <>
+                <Tooltip
+                    label={t('projectCard.viewMore')}
+                    openDelay={600}
+                    position="top"
+                    offset={8}
+                >
+                    <Card
+                        shadow="xs"
+                        padding="sm"
+                        radius="md"
+                        withBorder
+                        className={`fh-project-card glass-hover-card${isSelected ? ' fh-project-card--selected' : ''}`}
+                        onClick={onSelect}
+                        style={{
+                            cursor: 'pointer',
+                            '--fh-card-accent': accentColor,
+                            '--fh-card-border-color': project.featured ? featuredBorderColor : undefined,
+                            '--fh-card-border-width': project.featured ? 2 : 1,
+                        }}
+                    >
+                        <Group justify="space-between" align="center" wrap="wrap" gap="md">
+                            <Group gap="md" align="center" wrap="wrap" style={{ flex: '1 1 300px' }}>
+                                <Group gap="xs" align="center" wrap="wrap">
+                                    <Text fw={600} size="sm">
+                                        {project.title}
+                                    </Text>
+
+                                    {project.featured && (
+                                        <Badge
+                                            color={theme.primaryColor}
+                                            variant="light"
+                                            size="xs"
+                                        >
+                                            {t('projectCard.featured')}
+                                        </Badge>
+                                    )}
+
+                                    {formatProjectDate(project.date) && (
+                                        <Group gap={4} align="center">
+                                            <IconCalendar
+                                                size={13}
+                                                style={{ color: 'var(--mantine-color-dimmed)', opacity: 0.75 }}
+                                            />
+                                            <Text size="xs" c="dimmed" fw={500}>
+                                                {formatProjectDate(project.date)}
+                                            </Text>
+                                        </Group>
+                                    )}
+                                </Group>
+
+                                <Group gap={4} wrap="wrap">
+                                    {project.tags.map((tag) => (
+                                        <Badge key={tag} variant="light" size="xs" radius="sm">
+                                            {tag}
+                                        </Badge>
+                                    ))}
+                                </Group>
+                            </Group>
+
+                            <Group gap="xs" align="center" wrap="nowrap" style={{ flexShrink: 0 }}>
+                                {project.demoUrl && (
+                                    <Button
+                                        component="a"
+                                        href={project.demoUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        variant="light"
+                                        size="xs"
+                                        leftSection={<IconExternalLink size={14} />}
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        {t('projectCard.demo')}
+                                    </Button>
+                                )}
+
+                                {hasImages && (
+                                    <ActionIcon
+                                        variant="subtle"
+                                        size="md"
+                                        radius="xl"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setGalleryOpened(true);
+                                        }}
+                                        aria-label={t('projectCard.images')}
+                                        title={t('projectCard.images')}
+                                    >
+                                        <IconPhoto size={16} />
+                                    </ActionIcon>
+                                )}
+
+                                {project.repoUrl && (
+                                    <Button
+                                        component="a"
+                                        href={project.repoUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        variant="subtle"
+                                        size="xs"
+                                        leftSection={<IconBrandGithub size={14} />}
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        {t('projectCard.code')}
+                                    </Button>
+                                )}
+                            </Group>
+                        </Group>
+                    </Card>
+                </Tooltip>
+
+                {galleryOpened && hasImages && (
+                    <ProjectImagesModal
+                        opened={galleryOpened}
+                        onClose={() => setGalleryOpened(false)}
+                        images={projectImages}
+                        projectTitle={project.title}
+                    />
+                )}
+            </>
+        );
+    }
 
     return (
         <>
