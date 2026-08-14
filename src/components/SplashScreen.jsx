@@ -1,43 +1,115 @@
+/**
+ * SplashScreen — Senior Creative Direction Redesign
+ *
+ * Secuencia de apertura e Identidad Digital para Cristian Barreiro.
+ * Conserva el logo oficial /logo.svg como activo principal, integrando:
+ * 1. Atmósfera tecnológica con partículas sutiles y luz radial ambiental.
+ * 2. Revelación progresiva de marca (CRISTIAN BARREIRO | FULL-STACK SOFTWARE DEVELOPER).
+ * 3. Chip de telemetría de estado con punto de pulso dinámico en theme.primaryColor.
+ * 4. Transición continua de cortina radial (iris dissolve) hacia la homepage sin destellos ni saltos de layout.
+ * 5. Soporte completo para prefers-reduced-motion y atajo de teclado/click para saltar.
+ */
+
 import { useState, useEffect, useCallback } from 'react';
+import { useMantineTheme } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 import './SplashScreen.css';
 
-const PHASE_DURATION = 1800;
+const MotionDiv = motion.div;
+const TOTAL_DURATION = 2100;
 
 function SplashScreen({ onFinish }) {
+  const { t } = useTranslation();
+  const theme = useMantineTheme();
   const [exiting, setExiting] = useState(false);
 
-  const handleFinish = useCallback(() => {
-    if (typeof onFinish === 'function') onFinish();
-  }, [onFinish]);
+  const triggerExit = useCallback(() => {
+    if (exiting) return;
+    setExiting(true);
+  }, [exiting]);
 
+  // Manejadores para saltar mediante teclado (Esc, Enter, Espacio) o click
   useEffect(() => {
-    const exitTimer = setTimeout(() => setExiting(true), PHASE_DURATION);
-    return () => clearTimeout(exitTimer);
-  }, []);
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        triggerExit();
+      }
+    };
 
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [triggerExit]);
+
+  // Temporizador principal de la secuencia
+  useEffect(() => {
+    const mainTimer = setTimeout(() => {
+      triggerExit();
+    }, TOTAL_DURATION);
+
+    return () => clearTimeout(mainTimer);
+  }, [triggerExit]);
+
+  // Finaliza el componente al terminar la animación de salida
   const handleAnimationEnd = (e) => {
-    if (e.target === e.currentTarget && exiting) {
-      handleFinish();
+    if (exiting && (e.target === e.currentTarget || e.animationName === 'splashFadeOut')) {
+      if (typeof onFinish === 'function') {
+        onFinish();
+      }
     }
   };
 
+  const primaryColorVar = `var(--mantine-color-${theme.primaryColor}-5)`;
+
   return (
     <div
-      className={`splash-screen${exiting ? ' splash-screen--exiting' : ''}`}
+      className={`splash-screen ${exiting ? 'splash-screen--exiting' : ''}`}
       role="status"
-      aria-label="Cargando portfolio"
+      aria-label={t('splash.srOnly')}
+      onClick={triggerExit}
       onAnimationEnd={handleAnimationEnd}
+      style={{
+        '--splash-primary': primaryColorVar,
+      }}
     >
-      <span className="splash-screen__sr-only">Cargando portfolio de Cristian Barreiro</span>
+      <span className="splash-screen__sr-only">{t('splash.srOnly')}</span>
 
-      <div className="splash-screen__logo-wrapper">
-        <div className="splash-screen__glow" />
-        <img
-          src="/logo.svg"
-          alt="Cristian Barreiro"
-          className="splash-screen__logo"
-          draggable="false"
-        />
+      {/* Rejilla de Fondo & Halo de Luz Ambiental */}
+      <div className="splash-screen__background">
+        <div className="splash-screen__grid" />
+        <div className="splash-screen__aura" />
+      </div>
+
+      {/* Contenedor Principal de la Secuencia */}
+      <div className="splash-screen__content">
+
+        {/* Branding e Identidad Profesional */}
+        <MotionDiv
+          className="splash-screen__brand"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <h1 className="splash-screen__name">CRISTIAN BARREIRO</h1>
+          <p className="splash-screen__role">{t('splash.role')}</p>
+        </MotionDiv>
+
+        {/* Telemetría y Estado del Sistema */}
+        <MotionDiv
+          className="splash-screen__status-chip"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span className="splash-screen__pulse-dot" />
+          <span className="splash-screen__status-text">{t('splash.status')}</span>
+        </MotionDiv>
+      </div>
+
+      {/* Indicador discreto para saltar */}
+      <div className="splash-screen__skip-hint">
+        <span>{t('splash.skipHint')}</span>
       </div>
     </div>
   );

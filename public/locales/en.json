@@ -23,6 +23,12 @@
   "common": {
     "loading": "Loading"
   },
+  "splash": {
+    "srOnly": "Loading Cristian Barreiro's portfolio",
+    "role": "FULL-STACK SOFTWARE DEVELOPER",
+    "status": "SYSTEM INITIALIZED • PORTFOLIO ONLINE",
+    "skipHint": "Press Esc or click to skip"
+  },
   "home": {
     "presentationAria": "Introduction",
     "summaryAria": "Summary",
