@@ -120,7 +120,21 @@ function ProjectDetailModal({ project, opened, onClose }) {
                                     size="md"
                                     leftSection={<IconExternalLink size={18} />}
                                 >
-                                    {t('projectCard.demo')}
+                                    {t(project.backofficeUrl ? 'projectCard.ecommerce' : 'projectCard.demo')}
+                                </Button>
+                            )}
+
+                            {project.backofficeUrl && (
+                                <Button
+                                    component="a"
+                                    href={project.backofficeUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    variant="light"
+                                    size="md"
+                                    leftSection={<IconExternalLink size={18} />}
+                                >
+                                    {t('projectCard.backoffice')}
                                 </Button>
                             )}
 

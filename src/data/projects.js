@@ -11,6 +11,7 @@
  * - images: array de imágenes del proyecto (opcional). Puede ser array de strings o de objetos { src, alt, caption }
  * - tags: array de tecnologías/etiquetas
  * - demoUrl: enlace a la demo en vivo
+ * - backofficeUrl: enlace al backoffice en vivo (opcional)
  * - repoUrl: enlace al repositorio
  * - featured: si es un proyecto destacado (aparece primero)
  */
@@ -303,7 +304,8 @@ const projectsByLanguage = {
                 'Amazon Lightsail',
                 'Server-Sent Events',
             ],
-            demoUrl: 'https://cataleyaperfumes2.vercel.app/',
+            demoUrl: 'https://cataleyaperfumeria.vercel.app/',
+            backofficeUrl: 'https://cataleyabackoffice.vercel.app/',
             repoUrl: '',
             featured: true
         },
@@ -727,7 +729,8 @@ const projectsByLanguage = {
                 'Amazon Lightsail',
                 'Server-Sent Events',
             ],
-            demoUrl: 'https://cataleyaperfumes2.vercel.app/',
+            demoUrl: 'https://cataleyaperfumeria.vercel.app/',
+            backofficeUrl: 'https://cataleyabackoffice.vercel.app/',
             repoUrl: '',
             featured: true,
         },

@@ -28,6 +28,7 @@ import { formatProjectDate } from '../utils/formatDate';
  * @param {string} project.description - Descripción corta
  * @param {string[]} project.tags - Array de tecnologías/tags
  * @param {string} project.demoUrl - URL de la demo
+ * @param {string} [project.backofficeUrl] - URL del backoffice
  * @param {string} project.repoUrl - URL del repositorio
  * @param {boolean} project.featured - Si es proyecto destacado
  * @param {'default'|'carousel'|'list'} variant - Variante visual ('carousel' = más grande y cuadrada, 'list' = fila horizontal compacta)
@@ -157,7 +158,22 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                                         leftSection={<IconExternalLink size={14} />}
                                         onClick={(e) => e.stopPropagation()}
                                     >
-                                        {t('projectCard.demo')}
+                                        {t(project.backofficeUrl ? 'projectCard.ecommerce' : 'projectCard.demo')}
+                                    </Button>
+                                )}
+
+                                {project.backofficeUrl && (
+                                    <Button
+                                        component="a"
+                                        href={project.backofficeUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        variant="light"
+                                        size="xs"
+                                        leftSection={<IconExternalLink size={14} />}
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        {t('projectCard.backoffice')}
                                     </Button>
                                 )}
 
@@ -298,7 +314,22 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                             leftSection={<IconExternalLink size={isCarousel ? 16 : 14} />}
                             onClick={(e) => e.stopPropagation()}
                         >
-                            {t('projectCard.demo')}
+                            {t(project.backofficeUrl ? 'projectCard.ecommerce' : 'projectCard.demo')}
+                        </Button>
+                    )}
+
+                    {project.backofficeUrl && (
+                        <Button
+                            component="a"
+                            href={project.backofficeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            variant="light"
+                            size={isCarousel ? 'sm' : 'xs'}
+                            leftSection={<IconExternalLink size={isCarousel ? 16 : 14} />}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {t('projectCard.backoffice')}
                         </Button>
                     )}
 

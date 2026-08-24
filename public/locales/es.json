@@ -235,6 +235,8 @@
   "projectCard": {
     "featured": "Destacado",
     "demo": "Demo",
+    "ecommerce": "E-commerce",
+    "backoffice": "Backoffice",
     "code": "Código",
     "images": "Imágenes",
     "imagesUnavailable": "Sin imágenes disponibles",
