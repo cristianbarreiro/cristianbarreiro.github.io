@@ -221,60 +221,86 @@ const projectsByLanguage = {
         },
         {
             id: 5,
-            title: 'E-commerce de Perfumes',
+            title: 'Perfumería Cataleya — E-commerce Demo',
             description:
-                'Aplicación e-commerce full-stack con catálogo dinámico, vista rápida de productos, carrito, favoritos y panel de backoffice.',
+                'Demo full-stack de una perfumería online con catálogo dinámico, carrito, checkout, seguimiento de pedidos y backoffice sincronizado.',
             longDescription:
-                'Proyecto e-commerce en arquitectura monorepo con frontend en React + TypeScript y backend en Node.js/Express + Prisma. Incluye Home con carruseles dinámicos, filtros por categoría/subcategoría/colecciones, modal de vista rápida, carrito y wishlist, además de backoffice para gestión de productos y colecciones.',
+                'Suite e-commerce desarrollada con una arquitectura monorepo. Incluye una tienda construida con React, TypeScript y TanStack Start, un backoffice administrativo con React y Vite, y una API local con persistencia JSON y sincronización en tiempo real mediante Server-Sent Events. Permite explorar productos, gestionar el carrito, simular compras, validar cupones, seguir pedidos y administrar catálogo, inventario, clientes, promociones y configuraciones. La autenticación, los pagos y los envíos funcionan en modo demostración.',
             date: '2026',
             image: '/images/projects/cataleya/home.jpeg',
             images: [
                 {
+                    src: '/images/projects/cataleya/ecommerce-demostration.png',
+                    alt: 'Cataleya — Demostración del e-commerce',
+                },
+                {
                     src: '/images/projects/cataleya/desktop1.jpeg',
-                    alt: 'Cataleya - Desktop 1',
+                    alt: 'Cataleya — Vista de escritorio 1',
                 },
                 {
                     src: '/images/projects/cataleya/desktop2.jpeg',
-                    alt: 'Cataleya - Desktop 2',
+                    alt: 'Cataleya — Vista de escritorio 2',
                 },
                 {
                     src: '/images/projects/cataleya/desktop3.jpeg',
-                    alt: 'Cataleya - Desktop 3',
+                    alt: 'Cataleya — Vista de escritorio 3',
                 },
                 {
                     src: '/images/projects/cataleya/desktop4.jpeg',
-                    alt: 'Cataleya - Desktop 4',
+                    alt: 'Cataleya — Vista de escritorio 4',
                 },
                 {
                     src: '/images/projects/cataleya/desktop5.jpeg',
-                    alt: 'Cataleya - Desktop 5',
+                    alt: 'Cataleya — Vista de escritorio 5',
                 },
                 {
                     src: '/images/projects/cataleya/tablet1.jpeg',
-                    alt: 'Cataleya - Tablet 1',
+                    alt: 'Cataleya — Vista tablet 1',
                 },
                 {
                     src: '/images/projects/cataleya/tablet2.jpeg',
-                    alt: 'Cataleya - Tablet 2',
+                    alt: 'Cataleya — Vista tablet 2',
                 },
                 {
                     src: '/images/projects/cataleya/mobile1.jpeg',
-                    alt: 'Cataleya - Mobile 1',
+                    alt: 'Cataleya — Vista móvil 1',
                 },
                 {
                     src: '/images/projects/cataleya/mobile2.jpeg',
-                    alt: 'Cataleya - Mobile 2',
+                    alt: 'Cataleya — Vista móvil 2',
+                },
+                {
+                    src: '/images/projects/cataleya/backoffice-demostration.png',
+                    alt: 'Cataleya — Demostración del backoffice',
+                },
+                {
+                    src: '/images/projects/cataleya/backoffice-demo1desktop.jpeg',
+                    alt: 'Cataleya — Inicio de sesión del backoffice',
+                },
+                {
+                    src: '/images/projects/cataleya/backoffice-demo2desktop.jpeg',
+                    alt: 'Cataleya — Panel ejecutivo del backoffice',
+                },
+                {
+                    src: '/images/projects/cataleya/backoffice-demo3desktop.jpeg',
+                    alt: 'Cataleya — Catálogo del backoffice',
+                },
+                {
+                    src: '/images/projects/cataleya/backoffice-demo4desktop.jpeg',
+                    alt: 'Cataleya — Configuración del backoffice',
                 },
             ],
             tags: [
                 'TypeScript',
-                'React',
-                'TailwindCSS',
-                'Node.js',
-                'Express',
-                'Prisma',
-                'PostgreSQL',
-                'Vite'
+                'React 19',
+                'TanStack Start',
+                'TanStack Router',
+                'Vite',
+                'Tailwind CSS',
+                'Radix UI',
+                'Recharts',
+                'Bun',
+                'Server-Sent Events',
             ],
             demoUrl: 'https://cataleyaperfumes2.vercel.app/',
             repoUrl: '',
@@ -618,14 +644,18 @@ const projectsByLanguage = {
         },
         {
             id: 5,
-            title: 'Perfume E-commerce',
+            title: 'Cataleya Perfume Shop — E-commerce Demo',
             description:
-                'Full-stack e-commerce application with dynamic catalog, product quick view, cart, wishlist, and backoffice dashboard.',
+                'Full-stack demo of an online perfume shop with a dynamic catalog, cart, checkout, order tracking, and a synchronized backoffice.',
             longDescription:
-                'E-commerce project using a monorepo architecture with a React + TypeScript frontend and a Node.js/Express + Prisma backend. It includes a Home page with dynamic carousels, filters by category/subcategory/collections, a quick-view modal, cart and wishlist features, plus a backoffice for product and collection management.',
+                'E-commerce suite developed with a monorepo architecture. It includes a storefront built with React, TypeScript, and TanStack Start, an administrative backoffice built with React and Vite, and a local API with JSON persistence and real-time synchronization through Server-Sent Events. Users can browse products, manage their cart, simulate purchases, validate coupons, track orders, and manage the catalog, inventory, customers, promotions, and settings. Authentication, payments, and shipping operate in demo mode.',
             date: '2026',
             image: '/images/projects/cataleya/home.jpeg',
             images: [
+                {
+                    src: '/images/projects/cataleya/ecommerce-demostration.png',
+                    alt: 'Cataleya — E-commerce demonstration',
+                },
                 {
                     src: '/images/projects/cataleya/desktop1.jpeg',
                     alt: 'Cataleya - Desktop 1',
@@ -662,16 +692,38 @@ const projectsByLanguage = {
                     src: '/images/projects/cataleya/mobile2.jpeg',
                     alt: 'Cataleya - Mobile 2',
                 },
+                {
+                    src: '/images/projects/cataleya/backoffice-demostration.png',
+                    alt: 'Cataleya — Backoffice demonstration',
+                },
+                {
+                    src: '/images/projects/cataleya/backoffice-demo1desktop.jpeg',
+                    alt: 'Cataleya — Backoffice login',
+                },
+                {
+                    src: '/images/projects/cataleya/backoffice-demo2desktop.jpeg',
+                    alt: 'Cataleya — Backoffice executive dashboard',
+                },
+                {
+                    src: '/images/projects/cataleya/backoffice-demo3desktop.jpeg',
+                    alt: 'Cataleya — Backoffice catalog',
+                },
+                {
+                    src: '/images/projects/cataleya/backoffice-demo4desktop.jpeg',
+                    alt: 'Cataleya — Backoffice settings',
+                },
             ],
             tags: [
                 'TypeScript',
-                'React',
-                'TailwindCSS',
-                'Node.js',
-                'Express',
-                'Prisma',
-                'PostgreSQL',
-                'Vite'
+                'React 19',
+                'TanStack Start',
+                'TanStack Router',
+                'Vite',
+                'Tailwind CSS',
+                'Radix UI',
+                'Recharts',
+                'Bun',
+                'Server-Sent Events',
             ],
             demoUrl: 'https://cataleyaperfumes2.vercel.app/',
             repoUrl: '',
