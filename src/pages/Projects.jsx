@@ -27,10 +27,21 @@ import {
     IconChevronLeft,
     IconChevronRight,
 } from '@tabler/icons-react';
+import { motion, useReducedMotion } from 'framer-motion';
 import ProjectCard from '../components/ProjectCard';
 import ProjectDetailModal from '../components/ProjectDetailModal';
 import { getProjects, getAllTags } from '../data/projects';
 import { useTranslation } from 'react-i18next';
+import ScrollReveal from '../components/ScrollReveal';
+import {
+    staggerContainer,
+    cardItem,
+    listItem,
+    STAGGER,
+    VIEWPORT_SMALL,
+} from '../utils/motionVariants';
+
+const MotionDiv = motion.div;
 
 /** Estilos del carrusel — sin librería externa */
 const carouselStyles = {
@@ -50,6 +61,7 @@ const carouselStyles = {
 
 function Projects() {
     const { t, i18n } = useTranslation();
+    const shouldReduceMotion = useReducedMotion();
 
     const projects = useMemo(
         () => getProjects(i18n.resolvedLanguage || i18n.language),
@@ -128,79 +140,83 @@ function Projects() {
             {/* Encabezado de página */}
             <section aria-label={t('projects.aria')}>
                 <Stack gap="xl">
-                    <div>
-                        <Title order={1} mb="sm">
-                            {t('projects.title')}
-                        </Title>
-                        <Text size="lg" className="section-subtitle">
-                            {t('projects.subtitle')}
-                        </Text>
-                    </div>
+                    <ScrollReveal>
+                        <div>
+                            <Title order={1} mb="sm">
+                                {t('projects.title')}
+                            </Title>
+                            <Text size="lg" className="section-subtitle">
+                                {t('projects.subtitle')}
+                            </Text>
+                        </div>
+                    </ScrollReveal>
 
                     {/* Controles de filtrado + toggle de vista */}
-                    <Group gap="md" align="end" wrap="wrap" justify="space-between">
-                        <Group gap="md" align="end" wrap="wrap">
-                            <Select
-                                label={t('projects.filterLabel')}
-                                placeholder={t('projects.filterPlaceholder')}
-                                data={allTags}
-                                value={selectedTag}
-                                onChange={handleTagChange}
-                                clearable
-                                searchable
-                                leftSection={<IconFilter size={16} />}
-                                w={{ base: '100%', sm: 250 }}
+                    <ScrollReveal delay={0.1}>
+                        <Group gap="md" align="end" wrap="wrap" justify="space-between">
+                            <Group gap="md" align="end" wrap="wrap">
+                                <Select
+                                    label={t('projects.filterLabel')}
+                                    placeholder={t('projects.filterPlaceholder')}
+                                    data={allTags}
+                                    value={selectedTag}
+                                    onChange={handleTagChange}
+                                    clearable
+                                    searchable
+                                    leftSection={<IconFilter size={16} />}
+                                    w={{ base: '100%', sm: 250 }}
+                                />
+
+                                {/* Botón para limpiar filtro (solo visible si hay filtro activo) */}
+                                {selectedTag && (
+                                    <Button
+                                        variant="subtle"
+                                        size="sm"
+                                        leftSection={<IconX size={14} />}
+                                        onClick={clearFilter}
+                                    >
+                                        {t('projects.clearFilter')}
+                                    </Button>
+                                )}
+                            </Group>
+
+                            {/* Toggle Grid / Carrusel / Lista */}
+                            <SegmentedControl
+                                value={viewMode}
+                                onChange={setViewMode}
+                                data={[
+                                    {
+                                        value: 'grid',
+                                        label: (
+                                            <Group gap={6} wrap="nowrap">
+                                                <IconLayoutGrid size={16} />
+                                                <span>{t('projects.viewGrid')}</span>
+                                            </Group>
+                                        ),
+                                    },
+                                    {
+                                        value: 'carousel',
+                                        label: (
+                                            <Group gap={6} wrap="nowrap">
+                                                <IconCarouselHorizontal size={16} />
+                                                <span>{t('projects.viewCarousel')}</span>
+                                            </Group>
+                                        ),
+                                    },
+                                    {
+                                        value: 'list',
+                                        label: (
+                                            <Group gap={6} wrap="nowrap">
+                                                <IconList size={16} />
+                                                <span>{t('projects.viewList')}</span>
+                                            </Group>
+                                        ),
+                                    },
+                                ]}
+                                aria-label={t('projects.viewToggleAria')}
                             />
-
-                            {/* Botón para limpiar filtro (solo visible si hay filtro activo) */}
-                            {selectedTag && (
-                                <Button
-                                    variant="subtle"
-                                    size="sm"
-                                    leftSection={<IconX size={14} />}
-                                    onClick={clearFilter}
-                                >
-                                    {t('projects.clearFilter')}
-                                </Button>
-                            )}
                         </Group>
-
-                        {/* Toggle Grid / Carrusel / Lista */}
-                        <SegmentedControl
-                            value={viewMode}
-                            onChange={setViewMode}
-                            data={[
-                                {
-                                    value: 'grid',
-                                    label: (
-                                        <Group gap={6} wrap="nowrap">
-                                            <IconLayoutGrid size={16} />
-                                            <span>{t('projects.viewGrid')}</span>
-                                        </Group>
-                                    ),
-                                },
-                                {
-                                    value: 'carousel',
-                                    label: (
-                                        <Group gap={6} wrap="nowrap">
-                                            <IconCarouselHorizontal size={16} />
-                                            <span>{t('projects.viewCarousel')}</span>
-                                        </Group>
-                                    ),
-                                },
-                                {
-                                    value: 'list',
-                                    label: (
-                                        <Group gap={6} wrap="nowrap">
-                                            <IconList size={16} />
-                                            <span>{t('projects.viewList')}</span>
-                                        </Group>
-                                    ),
-                                },
-                            ]}
-                            aria-label={t('projects.viewToggleAria')}
-                        />
-                    </Group>
+                    </ScrollReveal>
 
                     {/* Indicador de resultados */}
                     <Group gap="sm">
@@ -224,33 +240,50 @@ function Projects() {
                 {sortedProjects.length > 0 ? (
                     viewMode === 'grid' ? (
                         /* ========== VISTA GRID ========== */
-                        <Grid gutter="lg">
-                            {sortedProjects.map((project) => (
-                                <Grid.Col
-                                    key={project.id}
-                                    span={{ base: 12, sm: 6, lg: 4 }}
-                                >
-                                    <ProjectCard
-                                        project={project}
-                                        onSelect={() => handleSelectProject(project)}
-                                        isSelected={selectedProject?.id === project.id}
-                                    />
-                                </Grid.Col>
-                            ))}
-                        </Grid>
+                        <MotionDiv
+                            variants={shouldReduceMotion ? undefined : staggerContainer(STAGGER.normal)}
+                            initial={shouldReduceMotion ? undefined : 'hidden'}
+                            whileInView={shouldReduceMotion ? undefined : 'visible'}
+                            viewport={VIEWPORT_SMALL}
+                        >
+                            <Grid gutter="lg">
+                                {sortedProjects.map((project) => (
+                                    <Grid.Col
+                                        key={project.id}
+                                        span={{ base: 12, sm: 6, lg: 4 }}
+                                    >
+                                        <MotionDiv variants={shouldReduceMotion ? undefined : cardItem} style={{ height: '100%' }}>
+                                            <ProjectCard
+                                                project={project}
+                                                onSelect={() => handleSelectProject(project)}
+                                                isSelected={selectedProject?.id === project.id}
+                                            />
+                                        </MotionDiv>
+                                    </Grid.Col>
+                                ))}
+                            </Grid>
+                        </MotionDiv>
                     ) : viewMode === 'list' ? (
                         /* ========== VISTA LISTA ========== */
-                        <Stack gap="sm">
-                            {sortedProjects.map((project) => (
-                                <ProjectCard
-                                    key={project.id}
-                                    project={project}
-                                    variant="list"
-                                    onSelect={() => handleSelectProject(project)}
-                                    isSelected={selectedProject?.id === project.id}
-                                />
-                            ))}
-                        </Stack>
+                        <MotionDiv
+                            variants={shouldReduceMotion ? undefined : staggerContainer(STAGGER.tight)}
+                            initial={shouldReduceMotion ? undefined : 'hidden'}
+                            whileInView={shouldReduceMotion ? undefined : 'visible'}
+                            viewport={VIEWPORT_SMALL}
+                        >
+                            <Stack gap="sm">
+                                {sortedProjects.map((project) => (
+                                    <MotionDiv key={project.id} variants={shouldReduceMotion ? undefined : listItem}>
+                                        <ProjectCard
+                                            project={project}
+                                            variant="list"
+                                            onSelect={() => handleSelectProject(project)}
+                                            isSelected={selectedProject?.id === project.id}
+                                        />
+                                    </MotionDiv>
+                                ))}
+                            </Stack>
+                        </MotionDiv>
                     ) : (
                         /* ========== VISTA CARRUSEL ========== */
                         <div className="carousel-wrapper">

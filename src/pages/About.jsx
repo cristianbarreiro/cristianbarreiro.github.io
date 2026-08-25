@@ -44,30 +44,30 @@ import {
     IconFolder,
     IconRocket,
 } from '@tabler/icons-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { getExperienceByCategory, formatDate } from '../data/experience';
 import RippleButton from '../components/RippleButton';
+import ScrollReveal from '../components/ScrollReveal';
+import {
+    staggerContainer,
+    cardItem,
+    listItem,
+    STAGGER,
+    VIEWPORT_ONCE,
+    VIEWPORT_SMALL,
+} from '../utils/motionVariants';
 
 const MotionDiv = motion.div;
 
-// Variantes de animación Framer Motion
-const containerVariants = {
+// Variantes para AnimatePresence de la timeline (cambio de filtro)
+const timelineContainerVariants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.1,
+            staggerChildren: 0.08,
         },
-    },
-};
-
-const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.4, ease: 'easeOut' },
     },
 };
 
@@ -86,6 +86,7 @@ function About() {
     const { t, i18n } = useTranslation();
     const language = i18n.resolvedLanguage || i18n.language;
     const cvHref = getCVHref(language);
+    const shouldReduceMotion = useReducedMotion();
 
     // Estado para el filtro de la timeline (all, work, education, course)
     const [activeTab, setActiveTab] = useState('all');
@@ -101,11 +102,7 @@ function About() {
                         1. HERO PERSONA & IDENTITY HEADER
                        ======================================================== */}
                     <section aria-label={t('about.aria')}>
-                        <MotionDiv
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                        >
+                        <ScrollReveal duration={0.6}>
                             <Paper
                                 p={{ base: 'lg', sm: 'xl', md: '50' }}
                                 radius="lg"
@@ -200,64 +197,77 @@ function About() {
                                     </Text>
 
                                     {/* Métricas e hitos clave */}
-                                    <Grid mt="md" gutter="md">
-                                        <Grid.Col span={{ base: 12, sm: 4 }}>
-                                            <Paper p="md" radius="md" withBorder bg="var(--mantine-color-body)">
-                                                <Group gap="sm" wrap="nowrap">
-                                                    <ThemeIcon size="lg" radius="md" variant="light" color="violet">
-                                                        <IconSchool size={20} />
-                                                    </ThemeIcon>
-                                                    <div>
-                                                        <Text fw={700} size="sm">
-                                                            {t('about.metrics.eduTitle')}
-                                                        </Text>
-                                                        <Text size="xs" c="dimmed">
-                                                            {t('about.metrics.eduSub')}
-                                                        </Text>
-                                                    </div>
-                                                </Group>
-                                            </Paper>
-                                        </Grid.Col>
+                                    <MotionDiv
+                                        variants={shouldReduceMotion ? undefined : staggerContainer(STAGGER.normal, 0.2)}
+                                        initial={shouldReduceMotion ? undefined : 'hidden'}
+                                        whileInView={shouldReduceMotion ? undefined : 'visible'}
+                                        viewport={VIEWPORT_ONCE}
+                                    >
+                                        <Grid mt="md" gutter="md">
+                                            <Grid.Col span={{ base: 12, sm: 4 }}>
+                                                <MotionDiv variants={shouldReduceMotion ? undefined : cardItem}>
+                                                    <Paper p="md" radius="md" withBorder bg="var(--mantine-color-body)">
+                                                        <Group gap="sm" wrap="nowrap">
+                                                            <ThemeIcon size="lg" radius="md" variant="light" color="violet">
+                                                                <IconSchool size={20} />
+                                                            </ThemeIcon>
+                                                            <div>
+                                                                <Text fw={700} size="sm">
+                                                                    {t('about.metrics.eduTitle')}
+                                                                </Text>
+                                                                <Text size="xs" c="dimmed">
+                                                                    {t('about.metrics.eduSub')}
+                                                                </Text>
+                                                            </div>
+                                                        </Group>
+                                                    </Paper>
+                                                </MotionDiv>
+                                            </Grid.Col>
 
-                                        <Grid.Col span={{ base: 12, sm: 4 }}>
-                                            <Paper p="md" radius="md" withBorder bg="var(--mantine-color-body)">
-                                                <Group gap="sm" wrap="nowrap">
-                                                    <ThemeIcon size="lg" radius="md" variant="light" color="cyan">
-                                                        <IconFolder size={20} />
-                                                    </ThemeIcon>
-                                                    <div>
-                                                        <Text fw={700} size="sm">
-                                                            {t('about.metrics.projTitle')}
-                                                        </Text>
-                                                        <Text size="xs" c="dimmed">
-                                                            {t('about.metrics.projSub')}
-                                                        </Text>
-                                                    </div>
-                                                </Group>
-                                            </Paper>
-                                        </Grid.Col>
+                                            <Grid.Col span={{ base: 12, sm: 4 }}>
+                                                <MotionDiv variants={shouldReduceMotion ? undefined : cardItem}>
+                                                    <Paper p="md" radius="md" withBorder bg="var(--mantine-color-body)">
+                                                        <Group gap="sm" wrap="nowrap">
+                                                            <ThemeIcon size="lg" radius="md" variant="light" color="cyan">
+                                                                <IconFolder size={20} />
+                                                            </ThemeIcon>
+                                                            <div>
+                                                                <Text fw={700} size="sm">
+                                                                    {t('about.metrics.projTitle')}
+                                                                </Text>
+                                                                <Text size="xs" c="dimmed">
+                                                                    {t('about.metrics.projSub')}
+                                                                </Text>
+                                                            </div>
+                                                        </Group>
+                                                    </Paper>
+                                                </MotionDiv>
+                                            </Grid.Col>
 
-                                        <Grid.Col span={{ base: 12, sm: 4 }}>
-                                            <Paper p="md" radius="md" withBorder bg="var(--mantine-color-body)">
-                                                <Group gap="sm" wrap="nowrap">
-                                                    <ThemeIcon size="lg" radius="md" variant="light" color="green">
-                                                        <IconBriefcase size={20} />
-                                                    </ThemeIcon>
-                                                    <div>
-                                                        <Text fw={700} size="sm">
-                                                            {t('about.metrics.expTitle')}
-                                                        </Text>
-                                                        <Text size="xs" c="dimmed">
-                                                            {t('about.metrics.expSub')}
-                                                        </Text>
-                                                    </div>
-                                                </Group>
-                                            </Paper>
-                                        </Grid.Col>
-                                    </Grid>
+                                            <Grid.Col span={{ base: 12, sm: 4 }}>
+                                                <MotionDiv variants={shouldReduceMotion ? undefined : cardItem}>
+                                                    <Paper p="md" radius="md" withBorder bg="var(--mantine-color-body)">
+                                                        <Group gap="sm" wrap="nowrap">
+                                                            <ThemeIcon size="lg" radius="md" variant="light" color="green">
+                                                                <IconBriefcase size={20} />
+                                                            </ThemeIcon>
+                                                            <div>
+                                                                <Text fw={700} size="sm">
+                                                                    {t('about.metrics.expTitle')}
+                                                                </Text>
+                                                                <Text size="xs" c="dimmed">
+                                                                    {t('about.metrics.expSub')}
+                                                                </Text>
+                                                            </div>
+                                                        </Group>
+                                                    </Paper>
+                                                </MotionDiv>
+                                            </Grid.Col>
+                                        </Grid>
+                                    </MotionDiv>
                                 </Stack>
                             </Paper>
-                        </MotionDiv>
+                        </ScrollReveal>
                     </section>
 
                     {/* ========================================================
@@ -265,103 +275,103 @@ function About() {
                        ======================================================== */}
                     <section aria-label={t('about.pillars.sectionTitle')}>
                         <Stack gap="lg" mt="xl">
-                            <div>
-                                <Title order={2} size="h2" fw={700}>
-                                    {t('about.pillars.sectionTitle')}
-                                </Title>
-                                <Text size="md" c="dimmed">
-                                    {t('about.pillars.sectionSubtitle')}
-                                </Text>
-                            </div>
+                            <ScrollReveal>
+                                <div>
+                                    <Title order={2} size="h2" fw={700}>
+                                        {t('about.pillars.sectionTitle')}
+                                    </Title>
+                                    <Text size="md" c="dimmed">
+                                        {t('about.pillars.sectionSubtitle')}
+                                    </Text>
+                                </div>
+                            </ScrollReveal>
 
-                            <Grid gutter="lg">
-                                {/* Pilar 1: Full-Stack & REST APIs */}
-                                <Grid.Col span={{ base: 12, md: 4 }}>
-                                    <MotionDiv
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: 0.1 }}
-                                        style={{ height: '100%' }}
-                                    >
-                                        <Paper
-                                            p="xl"
-                                            radius="md"
-                                            withBorder
-                                            h="100%"
-                                            className="glass-hover-card"
+                            <MotionDiv
+                                variants={shouldReduceMotion ? undefined : staggerContainer(STAGGER.relaxed)}
+                                initial={shouldReduceMotion ? undefined : 'hidden'}
+                                whileInView={shouldReduceMotion ? undefined : 'visible'}
+                                viewport={VIEWPORT_ONCE}
+                            >
+                                <Grid gutter="lg">
+                                    {/* Pilar 1: Full-Stack & REST APIs */}
+                                    <Grid.Col span={{ base: 12, md: 4 }}>
+                                        <MotionDiv
+                                            variants={shouldReduceMotion ? undefined : cardItem}
+                                            style={{ height: '100%' }}
                                         >
-                                            <ThemeIcon size="xl" radius="md" variant="light" color="cyan" mb="md">
-                                                <IconServer size={26} />
-                                            </ThemeIcon>
-                                            <Title order={3} size="h4" mb="xs">
-                                                {t('about.pillars.pillar1Title')}
-                                            </Title>
-                                            <Text size="sm" c="dimmed" style={{ lineHeight: 1.7 }}>
-                                                {t('about.pillars.pillar1Desc')}
-                                            </Text>
-                                        </Paper>
-                                    </MotionDiv>
-                                </Grid.Col>
+                                            <Paper
+                                                p="xl"
+                                                radius="md"
+                                                withBorder
+                                                h="100%"
+                                                className="glass-hover-card"
+                                            >
+                                                <ThemeIcon size="xl" radius="md" variant="light" color="cyan" mb="md">
+                                                    <IconServer size={26} />
+                                                </ThemeIcon>
+                                                <Title order={3} size="h4" mb="xs">
+                                                    {t('about.pillars.pillar1Title')}
+                                                </Title>
+                                                <Text size="sm" c="dimmed" style={{ lineHeight: 1.7 }}>
+                                                    {t('about.pillars.pillar1Desc')}
+                                                </Text>
+                                            </Paper>
+                                        </MotionDiv>
+                                    </Grid.Col>
 
-                                {/* Pilar 2: Sistemas & Desktop */}
-                                <Grid.Col span={{ base: 12, md: 4 }}>
-                                    <MotionDiv
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: 0.2 }}
-                                        style={{ height: '100%' }}
-                                    >
-                                        <Paper
-                                            p="xl"
-                                            radius="md"
-                                            withBorder
-                                            h="100%"
-                                            className="glass-hover-card"
+                                    {/* Pilar 2: Sistemas & Desktop */}
+                                    <Grid.Col span={{ base: 12, md: 4 }}>
+                                        <MotionDiv
+                                            variants={shouldReduceMotion ? undefined : cardItem}
+                                            style={{ height: '100%' }}
                                         >
-                                            <ThemeIcon size="xl" radius="md" variant="light" color="blue" mb="md">
-                                                <IconCpu size={26} />
-                                            </ThemeIcon>
-                                            <Title order={3} size="h4" mb="xs">
-                                                {t('about.pillars.pillar2Title')}
-                                            </Title>
-                                            <Text size="sm" c="dimmed" style={{ lineHeight: 1.7 }}>
-                                                {t('about.pillars.pillar2Desc')}
-                                            </Text>
-                                        </Paper>
-                                    </MotionDiv>
-                                </Grid.Col>
+                                            <Paper
+                                                p="xl"
+                                                radius="md"
+                                                withBorder
+                                                h="100%"
+                                                className="glass-hover-card"
+                                            >
+                                                <ThemeIcon size="xl" radius="md" variant="light" color="blue" mb="md">
+                                                    <IconCpu size={26} />
+                                                </ThemeIcon>
+                                                <Title order={3} size="h4" mb="xs">
+                                                    {t('about.pillars.pillar2Title')}
+                                                </Title>
+                                                <Text size="sm" c="dimmed" style={{ lineHeight: 1.7 }}>
+                                                    {t('about.pillars.pillar2Desc')}
+                                                </Text>
+                                            </Paper>
+                                        </MotionDiv>
+                                    </Grid.Col>
 
-                                {/* Pilar 3: Infraestructura & Disciplina */}
-                                <Grid.Col span={{ base: 12, md: 4 }}>
-                                    <MotionDiv
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: 0.3 }}
-                                        style={{ height: '100%' }}
-                                    >
-                                        <Paper
-                                            p="xl"
-                                            radius="md"
-                                            withBorder
-                                            h="100%"
-                                            className="glass-hover-card"
+                                    {/* Pilar 3: Infraestructura & Disciplina */}
+                                    <Grid.Col span={{ base: 12, md: 4 }}>
+                                        <MotionDiv
+                                            variants={shouldReduceMotion ? undefined : cardItem}
+                                            style={{ height: '100%' }}
                                         >
-                                            <ThemeIcon size="xl" radius="md" variant="light" color="green" mb="md">
-                                                <IconNetwork size={26} />
-                                            </ThemeIcon>
-                                            <Title order={3} size="h4" mb="xs">
-                                                {t('about.pillars.pillar3Title')}
-                                            </Title>
-                                            <Text size="sm" c="dimmed" style={{ lineHeight: 1.7 }}>
-                                                {t('about.pillars.pillar3Desc')}
-                                            </Text>
-                                        </Paper>
-                                    </MotionDiv>
-                                </Grid.Col>
-                            </Grid>
+                                            <Paper
+                                                p="xl"
+                                                radius="md"
+                                                withBorder
+                                                h="100%"
+                                                className="glass-hover-card"
+                                            >
+                                                <ThemeIcon size="xl" radius="md" variant="light" color="green" mb="md">
+                                                    <IconNetwork size={26} />
+                                                </ThemeIcon>
+                                                <Title order={3} size="h4" mb="xs">
+                                                    {t('about.pillars.pillar3Title')}
+                                                </Title>
+                                                <Text size="sm" c="dimmed" style={{ lineHeight: 1.7 }}>
+                                                    {t('about.pillars.pillar3Desc')}
+                                                </Text>
+                                            </Paper>
+                                        </MotionDiv>
+                                    </Grid.Col>
+                                </Grid>
+                            </MotionDiv>
                         </Stack>
                     </section>
 
@@ -370,42 +380,44 @@ function About() {
                        ======================================================== */}
                     <section aria-label={t('about.timeline.sectionTitle')}>
                         <Stack gap="lg" mt="xl">
-                            <Group justify="space-between" align="flex-end" wrap="wrap">
-                                <div>
-                                    <Title order={2} size="h2" fw={700}>
-                                        {t('about.timeline.sectionTitle')}
-                                    </Title>
-                                    <Text size="md" c="dimmed">
-                                        {t('about.timeline.sectionSubtitle')}
-                                    </Text>
-                                </div>
+                            <ScrollReveal>
+                                <Group justify="space-between" align="flex-end" wrap="wrap">
+                                    <div>
+                                        <Title order={2} size="h2" fw={700}>
+                                            {t('about.timeline.sectionTitle')}
+                                        </Title>
+                                        <Text size="md" c="dimmed">
+                                            {t('about.timeline.sectionSubtitle')}
+                                        </Text>
+                                    </div>
 
-                                {/* Controles de filtrado por pestañas adaptados a móvil */}
-                                <Box style={{ width: '100%', maxWidth: 520, overflowX: 'auto' }}>
-                                    <SegmentedControl
-                                        fullWidth
-                                        value={activeTab}
-                                        onChange={setActiveTab}
-                                        data={[
-                                            { label: t('about.timeline.filterAll'), value: 'all' },
-                                            { label: t('about.timeline.filterWork'), value: 'work' },
-                                            { label: t('about.timeline.filterEducation'), value: 'education' },
-                                            { label: t('about.timeline.filterCourse'), value: 'course' },
-                                        ]}
-                                        radius="md"
-                                        size="xs"
-                                    />
-                                </Box>
-                            </Group>
+                                    {/* Controles de filtrado por pestañas adaptados a móvil */}
+                                    <Box style={{ width: '100%', maxWidth: 520, overflowX: 'auto' }}>
+                                        <SegmentedControl
+                                            fullWidth
+                                            value={activeTab}
+                                            onChange={setActiveTab}
+                                            data={[
+                                                { label: t('about.timeline.filterAll'), value: 'all' },
+                                                { label: t('about.timeline.filterWork'), value: 'work' },
+                                                { label: t('about.timeline.filterEducation'), value: 'education' },
+                                                { label: t('about.timeline.filterCourse'), value: 'course' },
+                                            ]}
+                                            radius="md"
+                                            size="xs"
+                                        />
+                                    </Box>
+                                </Group>
+                            </ScrollReveal>
 
                             {/* Contenido animado de la Timeline */}
                             <AnimatePresence mode="wait">
                                 <MotionDiv
                                     key={activeTab}
-                                    variants={containerVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    exit="hidden"
+                                    variants={shouldReduceMotion ? undefined : timelineContainerVariants}
+                                    initial={shouldReduceMotion ? undefined : 'hidden'}
+                                    animate={shouldReduceMotion ? undefined : 'visible'}
+                                    exit={shouldReduceMotion ? undefined : 'hidden'}
                                 >
                                     <Stack gap="md">
                                         {timelineItems.map((item) => {
@@ -418,7 +430,7 @@ function About() {
                                                     : IconCode;
 
                                             return (
-                                                <MotionDiv key={item.id} variants={itemVariants}>
+                                                <MotionDiv key={item.id} variants={shouldReduceMotion ? undefined : listItem}>
                                                     <Paper
                                                         p="lg"
                                                         radius="md"
@@ -530,54 +542,56 @@ function About() {
                         4. PROFESSIONAL HORIZON & CTAS
                        ======================================================== */}
                     <section aria-label={t('about.horizon.title')}>
-                        <Paper
-                            p={{ base: 'xl', md: 'xl' }}
-                            radius="lg"
-                            withBorder
-                            bg="var(--mantine-color-body)"
-                            style={{
-                                borderColor: `var(--mantine-color-${theme.primaryColor}-5)`,
-                                textAlign: 'center',
-                            }}
-                            mt="xl"
-                        >
-                            <Stack align="center" gap="md" maw={700} mx="auto">
-                                <ThemeIcon size="xl" radius="xl" variant="light" color="cyan">
-                                    <IconRocket size={26} />
-                                </ThemeIcon>
+                        <ScrollReveal amount={0.15}>
+                            <Paper
+                                p={{ base: 'xl', md: 'xl' }}
+                                radius="lg"
+                                withBorder
+                                bg="var(--mantine-color-body)"
+                                style={{
+                                    borderColor: `var(--mantine-color-${theme.primaryColor}-5)`,
+                                    textAlign: 'center',
+                                }}
+                                mt="xl"
+                            >
+                                <Stack align="center" gap="md" maw={700} mx="auto">
+                                    <ThemeIcon size="xl" radius="xl" variant="light" color="cyan">
+                                        <IconRocket size={26} />
+                                    </ThemeIcon>
 
-                                <Title order={2} size="h2" fw={800}>
-                                    {t('about.horizon.title')}
-                                </Title>
+                                    <Title order={2} size="h2" fw={800}>
+                                        {t('about.horizon.title')}
+                                    </Title>
 
-                                <Text size="md" c="dimmed" style={{ lineHeight: 1.8 }}>
-                                    {t('about.horizon.description')}
-                                </Text>
+                                    <Text size="md" c="dimmed" style={{ lineHeight: 1.8 }}>
+                                        {t('about.horizon.description')}
+                                    </Text>
 
-                                <Group gap="md" mt="md" justify="center" wrap="wrap">
-                                    <RippleButton
-                                        component={Link}
-                                        to="/contact"
-                                        size="md"
-                                        variant="filled"
-                                        leftSection={<IconMail size={18} />}
-                                    >
-                                        {t('about.horizon.contactCta')}
-                                    </RippleButton>
+                                    <Group gap="md" mt="md" justify="center" wrap="wrap">
+                                        <RippleButton
+                                            component={Link}
+                                            to="/contact"
+                                            size="md"
+                                            variant="filled"
+                                            leftSection={<IconMail size={18} />}
+                                        >
+                                            {t('about.horizon.contactCta')}
+                                        </RippleButton>
 
-                                    <RippleButton
-                                        component="a"
-                                        href={cvHref}
-                                        download
-                                        size="md"
-                                        variant="outline"
-                                        leftSection={<IconDownload size={18} />}
-                                    >
-                                        {t('about.horizon.downloadCvCta')}
-                                    </RippleButton>
-                                </Group>
-                            </Stack>
-                        </Paper>
+                                        <RippleButton
+                                            component="a"
+                                            href={cvHref}
+                                            download
+                                            size="md"
+                                            variant="outline"
+                                            leftSection={<IconDownload size={18} />}
+                                        >
+                                            {t('about.horizon.downloadCvCta')}
+                                        </RippleButton>
+                                    </Group>
+                                </Stack>
+                            </Paper>
+                        </ScrollReveal>
                     </section>
                 </Stack>
             </Container>

@@ -31,6 +31,7 @@ import {
 import { siteConfig } from '../config/siteConfig';
 import { useTranslation } from 'react-i18next';
 import RippleButton from '../components/RippleButton';
+import ScrollReveal from '../components/ScrollReveal';
 
 // Credenciales de EmailJS
 const EMAILJS_SERVICE_ID = 'service_0hsjser';
@@ -192,14 +193,16 @@ function Contact({ embedded = false }) {
             {!embedded && (
             <section aria-label={t('contact.aria')}>
                 <Stack gap="xl">
-                    <div>
-                        <Title order={1} mb="sm">
-                            {t('contact.title')}
-                        </Title>
-                        <Text size="lg" className="section-subtitle">
-                            {t('contact.subtitle')}
-                        </Text>
-                    </div>
+                    <ScrollReveal>
+                        <div>
+                            <Title order={1} mb="sm">
+                                {t('contact.title')}
+                            </Title>
+                            <Text size="lg" className="section-subtitle">
+                                {t('contact.subtitle')}
+                            </Text>
+                        </div>
+                    </ScrollReveal>
                 </Stack>
             </section>
             )}
@@ -207,6 +210,7 @@ function Contact({ embedded = false }) {
             <Grid mt="xl" gutter="xl">
                 {/* Formulario de contacto */}
                 <Grid.Col span={{ base: 12, md: 7 }}>
+                  <ScrollReveal delay={embedded ? 0 : 0.1}>
                     <Paper p="xl" radius="md" withBorder className="glass-hover-card">
                         <form onSubmit={handleSubmit}>
                             <Stack gap="md">
@@ -292,10 +296,12 @@ function Contact({ embedded = false }) {
                             </Stack>
                         </form>
                     </Paper>
+                  </ScrollReveal>
                 </Grid.Col>
 
                 {/* Información de contacto alternativa */}
                 <Grid.Col span={{ base: 12, md: 5 }}>
+                  <ScrollReveal delay={embedded ? 0.05 : 0.2}>
                     <Paper p="xl" radius="md" withBorder h="100%" className="glass-hover-card">
                         <Stack gap="lg">
                             <div>
@@ -386,6 +392,7 @@ function Contact({ embedded = false }) {
                             )}
                         </Stack>
                     </Paper>
+                  </ScrollReveal>
                 </Grid.Col>
             </Grid>
         </Wrapper>
