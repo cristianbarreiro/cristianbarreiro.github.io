@@ -16,6 +16,7 @@ const PRIMARY_COLOR_KEY = 'site-primary-color';
 const BG_THEME_KEY = 'site-background-theme';
 const NEBULA_KEY = 'site-show-nebula';
 const AMBIENCE_KEY = 'site-show-color-ambience';
+const BLEND_MINIMAL_KEY = 'site-blend-minimal-bg';
 const COOKIE_MAX_AGE_DAYS = 365;
 const VALID_PRIMARY_COLORS = ['blue', 'green', 'cyan', 'grape', 'yellow', 'red'];
 
@@ -73,11 +74,25 @@ function persistShowColorAmbience(value) {
   writeCookie(AMBIENCE_KEY, String(value), { maxAgeDays: COOKIE_MAX_AGE_DAYS });
 }
 
+function getPersistedBlendMinimal() {
+  const ls = safeLocalStorageGet(BLEND_MINIMAL_KEY);
+  if (ls !== null) return ls === 'true';
+  const ck = readCookie(BLEND_MINIMAL_KEY);
+  if (ck !== null) return ck === 'true';
+  return false;
+}
+
+function persistBlendMinimal(value) {
+  safeLocalStorageSet(BLEND_MINIMAL_KEY, String(value));
+  writeCookie(BLEND_MINIMAL_KEY, String(value), { maxAgeDays: COOKIE_MAX_AGE_DAYS });
+}
+
 export function ThemeProvider({ children }) {
   const [primaryColor, setPrimaryColorState] = useState(getPersistedPrimaryColor);
   const [backgroundTheme, setBackgroundThemeState] = useState(getPersistedBackgroundTheme);
   const [showNebula, setShowNebulaState] = useState(getPersistedShowNebula);
   const [showColorAmbience, setShowColorAmbienceState] = useState(getPersistedShowColorAmbience);
+  const [blendMinimalBackground, setBlendMinimalBackgroundState] = useState(getPersistedBlendMinimal);
 
   const setPrimaryColor = useCallback((color) => {
     setPrimaryColorState(color);
@@ -105,6 +120,14 @@ export function ThemeProvider({ children }) {
     });
   }, []);
 
+  const setBlendMinimalBackground = useCallback((val) => {
+    setBlendMinimalBackgroundState((prev) => {
+      const next = typeof val === 'function' ? val(prev) : val;
+      persistBlendMinimal(next);
+      return next;
+    });
+  }, []);
+
   return (
     <ThemeContext.Provider
       value={{
@@ -116,6 +139,8 @@ export function ThemeProvider({ children }) {
         setShowNebula,
         showColorAmbience,
         setShowColorAmbience,
+        blendMinimalBackground,
+        setBlendMinimalBackground,
       }}
     >
       {children}

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useThemeContext } from '../../context/ThemeContext';
 import './MinimalBackground.css';
 
-function MinimalBackground() {
+function MinimalBackground({ asOverlay = false }) {
   const { primaryColor } = useThemeContext();
   const containerRef = useRef(null);
   const rafRef = useRef(null);
@@ -43,13 +43,14 @@ function MinimalBackground() {
   return (
     <div
       ref={containerRef}
-      className="minimal-background"
+      className={`minimal-background${asOverlay ? ' minimal-background--overlay' : ''}`}
       style={{ '--glow-color': `var(--mantine-color-${primaryColor}-6)` }}
     >
       <div className="minimal-background__glow minimal-background__glow--1" />
       <div className="minimal-background__glow minimal-background__glow--2" />
       <div className="minimal-background__grid" />
       <div className="minimal-background__spotlight" />
+      {asOverlay && <div className="minimal-background__vignette" />}
     </div>
   );
 }

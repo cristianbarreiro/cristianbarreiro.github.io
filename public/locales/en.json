@@ -297,6 +297,7 @@
     "bgParticlesDesc": "Interactive tech node matrix",
     "showNebula": "Show nebula",
     "showColorAmbience": "Color ambience",
+    "blendMinimal": "Blend with Minimal Dark",
     "current": "Active",
     "comingSoon": "Coming Soon"
   },

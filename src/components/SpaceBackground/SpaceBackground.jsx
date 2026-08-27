@@ -98,7 +98,7 @@ const THEME_CONFIGS = {
  * @param {BackgroundTheme} [props.theme]
  * @param {boolean} [props.showNebula]
  */
-function SpaceBackground({ theme = 'space', showNebula = false }) {
+function SpaceBackground({ theme = 'space', showNebula = false, blendMode = false }) {
   const canvasRef = useRef(null);
   const animationFrameRef = useRef(0);
   const starsRef = useRef([]);
@@ -154,22 +154,22 @@ function SpaceBackground({ theme = 'space', showNebula = false }) {
     };
 
     const initStars = () => {
-      const starCount = Math.floor((width * height) / 3000);
+      const starCount = Math.floor((width * height) / (blendMode ? 2800 : 3000));
       starsRef.current = [];
 
       for (let i = 0; i < starCount; i++) {
         const depth = Math.random();
-        const size = depth * 2.5 + 0.5;
+        const size = blendMode ? depth * 1.8 + 0.5 : depth * 2.5 + 0.5;
 
         starsRef.current.push({
           x: Math.random() * width,
           y: Math.random() * height,
           size,
           opacity: 1,
-          twinkleSpeed: 0.5 + Math.random() * 2,
+          twinkleSpeed: blendMode ? 0.4 + Math.random() * 1.2 : 0.5 + Math.random() * 2,
           twinkleOffset: Math.random() * Math.PI * 2,
           depth,
-          baseOpacity: 0.3 + depth * 0.7,
+          baseOpacity: blendMode ? 0.35 + depth * 0.5 : 0.3 + depth * 0.7,
         });
       }
     };
@@ -190,9 +190,9 @@ function SpaceBackground({ theme = 'space', showNebula = false }) {
           x: Math.random() * width,
           y: Math.random() * height,
           radius: 180 + Math.random() * 280,
-          opacity: 0.10 + Math.random() * 0.18,
+          opacity: (0.10 + Math.random() * 0.18) * (blendMode ? 0.45 : 1),
           angle: Math.random() * Math.PI * 2,
-          rotationSpeed: (Math.random() - 0.5) * 0.0004,
+          rotationSpeed: (Math.random() - 0.5) * 0.0004 * (blendMode ? 0.4 : 1),
           pulseOffset: Math.random() * Math.PI * 2,
           colorIndex: Math.floor(Math.random() * colorCount),
         });
@@ -200,7 +200,7 @@ function SpaceBackground({ theme = 'space', showNebula = false }) {
     };
 
     const createShootingStar = () => {
-      if (Math.random() < 0.002) {
+      if (Math.random() < (blendMode ? 0.0008 : 0.002)) {
         const startX = Math.random() * width;
         const startY = Math.random() * height * 0.6;
 
@@ -208,8 +208,8 @@ function SpaceBackground({ theme = 'space', showNebula = false }) {
           x: startX,
           y: startY,
           length: 60 + Math.random() * 100,
-          speed: 8 + Math.random() * 6,
-          opacity: 1,
+          speed: (8 + Math.random() * 6) * (blendMode ? 0.5 : 1),
+          opacity: blendMode ? 0.35 : 1,
           angle: Math.PI / 4 + (Math.random() - 0.5) * 0.4,
         });
       }
@@ -290,7 +290,7 @@ function SpaceBackground({ theme = 'space', showNebula = false }) {
     const drawFrame = () => {
       const time = timeRef.current;
 
-      ctx.fillStyle = themeConfig.backgroundColor;
+      ctx.fillStyle = blendMode ? '#090a0f' : themeConfig.backgroundColor;
       ctx.fillRect(0, 0, width, height);
 
       nebulaCloudsRef.current.forEach((cloud) => {
@@ -309,13 +309,15 @@ function SpaceBackground({ theme = 'space', showNebula = false }) {
     const animate = () => {
       timeRef.current += 0.01;
 
-      ctx.fillStyle = themeConfig.backgroundColor;
+      ctx.fillStyle = blendMode ? '#090a0f' : themeConfig.backgroundColor;
       ctx.fillRect(0, 0, width, height);
+
+      const driftMultiplier = blendMode ? 0.35 : 1;
 
       nebulaCloudsRef.current.forEach((cloud) => {
         cloud.angle += cloud.rotationSpeed;
-        cloud.x += Math.cos(cloud.angle) * 0.05;
-        cloud.y += Math.sin(cloud.angle) * 0.05;
+        cloud.x += Math.cos(cloud.angle) * 0.05 * driftMultiplier;
+        cloud.y += Math.sin(cloud.angle) * 0.05 * driftMultiplier;
 
         if (cloud.x < -cloud.radius) cloud.x = width + cloud.radius;
         if (cloud.x > width + cloud.radius) cloud.x = -cloud.radius;
@@ -325,9 +327,11 @@ function SpaceBackground({ theme = 'space', showNebula = false }) {
         drawNebulaCloud(cloud, timeRef.current);
       });
 
+      const velMultiplier = blendMode ? 0.4 : 1;
+
       starsRef.current.forEach((star) => {
-        star.x -= star.depth * 0.15;
-        star.y += star.depth * 0.05;
+        star.x -= star.depth * 0.15 * velMultiplier;
+        star.y += star.depth * 0.05 * velMultiplier;
 
         if (star.x < -10) star.x = width + 10;
         if (star.y > height + 10) star.y = -10;
@@ -383,9 +387,9 @@ function SpaceBackground({ theme = 'space', showNebula = false }) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [theme, showNebula]);
+  }, [theme, showNebula, blendMode]);
 
-  return <canvas key={`${theme}-${showNebula}`} ref={canvasRef} className="space-background" aria-hidden="true" />;
+  return <canvas key={`${theme}-${showNebula}-${blendMode}`} ref={canvasRef} className="space-background" aria-hidden="true" />;
 }
 
 export default SpaceBackground;

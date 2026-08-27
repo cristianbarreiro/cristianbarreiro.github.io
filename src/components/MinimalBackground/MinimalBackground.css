@@ -135,3 +135,57 @@
     animation: none !important;
   }
 }
+
+/* ========================================
+   OVERLAY MODE — compositing over SpaceBackground canvas
+   ======================================== */
+
+.minimal-background.minimal-background--overlay,
+:root[data-mantine-color-scheme="dark"] .minimal-background.minimal-background--overlay,
+:root[data-mantine-color-scheme="light"] .minimal-background.minimal-background--overlay {
+  z-index: 0;
+  background-color: transparent !important;
+  transition: opacity 0.6s ease;
+}
+
+/* Atmospheric ambient glows in overlay mode */
+.minimal-background--overlay .minimal-background__glow {
+  opacity: 0.16;
+}
+
+:root[data-mantine-color-scheme="dark"] .minimal-background--overlay .minimal-background__glow {
+  opacity: 0.20;
+}
+
+/* Sci-fi engineering micro-grid over the space canvas */
+.minimal-background--overlay .minimal-background__grid {
+  opacity: 0.65;
+}
+
+/* Interactive spotlight illuminates space backdrop */
+.minimal-background--overlay .minimal-background__spotlight {
+  opacity: 0.9;
+}
+
+/* Vignette: subtle edge darkening for depth, leaves content center high-contrast */
+.minimal-background__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 85% 75% at 50% 50%,
+      transparent 40%,
+      rgba(9, 10, 15, 0.45) 75%,
+      rgba(5, 6, 10, 0.75) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(9, 10, 15, 0.6) 0%,
+      transparent 15%,
+      transparent 85%,
+      rgba(9, 10, 15, 0.6) 100%
+    );
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}

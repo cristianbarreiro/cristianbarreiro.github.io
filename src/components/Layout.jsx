@@ -13,7 +13,7 @@ import Footer from './Footer';
 import SpaceBackground from './SpaceBackground';
 import { ConveyorLoop } from './ConveyorLoop';
 import { useThemeContext } from '../context/ThemeContext';
-import { getBackgroundThemeConfig } from '../config/backgroundThemes';
+import { getBackgroundThemeConfig, BACKGROUND_THEMES } from '../config/backgroundThemes';
 
 const PRIMARY_TO_THEME = {
   blue: 'nebula-blue',
@@ -29,10 +29,14 @@ const PRIMARY_TO_THEME = {
 function Layout() {
     const { t } = useTranslation();
     const location = useLocation();
-    const { primaryColor, backgroundTheme, showNebula, showColorAmbience } = useThemeContext();
+    const { primaryColor, backgroundTheme, showNebula, showColorAmbience, blendMinimalBackground } = useThemeContext();
     const activeBgConfig = getBackgroundThemeConfig(backgroundTheme);
     const BackgroundComponent = activeBgConfig.component || SpaceBackground;
     const spaceTheme = showColorAmbience ? (PRIMARY_TO_THEME[primaryColor] ?? 'space') : 'space';
+    const isBlendActive = backgroundTheme === 'space' && blendMinimalBackground;
+    const MinimalBgComponent = isBlendActive
+      ? BACKGROUND_THEMES.find((t) => t.id === 'minimal')?.component
+      : null;
 
     const [routeLoading, setRouteLoading] = useState(false);
     const navStartTsRef = useRef(0);
@@ -121,7 +125,8 @@ function Layout() {
                 )}
                 {/* Contenedor con fondo */}
                 <Box className="main-content-wrapper space-bg">
-                    <BackgroundComponent theme={spaceTheme} showNebula={showNebula} key={`${backgroundTheme}-${spaceTheme}-${showNebula}-${showColorAmbience}`} />
+                    <BackgroundComponent theme={spaceTheme} showNebula={showNebula} blendMode={isBlendActive} key={`${backgroundTheme}-${spaceTheme}-${showNebula}-${showColorAmbience}-${blendMinimalBackground}`} />
+                    {isBlendActive && MinimalBgComponent && <MinimalBgComponent asOverlay key="blend-overlay" />}
 
                     {/* Contenido de la página */}
                     <Container size="lg" py="xl" className="content-above-video">

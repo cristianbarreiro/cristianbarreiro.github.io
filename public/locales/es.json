@@ -297,6 +297,7 @@
     "bgParticlesDesc": "Matriz interactiva de nodos tecnológicos",
     "showNebula": "Mostrar nebulosa",
     "showColorAmbience": "Ambientación de color",
+    "blendMinimal": "Integrar con Oscuro Minimalista",
     "current": "Activo",
     "comingSoon": "Próximamente"
   },
