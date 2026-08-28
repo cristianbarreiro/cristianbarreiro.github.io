@@ -389,7 +389,7 @@ const projectsByLanguage = {
         },
         {
             id: 10,
-            title: 'Boutique Exclusivi',
+            title: 'Boutique de Calzado',
             description:
                 'E-commerce editorial de calzado premium. Tienda online con catálogo dinámico y diseño oscuro editorial.',
             longDescription:
@@ -818,7 +818,7 @@ const projectsByLanguage = {
         },
         {
             id: 10,
-            title: 'Boutique Exclusivi',
+            title: 'Footwear Boutique',
             description:
                 'Editorial e-commerce for premium footwear. Online store with dynamic catalog and dark editorial design.',
             longDescription:

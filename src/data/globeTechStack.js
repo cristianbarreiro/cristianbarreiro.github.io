@@ -22,7 +22,7 @@ export const globeTechnologies = [
     devicon: 'react/react-original',
     isCore: true,
     orbit: 0,
-    projects: ['NovaVolt E-commerce', 'E-commerce ShopHub', 'Boutique Exclusivi'],
+    projects: ['NovaVolt E-commerce', 'E-commerce ShopHub', 'Boutique de Calzado'],
   },
   {
     id: 'typescript',
@@ -33,7 +33,7 @@ export const globeTechnologies = [
     devicon: 'typescript/typescript-original',
     isCore: true,
     orbit: 0,
-    projects: ['E-commerce ShopHub', 'NovaVolt E-commerce', 'Boutique Exclusivi'],
+    projects: ['E-commerce ShopHub', 'NovaVolt E-commerce', 'Boutique de Calzado'],
   },
   {
     id: 'javascript',
@@ -90,7 +90,7 @@ export const globeTechnologies = [
     devicon: 'express/express-original',
     isCore: false,
     orbit: 1,
-    projects: ['E-commerce ShopHub', 'Boutique Exclusivi'],
+    projects: ['E-commerce ShopHub', 'Boutique de Calzado'],
   },
   {
     id: 'tailwind',
@@ -123,7 +123,7 @@ export const globeTechnologies = [
     devicon: 'postgresql/postgresql-original',
     isCore: false,
     orbit: 1,
-    projects: ['E-commerce ShopHub', 'Boutique Exclusivi'],
+    projects: ['E-commerce ShopHub', 'Boutique de Calzado'],
   },
   {
     id: 'mongodb',

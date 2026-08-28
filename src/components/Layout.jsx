@@ -79,6 +79,13 @@ function Layout() {
         setRouteLoading(true);
     };
 
+    // Reset de scroll al inicio al cambiar de sección
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+    }, [location.pathname]);
+
     useEffect(() => {
         const currentPath = `${location.pathname}${location.search}${location.hash}`;
         if (currentPath === lastPathRef.current) return;
