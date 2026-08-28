@@ -189,7 +189,7 @@
     "proof": {
       "sectionTitle": "Evidencia Práctica de Software",
       "sectionSubtitle": "Cómo la formación y la experiencia se traducen en soluciones funcionales",
-      "card1Title": "cdev Studio Platform & Genius Platform",
+      "card1Title": "CDEV Studios & Genius Platform",
       "card1Category": "Ecosistema Full-Stack & Microservicios",
       "card1Desc": "Arquitecturas modulares con autenticación JWT, RBAC, documentación OpenAPI y persistencia relacional en PostgreSQL.",
       "card2Title": "PrivLock (.NET 10 WPF) & Herramientas MCP",

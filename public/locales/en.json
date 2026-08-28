@@ -189,7 +189,7 @@
     "proof": {
       "sectionTitle": "Practical Software Proof",
       "sectionSubtitle": "How education and experience translate into functional, real-world software",
-      "card1Title": "cdev Studio Platform & Genius Platform",
+      "card1Title": "CDEV Studios & Genius Platform",
       "card1Category": "Full-Stack & Microservices Ecosystem",
       "card1Desc": "Modular architectures with JWT auth, RBAC access control, OpenAPI docs, and relational persistence in PostgreSQL.",
       "card2Title": "PrivLock (.NET 10 WPF) & MCP Security Tools",

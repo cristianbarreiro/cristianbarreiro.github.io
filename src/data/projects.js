@@ -37,22 +37,25 @@ const projectsByLanguage = {
         },
         {
             id: 13,
-            title: 'cdev Studio Platform',
+            title: 'CDEV Studios',
             description:
-                'Ecosistema tecnológico full stack desarrollado para cdev Studio, compuesto por aplicaciones frontend independientes y microservicios backend para la gestión de clientes, proyectos y autenticación.',
+                'Ecosistema tecnológico full stack desarrollado para CDEV Studios, compuesto por aplicaciones frontend independientes y microservicios backend para la gestión de clientes, proyectos y autenticación.',
             longDescription:
-                'Proyecto de plataforma tecnológica para cdev Studio, un ecosistema digital diseñado para centralizar la presentación de servicios, gestión de clientes y administración de proyectos tecnológicos. La solución fue desarrollada con una arquitectura moderna basada en múltiples aplicaciones frontend independientes — landing corporativa, client dashboard y backoffice administrativo — conectadas mediante microservicios backend especializados. Implementé autenticación segura con JWT y control de acceso basado en roles (RBAC), APIs REST documentadas con OpenAPI, persistencia en PostgreSQL con migraciones versionadas y seeds automatizados. El proyecto permitió aplicar principios de arquitectura escalable, separación de responsabilidades y desarrollo de aplicaciones full stack mantenibles.',
+                'Proyecto de plataforma tecnológica para CDEV Studios, un ecosistema digital diseñado para centralizar la presentación de servicios, gestión de clientes y administración de proyectos tecnológicos. La solución fue desarrollada con una arquitectura moderna basada en múltiples aplicaciones frontend independientes — landing corporativa, client dashboard y backoffice administrativo — conectadas mediante microservicios backend especializados. Implementé autenticación segura con JWT y control de acceso basado en roles (RBAC), APIs REST documentadas con OpenAPI, persistencia en PostgreSQL con Docker para contenerización de la base de datos, migraciones versionadas y seeds automatizados. El proyecto permitió aplicar principios de arquitectura escalable, separación de responsabilidades y desarrollo de aplicaciones full stack mantenibles.',
             date: '2026',
-            image: '/images/projects/cdevstudio/cdevstudio.png',
+            image: '/images/projects/cdevstudios_platform/cdevstudioslanding1.png',
             images: [
                 {
-                    src: '/images/projects/cdevstudio/cdevstudio.png',
-                    alt: 'Captura de cdev Studio Platform',
+                    src: '/images/projects/cdevstudios_platform/cdevstudioslanding1.png',
+                    alt: 'Landing Page de CDEV Studios',
                 },
                 {
-                    src: '/videos/cdevstudio/cdevstudio-demo.mp4',
-                    alt: 'Video de demostración de cdev Studio Platform',
-                    type: 'video',
+                    src: '/images/projects/cdevstudios_platform/cdevstudiosclientdashboard1.png',
+                    alt: 'Client Dashboard de CDEV Studios',
+                },
+                {
+                    src: '/images/projects/cdevstudios_platform/cdevstudiosbackoffice1.png',
+                    alt: 'Backoffice de CDEV Studios',
                 },
             ],
             tags: [
@@ -63,6 +66,7 @@ const projectsByLanguage = {
                 'Motion',
                 'Express',
                 'PostgreSQL',
+                'Docker',
                 'JWT',
                 'RBAC',
                 'Microservices',
@@ -462,22 +466,25 @@ const projectsByLanguage = {
         },
         {
             id: 13,
-            title: 'cdev Studio Platform',
+            title: 'CDEV Studios',
             description:
-                'Full-stack technology ecosystem developed for cdev Studio, composed of independent frontend applications and backend microservices for client, project, and authentication management.',
+                'Full-stack technology ecosystem developed for CDEV Studios, composed of independent frontend applications and backend microservices for client, project, and authentication management.',
             longDescription:
-                'Technology platform project for cdev Studio, a digital ecosystem designed to centralize service presentation, client management, and tech project administration. The solution was developed with a modern architecture based on multiple independent frontend applications — corporate landing page, client dashboard, and administrative backoffice — connected through specialized backend microservices. I implemented secure authentication with JWT and Role-Based Access Control (RBAC), REST APIs documented with OpenAPI, PostgreSQL persistence with versioned migrations, and automated seeds. The project enabled the application of scalable architecture principles, separation of concerns, and maintainable full-stack application development.',
-            date: '2024',
-            image: '/images/projects/cdevstudio/cdevstudio.png',
+                'Technology platform project for CDEV Studios, a digital ecosystem designed to centralize service presentation, client management, and tech project administration. The solution was developed with a modern architecture based on multiple independent frontend applications — corporate landing page, client dashboard, and administrative backoffice — connected through specialized backend microservices. I implemented secure authentication with JWT and Role-Based Access Control (RBAC), REST APIs documented with OpenAPI, PostgreSQL persistence containerized with Docker, versioned migrations, and automated seeds. The project enabled the application of scalable architecture principles, separation of concerns, and maintainable full-stack application development.',
+            date: '2026',
+            image: '/images/projects/cdevstudios_platform/cdevstudioslanding1.png',
             images: [
                 {
-                    src: '/images/projects/cdevstudio/cdevstudio.png',
-                    alt: 'cdev Studio Platform screenshot',
+                    src: '/images/projects/cdevstudios_platform/cdevstudioslanding1.png',
+                    alt: 'CDEV Studios Landing Page',
                 },
                 {
-                    src: '/videos/cdevstudio/cdevstudio-demo.mp4',
-                    alt: 'cdev Studio Platform demonstration video',
-                    type: 'video',
+                    src: '/images/projects/cdevstudios_platform/cdevstudiosclientdashboard1.png',
+                    alt: 'CDEV Studios Client Dashboard',
+                },
+                {
+                    src: '/images/projects/cdevstudios_platform/cdevstudiosbackoffice1.png',
+                    alt: 'CDEV Studios Backoffice',
                 },
             ],
             tags: [
@@ -488,6 +495,7 @@ const projectsByLanguage = {
                 'Motion',
                 'Express',
                 'PostgreSQL',
+                'Docker',
                 'JWT',
                 'RBAC',
                 'Microservices',
