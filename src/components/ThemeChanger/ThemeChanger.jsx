@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Tooltip } from '@mantine/core';
 import {
   IconPalette,
   IconCheck,
@@ -89,17 +90,23 @@ function ThemeChanger() {
 
   return (
     <>
-      <button
-        ref={buttonRef}
-        className={`theme-changer-button ${open ? 'is-open' : ''}`}
-        type="button"
-        onClick={handleToggle}
-        aria-label={open ? t('themeChanger.hideThemes') : t('themeChanger.changeTheme')}
-        aria-expanded={open}
+      <Tooltip
+        label={open ? t('themeChanger.hideThemes') : t('themeChanger.changeTheme')}
+        position="left"
+        withArrow
+        openDelay={300}
       >
-        <IconPalette size={18} stroke={1.5} />
-        <span className="theme-changer-button-text">{t('themeChanger.changeTheme')}</span>
-      </button>
+        <button
+          ref={buttonRef}
+          className={`theme-changer-button ${open ? 'is-open' : ''}`}
+          type="button"
+          onClick={handleToggle}
+          aria-label={open ? t('themeChanger.hideThemes') : t('themeChanger.changeTheme')}
+          aria-expanded={open}
+        >
+          <IconPalette size={20} stroke={1.5} />
+        </button>
+      </Tooltip>
 
       <div
         ref={panelRef}
