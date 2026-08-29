@@ -135,7 +135,7 @@ function Layout() {
                 )}
                 {/* Contenedor con fondo */}
                 <Box className="main-content-wrapper space-bg">
-                    <BackgroundComponent theme={spaceTheme} showNebula={showNebula} colorAmbience={showColorAmbience} blendMode={isBlendActive} key={`${backgroundTheme}-${spaceTheme}-${showNebula}-${showColorAmbience}-${blendMinimalBackground}`} />
+                    <BackgroundComponent theme={spaceTheme} showNebula={showNebula} colorAmbience={showColorAmbience} blendMode={isBlendActive} key={backgroundTheme} />
                     {isBlendActive && MinimalBgComponent && <MinimalBgComponent asOverlay key="blend-overlay" />}
 
                     {/* Contenido de la página */}
