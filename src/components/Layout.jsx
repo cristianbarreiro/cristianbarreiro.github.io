@@ -32,7 +32,10 @@ function Layout() {
     const { primaryColor, backgroundTheme, showNebula, showColorAmbience, blendMinimalBackground } = useThemeContext();
     const activeBgConfig = getBackgroundThemeConfig(backgroundTheme);
     const BackgroundComponent = activeBgConfig.component || SpaceBackground;
-    const spaceTheme = showColorAmbience ? (PRIMARY_TO_THEME[primaryColor] ?? 'space') : 'space';
+    // showNebula → muestra nebulosas coloreadas del acento (selecciona tema coloreado)
+    // showColorAmbience → tiñe estrellas / fondo / estrellas fugaces del color de acento
+    const coloredTheme = PRIMARY_TO_THEME[primaryColor] ?? 'space';
+    const spaceTheme = (showNebula || showColorAmbience) ? coloredTheme : 'space';
     const isBlendActive = backgroundTheme === 'space' && blendMinimalBackground;
     const MinimalBgComponent = isBlendActive
       ? BACKGROUND_THEMES.find((t) => t.id === 'minimal')?.component
@@ -132,7 +135,7 @@ function Layout() {
                 )}
                 {/* Contenedor con fondo */}
                 <Box className="main-content-wrapper space-bg">
-                    <BackgroundComponent theme={spaceTheme} showNebula={showNebula} blendMode={isBlendActive} key={`${backgroundTheme}-${spaceTheme}-${showNebula}-${showColorAmbience}-${blendMinimalBackground}`} />
+                    <BackgroundComponent theme={spaceTheme} showNebula={showNebula} colorAmbience={showColorAmbience} blendMode={isBlendActive} key={`${backgroundTheme}-${spaceTheme}-${showNebula}-${showColorAmbience}-${blendMinimalBackground}`} />
                     {isBlendActive && MinimalBgComponent && <MinimalBgComponent asOverlay key="blend-overlay" />}
 
                     {/* Contenido de la página */}

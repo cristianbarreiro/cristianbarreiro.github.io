@@ -96,9 +96,10 @@ const THEME_CONFIGS = {
 /**
  * @param {object} props
  * @param {BackgroundTheme} [props.theme]
- * @param {boolean} [props.showNebula]
+ * @param {boolean} [props.showNebula] - Muestra/oculta las nubes de nebulosa
+ * @param {boolean} [props.colorAmbience] - Tiñe estrellas, fondo y estrellas fugaces del color de acento
  */
-function SpaceBackground({ theme = 'space', showNebula = false, blendMode = false }) {
+function SpaceBackground({ theme = 'space', showNebula = false, colorAmbience = true, blendMode = false }) {
   const canvasRef = useRef(null);
   const animationFrameRef = useRef(0);
   const starsRef = useRef([]);
@@ -114,6 +115,9 @@ function SpaceBackground({ theme = 'space', showNebula = false, blendMode = fals
     if (!ctx) return;
 
     const themeConfig = THEME_CONFIGS[theme] ?? THEME_CONFIGS.space;
+    // ambientConfig controla estrellas, fondo y estrellas fugaces.
+    // Si colorAmbience está desactivado, cae al tema neutro 'space'.
+    const ambientConfig = colorAmbience ? themeConfig : THEME_CONFIGS.space;
 
     let dpr = 1;
     let width = 0;
@@ -244,7 +248,7 @@ function SpaceBackground({ theme = 'space', showNebula = false, blendMode = fals
 
       const gradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.size);
 
-      const colors = star.depth > 0.7 ? themeConfig.starColors.bright : themeConfig.starColors.dim;
+      const colors = star.depth > 0.7 ? ambientConfig.starColors.bright : ambientConfig.starColors.dim;
 
       gradient.addColorStop(0, colors[0].replace('{a}', String(opacity)));
       gradient.addColorStop(0.3, colors[1].replace('{a}', String(opacity * 0.6)));
@@ -256,7 +260,7 @@ function SpaceBackground({ theme = 'space', showNebula = false, blendMode = fals
       ctx.fill();
 
       if (star.depth > 0.85) {
-        ctx.fillStyle = themeConfig.starColors.bright[0].replace('{a}', String(opacity * 0.6));
+        ctx.fillStyle = ambientConfig.starColors.bright[0].replace('{a}', String(opacity * 0.6));
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size * 0.4, 0, Math.PI * 2);
         ctx.fill();
@@ -271,7 +275,7 @@ function SpaceBackground({ theme = 'space', showNebula = false, blendMode = fals
         shootingStar.y - Math.sin(shootingStar.angle) * shootingStar.length,
       );
 
-      const colors = themeConfig.shootingStarColors;
+      const colors = ambientConfig.shootingStarColors;
       gradient.addColorStop(0, colors[0].replace('{a}', String(shootingStar.opacity)));
       gradient.addColorStop(0.3, colors[1].replace('{a}', String(shootingStar.opacity * 0.6)));
       gradient.addColorStop(1, colors[2].replace('{a}', '0'));
@@ -290,7 +294,7 @@ function SpaceBackground({ theme = 'space', showNebula = false, blendMode = fals
     const drawFrame = () => {
       const time = timeRef.current;
 
-      ctx.fillStyle = blendMode ? '#090a0f' : themeConfig.backgroundColor;
+      ctx.fillStyle = blendMode ? '#090a0f' : ambientConfig.backgroundColor;
       ctx.fillRect(0, 0, width, height);
 
       nebulaCloudsRef.current.forEach((cloud) => {
@@ -309,7 +313,7 @@ function SpaceBackground({ theme = 'space', showNebula = false, blendMode = fals
     const animate = () => {
       timeRef.current += 0.01;
 
-      ctx.fillStyle = blendMode ? '#090a0f' : themeConfig.backgroundColor;
+      ctx.fillStyle = blendMode ? '#090a0f' : ambientConfig.backgroundColor;
       ctx.fillRect(0, 0, width, height);
 
       const driftMultiplier = blendMode ? 0.35 : 1;
@@ -387,9 +391,9 @@ function SpaceBackground({ theme = 'space', showNebula = false, blendMode = fals
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [theme, showNebula, blendMode]);
+  }, [theme, showNebula, colorAmbience, blendMode]);
 
-  return <canvas key={`${theme}-${showNebula}-${blendMode}`} ref={canvasRef} className="space-background" aria-hidden="true" />;
+  return <canvas key={`${theme}-${showNebula}-${colorAmbience}-${blendMode}`} ref={canvasRef} className="space-background" aria-hidden="true" />;
 }
 
 export default SpaceBackground;
