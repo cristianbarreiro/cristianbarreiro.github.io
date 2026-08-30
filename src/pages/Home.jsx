@@ -108,6 +108,31 @@ function Home({ isSplashActive: isSplashProp }) {
     const subtitleRef = useRef(null);
     const subtitleText = t('site.title');
 
+    const hasStartedRef = useRef(false);
+    const instanceRef = useRef(null);
+    const cursorTimeoutRef = useRef(null);
+    const fadeTimeoutRef = useRef(null);
+    const subtitleTextRef = useRef(subtitleText);
+
+    // Sincronizar el texto al cambiar de idioma sin recargar el efecto typewriter
+    useEffect(() => {
+        subtitleTextRef.current = subtitleText;
+
+        if (hasStartedRef.current && subtitleRef.current) {
+            if (cursorTimeoutRef.current) clearTimeout(cursorTimeoutRef.current);
+            if (fadeTimeoutRef.current) clearTimeout(fadeTimeoutRef.current);
+            if (instanceRef.current) {
+                try {
+                    instanceRef.current.destroy();
+                } catch {
+                    // Silencio
+                }
+                instanceRef.current = null;
+            }
+            subtitleRef.current.textContent = subtitleText;
+        }
+    }, [subtitleText]);
+
     // Efecto Typewriter fluido con TypeIt (arranca únicamente tras finalizar el SplashScreen)
     useEffect(() => {
         if (isSplashActive || shouldReduceMotion) {
@@ -119,40 +144,45 @@ function Home({ isSplashActive: isSplashProp }) {
             return;
         }
 
-        let instance = null;
-        let cursorTimeout = null;
-        let fadeTimeout = null;
+        hasStartedRef.current = true;
+        const textToType = subtitleTextRef.current;
 
         // Crear un sub-elemento contenedor fresco para aislar la instancia y prevenir duplicaciones por StrictMode
         const targetSpan = document.createElement('span');
         currentElement.replaceChildren(targetSpan);
 
-        instance = new TypeIt(targetSpan, {
+        const instance = new TypeIt(targetSpan, {
             lifeLike: false,
-            speed: 0,
+            speed: 45,
             cursor: true,
             cursorSpeed: 750,
             waitUntilVisible: false,
             afterComplete: (inst) => {
                 // Desvanecer el cursor suavemente 2 segundos después de completar
-                cursorTimeout = setTimeout(() => {
+                cursorTimeoutRef.current = setTimeout(() => {
                     const cursor = inst.getElement()?.querySelector('.ti-cursor');
                     if (cursor) {
                         cursor.style.transition = 'opacity 0.6s ease';
                         cursor.style.opacity = '0';
-                        fadeTimeout = setTimeout(() => {
+                        fadeTimeoutRef.current = setTimeout(() => {
                             try {
                                 cursor.remove();
                             } catch {
                                 // Ignorar si ya no existe en el DOM
                             }
+                            instanceRef.current = null;
                         }, 600);
+                    } else {
+                        instanceRef.current = null;
                     }
                 }, 2000);
             },
         });
 
-        if (subtitleText === 'Full-Stack Developer | Software Engineer') {
+        instanceRef.current = instance;
+
+        if (textToType === 'Full-Stack Developer | Software Engineer') {
+            instance.options({ speed: 0 });
             // Reproducir la cadencia tweak con escalado de fluidez (~0.35x para tipeo dinámico y ágil)
             TWEAK_STEPS.forEach(({ char, pause }) => {
                 instance.type(char);
@@ -161,15 +191,15 @@ function Home({ isSplashActive: isSplashProp }) {
                 }
             });
         } else {
-            // Fallback fluido para español u otras traducciones
-            instance.type(subtitleText, { delay: 45 });
+            // Tipeo fluido para español u otras traducciones
+            instance.type(textToType);
         }
 
         instance.go();
 
         return () => {
-            if (cursorTimeout) clearTimeout(cursorTimeout);
-            if (fadeTimeout) clearTimeout(fadeTimeout);
+            if (cursorTimeoutRef.current) clearTimeout(cursorTimeoutRef.current);
+            if (fadeTimeoutRef.current) clearTimeout(fadeTimeoutRef.current);
             if (instance) {
                 try {
                     instance.destroy();
@@ -177,11 +207,13 @@ function Home({ isSplashActive: isSplashProp }) {
                     // Silencio ante desmontajes rápidos
                 }
             }
+            instanceRef.current = null;
+            hasStartedRef.current = false;
             if (currentElement) {
                 currentElement.replaceChildren();
             }
         };
-    }, [isSplashActive, subtitleText, shouldReduceMotion]);
+    }, [isSplashActive, shouldReduceMotion]);
 
     // Variante para la línea de acento
     const accentLineVariants = scaleX(0.2, DURATION.slow);
