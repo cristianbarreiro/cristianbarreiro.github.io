@@ -42,9 +42,9 @@ function App() {
 
       <Routes>
         {/* Layout wrapper con Navbar y Footer */}
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout isSplashActive={showSplash} />}>
           {/* Página de inicio (index) */}
-          <Route index element={<Home />} />
+          <Route index element={<Home isSplashActive={showSplash} />} />
 
           {/* Página Sobre mí */}
           <Route path="about" element={<About />} />

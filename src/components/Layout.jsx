@@ -26,7 +26,7 @@ const PRIMARY_TO_THEME = {
   red: 'galaxy-magenta',
 };
 
-function Layout() {
+function Layout({ isSplashActive = false }) {
     const { t } = useTranslation();
     const location = useLocation();
     const { primaryColor, backgroundTheme, showNebula, showColorAmbience, blendMinimalBackground } = useThemeContext();
@@ -140,7 +140,7 @@ function Layout() {
 
                     {/* Contenido de la página */}
                     <Container size="lg" py="xl" className="content-above-video">
-                        <Outlet />
+                        <Outlet context={{ isSplashActive }} />
                     </Container>
                 </Box>
 

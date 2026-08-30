@@ -1100,48 +1100,24 @@ button:hover .icon-send-jello {
   filter: drop-shadow(0 4px 12px color-mix(in srgb, var(--mantine-primary-color-filled) 25%, transparent));
 }
 
-.hero-subtitle-container {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.45rem 1.25rem;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
-}
-
-:root[data-mantine-color-scheme="light"] .hero-subtitle-container {
-  background: rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
-}
-
-.hero-subtitle-badge-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--mantine-primary-color-filled);
-  box-shadow: 0 0 10px color-mix(in srgb, var(--mantine-primary-color-filled) 80%, transparent);
-  display: inline-block;
-  flex-shrink: 0;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-:root[data-mantine-color-scheme="light"] .hero-subtitle-badge-dot {
-  background-color: var(--mantine-primary-color-filled);
-  box-shadow: 0 0 8px color-mix(in srgb, var(--mantine-primary-color-filled) 60%, transparent);
-}
-
 .hero-subtitle-text {
-  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  font-size: clamp(1.1rem, 2.4vw, 1.45rem);
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--mantine-color-text);
   margin: 0;
+  min-height: 1.8em;
+  display: inline-block;
+  text-align: center;
+  white-space: pre-wrap;
+}
+
+.hero-subtitle-text .ti-cursor {
+  font-weight: 300;
+  color: var(--mantine-primary-color-filled);
+  margin-left: 0.22em;
+  display: inline-block;
+  vertical-align: baseline;
 }
 
 /* Línea 2: reveal por clip (sin depender de "ch") */

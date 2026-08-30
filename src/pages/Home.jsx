@@ -6,7 +6,8 @@
  * Hero → Tech Stack → About Preview → Featured Projects → Dev Approach → Contact
  */
 
-import { Link } from 'react-router-dom';
+import { useRef, useEffect } from 'react';
+import { Link, useOutletContext } from 'react-router-dom';
 import {
     Title,
     Text,
@@ -17,6 +18,7 @@ import {
 } from '@mantine/core';
 import { IconArrowRight, IconMail } from '@tabler/icons-react';
 import { motion, useReducedMotion } from 'framer-motion';
+import TypeIt from 'typeit';
 import { siteConfig } from '../config/siteConfig';
 import { useTranslation } from 'react-i18next';
 import RippleButton from '../components/RippleButton';
@@ -29,6 +31,7 @@ import ScrollReveal from '../components/ScrollReveal';
 import { EASE_OUT, DURATION, scaleX } from '../utils/motionVariants';
 
 const MotionDiv = motion.div;
+
 
 /**
  * Variantes de la secuencia Hero — escalonadas
@@ -53,10 +56,132 @@ const heroChildVariants = {
     },
 };
 
-function Home() {
+const TWEAK_STEPS = [
+    { char: 'F', pause: 286 },
+    { char: 'u', pause: 460 },
+    { char: 'l', pause: 148 },
+    { char: 'l', pause: 411 },
+    { char: '-', pause: 322 },
+    { char: 'S', pause: 134 },
+    { char: 't', pause: 199 },
+    { char: 'a', pause: 196 },
+    { char: 'c', pause: 138 },
+    { char: 'k', pause: 234 },
+    { char: ' ', pause: 661 },
+    { char: 'D', pause: 225 },
+    { char: 'e', pause: 230 },
+    { char: 'v', pause: 146 },
+    { char: 'e', pause: 104 },
+    { char: 'l', pause: 199 },
+    { char: 'o', pause: 543 },
+    { char: 'p', pause: 79 },
+    { char: 'e', pause: 56 },
+    { char: 'r', pause: 379 },
+    { char: ' ', pause: 574 },
+    { char: '|', pause: 676 },
+    { char: ' ', pause: 409 },
+    { char: 'S', pause: 234 },
+    { char: 'o', pause: 111 },
+    { char: 'f', pause: 261 },
+    { char: 't', pause: 223 },
+    { char: 'w', pause: 236 },
+    { char: 'a', pause: 213 },
+    { char: 'r', pause: 78 },
+    { char: 'e', pause: 160 },
+    { char: ' ', pause: 369 },
+    { char: 'E', pause: 236 },
+    { char: 'n', pause: 148 },
+    { char: 'g', pause: 337 },
+    { char: 'i', pause: 249 },
+    { char: 'n', pause: 122 },
+    { char: 'e', pause: 139 },
+    { char: 'e', pause: 343 },
+    { char: 'r', pause: 0 },
+];
+
+function Home({ isSplashActive: isSplashProp }) {
+    const outletContext = useOutletContext();
+    const isSplashActive = isSplashProp ?? outletContext?.isSplashActive ?? false;
     const theme = useMantineTheme();
     const { t } = useTranslation();
     const shouldReduceMotion = useReducedMotion();
+    const subtitleRef = useRef(null);
+    const subtitleText = t('site.title');
+
+    // Efecto Typewriter fluido con TypeIt (arranca únicamente tras finalizar el SplashScreen)
+    useEffect(() => {
+        if (isSplashActive || shouldReduceMotion) {
+            return;
+        }
+
+        const currentElement = subtitleRef.current;
+        if (!currentElement) {
+            return;
+        }
+
+        let instance = null;
+        let cursorTimeout = null;
+        let fadeTimeout = null;
+
+        // Crear un sub-elemento contenedor fresco para aislar la instancia y prevenir duplicaciones por StrictMode
+        const targetSpan = document.createElement('span');
+        currentElement.replaceChildren(targetSpan);
+
+        instance = new TypeIt(targetSpan, {
+            lifeLike: false,
+            speed: 0,
+            cursor: true,
+            cursorSpeed: 750,
+            waitUntilVisible: false,
+            afterComplete: (inst) => {
+                // Desvanecer el cursor suavemente 2 segundos después de completar
+                cursorTimeout = setTimeout(() => {
+                    const cursor = inst.getElement()?.querySelector('.ti-cursor');
+                    if (cursor) {
+                        cursor.style.transition = 'opacity 0.6s ease';
+                        cursor.style.opacity = '0';
+                        fadeTimeout = setTimeout(() => {
+                            try {
+                                cursor.remove();
+                            } catch {
+                                // Ignorar si ya no existe en el DOM
+                            }
+                        }, 600);
+                    }
+                }, 2000);
+            },
+        });
+
+        if (subtitleText === 'Full-Stack Developer | Software Engineer') {
+            // Reproducir la cadencia tweak con escalado de fluidez (~0.35x para tipeo dinámico y ágil)
+            TWEAK_STEPS.forEach(({ char, pause }) => {
+                instance.type(char);
+                if (pause > 0) {
+                    instance.pause(Math.max(20, Math.round(pause * 0.35)));
+                }
+            });
+        } else {
+            // Fallback fluido para español u otras traducciones
+            instance.type(subtitleText, { delay: 45 });
+        }
+
+        instance.go();
+
+        return () => {
+            if (cursorTimeout) clearTimeout(cursorTimeout);
+            if (fadeTimeout) clearTimeout(fadeTimeout);
+            if (instance) {
+                try {
+                    instance.destroy();
+                } catch {
+                    // Silencio ante desmontajes rápidos
+                }
+            }
+            if (currentElement) {
+                currentElement.replaceChildren();
+            }
+        };
+    }, [isSplashActive, subtitleText, shouldReduceMotion]);
 
     // Variante para la línea de acento
     const accentLineVariants = scaleX(0.2, DURATION.slow);
@@ -68,7 +193,7 @@ function Home() {
                 <MotionDiv
                     variants={shouldReduceMotion ? undefined : heroContainerVariants}
                     initial={shouldReduceMotion ? undefined : 'hidden'}
-                    animate={shouldReduceMotion ? undefined : 'visible'}
+                    animate={shouldReduceMotion ? undefined : (isSplashActive ? 'hidden' : 'visible')}
                 >
                     <Stack
                         align="center"
@@ -87,17 +212,18 @@ function Home() {
                             </Title>
                         </MotionDiv>
 
-                        {/* Subtítulo / rol */}
+                        {/* Subtítulo / rol con efecto TypeIt Rainbow */}
                         <MotionDiv variants={shouldReduceMotion ? undefined : heroChildVariants}>
-                            <div className="hero-subtitle-container">
-                                <span className="hero-subtitle-badge-dot" aria-hidden="true" />
-                                <Title
-                                    order={2}
-                                    className="hero-subtitle-text"
-                                >
-                                    {t('site.title')}
-                                </Title>
-                            </div>
+                            <Title
+                                order={2}
+                                className="hero-subtitle-text"
+                            >
+                                {shouldReduceMotion ? (
+                                    subtitleText
+                                ) : (
+                                    <span ref={subtitleRef} />
+                                )}
+                            </Title>
                         </MotionDiv>
 
                         {/* Descripción del hero */}
