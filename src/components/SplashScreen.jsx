@@ -94,17 +94,6 @@ function SplashScreen({ onFinish }) {
           <h1 className="splash-screen__name">CRISTIAN BARREIRO</h1>
           <p className="splash-screen__role">{t('splash.role')}</p>
         </MotionDiv>
-
-        {/* Telemetría y Estado del Sistema */}
-        <MotionDiv
-          className="splash-screen__status-chip"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className="splash-screen__pulse-dot" />
-          <span className="splash-screen__status-text">{t('splash.status')}</span>
-        </MotionDiv>
       </div>
 
       {/* Indicador discreto para saltar */}
