@@ -82,7 +82,7 @@ function TechInfoPanel({ tech }) {
                   height={56}
                   loading="eager"
                 />
-                <Stack gap={6}>
+                <Stack gap={6} align="flex-start">
                   <Title order={3} size="h3" fw={700} style={{ lineHeight: 1.1 }}>
                     {t(tech.nameKey)}
                   </Title>
