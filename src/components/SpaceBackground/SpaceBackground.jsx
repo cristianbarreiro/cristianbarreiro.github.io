@@ -282,6 +282,26 @@ function SpaceBackground({ theme = 'space', showNebula = false, colorAmbience = 
       }
     };
 
+    const spawnClickComet = (clickX, clickY) => {
+      if (shootingStarsRef.current.length >= 15) return;
+      const bm = blendModeRef.current;
+      const angle = Math.PI / 4 + (Math.random() - 0.5) * 0.45;
+      const offset = 100 + Math.random() * 120;
+      const targetX = typeof clickX === 'number' ? clickX : Math.random() * width;
+      const targetY = typeof clickY === 'number' ? clickY : Math.random() * height * 0.6;
+      const startX = targetX - Math.cos(angle) * offset;
+      const startY = targetY - Math.sin(angle) * offset;
+
+      shootingStarsRef.current.push({
+        x: startX,
+        y: startY,
+        length: 80 + Math.random() * 120,
+        speed: (12 + Math.random() * 8) * (bm ? 0.6 : 1),
+        opacity: bm ? 0.5 : 1,
+        angle,
+      });
+    };
+
     const drawNebulaCloud = (cloud, time) => {
       const { themeConfig } = getConfigs();
       const currentTheme = themeRef.current;
@@ -445,7 +465,34 @@ function SpaceBackground({ theme = 'space', showNebula = false, colorAmbience = 
       }, 150);
     };
 
+    // Detección de clicks rápidos seguidos para probabilidad de cometa
+    let clickCount = 0;
+    let lastClickTime = 0;
+    const RAPID_CLICK_WINDOW_MS = 500;
+    const MIN_CLICKS_TRIGGER = 3;
+    const COMET_PROBABILITY = 0.55;
+
+    const handlePointerDown = (e) => {
+      if (e.button !== 0 && e.pointerType === 'mouse') return;
+      if (reducedMotion) return;
+
+      const now = performance.now();
+      if (now - lastClickTime <= RAPID_CLICK_WINDOW_MS) {
+        clickCount += 1;
+      } else {
+        clickCount = 1;
+      }
+      lastClickTime = now;
+
+      if (clickCount >= MIN_CLICKS_TRIGGER) {
+        if (Math.random() < COMET_PROBABILITY) {
+          spawnClickComet(e.clientX, e.clientY);
+        }
+      }
+    };
+
     window.addEventListener('resize', onResize, { passive: true });
+    window.addEventListener('pointerdown', handlePointerDown, { passive: true });
     resizeCanvas();
 
     if (reducedMotion) {
@@ -458,13 +505,11 @@ function SpaceBackground({ theme = 'space', showNebula = false, colorAmbience = 
     return () => {
       clearTimeout(resizeTimer);
       window.removeEventListener('resize', onResize);
+      window.removeEventListener('pointerdown', handlePointerDown);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  // Todas las props visuales se leen desde refs en cada frame.
-  // Este effect solo se ejecuta una vez al montar el componente.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <canvas ref={canvasRef} className="space-background" aria-hidden="true" />;
