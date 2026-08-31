@@ -91,10 +91,10 @@ function Navbar() {
                 <Container size="lg" py="sm">
                     <Box style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                         {/* Columna Izquierda: Espaciador flex-1 para centrado de navegación desktop */}
-                        <Box visibleFrom="sm" style={{ flex: '1 1 0%', minWidth: 0 }} />
+                        <Box visibleFrom="md" style={{ flex: '1 1 0%', minWidth: 0 }} />
 
                         {/* Columna Central: Navegación desktop centrada horizontalmente */}
-                        <Group gap="sm" visibleFrom="sm" style={{ flex: '0 0 auto', justifyContent: 'center' }}>
+                        <Group gap="sm" visibleFrom="md" style={{ flex: '0 0 auto', justifyContent: 'center' }}>
                             {enabledNavLinks.map((link) => (
                                 <Text
                                     key={link.path}
@@ -112,7 +112,7 @@ function Navbar() {
                         </Group>
 
                         {/* Columna Derecha: Acciones desktop (Idioma + Descarga CV) */}
-                        <Group gap="sm" visibleFrom="sm" justify="flex-end" style={{ flex: '1 1 0%', minWidth: 0 }}>
+                        <Group gap="sm" visibleFrom="md" justify="flex-end" style={{ flex: '1 1 0%', minWidth: 0 }}>
                             <LanguageToggle />
                             <RippleButton
                                 component="a"
@@ -131,8 +131,8 @@ function Navbar() {
                             </RippleButton>
                         </Group>
 
-                        {/* Botones Móvil (centrados horizontalmente) */}
-                        <Group hiddenFrom="sm" wrap="nowrap" gap="xs" justify="center" style={{ width: '100%' }}>
+                        {/* Botones Móvil y Tablet (centrados horizontalmente) */}
+                        <Group hiddenFrom="md" wrap="nowrap" gap="xs" justify="center" style={{ width: '100%' }}>
                             <RippleButton
                                 component="a"
                                 href={cvHref}
