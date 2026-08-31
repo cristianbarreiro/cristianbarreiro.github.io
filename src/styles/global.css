@@ -133,10 +133,7 @@ body,
 /* Subtítulos de secciones */
 .section-subtitle {
   color: var(--mantine-color-dimmed) !important;
-  width: fit-content;
   max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
   user-select: text;
   -webkit-user-select: text;
 }
@@ -145,12 +142,9 @@ body,
   color: var(--mantine-color-gray-2) !important;
 }
 
-/* Títulos de secciones y topics con ancho ceñido al texto */
+/* Títulos de secciones y topics */
 .section-title {
-  width: fit-content !important;
   max-width: 100%;
-  margin-left: auto !important;
-  margin-right: auto !important;
   user-select: text;
   -webkit-user-select: text;
 }

@@ -156,11 +156,11 @@ function About() {
                                                 </Badge>
                                             </Group>
 
-                                            <Title order={1} size="h1" fw={800} style={{ letterSpacing: '-0.5px' }} className="section-title">
+                                            <Title order={1} size="h1" fw={800} style={{ letterSpacing: '-0.5px' }}>
                                                 Cristian Barreiro
                                             </Title>
 
-                                            <Text size="xl" fw={600} className="section-subtitle">
+                                            <Text size="xl" fw={600} c="dimmed">
                                                 {t('about.hero.tagline')}
                                             </Text>
                                         </Stack>
