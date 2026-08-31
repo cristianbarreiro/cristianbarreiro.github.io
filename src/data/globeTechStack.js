@@ -38,8 +38,8 @@ export const globeTechnologies = [
   {
     id: 'javascript',
     nameKey: 'techStack.javascript',
-    category: 'frontend',
-    categoryKey: 'home.techStackCategory.frontend',
+    category: 'languages',
+    categoryKey: 'home.techStackCategory.languages',
     descriptionKey: 'techDesc.javascript',
     devicon: 'javascript/javascript-original',
     isCore: true,
@@ -49,8 +49,8 @@ export const globeTechnologies = [
   {
     id: 'java',
     nameKey: 'techStack.java',
-    category: 'backend',
-    categoryKey: 'home.techStackCategory.backend',
+    category: 'languages',
+    categoryKey: 'home.techStackCategory.languages',
     descriptionKey: 'techDesc.java',
     devicon: 'java/java-original',
     isCore: true,
