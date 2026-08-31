@@ -82,7 +82,7 @@ function Skills() {
                 <Stack gap="xl">
                     <ScrollReveal>
                         <div>
-                            <Title order={1} mb="sm">
+                            <Title order={1} mb="sm" className="section-title">
                                 {t('skills.title')}
                             </Title>
                             <Text size="lg" className="section-subtitle">

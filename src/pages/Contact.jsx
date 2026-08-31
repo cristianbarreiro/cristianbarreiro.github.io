@@ -195,7 +195,7 @@ function Contact({ embedded = false }) {
                 <Stack gap="xl">
                     <ScrollReveal>
                         <div>
-                            <Title order={1} mb="sm">
+                            <Title order={1} mb="sm" className="section-title">
                                 {t('contact.title')}
                             </Title>
                             <Text size="lg" className="section-subtitle">

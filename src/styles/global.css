@@ -133,10 +133,26 @@ body,
 /* Subtítulos de secciones */
 .section-subtitle {
   color: var(--mantine-color-dimmed) !important;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  user-select: text;
+  -webkit-user-select: text;
 }
 
 :root[data-mantine-color-scheme="dark"] .section-subtitle {
   color: var(--mantine-color-gray-2) !important;
+}
+
+/* Títulos de secciones y topics con ancho ceñido al texto */
+.section-title {
+  width: fit-content !important;
+  max-width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  user-select: text;
+  -webkit-user-select: text;
 }
 
 /* ========================================
@@ -1066,8 +1082,12 @@ button:hover .icon-send-jello {
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.08;
-  margin: 0;
+  margin: 0 auto;
+  width: fit-content;
+  max-width: 100%;
   padding: 0.1em 0.2em;
+  user-select: text;
+  -webkit-user-select: text;
   background: linear-gradient(
     135deg,
     var(--mantine-primary-color-3, var(--mantine-primary-color-filled)) 0%,
@@ -1105,11 +1125,15 @@ button:hover .icon-send-jello {
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--mantine-color-text);
-  margin: 0;
+  margin: 0 auto;
+  width: fit-content;
+  max-width: 100%;
   min-height: 1.8em;
-  display: inline-block;
+  display: block;
   text-align: center;
   white-space: pre-wrap;
+  user-select: text;
+  -webkit-user-select: text;
 }
 
 .hero-subtitle-text .ti-cursor {

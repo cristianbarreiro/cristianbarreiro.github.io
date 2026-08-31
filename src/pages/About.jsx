@@ -156,7 +156,7 @@ function About() {
                                                 </Badge>
                                             </Group>
 
-                                            <Title order={1} size="h1" fw={800} style={{ letterSpacing: '-0.5px' }}>
+                                            <Title order={1} size="h1" fw={800} style={{ letterSpacing: '-0.5px' }} className="section-title">
                                                 Cristian Barreiro
                                             </Title>
 
@@ -277,7 +277,7 @@ function About() {
                         <Stack gap="lg" mt="xl">
                             <ScrollReveal>
                                 <div>
-                                    <Title order={2} size="h2" fw={700}>
+                                    <Title order={2} size="h2" fw={700} className="section-title">
                                         {t('about.pillars.sectionTitle')}
                                     </Title>
                                     <Text size="md" c="dimmed">
@@ -383,7 +383,7 @@ function About() {
                             <ScrollReveal>
                                 <Group justify="space-between" align="flex-end" wrap="wrap">
                                     <div>
-                                        <Title order={2} size="h2" fw={700}>
+                                        <Title order={2} size="h2" fw={700} className="section-title">
                                             {t('about.timeline.sectionTitle')}
                                         </Title>
                                         <Text size="md" c="dimmed">

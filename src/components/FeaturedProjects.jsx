@@ -67,9 +67,9 @@ function FeaturedProjects() {
         <section className="home-section" aria-label={t('home.featuredAria')}>
             <Container size="lg">
                 {/* Encabezado */}
-                <Stack align="center" ta="center" mb="xl" gap="xs">
-                    <ScrollReveal>
-                        <Title order={2} size="h2" fw={700}>
+                <Stack align="center" ta="center" mb="xl" gap="xs" style={{ userSelect: 'none' }}>
+                    <ScrollReveal style={{ width: 'fit-content', margin: '0 auto' }}>
+                        <Title order={2} size="h2" fw={700} className="section-title">
                             {t('home.featuredTitle')}
                         </Title>
                     </ScrollReveal>

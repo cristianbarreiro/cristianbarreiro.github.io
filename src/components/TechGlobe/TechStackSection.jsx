@@ -79,8 +79,8 @@ function TechStackSection() {
       <Container size="xl">
 
         {/* Section header */}
-        <Stack align="center" ta="center" mb="xl" gap="xs">
-          <Title order={2} size="h2" fw={700}>
+        <Stack align="center" ta="center" mb="xl" gap="xs" style={{ userSelect: 'none' }}>
+          <Title order={2} size="h2" fw={700} className="section-title">
             {t('home.techStackTitle')}
           </Title>
           <Text size="md" className="section-subtitle" maw={520}>

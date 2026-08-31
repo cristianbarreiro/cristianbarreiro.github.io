@@ -233,9 +233,13 @@ function Home({ isSplashActive: isSplashProp }) {
                         gap="xl"
                         py={{ base: 'xl', md: 80 }}
                         ta="center"
+                        style={{ userSelect: 'none' }}
                     >
                         {/* Nombre */}
-                        <MotionDiv variants={shouldReduceMotion ? undefined : heroChildVariants}>
+                        <MotionDiv
+                            variants={shouldReduceMotion ? undefined : heroChildVariants}
+                            style={{ width: 'fit-content', margin: '0 auto', maxWidth: '100%' }}
+                        >
                             <Title
                                 order={1}
                                 className="hero-title"
@@ -245,7 +249,10 @@ function Home({ isSplashActive: isSplashProp }) {
                         </MotionDiv>
 
                         {/* Subtítulo / rol con efecto TypeIt Rainbow */}
-                        <MotionDiv variants={shouldReduceMotion ? undefined : heroChildVariants}>
+                        <MotionDiv
+                            variants={shouldReduceMotion ? undefined : heroChildVariants}
+                            style={{ width: 'fit-content', margin: '0 auto', maxWidth: '100%' }}
+                        >
                             <Title
                                 order={2}
                                 className="hero-subtitle-text"
@@ -320,9 +327,9 @@ function Home({ isSplashActive: isSplashProp }) {
             {/* ===== 6. Contact Section (reusable) ===== */}
             <section className="home-section" aria-label={t('home.contactSectionTitle')}>
                 <Container size="lg">
-                    <Stack align="center" ta="center" mb="xl" gap="xs">
-                        <ScrollReveal>
-                            <Title order={2} size="h2" fw={700}>
+                    <Stack align="center" ta="center" mb="xl" gap="xs" style={{ userSelect: 'none' }}>
+                        <ScrollReveal style={{ width: 'fit-content', margin: '0 auto' }}>
+                            <Title order={2} size="h2" fw={700} className="section-title">
                                 {t('home.contactSectionTitle')}
                             </Title>
                         </ScrollReveal>

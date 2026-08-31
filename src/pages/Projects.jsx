@@ -142,7 +142,7 @@ function Projects() {
                 <Stack gap="xl">
                     <ScrollReveal>
                         <div>
-                            <Title order={1} mb="sm">
+                            <Title order={1} mb="sm" className="section-title">
                                 {t('projects.title')}
                             </Title>
                             <Text size="lg" className="section-subtitle">
@@ -241,6 +241,7 @@ function Projects() {
                     viewMode === 'grid' ? (
                         /* ========== VISTA GRID ========== */
                         <MotionDiv
+                            key={`projects-grid-${selectedTag || 'all'}`}
                             variants={shouldReduceMotion ? undefined : staggerContainer(STAGGER.normal)}
                             initial={shouldReduceMotion ? undefined : 'hidden'}
                             whileInView={shouldReduceMotion ? undefined : 'visible'}
@@ -266,6 +267,7 @@ function Projects() {
                     ) : viewMode === 'list' ? (
                         /* ========== VISTA LISTA ========== */
                         <MotionDiv
+                            key={`projects-list-${selectedTag || 'all'}`}
                             variants={shouldReduceMotion ? undefined : staggerContainer(STAGGER.tight)}
                             initial={shouldReduceMotion ? undefined : 'hidden'}
                             whileInView={shouldReduceMotion ? undefined : 'visible'}

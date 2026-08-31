@@ -105,8 +105,8 @@ function TechStackGrid() {
         <section className="home-section" aria-label={t('home.techStackAria')}>
             <Container size="md">
                 {/* Encabezado de sección */}
-                <Stack align="center" ta="center" mb="xl" gap="xs">
-                    <Title order={2} size="h2" fw={700}>
+                <Stack align="center" ta="center" mb="xl" gap="xs" style={{ userSelect: 'none' }}>
+                    <Title order={2} size="h2" fw={700} className="section-title">
                         {t('home.techStackTitle')}
                     </Title>
                     <Text size="md" className="section-subtitle" maw={500}>
