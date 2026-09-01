@@ -99,6 +99,57 @@ const TWEAK_STEPS = [
     { char: 'r', pause: 0 },
 ];
 
+const TWEAK_STEPS_ES = [
+    { char: 'D', pause: 225 },
+    { char: 'e', pause: 230 },
+    { char: 's', pause: 146 },
+    { char: 'a', pause: 196 },
+    { char: 'r', pause: 286 },
+    { char: 'r', pause: 78 },
+    { char: 'o', pause: 213 },
+    { char: 'l', pause: 148 },
+    { char: 'l', pause: 79 },
+    { char: 'a', pause: 199 },
+    { char: 'd', pause: 138 },
+    { char: 'o', pause: 104 },
+    { char: 'r', pause: 379 },
+    { char: ' ', pause: 661 },
+    { char: 'F', pause: 286 },
+    { char: 'u', pause: 460 },
+    { char: 'l', pause: 148 },
+    { char: 'l', pause: 411 },
+    { char: '-', pause: 322 },
+    { char: 'S', pause: 134 },
+    { char: 't', pause: 199 },
+    { char: 'a', pause: 196 },
+    { char: 'c', pause: 138 },
+    { char: 'k', pause: 234 },
+    { char: ' ', pause: 574 },
+    { char: '|', pause: 676 },
+    { char: ' ', pause: 409 },
+    { char: 'I', pause: 236 },
+    { char: 'n', pause: 148 },
+    { char: 'g', pause: 337 },
+    { char: 'e', pause: 213 },
+    { char: 'n', pause: 122 },
+    { char: 'i', pause: 249 },
+    { char: 'e', pause: 139 },
+    { char: 'r', pause: 160 },
+    { char: 'o', pause: 343 },
+    { char: ' ', pause: 369 },
+    { char: 'd', pause: 225 },
+    { char: 'e', pause: 146 },
+    { char: ' ', pause: 369 },
+    { char: 'S', pause: 234 },
+    { char: 'o', pause: 111 },
+    { char: 'f', pause: 261 },
+    { char: 't', pause: 223 },
+    { char: 'w', pause: 236 },
+    { char: 'a', pause: 213 },
+    { char: 'r', pause: 78 },
+    { char: 'e', pause: 0 },
+];
+
 function Home({ isSplashActive: isSplashProp }) {
     const outletContext = useOutletContext();
     const isSplashActive = isSplashProp ?? outletContext?.isSplashActive ?? false;
@@ -190,8 +241,17 @@ function Home({ isSplashActive: isSplashProp }) {
                     instance.pause(Math.max(20, Math.round(pause * 0.35)));
                 }
             });
+        } else if (textToType === 'Desarrollador Full-Stack | Ingeniero de Software') {
+            instance.options({ speed: 0 });
+            // Reproducir la cadencia tweak en español con el mismo escalado de fluidez (~0.35x)
+            TWEAK_STEPS_ES.forEach(({ char, pause }) => {
+                instance.type(char);
+                if (pause > 0) {
+                    instance.pause(Math.max(20, Math.round(pause * 0.35)));
+                }
+            });
         } else {
-            // Tipeo fluido para español u otras traducciones
+            // Tipeo fluido para otras traducciones
             instance.type(textToType);
         }
 
