@@ -13,7 +13,7 @@
   - *Cosmos / Space:* Renderizado Canvas/WebGL con estrellas fugaces, nubes de nebulosa reactivas y efecto de profundidad.
   - *Minimal Grid & Spotlight:* Fondo minimalista con iluminación dinámica y física de seguimiento de cursor por interpolación lineal (*lerp*).
   - *Modo Blending:* Superposición y combinación de capas espaciales y minimalistas.
-- **Personalización Reactiva de Tema:** Selector flotante para alternar entre 6 colores de acento Mantine (`blue`, `green`, `cyan`, `grape`, `yellow`, `red`) con persistencia dual en `localStorage` y cookies.
+- **Personalización de Color de Acento:** Selector flotante con paleta 2D interactiva, input HEX manual y color picker nativo del navegador para elegir cualquier color de acento. Los tonos Mantine se generan dinámicamente y el color persiste entre visitas vía `localStorage` y cookies.
 - **Showcase Multi-Vista de Proyectos:** Exploración flexible de proyectos mediante vistas intercambiables:
   - *Grid View:* Cuadrícula responsiva con filtros por etiquetas y tecnologías.
   - *Custom Carousel:* Carrusel fluido desarrollado a medida sin dependencias externas pesadas.
@@ -132,6 +132,17 @@ npm run deploy
 ```
 
 La navegación SPA persistente (evitando errores 404 al recargar rutas profundas) se gestiona mediante el script de redirección en `public/404.html` e `index.html`.
+
+---
+
+## 📚 Documentación y Desarrollo Asistido por IA
+
+El repositorio cuenta con una arquitectura de contexto estructurada para desarrolladores y agentes de IA (Gemini, Claude, Copilot, Codex) bajo el estándar **Open Knowledge Format (OKF v0.2)**:
+
+- **Guía Maestra y Gobernanza:** [AGENTS.md](AGENTS.md)
+- **Arquitectura del Sistema:** [docs/architecture/system-overview.md](docs/architecture/system-overview.md)
+- **Registros de Decisiones de Arquitectura (ADRs):** [docs/decisions/](docs/decisions/)
+- **Protocolo de Validación (DoD):** [docs/development/validation.md](docs/development/validation.md)
 
 ---
 

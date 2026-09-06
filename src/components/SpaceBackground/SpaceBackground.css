@@ -1,4 +1,4 @@
-/* Fondo espacial (canvas). Misma idea que CircuitBackground: capa fija detrás del contenido. */
+/* Fondo espacial (canvas). Capa fija detrás del contenido. */
 .space-background {
   position: fixed;
   top: 0;

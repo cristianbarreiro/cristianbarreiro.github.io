@@ -6,7 +6,7 @@
  * Hero → Tech Stack → About Preview → Featured Projects → Dev Approach → Contact
  */
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, lazy, Suspense } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
 import {
     Title,
@@ -22,13 +22,14 @@ import TypeIt from 'typeit';
 import { siteConfig } from '../config/siteConfig';
 import { useTranslation } from 'react-i18next';
 import RippleButton from '../components/RippleButton';
-import TechStackSection from '../components/TechGlobe';
 import AboutPreview from '../components/AboutPreview';
 import FeaturedProjects from '../components/FeaturedProjects';
 import DevApproach from '../components/DevApproach';
 import Contact from './Contact';
 import ScrollReveal from '../components/ScrollReveal';
 import { EASE_OUT, DURATION, scaleX } from '../utils/motionVariants';
+
+const TechStackSection = lazy(() => import('../components/TechGlobe'));
 
 const MotionDiv = motion.div;
 
@@ -372,7 +373,9 @@ function Home({ isSplashActive: isSplashProp }) {
 
             {/* ===== 2. Tech Stack Globe ===== */}
             <ScrollReveal direction="none" amount={0.1}>
-                <TechStackSection />
+                <Suspense fallback={null}>
+                    <TechStackSection />
+                </Suspense>
             </ScrollReveal>
 
             {/* ===== 3. About Preview ===== */}

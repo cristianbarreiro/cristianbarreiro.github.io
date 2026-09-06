@@ -40,9 +40,13 @@ function generateCosmicThemeFromHex(hex) {
   };
 }
 
-/** @typedef {'space' | 'nebula-purple' | 'nebula-blue' | 'nebula-pink' | 'nebula-green' | 'nebula-cyan' | 'nebula-yellow' | 'galaxy-spiral' | 'galaxy-magenta'} BackgroundTheme */
+/** @typedef {'space'} BackgroundTheme */
 
-/** @type {Record<BackgroundTheme, { backgroundColor: string; starColors: { bright: string[]; dim: string[] }; shootingStarColors: string[]; nebulaColors?: string[]; galaxyColors?: string[] }>} */
+/**
+ * Default theme config for neutral (no accent tint) rendering.
+ * Accent-tinted visuals are generated dynamically by generateCosmicThemeFromHex().
+ * @type {Record<BackgroundTheme, { backgroundColor: string; starColors: { bright: string[]; dim: string[] }; shootingStarColors: string[]; nebulaColors?: string[] }>}
+ */
 const THEME_CONFIGS = {
   space: {
     backgroundColor: '#07080c',
@@ -52,78 +56,6 @@ const THEME_CONFIGS = {
     },
     shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(200, 225, 255, {a})', 'rgba(150, 190, 255, {a})'],
     nebulaColors: ['rgba(50, 60, 85, {a})', 'rgba(75, 88, 115, {a})', 'rgba(35, 45, 68, {a})', 'rgba(95, 110, 140, {a})'],
-  },
-  'nebula-purple': {
-    backgroundColor: '#07050d',
-    starColors: {
-      bright: ['rgba(255, 255, 255, {a})', 'rgba(240, 210, 255, {a})', 'rgba(190, 140, 255, {a})'],
-      dim: ['rgba(210, 170, 240, {a})', 'rgba(170, 130, 200, {a})', 'rgba(130, 90, 160, {a})'],
-    },
-    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(230, 180, 255, {a})', 'rgba(170, 100, 250, {a})'],
-    nebulaColors: ['rgba(120, 35, 200, {a})', 'rgba(145, 45, 225, {a})', 'rgba(175, 80, 245, {a})', 'rgba(205, 140, 255, {a})'],
-  },
-  'nebula-blue': {
-    backgroundColor: '#050712',
-    starColors: {
-      bright: ['rgba(255, 255, 255, {a})', 'rgba(215, 238, 255, {a})', 'rgba(140, 200, 255, {a})'],
-      dim: ['rgba(200, 225, 255, {a})', 'rgba(150, 190, 240, {a})', 'rgba(100, 150, 210, {a})'],
-    },
-    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(180, 225, 255, {a})', 'rgba(90, 170, 255, {a})'],
-    nebulaColors: ['rgba(24, 75, 185, {a})', 'rgba(15, 110, 225, {a})', 'rgba(70, 160, 245, {a})', 'rgba(130, 195, 255, {a})'],
-  },
-  'nebula-green': {
-    backgroundColor: '#040b08',
-    starColors: {
-      bright: ['rgba(255, 255, 255, {a})', 'rgba(220, 255, 245, {a})', 'rgba(140, 240, 205, {a})'],
-      dim: ['rgba(200, 245, 230, {a})', 'rgba(140, 210, 185, {a})', 'rgba(90, 170, 145, {a})'],
-    },
-    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(180, 250, 225, {a})', 'rgba(90, 230, 185, {a})'],
-    nebulaColors: ['rgba(16, 125, 95, {a})', 'rgba(32, 175, 135, {a})', 'rgba(52, 211, 153, {a})', 'rgba(110, 231, 183, {a})'],
-  },
-  'nebula-cyan': {
-    backgroundColor: '#040a10',
-    starColors: {
-      bright: ['rgba(255, 255, 255, {a})', 'rgba(215, 245, 255, {a})', 'rgba(130, 225, 255, {a})'],
-      dim: ['rgba(190, 235, 250, {a})', 'rgba(130, 195, 225, {a})', 'rgba(80, 155, 190, {a})'],
-    },
-    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(170, 240, 255, {a})', 'rgba(80, 215, 255, {a})'],
-    nebulaColors: ['rgba(14, 116, 144, {a})', 'rgba(6, 182, 212, {a})', 'rgba(56, 189, 248, {a})', 'rgba(165, 243, 252, {a})'],
-  },
-  'nebula-yellow': {
-    backgroundColor: '#080602',
-    starColors: {
-      bright: ['rgba(255, 255, 255, {a})', 'rgba(255, 245, 210, {a})', 'rgba(255, 220, 130, {a})'],
-      dim: ['rgba(240, 220, 170, {a})', 'rgba(200, 175, 110, {a})', 'rgba(160, 135, 70, {a})'],
-    },
-    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(255, 235, 170, {a})', 'rgba(250, 195, 40, {a})'],
-    nebulaColors: ['rgba(170, 105, 10, {a})', 'rgba(215, 140, 15, {a})', 'rgba(240, 175, 30, {a})', 'rgba(250, 210, 60, {a})'],
-  },
-  'nebula-pink': {
-    backgroundColor: '#0b040a',
-    starColors: {
-      bright: ['rgba(255, 255, 255, {a})', 'rgba(255, 220, 245, {a})', 'rgba(255, 150, 210, {a})'],
-      dim: ['rgba(235, 180, 215, {a})', 'rgba(195, 130, 175, {a})', 'rgba(155, 90, 135, {a})'],
-    },
-    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(255, 200, 235, {a})', 'rgba(245, 120, 190, {a})'],
-    nebulaColors: ['rgba(160, 30, 100, {a})', 'rgba(215, 45, 130, {a})', 'rgba(240, 100, 175, {a})', 'rgba(251, 200, 230, {a})'],
-  },
-  'galaxy-spiral': {
-    backgroundColor: '#06060c',
-    starColors: {
-      bright: ['rgba(255, 255, 255, {a})', 'rgba(255, 235, 215, {a})', 'rgba(255, 205, 175, {a})'],
-      dim: ['rgba(240, 205, 185, {a})', 'rgba(215, 175, 155, {a})', 'rgba(190, 150, 130, {a})'],
-    },
-    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(255, 230, 210, {a})', 'rgba(255, 195, 170, {a})'],
-    galaxyColors: ['rgba(139, 92, 246, {a})', 'rgba(167, 139, 250, {a})', 'rgba(196, 181, 253, {a})', 'rgba(221, 214, 254, {a})'],
-  },
-  'galaxy-magenta': {
-    backgroundColor: '#0a040b',
-    starColors: {
-      bright: ['rgba(255, 255, 255, {a})', 'rgba(255, 205, 255, {a})', 'rgba(240, 140, 220, {a})'],
-      dim: ['rgba(235, 170, 210, {a})', 'rgba(205, 130, 185, {a})', 'rgba(175, 90, 155, {a})'],
-    },
-    shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(255, 180, 230, {a})', 'rgba(230, 100, 210, {a})'],
-    galaxyColors: ['rgba(192, 38, 211, {a})', 'rgba(217, 70, 239, {a})', 'rgba(232, 121, 249, {a})', 'rgba(250, 204, 21, {a})'],
   },
 };
 
@@ -190,15 +122,15 @@ function SpaceBackground({
     // Si ya existen nubes de nebulosa, no regenerar posiciones
     if (nebulaCloudsRef.current.length > 0) return;
 
-    const tc = THEME_CONFIGS[theme] ?? THEME_CONFIGS.space;
-    if (!tc.nebulaColors && !tc.galaxyColors) {
+    const tc = dynamicConfig || THEME_CONFIGS.space;
+    if (!tc.nebulaColors) {
       nebulaCloudsRef.current = [];
       return;
     }
 
-    const cloudCount = theme.startsWith('nebula') ? 8 : 12;
-    const colors = theme.startsWith('nebula') ? tc.nebulaColors : tc.galaxyColors;
-    const colorCount = colors?.length || 4;
+    const cloudCount = 8;
+    const colors = tc.nebulaColors;
+    const colorCount = colors.length;
 
     const bm = blendModeRef.current;
     nebulaCloudsRef.current = [];
@@ -214,7 +146,7 @@ function SpaceBackground({
         colorIndex: Math.floor(Math.random() * colorCount),
       });
     }
-  }, [showNebula, theme]);
+  }, [showNebula, dynamicConfig]);
 
   // ── Effect principal: canvas, estrellas, animation loop ──
   useEffect(() => {
@@ -287,19 +219,18 @@ function SpaceBackground({
     };
 
     const initNebulaClouds = () => {
-      const currentTheme = themeRef.current;
-      const tc = THEME_CONFIGS[currentTheme] ?? THEME_CONFIGS.space;
+      const tc = dynamicConfigRef.current || THEME_CONFIGS.space;
 
-      if (!showNebulaRef.current || (!tc.nebulaColors && !tc.galaxyColors)) {
+      if (!showNebulaRef.current || !tc.nebulaColors) {
         nebulaCloudsRef.current = [];
         return;
       }
 
       const bm = blendModeRef.current;
-      const cloudCount = currentTheme.startsWith('nebula') ? 8 : 12;
+      const cloudCount = 8;
       nebulaCloudsRef.current = [];
-      const colors = currentTheme.startsWith('nebula') ? tc.nebulaColors : tc.galaxyColors;
-      const colorCount = colors?.length || 4;
+      const colors = tc.nebulaColors;
+      const colorCount = colors.length;
 
       for (let i = 0; i < cloudCount; i++) {
         nebulaCloudsRef.current.push({
@@ -354,8 +285,7 @@ function SpaceBackground({
 
     const drawNebulaCloud = (cloud, time) => {
       const { themeConfig } = getConfigs();
-      const currentTheme = themeRef.current;
-      const colors = currentTheme.startsWith('nebula') ? themeConfig.nebulaColors : themeConfig.galaxyColors;
+      const colors = themeConfig.nebulaColors;
       if (!colors) return;
 
       const safeIndex = cloud.colorIndex % colors.length;

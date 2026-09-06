@@ -33,9 +33,45 @@
 
 ---
 
-## 2. Mapa Operacional del Repositorio
+## 2. Enrutamiento de Contexto (Progressive Disclosure)
+
+Para minimizar el consumo de tokens y maximizar la precisión técnica, este repositorio organiza el conocimiento en niveles estructurados bajo el estándar **Open Knowledge Format (OKF v0.2)**:
 
 ```
+[Nivel 1: Bootstrap / Entrada]
+  ├── AGENTS.md (Este documento: gobernanza y mapa maestro)
+  ├── GEMINI.md (Adaptador específico para Gemini y Antigravity)
+  ├── CLAUDE.md (Adaptador específico para Claude Code / Anthropic)
+  └── .github/copilot-instructions.md (Adaptador para GitHub Copilot)
+         │
+         ▼
+[Nivel 2: Conocimiento Especializado / Invariantes]
+  └── docs/
+       ├── architecture/system-overview.md  ── Flujo de datos y ciclo de vida
+       ├── decisions/
+       │    ├── 0001-theme-state-boundary.md     ── Tokens dinámicos y Mantine
+       │    ├── 0002-color-picker-performance.md ── Drag DOM directo y commit-on-release
+       │    └── 0003-webgl-3d-globe-isolation.md ── Oclusión Drei y lazy loading
+       └── development/validation.md        ── Protocolo DoD y checklist obligatorio
+         │
+         ▼
+[Nivel 3: Código Fuente & Assets]
+  └── src/ & public/
+```
+
+---
+
+## 3. Mapa Operacional del Repositorio
+
+```
+docs/                          # Capa de conocimiento estructurado (OKF v0.2)
+├── architecture/              # Documentos arquitectónicos de alto nivel
+├── decisions/                 # Registros de decisiones arquitectónicas (ADRs)
+└── development/               # Guías de validación, testing y procedimientos
+public/
+├── locales/                   # Cadenas i18n estructuradas (es.json, en.json)
+├── images/                    # Capturas de pantalla y assets multimedia
+└── 404.html                   # Script SPA redirect para GitHub Pages
 src/
 ├── components/
 │   ├── TechGlobe/             # Globo 3D (TechGlobe.jsx, Scene, TechNode, MobileFallback)
@@ -63,6 +99,7 @@ src/
 │   └── underConstructionModal.css
 ├── utils/
 │   ├── storage.js             # Acceso seguro a localStorage y cookies (ÚNICA VÍA)
+│   ├── colors.js              # Conversiones HEX/RGB/HSL, generación de tonos Mantine y tokens CSS
 │   ├── motionVariants.js      # Variantes estándar de Framer Motion
 │   └── formatDate.js          # Formateo de fechas bilingüe
 ├── App.jsx                    # Definición de rutas (Routes/Route)
@@ -72,7 +109,7 @@ src/
 
 ---
 
-## 3. Matriz de Fuentes de Verdad (Source of Truth)
+## 4. Matriz de Fuentes de Verdad (Source of Truth)
 
 | Información a Modificar | Archivo Fuente Primario | Archivos Secundarios / Sincronización |
 |---|---|---|
@@ -90,31 +127,33 @@ src/
 
 ---
 
-## 4. Arquitectura de Sistemas Críticos
+## 5. Arquitectura de Sistemas Críticos
 
-### 4.1 Sistema de Temas y Fondos Dinámicos
-1. **Flujo de Estado:** `ThemeContext` carga estado inicial desde `storage.js` (`localStorage` con fallback a `cookie`, y fallback final a `siteConfig.primaryColor`).
-2. **Paletas Válidas:** `['blue', 'green', 'cyan', 'grape', 'yellow', 'red']`. Definidas con sus 10 tonos en `ThemeRoot.jsx`.
-3. **Inyección en Mantine:** `ThemeRoot` genera el tema con `createTheme({ ...BASE_THEME, primaryColor })` forzando `colorScheme="dark"`.
-4. **Renderizado de Fondo:** `Layout.jsx` consulta `getBackgroundThemeConfig(backgroundTheme)` y renderiza el componente activo (`SpaceBackground` o `MinimalBackground`), gestionando además el modo *blend* y *color ambience*.
+### 5.1 Sistema de Color de Acento y Fondos Dinámicos
+1. **Color de acento:** El usuario selecciona un color HEX arbitrario vía el ThemeChanger (paleta 2D, input HEX o color picker nativo). El valor se almacena como HEX (ej. `#0088FF`) en `ThemeContext`.
+2. **Persistencia:** `ThemeContext` carga el HEX desde `storage.js` (`localStorage` con fallback a `cookie`, y fallback final a `siteConfig.defaultAccentColor`).
+3. **Generación de paleta Mantine:** `ThemeRoot` convierte el HEX a 10 tonos con `generateMantineShades()` (`src/utils/colors.js`) e inyecta una paleta `accent` dinámica en `createTheme()`, forzando `colorScheme="dark"`. *(Ver [ADR-0001](docs/decisions/0001-theme-state-boundary.md))*
+4. **Tokens CSS globales:** `applyGlobalColorTokens()` en `colors.js` inyecta variables CSS derivadas (`--accent-color`, `--accent-color-glow`, etc.) en `:root` cada vez que cambia el color.
+5. **Renderizado de Fondo:** `Layout.jsx` consulta `getBackgroundThemeConfig(backgroundTheme)` y renderiza el componente activo (`SpaceBackground` o `MinimalBackground`). `SpaceBackground` genera colores de nebulosa y estrellas dinámicamente a partir del HEX de acento.
+6. **Performance del picker:** Durante el drag en la paleta, solo se actualizan elementos DOM directamente (sin setState). El color se aplica globalmente al soltar (commit-on-release). Los eventos se agrupan por `requestAnimationFrame`. *(Ver [ADR-0002](docs/decisions/0002-color-picker-performance.md))*
 
-### 4.2 Internacionalización (i18n)
+### 5.2 Internacionalización (i18n)
 - Todas las cadenas visibles al usuario **deben** consumirse mediante `const { t } = useTranslation()` → `t('clave.subclave')`.
 - Al agregar una nueva clave, debe insertarse simultáneamente en `public/locales/es.json` y `public/locales/en.json`.
 - Idioma por defecto / fallback: `es`.
 - Persistencia: Manejada automáticamente bajo la clave `lang` en `storage.js`.
 
-### 4.3 Persistencia Segura
+### 5.3 Persistencia Segura
 - **PROHIBIDO** invocar directamente `localStorage` o `document.cookie` en componentes.
 - Utilizar exclusivamente helpers de `src/utils/storage.js`: `safeLocalStorageGet`, `safeLocalStorageSet`, `readCookie`, `writeCookie`.
 
-### 4.4 Renderizado 3D y Gráficos (TechGlobe & Canvas)
-- `TechGlobe.jsx` utiliza React Three Fiber. Cada nodo HTML orbital pasa por `Html` de `@react-three/drei` con propiedad `occlude={[globeRef]}` para ocultarse físicamente detrás de la esfera 3D.
+### 5.4 Renderizado 3D y Gráficos (TechGlobe & Canvas)
+- `TechGlobe.jsx` utiliza React Three Fiber. Cada nodo HTML orbital pasa por `Html` de `@react-three/drei` con propiedad `occlude={[globeRef]}` para ocultarse físicamente detrás de la esfera 3D. *(Ver [ADR-0003](docs/decisions/0003-webgl-3d-globe-isolation.md))*
 - Toda animación (Canvas 2D, Three.js y Framer Motion) **debe** comprobar `prefers-reduced-motion` mediante `useReducedMotion()` de Framer Motion o `window.matchMedia('(prefers-reduced-motion: reduce)')`.
 
 ---
 
-## 5. Matriz de Tareas Comunes (Start Here)
+## 6. Matriz de Tareas Comunes (Start Here)
 
 | Tarea Requerida | Dónde Empezar | Checklist Operacional |
 |---|---|---|
@@ -127,7 +166,7 @@ src/
 
 ---
 
-## 6. Gobernanza y Niveles de Autorización
+## 7. Gobernanza y Niveles de Autorización
 
 ### Nivel 1: Acciones Autónomas (Permitidas directamente)
 - Modificar componentes, páginas o utilidades existentes vinculadas con la tarea solicitada.
@@ -155,9 +194,9 @@ El agente debe detenerse, presentar justificación e impacto, y esperar confirma
 
 ---
 
-## 7. Protocolo de Validación
+## 8. Protocolo de Validación (Definition of Done)
 
-Antes de dar por concluida cualquier modificación:
+Antes de dar por concluida cualquier modificación, sigue la guía detallada en [docs/development/validation.md](docs/development/validation.md):
 
 1. **Linting obligatorio:**
    ```bash
@@ -165,15 +204,16 @@ Antes de dar por concluida cualquier modificación:
    ```
    *Debe terminar con 0 errores.*
 2. **Sincronización i18n:**
-   Comprobar que toda nueva clave exista en `es.json` y `en.json`.
+   Comprobar que toda nueva clave exista idéntica en `public/locales/es.json` y `en.json`.
 3. **Persistencia y Accesibilidad:**
    Validar que no se usen llamadas directas a `localStorage` y que los componentes interactivos incluyan `aria-label` o `role` adecuado.
-4. **Compilación (solo para cambios estructurales/puntuales):**
+4. **Compilación y Build:**
    ```bash
    npm run build
    ```
-   *No ejecutar en bucle automático; solo cuando se requiera verificar empaquetado.*
+   *Verificar empaquetado y code-splitting correcto.*
 
 ---
 
-*Última actualización operativa: 2026-08-27*
+*Última actualización operativa: 2026-09-06*
+

@@ -15,27 +15,12 @@ import { ConveyorLoop } from './ConveyorLoop';
 import { useThemeContext } from '../context/ThemeContext';
 import { getBackgroundThemeConfig, BACKGROUND_THEMES } from '../config/backgroundThemes';
 
-const PRIMARY_TO_THEME = {
-  blue: 'nebula-blue',
-  green: 'nebula-green',
-  cyan: 'nebula-cyan',
-  violet: 'nebula-purple',
-  pink: 'nebula-pink',
-  grape: 'galaxy-spiral',
-  yellow: 'nebula-yellow',
-  red: 'galaxy-magenta',
-};
-
 function Layout({ isSplashActive = false }) {
     const { t } = useTranslation();
     const location = useLocation();
     const { primaryColor, backgroundTheme, showNebula, showColorAmbience, blendMinimalBackground } = useThemeContext();
     const activeBgConfig = getBackgroundThemeConfig(backgroundTheme);
     const BackgroundComponent = activeBgConfig.component || SpaceBackground;
-    // showNebula → muestra nebulosas coloreadas del acento (selecciona tema coloreado)
-    // showColorAmbience → tiñe estrellas / fondo / estrellas fugaces del color de acento
-    const coloredTheme = PRIMARY_TO_THEME[primaryColor] ?? 'space';
-    const spaceTheme = (showNebula || showColorAmbience) ? coloredTheme : 'space';
     const isBlendActive = backgroundTheme === 'space' && blendMinimalBackground;
     const MinimalBgComponent = isBlendActive
       ? BACKGROUND_THEMES.find((t) => t.id === 'minimal')?.component
@@ -135,7 +120,7 @@ function Layout({ isSplashActive = false }) {
                 )}
                 {/* Contenedor con fondo */}
                 <Box className="main-content-wrapper space-bg">
-                    <BackgroundComponent theme={spaceTheme} accentColorHex={primaryColor} showNebula={showNebula} colorAmbience={showColorAmbience} blendMode={isBlendActive} key={backgroundTheme} />
+                    <BackgroundComponent theme="space" accentColorHex={primaryColor} showNebula={showNebula} colorAmbience={showColorAmbience} blendMode={isBlendActive} key={backgroundTheme} />
                     {isBlendActive && MinimalBgComponent && <MinimalBgComponent asOverlay key="blend-overlay" />}
 
                     {/* Contenido de la página */}
