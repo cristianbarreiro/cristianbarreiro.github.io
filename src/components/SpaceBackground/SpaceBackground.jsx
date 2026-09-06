@@ -3,8 +3,42 @@
  * Adaptado desde `space-background-ani/src/components/SpaceBackground.tsx`.
  */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
+import { hexToRgb } from '../../utils/colors';
 import './SpaceBackground.css';
+
+/**
+ * Genera una configuración de color cósmica personalizada a partir de un HEX de acento
+ */
+function generateCosmicThemeFromHex(hex) {
+  const { r, g, b } = hexToRgb(hex);
+  return {
+    backgroundColor: '#07080c',
+    starColors: {
+      bright: [
+        'rgba(255, 255, 255, {a})',
+        `rgba(${Math.round(255 * 0.7 + r * 0.3)}, ${Math.round(255 * 0.7 + g * 0.3)}, ${Math.round(255 * 0.7 + b * 0.3)}, {a})`,
+        `rgba(${Math.round(255 * 0.5 + r * 0.5)}, ${Math.round(255 * 0.5 + g * 0.5)}, ${Math.round(255 * 0.5 + b * 0.5)}, {a})`,
+      ],
+      dim: [
+        `rgba(${Math.round(220 * 0.7 + r * 0.3)}, ${Math.round(230 * 0.7 + g * 0.3)}, ${Math.round(255 * 0.7 + b * 0.3)}, {a})`,
+        `rgba(${Math.round(180 * 0.7 + r * 0.3)}, ${Math.round(200 * 0.7 + g * 0.3)}, ${Math.round(240 * 0.7 + b * 0.3)}, {a})`,
+        `rgba(${Math.round(140 * 0.7 + r * 0.3)}, ${Math.round(170 * 0.7 + g * 0.3)}, ${Math.round(220 * 0.7 + b * 0.3)}, {a})`,
+      ],
+    },
+    shootingStarColors: [
+      'rgba(255, 255, 255, {a})',
+      `rgba(${Math.round(255 * 0.4 + r * 0.6)}, ${Math.round(255 * 0.4 + g * 0.6)}, ${Math.round(255 * 0.4 + b * 0.6)}, {a})`,
+      `rgba(${r}, ${g}, ${b}, {a})`,
+    ],
+    nebulaColors: [
+      `rgba(${Math.round(r * 0.6)}, ${Math.round(g * 0.6)}, ${Math.round(b * 0.7)}, {a})`,
+      `rgba(${Math.round(r * 0.85)}, ${Math.round(g * 0.85)}, ${Math.round(b * 0.9)}, {a})`,
+      `rgba(${r}, ${g}, ${b}, {a})`,
+      `rgba(${Math.round(255 * 0.4 + r * 0.6)}, ${Math.round(255 * 0.4 + g * 0.6)}, ${Math.round(255 * 0.4 + b * 0.6)}, {a})`,
+    ],
+  };
+}
 
 /** @typedef {'space' | 'nebula-purple' | 'nebula-blue' | 'nebula-pink' | 'nebula-green' | 'nebula-cyan' | 'nebula-yellow' | 'galaxy-spiral' | 'galaxy-magenta'} BackgroundTheme */
 
@@ -96,16 +130,29 @@ const THEME_CONFIGS = {
 /**
  * @param {object} props
  * @param {BackgroundTheme} [props.theme]
+ * @param {string} [props.accentColorHex] - Color de acento HEX activo para ambientación
  * @param {boolean} [props.showNebula] - Muestra/oculta las nubes de nebulosa
  * @param {boolean} [props.colorAmbience] - Tiñe estrellas, fondo y estrellas fugaces del color de acento
+ * @param {boolean} [props.blendMode]
  */
-function SpaceBackground({ theme = 'space', showNebula = false, colorAmbience = true, blendMode = false }) {
+function SpaceBackground({
+  theme = 'space',
+  accentColorHex = '#0088ff',
+  showNebula = false,
+  colorAmbience = true,
+  blendMode = false,
+}) {
   const canvasRef = useRef(null);
   const animationFrameRef = useRef(0);
   const starsRef = useRef([]);
   const shootingStarsRef = useRef([]);
   const nebulaCloudsRef = useRef([]);
   const timeRef = useRef(0);
+
+  const dynamicConfig = useMemo(
+    () => (accentColorHex ? generateCosmicThemeFromHex(accentColorHex) : null),
+    [accentColorHex],
+  );
 
   // Refs que el animation loop lee cada frame para cambiar colores/visibilidad
   // sin re-inicializar posiciones de partículas
@@ -114,6 +161,7 @@ function SpaceBackground({ theme = 'space', showNebula = false, colorAmbience = 
   const colorAmbienceRef = useRef(colorAmbience);
   const blendModeRef = useRef(blendMode);
   const sizeRef = useRef({ width: 0, height: 0 });
+  const dynamicConfigRef = useRef(dynamicConfig);
 
   // Sincronizar refs con props después de cada render
   useEffect(() => {
@@ -121,12 +169,14 @@ function SpaceBackground({ theme = 'space', showNebula = false, colorAmbience = 
     showNebulaRef.current = showNebula;
     colorAmbienceRef.current = colorAmbience;
     blendModeRef.current = blendMode;
+    dynamicConfigRef.current = dynamicConfig;
   });
 
   // ── Helper: obtener configs actuales desde refs ──
   const getConfigs = () => {
-    const tc = THEME_CONFIGS[themeRef.current] ?? THEME_CONFIGS.space;
-    const ac = colorAmbienceRef.current ? tc : THEME_CONFIGS.space;
+    const fallbackTc = THEME_CONFIGS[themeRef.current] ?? THEME_CONFIGS.space;
+    const tc = dynamicConfigRef.current || fallbackTc;
+    const ac = colorAmbienceRef.current ? (dynamicConfigRef.current || fallbackTc) : THEME_CONFIGS.space;
     return { themeConfig: tc, ambientConfig: ac };
   };
 

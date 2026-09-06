@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, useCallback } from 'react';
+import { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import { siteConfig } from '../config/siteConfig';
 import {
   DEFAULT_BACKGROUND_THEME,
@@ -11,6 +11,7 @@ import {
   readCookie,
   writeCookie,
 } from '../utils/storage';
+import { normalizeHex, applyGlobalColorTokens } from '../utils/colors';
 
 const PRIMARY_COLOR_KEY = 'site-primary-color';
 const BG_THEME_KEY = 'site-background-theme';
@@ -18,16 +19,37 @@ const NEBULA_KEY = 'site-show-nebula';
 const AMBIENCE_KEY = 'site-show-color-ambience';
 const BLEND_MINIMAL_KEY = 'site-blend-minimal-bg';
 const COOKIE_MAX_AGE_DAYS = 365;
-const VALID_PRIMARY_COLORS = ['blue', 'green', 'cyan', 'grape', 'yellow', 'red'];
+
+const DEFAULT_PRIMARY_COLOR = siteConfig.defaultAccentColor || siteConfig.primaryColor || '#0088ff';
+
+const LEGACY_COLOR_MAP = {
+  blue: '#0088ff',
+  green: '#20c997',
+  cyan: '#22b8cf',
+  grape: '#be4bdb',
+  yellow: '#fab005',
+  red: '#fa5252',
+};
+
+function resolveValidHex(color) {
+  if (!color || typeof color !== 'string') return null;
+  const legacy = LEGACY_COLOR_MAP[color.toLowerCase()];
+  if (legacy) return legacy;
+  return normalizeHex(color);
+}
 
 const ThemeContext = createContext(null);
 
 function getPersistedPrimaryColor() {
   const ls = safeLocalStorageGet(PRIMARY_COLOR_KEY);
-  if (ls && VALID_PRIMARY_COLORS.includes(ls)) return ls;
+  const fromLs = resolveValidHex(ls);
+  if (fromLs) return fromLs;
+
   const ck = readCookie(PRIMARY_COLOR_KEY);
-  if (ck && VALID_PRIMARY_COLORS.includes(ck)) return ck;
-  return siteConfig.primaryColor;
+  const fromCk = resolveValidHex(ck);
+  if (fromCk) return fromCk;
+
+  return resolveValidHex(DEFAULT_PRIMARY_COLOR) || '#0088ff';
 }
 
 function persistPrimaryColor(value) {
@@ -94,9 +116,25 @@ export function ThemeProvider({ children }) {
   const [showColorAmbience, setShowColorAmbienceState] = useState(getPersistedShowColorAmbience);
   const [blendMinimalBackground, setBlendMinimalBackgroundState] = useState(getPersistedBlendMinimal);
 
+  // Sincronizar variables CSS globales en :root cada vez que cambia el color de acento
+  useEffect(() => {
+    applyGlobalColorTokens(primaryColor);
+  }, [primaryColor]);
+
   const setPrimaryColor = useCallback((color) => {
-    setPrimaryColorState(color);
-    persistPrimaryColor(color);
+    const validHex = resolveValidHex(color);
+    if (!validHex) return false;
+    setPrimaryColorState(validHex);
+    persistPrimaryColor(validHex);
+    applyGlobalColorTokens(validHex);
+    return true;
+  }, []);
+
+  const resetPrimaryColor = useCallback(() => {
+    const defaultHex = resolveValidHex(DEFAULT_PRIMARY_COLOR) || '#0088ff';
+    setPrimaryColorState(defaultHex);
+    persistPrimaryColor(defaultHex);
+    applyGlobalColorTokens(defaultHex);
   }, []);
 
   const setBackgroundTheme = useCallback((themeId) => {
@@ -133,6 +171,8 @@ export function ThemeProvider({ children }) {
       value={{
         primaryColor,
         setPrimaryColor,
+        resetPrimaryColor,
+        defaultPrimaryColor: resolveValidHex(DEFAULT_PRIMARY_COLOR) || '#0088ff',
         backgroundTheme,
         setBackgroundTheme,
         showNebula,

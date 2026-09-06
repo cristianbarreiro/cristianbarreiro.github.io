@@ -17,10 +17,10 @@ export const siteConfig = {
         portfolio: 'https://cristianbarreiro.github.io/',
     },
 
-    // Configuración del tema de Mantine
-    // Puedes cambiar el color primario aquí
-    // Opciones: blue, cyan, grape, green, indigo, lime, orange, pink, red, teal, violet, yellow
-    primaryColor: 'blue',
+    // Configuración del tema y color de acento
+    // Color de acento por defecto (HEX)
+    defaultAccentColor: '#0088ff',
+    primaryColor: '#0088ff',
 
     // Año de copyright
     copyrightYear: new Date().getFullYear(),

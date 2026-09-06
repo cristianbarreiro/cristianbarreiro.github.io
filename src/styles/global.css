@@ -76,6 +76,21 @@ body,
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+:root {
+  /* Tokens dinámicos de color de acento (actualizados reactivamente vía colors.js) */
+  --accent-color: #0088ff;
+  --accent-color-hover: #006bd6;
+  --accent-color-active: #0054ab;
+  --accent-color-light: #80d0ff;
+  --accent-color-border: rgba(0, 136, 255, 0.28);
+  --accent-color-border-hover: rgba(0, 136, 255, 0.55);
+  --accent-color-glow: rgba(0, 136, 255, 0.45);
+  --accent-color-glow-subtle: rgba(0, 136, 255, 0.18);
+  --accent-color-background: rgba(0, 136, 255, 0.12);
+  --accent-color-background-hover: rgba(0, 136, 255, 0.22);
+  --glow-color: var(--accent-color-glow);
+}
+
 :root[data-mantine-color-scheme="light"] {
   /* Fondo transparente para dejar ver el canvas */
   --mantine-color-body: #fafafabb;
@@ -155,7 +170,7 @@ body,
 
 /* Foco visible para navegación con teclado */
 :focus-visible {
-  outline: 2px solid var(--mantine-color-blue-5);
+  outline: 2px solid var(--accent-color, var(--mantine-primary-color-filled));
   outline-offset: 2px;
 }
 

@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { MantineProvider, createTheme } from '@mantine/core';
 import { useThemeContext } from '../context/ThemeContext';
+import { generateMantineShades } from '../utils/colors';
 
 const BASE_THEME = {
   fontFamily:
@@ -108,9 +109,22 @@ const BASE_THEME = {
 function ThemeRoot({ children }) {
   const { primaryColor } = useThemeContext();
 
-  const theme = useMemo(
-    () => createTheme({ ...BASE_THEME, primaryColor }),
+  const accentShades = useMemo(
+    () => generateMantineShades(primaryColor),
     [primaryColor],
+  );
+
+  const theme = useMemo(
+    () =>
+      createTheme({
+        ...BASE_THEME,
+        primaryColor: 'accent',
+        colors: {
+          ...BASE_THEME.colors,
+          accent: accentShades,
+        },
+      }),
+    [accentShades],
   );
 
   return (
