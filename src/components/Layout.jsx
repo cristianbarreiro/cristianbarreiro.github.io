@@ -18,7 +18,7 @@ import { getBackgroundThemeConfig, BACKGROUND_THEMES } from '../config/backgroun
 function Layout({ isSplashActive = false }) {
     const { t } = useTranslation();
     const location = useLocation();
-    const { primaryColor, backgroundTheme, showNebula, showColorAmbience, blendMinimalBackground } = useThemeContext();
+    const { primaryColor, backgroundTheme, showNebula, blendMinimalBackground } = useThemeContext();
     const activeBgConfig = getBackgroundThemeConfig(backgroundTheme);
     const BackgroundComponent = activeBgConfig.component || SpaceBackground;
     const isBlendActive = backgroundTheme === 'space' && blendMinimalBackground;
@@ -120,7 +120,7 @@ function Layout({ isSplashActive = false }) {
                 )}
                 {/* Contenedor con fondo */}
                 <Box className="main-content-wrapper space-bg">
-                    <BackgroundComponent theme="space" accentColorHex={primaryColor} showNebula={showNebula} colorAmbience={showColorAmbience} blendMode={isBlendActive} key={backgroundTheme} />
+                    <BackgroundComponent theme="space" accentColorHex={primaryColor} showNebula={showNebula} blendMode={isBlendActive} key={backgroundTheme} />
                     {isBlendActive && MinimalBgComponent && <MinimalBgComponent asOverlay key="blend-overlay" />}
 
                     {/* Contenido de la página */}

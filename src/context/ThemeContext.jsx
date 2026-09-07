@@ -16,7 +16,6 @@ import { normalizeHex, applyGlobalColorTokens } from '../utils/colors';
 const PRIMARY_COLOR_KEY = 'site-primary-color';
 const BG_THEME_KEY = 'site-background-theme';
 const NEBULA_KEY = 'site-show-nebula';
-const AMBIENCE_KEY = 'site-show-color-ambience';
 const BLEND_MINIMAL_KEY = 'site-blend-minimal-bg';
 const COOKIE_MAX_AGE_DAYS = 365;
 
@@ -83,19 +82,6 @@ function persistShowNebula(value) {
   writeCookie(NEBULA_KEY, String(value), { maxAgeDays: COOKIE_MAX_AGE_DAYS });
 }
 
-function getPersistedShowColorAmbience() {
-  const ls = safeLocalStorageGet(AMBIENCE_KEY);
-  if (ls !== null) return ls === 'true';
-  const ck = readCookie(AMBIENCE_KEY);
-  if (ck !== null) return ck === 'true';
-  return true;
-}
-
-function persistShowColorAmbience(value) {
-  safeLocalStorageSet(AMBIENCE_KEY, String(value));
-  writeCookie(AMBIENCE_KEY, String(value), { maxAgeDays: COOKIE_MAX_AGE_DAYS });
-}
-
 function getPersistedBlendMinimal() {
   const ls = safeLocalStorageGet(BLEND_MINIMAL_KEY);
   if (ls !== null) return ls === 'true';
@@ -113,7 +99,6 @@ export function ThemeProvider({ children }) {
   const [primaryColor, setPrimaryColorState] = useState(getPersistedPrimaryColor);
   const [backgroundTheme, setBackgroundThemeState] = useState(getPersistedBackgroundTheme);
   const [showNebula, setShowNebulaState] = useState(getPersistedShowNebula);
-  const [showColorAmbience, setShowColorAmbienceState] = useState(getPersistedShowColorAmbience);
   const [blendMinimalBackground, setBlendMinimalBackgroundState] = useState(getPersistedBlendMinimal);
 
   // Sincronizar variables CSS globales en :root cada vez que cambia el color de acento
@@ -150,14 +135,6 @@ export function ThemeProvider({ children }) {
     });
   }, []);
 
-  const setShowColorAmbience = useCallback((val) => {
-    setShowColorAmbienceState((prev) => {
-      const next = typeof val === 'function' ? val(prev) : val;
-      persistShowColorAmbience(next);
-      return next;
-    });
-  }, []);
-
   const setBlendMinimalBackground = useCallback((val) => {
     setBlendMinimalBackgroundState((prev) => {
       const next = typeof val === 'function' ? val(prev) : val;
@@ -177,8 +154,6 @@ export function ThemeProvider({ children }) {
         setBackgroundTheme,
         showNebula,
         setShowNebula,
-        showColorAmbience,
-        setShowColorAmbience,
         blendMinimalBackground,
         setBlendMinimalBackground,
       }}

@@ -87,7 +87,7 @@ src/
 │   ├── siteConfig.js          # Datos globales del autor, redes y color por defecto
 │   └── backgroundThemes.js    # Registro de fondos disponibles y sus metadatos
 ├── context/
-│   └── ThemeContext.jsx       # Estado global (primaryColor, backgroundTheme, nebula, ambience)
+│   └── ThemeContext.jsx       # Estado global (primaryColor, backgroundTheme, nebula, blendMinimal)
 ├── data/
 │   ├── projects.js            # Base de datos de proyectos y etiquetas
 │   ├── skills.js / .i18n.js   # Habilidades técnicas y traducciones

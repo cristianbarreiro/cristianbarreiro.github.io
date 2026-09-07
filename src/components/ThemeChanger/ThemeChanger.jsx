@@ -51,8 +51,6 @@ function ThemeChanger() {
     setBackgroundTheme,
     showNebula,
     setShowNebula,
-    showColorAmbience,
-    setShowColorAmbience,
     blendMinimalBackground,
     setBlendMinimalBackground,
   } = useThemeContext();
@@ -655,15 +653,6 @@ function ThemeChanger() {
                           className="theme-changer-checkbox"
                         />
                         <span>{t('themeChanger.showNebula')}</span>
-                      </label>
-                      <label className="theme-changer-checkbox-label">
-                        <input
-                          type="checkbox"
-                          checked={showColorAmbience}
-                          onChange={(e) => setShowColorAmbience(e.target.checked)}
-                          className="theme-changer-checkbox"
-                        />
-                        <span>{t('themeChanger.showColorAmbience')}</span>
                       </label>
                       <label className="theme-changer-checkbox-label">
                         <input

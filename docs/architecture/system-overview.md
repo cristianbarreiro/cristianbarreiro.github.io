@@ -54,7 +54,7 @@ La aplicación utiliza un enfoque descentralizado para evitar re-renderizados in
 ThemeChanger (Interacción local / RAF)
        │ (commit al soltar)
        ▼
-ThemeContext (Estado Global: primaryColor, backgroundTheme, nebula, ambience)
+ThemeContext (Estado Global: primaryColor, backgroundTheme, nebula, blendMinimal)
        │
        ├─────────────────────────┬─────────────────────────┐
        ▼                         ▼                         ▼

@@ -8,29 +8,12 @@ import { hexToRgb } from '../../utils/colors';
 import './SpaceBackground.css';
 
 /**
- * Genera una configuración de color cósmica personalizada a partir de un HEX de acento
+ * Genera una configuración cósmica personalizada para nebulosas a partir de un HEX de acento
  */
 function generateCosmicThemeFromHex(hex) {
   const { r, g, b } = hexToRgb(hex);
   return {
     backgroundColor: '#07080c',
-    starColors: {
-      bright: [
-        'rgba(255, 255, 255, {a})',
-        `rgba(${Math.round(255 * 0.7 + r * 0.3)}, ${Math.round(255 * 0.7 + g * 0.3)}, ${Math.round(255 * 0.7 + b * 0.3)}, {a})`,
-        `rgba(${Math.round(255 * 0.5 + r * 0.5)}, ${Math.round(255 * 0.5 + g * 0.5)}, ${Math.round(255 * 0.5 + b * 0.5)}, {a})`,
-      ],
-      dim: [
-        `rgba(${Math.round(220 * 0.7 + r * 0.3)}, ${Math.round(230 * 0.7 + g * 0.3)}, ${Math.round(255 * 0.7 + b * 0.3)}, {a})`,
-        `rgba(${Math.round(180 * 0.7 + r * 0.3)}, ${Math.round(200 * 0.7 + g * 0.3)}, ${Math.round(240 * 0.7 + b * 0.3)}, {a})`,
-        `rgba(${Math.round(140 * 0.7 + r * 0.3)}, ${Math.round(170 * 0.7 + g * 0.3)}, ${Math.round(220 * 0.7 + b * 0.3)}, {a})`,
-      ],
-    },
-    shootingStarColors: [
-      'rgba(255, 255, 255, {a})',
-      `rgba(${Math.round(255 * 0.4 + r * 0.6)}, ${Math.round(255 * 0.4 + g * 0.6)}, ${Math.round(255 * 0.4 + b * 0.6)}, {a})`,
-      `rgba(${r}, ${g}, ${b}, {a})`,
-    ],
     nebulaColors: [
       `rgba(${Math.round(r * 0.6)}, ${Math.round(g * 0.6)}, ${Math.round(b * 0.7)}, {a})`,
       `rgba(${Math.round(r * 0.85)}, ${Math.round(g * 0.85)}, ${Math.round(b * 0.9)}, {a})`,
@@ -43,8 +26,8 @@ function generateCosmicThemeFromHex(hex) {
 /** @typedef {'space'} BackgroundTheme */
 
 /**
- * Default theme config for neutral (no accent tint) rendering.
- * Accent-tinted visuals are generated dynamically by generateCosmicThemeFromHex().
+ * Default theme config for neutral rendering.
+ * Accent-tinted nebula visuals are generated dynamically by generateCosmicThemeFromHex().
  * @type {Record<BackgroundTheme, { backgroundColor: string; starColors: { bright: string[]; dim: string[] }; shootingStarColors: string[]; nebulaColors?: string[] }>}
  */
 const THEME_CONFIGS = {
@@ -62,16 +45,14 @@ const THEME_CONFIGS = {
 /**
  * @param {object} props
  * @param {BackgroundTheme} [props.theme]
- * @param {string} [props.accentColorHex] - Color de acento HEX activo para ambientación
+ * @param {string} [props.accentColorHex] - Color de acento HEX activo para la nebulosa
  * @param {boolean} [props.showNebula] - Muestra/oculta las nubes de nebulosa
- * @param {boolean} [props.colorAmbience] - Tiñe estrellas, fondo y estrellas fugaces del color de acento
  * @param {boolean} [props.blendMode]
  */
 function SpaceBackground({
   theme = 'space',
   accentColorHex = '#0088ff',
   showNebula = false,
-  colorAmbience = true,
   blendMode = false,
 }) {
   const canvasRef = useRef(null);
@@ -90,7 +71,6 @@ function SpaceBackground({
   // sin re-inicializar posiciones de partículas
   const themeRef = useRef(theme);
   const showNebulaRef = useRef(showNebula);
-  const colorAmbienceRef = useRef(colorAmbience);
   const blendModeRef = useRef(blendMode);
   const sizeRef = useRef({ width: 0, height: 0 });
   const dynamicConfigRef = useRef(dynamicConfig);
@@ -99,17 +79,14 @@ function SpaceBackground({
   useEffect(() => {
     themeRef.current = theme;
     showNebulaRef.current = showNebula;
-    colorAmbienceRef.current = colorAmbience;
     blendModeRef.current = blendMode;
     dynamicConfigRef.current = dynamicConfig;
   });
 
-  // ── Helper: obtener configs actuales desde refs ──
-  const getConfigs = () => {
+  // ── Helper: obtener config de tema actual (nebulosas) desde refs ──
+  const getThemeConfig = () => {
     const fallbackTc = THEME_CONFIGS[themeRef.current] ?? THEME_CONFIGS.space;
-    const tc = dynamicConfigRef.current || fallbackTc;
-    const ac = colorAmbienceRef.current ? (dynamicConfigRef.current || fallbackTc) : THEME_CONFIGS.space;
-    return { themeConfig: tc, ambientConfig: ac };
+    return dynamicConfigRef.current || fallbackTc;
   };
 
   // ── Init/clear nebulosas cuando showNebula cambia ──
@@ -284,7 +261,7 @@ function SpaceBackground({
     };
 
     const drawNebulaCloud = (cloud, time) => {
-      const { themeConfig } = getConfigs();
+      const themeConfig = getThemeConfig();
       const colors = themeConfig.nebulaColors;
       if (!colors) return;
 
@@ -309,13 +286,12 @@ function SpaceBackground({
     };
 
     const drawStar = (star, time) => {
-      const { ambientConfig } = getConfigs();
       const twinkle = Math.sin(time * star.twinkleSpeed + star.twinkleOffset) * 0.3 + 0.7;
       const opacity = star.baseOpacity * twinkle;
 
       const gradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.size);
 
-      const colors = star.depth > 0.7 ? ambientConfig.starColors.bright : ambientConfig.starColors.dim;
+      const colors = star.depth > 0.7 ? THEME_CONFIGS.space.starColors.bright : THEME_CONFIGS.space.starColors.dim;
 
       gradient.addColorStop(0, colors[0].replace('{a}', String(opacity)));
       gradient.addColorStop(0.3, colors[1].replace('{a}', String(opacity * 0.6)));
@@ -327,7 +303,7 @@ function SpaceBackground({
       ctx.fill();
 
       if (star.depth > 0.85) {
-        ctx.fillStyle = ambientConfig.starColors.bright[0].replace('{a}', String(opacity * 0.6));
+        ctx.fillStyle = THEME_CONFIGS.space.starColors.bright[0].replace('{a}', String(opacity * 0.6));
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size * 0.4, 0, Math.PI * 2);
         ctx.fill();
@@ -335,7 +311,6 @@ function SpaceBackground({
     };
 
     const drawShootingStar = (shootingStar) => {
-      const { ambientConfig } = getConfigs();
       const gradient = ctx.createLinearGradient(
         shootingStar.x,
         shootingStar.y,
@@ -343,7 +318,7 @@ function SpaceBackground({
         shootingStar.y - Math.sin(shootingStar.angle) * shootingStar.length,
       );
 
-      const colors = ambientConfig.shootingStarColors;
+      const colors = THEME_CONFIGS.space.shootingStarColors;
       gradient.addColorStop(0, colors[0].replace('{a}', String(shootingStar.opacity)));
       gradient.addColorStop(0.3, colors[1].replace('{a}', String(shootingStar.opacity * 0.6)));
       gradient.addColorStop(1, colors[2].replace('{a}', '0'));
@@ -360,10 +335,9 @@ function SpaceBackground({
     };
 
     const drawFrame = () => {
-      const { ambientConfig } = getConfigs();
       const time = timeRef.current;
 
-      ctx.fillStyle = blendModeRef.current ? '#090a0f' : ambientConfig.backgroundColor;
+      ctx.fillStyle = blendModeRef.current ? '#090a0f' : THEME_CONFIGS.space.backgroundColor;
       ctx.fillRect(0, 0, width, height);
 
       nebulaCloudsRef.current.forEach((cloud) => {
@@ -380,11 +354,10 @@ function SpaceBackground({
     };
 
     const animate = () => {
-      const { ambientConfig } = getConfigs();
       timeRef.current += 0.01;
 
       const bm = blendModeRef.current;
-      ctx.fillStyle = bm ? '#090a0f' : ambientConfig.backgroundColor;
+      ctx.fillStyle = bm ? '#090a0f' : THEME_CONFIGS.space.backgroundColor;
       ctx.fillRect(0, 0, width, height);
 
       const driftMultiplier = bm ? 0.35 : 1;
