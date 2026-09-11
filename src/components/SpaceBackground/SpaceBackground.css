@@ -1,4 +1,4 @@
-/* Fondo espacial (canvas). Capa fija detrás del contenido. */
+/* Fondo espacial: contenedor fijo detrás del contenido */
 .space-background {
   position: fixed;
   top: 0;
@@ -7,5 +7,17 @@
   height: 100vh; /* fallback para navegadores sin dvh */
   height: 100dvh; /* sigue el viewport visible real en móvil (barra de URL) */
   z-index: -1;
+  pointer-events: none;
+  background-color: #07080c;
+  overflow: hidden;
+}
+
+/* Canvas de estrellas, partículas y estrellas fugaces sobre la nebulosa */
+.space-background__canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
 }

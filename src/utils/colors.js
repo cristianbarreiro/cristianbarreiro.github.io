@@ -253,3 +253,53 @@ export function applyGlobalColorTokens(hexColor) {
   root.style.setProperty('--accent-color-background-hover', tokens.accentColorBackgroundHover);
   root.style.setProperty('--glow-color', tokens.accentColorGlow);
 }
+
+/**
+ * Genera la paleta cromática armónica para las capas de plasma y gas cósmico Flux.
+ * Deriva de forma puramente matemática tonos primarios, secundarios (desplazamiento armónico HSL),
+ * fondo ambiental difuso y núcleo ionizado de alta luminosidad a partir de cualquier código HEX.
+ * @param {string} hexColor - Color de acento base
+ * @returns {{
+ *   primaryRgb: string,
+ *   secondaryRgb: string,
+ *   ambientRgb: string,
+ *   plasmaCoreRgb: string,
+ *   primaryHex: string,
+ *   secondaryHex: string
+ * }}
+ */
+export function generateFluxNebulaPalette(hexColor) {
+  const normalized = normalizeHex(hexColor) || '#0088FF';
+  const { h, s, l } = hexToHsl(normalized);
+  const primary = hexToRgb(normalized);
+
+  // Desplazamiento armónico análogo en el círculo HSL (+32° produce contrastes naturales
+  // de temperatura de ionización, ej. Cyan e Índigo en Frozen Plasma)
+  const secondaryHue = (h + 32) % 360;
+  const secondarySat = Math.max(35, Math.min(90, s));
+  const secondaryLight = Math.max(24, Math.min(52, Math.round(l * 0.82)));
+  const secondaryHex = hslToHex(secondaryHue, secondarySat, secondaryLight);
+  const secondary = hexToRgb(secondaryHex);
+
+  // Atmósfera de fondo ultra-profunda y desaturada
+  const ambientLight = Math.max(10, Math.min(20, Math.round(l * 0.35)));
+  const ambientSat = Math.max(25, Math.round(s * 0.55));
+  const ambientHex = hslToHex(h, ambientSat, ambientLight);
+  const ambient = hexToRgb(ambientHex);
+
+  // Núcleo de plasma ionizado (filamento de alta energía lumínica con ligera desaturación tipo hielo)
+  const coreLight = Math.min(93, Math.max(75, Math.round(55 + l * 0.4)));
+  const coreSat = Math.max(25, Math.min(65, Math.round(s * 0.5)));
+  const coreHue = (h - 10 + 360) % 360;
+  const coreHex = hslToHex(coreHue, coreSat, coreLight);
+  const core = hexToRgb(coreHex);
+
+  return {
+    primaryRgb: `${primary.r}, ${primary.g}, ${primary.b}`,
+    secondaryRgb: `${secondary.r}, ${secondary.g}, ${secondary.b}`,
+    ambientRgb: `${ambient.r}, ${ambient.g}, ${ambient.b}`,
+    plasmaCoreRgb: `${core.r}, ${core.g}, ${core.b}`,
+    primaryHex: normalized,
+    secondaryHex,
+  };
+}

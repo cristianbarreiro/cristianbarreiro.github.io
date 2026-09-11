@@ -1,34 +1,16 @@
 /**
- * Fondo animado tipo “cosmos”: estrellas, parallax, estrellas fugaces y nebulosas.
- * Adaptado desde `space-background-ani/src/components/SpaceBackground.tsx`.
+ * Fondo animado tipo “cosmos”: estrellas, parallax, estrellas fugaces y nebulosa Flux.
+ * Combina capas CSS GPU (FluxNebula) con Canvas 2D de alta eficiencia para partículas.
  */
 
-import { useEffect, useRef, useMemo } from 'react';
-import { hexToRgb } from '../../utils/colors';
+import { useEffect, useRef } from 'react';
+import FluxNebula from './FluxNebula';
 import './SpaceBackground.css';
-
-/**
- * Genera una configuración cósmica personalizada para nebulosas a partir de un HEX de acento
- */
-function generateCosmicThemeFromHex(hex) {
-  const { r, g, b } = hexToRgb(hex);
-  return {
-    backgroundColor: '#07080c',
-    nebulaColors: [
-      `rgba(${Math.round(r * 0.6)}, ${Math.round(g * 0.6)}, ${Math.round(b * 0.7)}, {a})`,
-      `rgba(${Math.round(r * 0.85)}, ${Math.round(g * 0.85)}, ${Math.round(b * 0.9)}, {a})`,
-      `rgba(${r}, ${g}, ${b}, {a})`,
-      `rgba(${Math.round(255 * 0.4 + r * 0.6)}, ${Math.round(255 * 0.4 + g * 0.6)}, ${Math.round(255 * 0.4 + b * 0.6)}, {a})`,
-    ],
-  };
-}
 
 /** @typedef {'space'} BackgroundTheme */
 
 /**
- * Default theme config for neutral rendering.
- * Accent-tinted nebula visuals are generated dynamically by generateCosmicThemeFromHex().
- * @type {Record<BackgroundTheme, { backgroundColor: string; starColors: { bright: string[]; dim: string[] }; shootingStarColors: string[]; nebulaColors?: string[] }>}
+ * Configuración estándar para estrellas y meteoros cósmicos.
  */
 const THEME_CONFIGS = {
   space: {
@@ -38,7 +20,6 @@ const THEME_CONFIGS = {
       dim: ['rgba(220, 230, 255, {a})', 'rgba(180, 200, 240, {a})', 'rgba(140, 170, 220, {a})'],
     },
     shootingStarColors: ['rgba(255, 255, 255, {a})', 'rgba(200, 225, 255, {a})', 'rgba(150, 190, 255, {a})'],
-    nebulaColors: ['rgba(50, 60, 85, {a})', 'rgba(75, 88, 115, {a})', 'rgba(35, 45, 68, {a})', 'rgba(95, 110, 140, {a})'],
   },
 };
 
@@ -47,7 +28,7 @@ const THEME_CONFIGS = {
  * @param {BackgroundTheme} [props.theme]
  * @param {string} [props.accentColorHex] - Color de acento HEX activo para la nebulosa
  * @param {boolean} [props.showNebula] - Muestra/oculta las nubes de nebulosa
- * @param {boolean} [props.blendMode]
+ * @param {boolean} [props.blendMode] - Modo de fusión con fondo minimalista
  */
 function SpaceBackground({
   theme = 'space',
@@ -59,73 +40,22 @@ function SpaceBackground({
   const animationFrameRef = useRef(0);
   const starsRef = useRef([]);
   const shootingStarsRef = useRef([]);
-  const nebulaCloudsRef = useRef([]);
   const timeRef = useRef(0);
 
-  const dynamicConfig = useMemo(
-    () => (accentColorHex ? generateCosmicThemeFromHex(accentColorHex) : null),
-    [accentColorHex],
-  );
-
-  // Refs que el animation loop lee cada frame para cambiar colores/visibilidad
-  // sin re-inicializar posiciones de partículas
+  // Refs que el animation loop lee cada frame para sincronizar estado sin reiniciar partículas
   const themeRef = useRef(theme);
   const showNebulaRef = useRef(showNebula);
   const blendModeRef = useRef(blendMode);
   const sizeRef = useRef({ width: 0, height: 0 });
-  const dynamicConfigRef = useRef(dynamicConfig);
 
   // Sincronizar refs con props después de cada render
   useEffect(() => {
     themeRef.current = theme;
     showNebulaRef.current = showNebula;
     blendModeRef.current = blendMode;
-    dynamicConfigRef.current = dynamicConfig;
   });
 
-  // ── Helper: obtener config de tema actual (nebulosas) desde refs ──
-  const getThemeConfig = () => {
-    const fallbackTc = THEME_CONFIGS[themeRef.current] ?? THEME_CONFIGS.space;
-    return dynamicConfigRef.current || fallbackTc;
-  };
-
-  // ── Init/clear nebulosas cuando showNebula cambia ──
-  useEffect(() => {
-    const { width, height } = sizeRef.current;
-    if (!showNebula || width === 0) {
-      nebulaCloudsRef.current = [];
-      return;
-    }
-    // Si ya existen nubes de nebulosa, no regenerar posiciones
-    if (nebulaCloudsRef.current.length > 0) return;
-
-    const tc = dynamicConfig || THEME_CONFIGS.space;
-    if (!tc.nebulaColors) {
-      nebulaCloudsRef.current = [];
-      return;
-    }
-
-    const cloudCount = 8;
-    const colors = tc.nebulaColors;
-    const colorCount = colors.length;
-
-    const bm = blendModeRef.current;
-    nebulaCloudsRef.current = [];
-    for (let i = 0; i < cloudCount; i++) {
-      nebulaCloudsRef.current.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        radius: 180 + Math.random() * 280,
-        opacity: (0.10 + Math.random() * 0.18) * (bm ? 0.45 : 1),
-        angle: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.0004 * (bm ? 0.4 : 1),
-        pulseOffset: Math.random() * Math.PI * 2,
-        colorIndex: Math.floor(Math.random() * colorCount),
-      });
-    }
-  }, [showNebula, dynamicConfig]);
-
-  // ── Effect principal: canvas, estrellas, animation loop ──
+  // ── Effect principal: canvas, estrellas, animación y cometas ──
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -156,7 +86,6 @@ function SpaceBackground({
 
       if (isFirstInit) {
         initStars();
-        initNebulaClouds();
         return;
       }
 
@@ -164,17 +93,9 @@ function SpaceBackground({
         star.x *= scaleX;
         star.y *= scaleY;
       });
-
-      nebulaCloudsRef.current.forEach((cloud) => {
-        cloud.x *= scaleX;
-        cloud.y *= scaleY;
-        cloud.radius *= Math.max(scaleX, scaleY);
-      });
     };
 
     const initStars = () => {
-      // Siempre inicializar con parámetros estándar (sin blend) para que
-      // las estrellas se mantengan idénticas al activar/desactivar blend
       const starCount = Math.floor((width * height) / 3000);
       starsRef.current = [];
 
@@ -191,34 +112,6 @@ function SpaceBackground({
           twinkleOffset: Math.random() * Math.PI * 2,
           depth,
           baseOpacity: 0.3 + depth * 0.7,
-        });
-      }
-    };
-
-    const initNebulaClouds = () => {
-      const tc = dynamicConfigRef.current || THEME_CONFIGS.space;
-
-      if (!showNebulaRef.current || !tc.nebulaColors) {
-        nebulaCloudsRef.current = [];
-        return;
-      }
-
-      const bm = blendModeRef.current;
-      const cloudCount = 8;
-      nebulaCloudsRef.current = [];
-      const colors = tc.nebulaColors;
-      const colorCount = colors.length;
-
-      for (let i = 0; i < cloudCount; i++) {
-        nebulaCloudsRef.current.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          radius: 180 + Math.random() * 280,
-          opacity: (0.10 + Math.random() * 0.18) * (bm ? 0.45 : 1),
-          angle: Math.random() * Math.PI * 2,
-          rotationSpeed: (Math.random() - 0.5) * 0.0004 * (bm ? 0.4 : 1),
-          pulseOffset: Math.random() * Math.PI * 2,
-          colorIndex: Math.floor(Math.random() * colorCount),
         });
       }
     };
@@ -258,31 +151,6 @@ function SpaceBackground({
         opacity: bm ? 0.5 : 1,
         angle,
       });
-    };
-
-    const drawNebulaCloud = (cloud, time) => {
-      const themeConfig = getThemeConfig();
-      const colors = themeConfig.nebulaColors;
-      if (!colors) return;
-
-      const safeIndex = cloud.colorIndex % colors.length;
-      const pulse = Math.sin(time * 0.5 + cloud.pulseOffset) * 0.1 + 1;
-      const currentRadius = cloud.radius * pulse;
-
-      const gradient = ctx.createRadialGradient(cloud.x, cloud.y, 0, cloud.x, cloud.y, currentRadius);
-
-      const color1 = colors[safeIndex].replace('{a}', String(cloud.opacity * 0.32));
-      const color2 = colors[(safeIndex + 1) % colors.length].replace('{a}', String(cloud.opacity * 0.14));
-      const color3 = colors[(safeIndex + 2) % colors.length].replace('{a}', '0');
-
-      gradient.addColorStop(0, color1);
-      gradient.addColorStop(0.55, color2);
-      gradient.addColorStop(1, color3);
-
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(cloud.x, cloud.y, currentRadius, 0, Math.PI * 2);
-      ctx.fill();
     };
 
     const drawStar = (star, time) => {
@@ -337,12 +205,12 @@ function SpaceBackground({
     const drawFrame = () => {
       const time = timeRef.current;
 
-      ctx.fillStyle = blendModeRef.current ? '#090a0f' : THEME_CONFIGS.space.backgroundColor;
-      ctx.fillRect(0, 0, width, height);
-
-      nebulaCloudsRef.current.forEach((cloud) => {
-        drawNebulaCloud(cloud, time);
-      });
+      if (showNebulaRef.current) {
+        ctx.clearRect(0, 0, width, height);
+      } else {
+        ctx.fillStyle = blendModeRef.current ? '#090a0f' : THEME_CONFIGS.space.backgroundColor;
+        ctx.fillRect(0, 0, width, height);
+      }
 
       starsRef.current.forEach((star) => {
         drawStar(star, time);
@@ -356,25 +224,14 @@ function SpaceBackground({
     const animate = () => {
       timeRef.current += 0.01;
 
+      if (showNebulaRef.current) {
+        ctx.clearRect(0, 0, width, height);
+      } else {
+        ctx.fillStyle = blendModeRef.current ? '#090a0f' : THEME_CONFIGS.space.backgroundColor;
+        ctx.fillRect(0, 0, width, height);
+      }
+
       const bm = blendModeRef.current;
-      ctx.fillStyle = bm ? '#090a0f' : THEME_CONFIGS.space.backgroundColor;
-      ctx.fillRect(0, 0, width, height);
-
-      const driftMultiplier = bm ? 0.35 : 1;
-
-      nebulaCloudsRef.current.forEach((cloud) => {
-        cloud.angle += cloud.rotationSpeed;
-        cloud.x += Math.cos(cloud.angle) * 0.05 * driftMultiplier;
-        cloud.y += Math.sin(cloud.angle) * 0.05 * driftMultiplier;
-
-        if (cloud.x < -cloud.radius) cloud.x = width + cloud.radius;
-        if (cloud.x > width + cloud.radius) cloud.x = -cloud.radius;
-        if (cloud.y < -cloud.radius) cloud.y = height + cloud.radius;
-        if (cloud.y > height + cloud.radius) cloud.y = -cloud.radius;
-
-        drawNebulaCloud(cloud, timeRef.current);
-      });
-
       const velMultiplier = bm ? 0.4 : 1;
 
       starsRef.current.forEach((star) => {
@@ -465,8 +322,14 @@ function SpaceBackground({
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="space-background" aria-hidden="true" />;
+  return (
+    <div className="space-background" aria-hidden="true">
+      {showNebula && (
+        <FluxNebula accentColorHex={accentColorHex} blendMode={blendMode} />
+      )}
+      <canvas ref={canvasRef} className="space-background__canvas" />
+    </div>
+  );
 }
 
 export default SpaceBackground;
-

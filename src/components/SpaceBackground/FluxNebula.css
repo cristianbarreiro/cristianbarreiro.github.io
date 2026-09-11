@@ -1,0 +1,302 @@
+/**
+ * FluxNebula.css
+ * Estilos de alto rendimiento para nebulosas orgánicas estilo Flux / Frozen Plasma.
+ *
+ * Invariantes de rendimiento:
+ * 1. Todos los filtros blur() son estáticos (no se recalculan cuadro a cuadro).
+ * 2. Las animaciones operan exclusivamente sobre `transform: translate3d(...) rotate(...) scale(...)`.
+ * 3. Las capas utilizan `will-change: transform` para aislamiento en capas de composición GPU.
+ * 4. Las variables cromáticas (--flux-*) se alimentan dinámicamente desde colors.js.
+ */
+
+.flux-nebula {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: transparent;
+  isolation: isolate;
+  contain: strict;
+}
+
+/* Envoltura interna que recibe el desplazamiento sutil de parallax del puntero */
+.flux-nebula__stage {
+  position: absolute;
+  inset: -8%;
+  width: 116%;
+  height: 116%;
+  transform: translate3d(var(--parallax-x, 0px), var(--parallax-y, 0px), 0);
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* ==========================================================================
+   Capas de Gas y Plasma Cósmico
+   ========================================================================== */
+
+/* 1. Resplandor Ambiental Profundo: Brillo de baja frecuencia que da atmósfera */
+.flux-nebula__ambient {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    ellipse 75% 65% at 50% 55%,
+    rgba(var(--flux-ambient-rgb, 10, 25, 45), 0.45) 0%,
+    rgba(var(--flux-ambient-rgb, 10, 25, 45), 0.15) 50%,
+    rgba(7, 8, 12, 0) 80%
+  );
+  mix-blend-mode: screen;
+  filter: blur(100px);
+  transform: translateZ(0);
+  opacity: 0.85;
+  animation: flux-ambient-pulse 42s ease-in-out infinite alternate;
+}
+
+/* 2. Nube Principal Flux (Cuerpo orgánico asimétrico con color de acento primario) */
+.flux-nebula__cloud--primary {
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  width: 70vw;
+  height: 65vh;
+  border-radius: 58% 42% 66% 34% / 45% 62% 38% 55%;
+  background: radial-gradient(
+    ellipse 62% 54% at 42% 48%,
+    rgba(var(--flux-primary-rgb, 0, 136, 255), 0.38) 0%,
+    rgba(var(--flux-primary-rgb, 0, 136, 255), 0.16) 40%,
+    rgba(var(--flux-primary-rgb, 0, 136, 255), 0.04) 65%,
+    transparent 80%
+  );
+  mix-blend-mode: screen;
+  filter: blur(85px);
+  will-change: transform;
+  transform-origin: 45% 50%;
+  animation: flux-drift-primary 36s ease-in-out infinite alternate;
+}
+
+/* 3. Nube Secundaria Armonizada (Contrabalance con matiz desplazado HSL) */
+.flux-nebula__cloud--secondary {
+  position: absolute;
+  top: 25%;
+  right: 5%;
+  width: 65vw;
+  height: 60vh;
+  border-radius: 46% 54% 39% 61% / 58% 36% 64% 42%;
+  background: radial-gradient(
+    ellipse 58% 50% at 58% 46%,
+    rgba(var(--flux-secondary-rgb, 70, 80, 220), 0.32) 0%,
+    rgba(var(--flux-secondary-rgb, 70, 80, 220), 0.14) 42%,
+    rgba(var(--flux-secondary-rgb, 70, 80, 220), 0.03) 68%,
+    transparent 82%
+  );
+  mix-blend-mode: screen;
+  filter: blur(95px);
+  will-change: transform;
+  transform-origin: 55% 45%;
+  animation: flux-drift-secondary 48s ease-in-out infinite alternate;
+}
+
+/* 4. Núcleo de Plasma Ionizado / Hielo Cósmico (Luz volumétrica de alta energía) */
+.flux-nebula__core {
+  position: absolute;
+  top: 32%;
+  left: 28%;
+  width: 45vw;
+  height: 40vh;
+  border-radius: 52% 48% 63% 37% / 40% 55% 45% 60%;
+  background: radial-gradient(
+    ellipse 48% 40% at 48% 50%,
+    rgba(var(--flux-core-rgb, 210, 235, 255), 0.28) 0%,
+    rgba(var(--flux-primary-rgb, 0, 136, 255), 0.12) 46%,
+    transparent 72%
+  );
+  mix-blend-mode: screen;
+  filter: blur(65px);
+  will-change: transform;
+  transform-origin: 48% 52%;
+  animation: flux-core-pulse 26s ease-in-out infinite alternate;
+}
+
+/* ==========================================================================
+   Micro-Grano Procedural (Analog Grain para eliminar banding en gradientes)
+   ========================================================================== */
+.flux-nebula__grain {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: overlay;
+  opacity: 0.055;
+  pointer-events: none;
+  background-repeat: repeat;
+}
+
+/* ==========================================================================
+   Viñeta Espacial Perimétrica (Asegura 80-90% de espacio oscuro y foco en UI)
+   ========================================================================== */
+.flux-nebula__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 75% 70% at 50% 50%,
+    transparent 35%,
+    rgba(7, 8, 12, 0.45) 70%,
+    rgba(7, 8, 12, 0.88) 95%,
+    #07080c 100%
+  );
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Animaciones GPU Fluidas y Asincrónicas (Rotación, Escala y Traslación Suave)
+   ========================================================================== */
+@keyframes flux-drift-primary {
+  0% {
+    transform: translate3d(-3%, 2%, 0) rotate(0deg) scale(0.96);
+  }
+  50% {
+    transform: translate3d(2%, -3%, 0) rotate(8deg) scale(1.04);
+  }
+  100% {
+    transform: translate3d(4%, 3%, 0) rotate(-6deg) scale(0.98);
+  }
+}
+
+@keyframes flux-drift-secondary {
+  0% {
+    transform: translate3d(3%, -2%, 0) rotate(0deg) scale(1.02);
+  }
+  50% {
+    transform: translate3d(-3%, 3%, 0) rotate(-9deg) scale(0.94);
+  }
+  100% {
+    transform: translate3d(-1%, -4%, 0) rotate(7deg) scale(1.06);
+  }
+}
+
+@keyframes flux-core-pulse {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.95);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translate3d(-2%, 2%, 0) scale(1.06);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(2%, -1%, 0) scale(0.98);
+    opacity: 0.82;
+  }
+}
+
+@keyframes flux-ambient-pulse {
+  0% {
+    opacity: 0.75;
+    transform: scale(0.97);
+  }
+  100% {
+    opacity: 0.95;
+    transform: scale(1.03);
+  }
+}
+
+/* ==========================================================================
+   Modo Blend (Cuando está activo blendMinimalBackground)
+   ========================================================================== */
+.flux-nebula--blend .flux-nebula__cloud--primary {
+  opacity: 0.65;
+  filter: blur(95px);
+}
+
+.flux-nebula--blend .flux-nebula__cloud--secondary {
+  opacity: 0.55;
+  filter: blur(105px);
+}
+
+.flux-nebula--blend .flux-nebula__core {
+  opacity: 0.5;
+  filter: blur(75px);
+}
+
+/* ==========================================================================
+   Responsive (Tablet y Mobile): Reducción de radios de blur para 60 FPS
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .flux-nebula__cloud--primary {
+    filter: blur(65px);
+    width: 80vw;
+    height: 55vh;
+  }
+  .flux-nebula__cloud--secondary {
+    filter: blur(70px);
+    width: 75vw;
+    height: 50vh;
+  }
+  .flux-nebula__core {
+    filter: blur(50px);
+    width: 50vw;
+  }
+}
+
+@media (max-width: 768px) {
+  /* En móvil desactivar transformaciones continuas complejas de parallax */
+  .flux-nebula__stage {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: none !important;
+    transition: none;
+  }
+
+  .flux-nebula__ambient {
+    filter: blur(60px);
+    opacity: 0.8;
+  }
+
+  .flux-nebula__cloud--primary {
+    filter: blur(45px);
+    width: 90vw;
+    height: 48vh;
+    left: 5%;
+    top: 10%;
+  }
+
+  .flux-nebula__cloud--secondary {
+    filter: blur(50px);
+    width: 85vw;
+    height: 44vh;
+    right: 0%;
+    top: 35%;
+  }
+
+  .flux-nebula__core {
+    filter: blur(35px);
+    width: 60vw;
+    height: 30vh;
+    left: 20%;
+    top: 25%;
+    opacity: 0.6;
+  }
+
+  .flux-nebula__grain {
+    opacity: 0.04;
+  }
+}
+
+/* ==========================================================================
+   Accesibilidad: prefers-reduced-motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .flux-nebula__stage {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .flux-nebula__ambient,
+  .flux-nebula__cloud--primary,
+  .flux-nebula__cloud--secondary,
+  .flux-nebula__core {
+    animation: none !important;
+  }
+}
