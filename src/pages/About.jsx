@@ -96,15 +96,15 @@ function About() {
 
     return (
         <main>
-            <Container size="lg" py="md">
-                <Stack gap="xl">
+            <Container size="lg" px={{ base: 0, sm: 'md' }} py={{ base: 0, sm: 'md' }}>
+                <Stack gap={{ base: 'lg', sm: 'xl' }}>
                     {/* ========================================================
                         1. HERO PERSONA & IDENTITY HEADER
                        ======================================================== */}
                     <section aria-label={t('about.aria')}>
                         <ScrollReveal duration={0.6}>
                             <Paper
-                                p={{ base: 'lg', sm: 'xl', md: '50' }}
+                                p={{ base: 'md', sm: 'xl', md: 50 }}
                                 radius="lg"
                                 withBorder
                                 className="glass-hover-card"
@@ -129,16 +129,16 @@ function About() {
                                     }}
                                 />
 
-                                <Stack gap="lg">
-                                    <Group justify="space-between" align="flex-start" wrap="wrap" gap="md">
+                                <Stack gap={{ base: 'md', sm: 'lg' }}>
+                                    <Group justify="space-between" align="flex-start" wrap="wrap" gap={{ base: 'sm', sm: 'md' }}>
                                         <Stack gap="xs">
                                             <Group gap="xs" wrap="wrap">
                                                 <Badge
                                                     variant="light"
                                                     color={theme.primaryColor}
-                                                    size="md"
+                                                    size="sm"
                                                     radius="xl"
-                                                    leftSection={<IconUser size={14} />}
+                                                    leftSection={<IconUser size={13} />}
                                                     style={{ textTransform: 'none', fontWeight: 600 }}
                                                 >
                                                     {t('about.hero.badge')}
@@ -147,28 +147,41 @@ function About() {
                                                 <Badge
                                                     variant="outline"
                                                     color="gray"
-                                                    size="md"
+                                                    size="sm"
                                                     radius="xl"
-                                                    leftSection={<IconMapPin size={14} />}
+                                                    leftSection={<IconMapPin size={13} />}
                                                     style={{ textTransform: 'none' }}
                                                 >
                                                     {t('about.hero.location')}
                                                 </Badge>
                                             </Group>
 
-                                            <Title order={1} size="h1" fw={800} style={{ letterSpacing: '-0.5px' }}>
+                                            <Title
+                                                order={1}
+                                                fw={800}
+                                                style={{
+                                                    fontSize: 'clamp(1.65rem, 4vw + 0.5rem, 2.125rem)',
+                                                    letterSpacing: '-0.5px',
+                                                    lineHeight: 1.15,
+                                                }}
+                                            >
                                                 Cristian Barreiro
                                             </Title>
 
-                                            <Text size="xl" fw={600} c="dimmed">
+                                            <Text
+                                                fw={600}
+                                                c="dimmed"
+                                                fz={{ base: '0.95rem', xs: '1.05rem', sm: '1.15rem', md: '1.25rem' }}
+                                                lh={{ base: 1.35, sm: 1.45 }}
+                                            >
                                                 {t('about.hero.tagline')}
                                             </Text>
                                         </Stack>
 
                                         {/* Status Card — Estudiante de Tecnólogo en Informática */}
                                         <Paper
-                                            px="md"
-                                            py="xs"
+                                            px={{ base: 'xs', sm: 'md' }}
+                                            py={{ base: 4, sm: 'xs' }}
                                             radius="xl"
                                             withBorder
                                             bg="var(--mantine-color-body)"
@@ -177,8 +190,8 @@ function About() {
                                             }}
                                         >
                                             <Group gap="xs" wrap="nowrap">
-                                                <ThemeIcon size="md" radius="xl" variant="light" color={theme.primaryColor}>
-                                                    <IconSchool size={16} />
+                                                <ThemeIcon size={{ base: 26, sm: 'md' }} radius="xl" variant="light" color={theme.primaryColor}>
+                                                    <IconSchool size={14} />
                                                 </ThemeIcon>
                                                 <div>
                                                     <Text size="10px" fw={700} c={`${theme.primaryColor}.4`} tt="uppercase" style={{ letterSpacing: '0.6px', lineHeight: 1.2 }}>
@@ -192,7 +205,14 @@ function About() {
                                         </Paper>
                                     </Group>
 
-                                    <Text size="md" c="dimmed" style={{ maxWidth: '850px', lineHeight: 1.8 }}>
+                                    <Text
+                                        fz={{ base: '0.9rem', sm: '1rem' }}
+                                        c="dimmed"
+                                        style={{
+                                            maxWidth: '850px',
+                                            lineHeight: 'clamp(1.5, 0.4vw + 1.45, 1.8)',
+                                        }}
+                                    >
                                         {t('about.hero.summary')}
                                     </Text>
 
@@ -203,13 +223,13 @@ function About() {
                                         whileInView={shouldReduceMotion ? undefined : 'visible'}
                                         viewport={VIEWPORT_ONCE}
                                     >
-                                        <Grid mt="md" gutter="md">
+                                        <Grid mt={{ base: 'sm', sm: 'md' }} gutter={{ base: 'xs', sm: 'md' }}>
                                             <Grid.Col span={{ base: 12, sm: 4 }}>
                                                 <MotionDiv variants={shouldReduceMotion ? undefined : cardItem}>
-                                                    <Paper p="md" radius="md" withBorder bg="var(--mantine-color-body)">
-                                                        <Group gap="sm" wrap="nowrap">
-                                                            <ThemeIcon size="lg" radius="md" variant="light" color="violet">
-                                                                <IconSchool size={20} />
+                                                    <Paper p={{ base: 'xs', sm: 'md' }} radius="md" withBorder bg="var(--mantine-color-body)">
+                                                        <Group gap={{ base: 'xs', sm: 'sm' }} wrap="nowrap">
+                                                            <ThemeIcon size={{ base: 'md', sm: 'lg' }} radius="md" variant="light" color="violet">
+                                                                <IconSchool size={18} />
                                                             </ThemeIcon>
                                                             <div>
                                                                 <Text fw={700} size="sm">
@@ -226,10 +246,10 @@ function About() {
 
                                             <Grid.Col span={{ base: 12, sm: 4 }}>
                                                 <MotionDiv variants={shouldReduceMotion ? undefined : cardItem}>
-                                                    <Paper p="md" radius="md" withBorder bg="var(--mantine-color-body)">
-                                                        <Group gap="sm" wrap="nowrap">
-                                                            <ThemeIcon size="lg" radius="md" variant="light" color="cyan">
-                                                                <IconFolder size={20} />
+                                                    <Paper p={{ base: 'xs', sm: 'md' }} radius="md" withBorder bg="var(--mantine-color-body)">
+                                                        <Group gap={{ base: 'xs', sm: 'sm' }} wrap="nowrap">
+                                                            <ThemeIcon size={{ base: 'md', sm: 'lg' }} radius="md" variant="light" color="cyan">
+                                                                <IconFolder size={18} />
                                                             </ThemeIcon>
                                                             <div>
                                                                 <Text fw={700} size="sm">
@@ -246,10 +266,10 @@ function About() {
 
                                             <Grid.Col span={{ base: 12, sm: 4 }}>
                                                 <MotionDiv variants={shouldReduceMotion ? undefined : cardItem}>
-                                                    <Paper p="md" radius="md" withBorder bg="var(--mantine-color-body)">
-                                                        <Group gap="sm" wrap="nowrap">
-                                                            <ThemeIcon size="lg" radius="md" variant="light" color="green">
-                                                                <IconBriefcase size={20} />
+                                                    <Paper p={{ base: 'xs', sm: 'md' }} radius="md" withBorder bg="var(--mantine-color-body)">
+                                                        <Group gap={{ base: 'xs', sm: 'sm' }} wrap="nowrap">
+                                                            <ThemeIcon size={{ base: 'md', sm: 'lg' }} radius="md" variant="light" color="green">
+                                                                <IconBriefcase size={18} />
                                                             </ThemeIcon>
                                                             <div>
                                                                 <Text fw={700} size="sm">
@@ -274,13 +294,20 @@ function About() {
                         2. CORE ENGINEERING PILLARS
                        ======================================================== */}
                     <section aria-label={t('about.pillars.sectionTitle')}>
-                        <Stack gap="lg" mt="xl">
+                        <Stack gap={{ base: 'md', sm: 'lg' }} mt={{ base: 'lg', sm: 'xl' }}>
                             <ScrollReveal>
                                 <div>
-                                    <Title order={2} size="h2" fw={700} className="section-title">
+                                    <Title
+                                        order={2}
+                                        fw={700}
+                                        className="section-title"
+                                        style={{
+                                            fontSize: 'clamp(1.35rem, 2.5vw + 0.8rem, 1.85rem)',
+                                        }}
+                                    >
                                         {t('about.pillars.sectionTitle')}
                                     </Title>
-                                    <Text size="md" c="dimmed">
+                                    <Text fz={{ base: '0.875rem', sm: '1rem' }} c="dimmed">
                                         {t('about.pillars.sectionSubtitle')}
                                     </Text>
                                 </div>
@@ -292,7 +319,7 @@ function About() {
                                 whileInView={shouldReduceMotion ? undefined : 'visible'}
                                 viewport={VIEWPORT_ONCE}
                             >
-                                <Grid gutter="lg">
+                                <Grid gutter={{ base: 'sm', sm: 'lg' }}>
                                     {/* Pilar 1: Full-Stack & REST APIs */}
                                     <Grid.Col span={{ base: 12, md: 4 }}>
                                         <MotionDiv
@@ -300,19 +327,38 @@ function About() {
                                             style={{ height: '100%' }}
                                         >
                                             <Paper
-                                                p="xl"
+                                                p={{ base: 'md', sm: 'lg', md: 'xl' }}
                                                 radius="md"
                                                 withBorder
                                                 h="100%"
                                                 className="glass-hover-card"
                                             >
-                                                <ThemeIcon size="xl" radius="md" variant="light" color="cyan" mb="md">
-                                                    <IconServer size={26} />
+                                                <ThemeIcon
+                                                    size={{ base: 'lg', sm: 'xl' }}
+                                                    radius="md"
+                                                    variant="light"
+                                                    color="cyan"
+                                                    mb={{ base: 'xs', sm: 'md' }}
+                                                >
+                                                    <IconServer size={22} />
                                                 </ThemeIcon>
-                                                <Title order={3} size="h4" mb="xs">
+                                                <Title
+                                                    order={3}
+                                                    fw={700}
+                                                    mb="xs"
+                                                    style={{
+                                                        fontSize: 'clamp(1.05rem, 1.5vw + 0.7rem, 1.25rem)',
+                                                    }}
+                                                >
                                                     {t('about.pillars.pillar1Title')}
                                                 </Title>
-                                                <Text size="sm" c="dimmed" style={{ lineHeight: 1.7 }}>
+                                                <Text
+                                                    size="sm"
+                                                    c="dimmed"
+                                                    style={{
+                                                        lineHeight: 'clamp(1.5, 0.3vw + 1.45, 1.7)',
+                                                    }}
+                                                >
                                                     {t('about.pillars.pillar1Desc')}
                                                 </Text>
                                             </Paper>
@@ -326,19 +372,38 @@ function About() {
                                             style={{ height: '100%' }}
                                         >
                                             <Paper
-                                                p="xl"
+                                                p={{ base: 'md', sm: 'lg', md: 'xl' }}
                                                 radius="md"
                                                 withBorder
                                                 h="100%"
                                                 className="glass-hover-card"
                                             >
-                                                <ThemeIcon size="xl" radius="md" variant="light" color="blue" mb="md">
-                                                    <IconCpu size={26} />
+                                                <ThemeIcon
+                                                    size={{ base: 'lg', sm: 'xl' }}
+                                                    radius="md"
+                                                    variant="light"
+                                                    color="blue"
+                                                    mb={{ base: 'xs', sm: 'md' }}
+                                                >
+                                                    <IconCpu size={22} />
                                                 </ThemeIcon>
-                                                <Title order={3} size="h4" mb="xs">
+                                                <Title
+                                                    order={3}
+                                                    fw={700}
+                                                    mb="xs"
+                                                    style={{
+                                                        fontSize: 'clamp(1.05rem, 1.5vw + 0.7rem, 1.25rem)',
+                                                    }}
+                                                >
                                                     {t('about.pillars.pillar2Title')}
                                                 </Title>
-                                                <Text size="sm" c="dimmed" style={{ lineHeight: 1.7 }}>
+                                                <Text
+                                                    size="sm"
+                                                    c="dimmed"
+                                                    style={{
+                                                        lineHeight: 'clamp(1.5, 0.3vw + 1.45, 1.7)',
+                                                    }}
+                                                >
                                                     {t('about.pillars.pillar2Desc')}
                                                 </Text>
                                             </Paper>
@@ -352,19 +417,38 @@ function About() {
                                             style={{ height: '100%' }}
                                         >
                                             <Paper
-                                                p="xl"
+                                                p={{ base: 'md', sm: 'lg', md: 'xl' }}
                                                 radius="md"
                                                 withBorder
                                                 h="100%"
                                                 className="glass-hover-card"
                                             >
-                                                <ThemeIcon size="xl" radius="md" variant="light" color="green" mb="md">
-                                                    <IconNetwork size={26} />
+                                                <ThemeIcon
+                                                    size={{ base: 'lg', sm: 'xl' }}
+                                                    radius="md"
+                                                    variant="light"
+                                                    color="green"
+                                                    mb={{ base: 'xs', sm: 'md' }}
+                                                >
+                                                    <IconNetwork size={22} />
                                                 </ThemeIcon>
-                                                <Title order={3} size="h4" mb="xs">
+                                                <Title
+                                                    order={3}
+                                                    fw={700}
+                                                    mb="xs"
+                                                    style={{
+                                                        fontSize: 'clamp(1.05rem, 1.5vw + 0.7rem, 1.25rem)',
+                                                    }}
+                                                >
                                                     {t('about.pillars.pillar3Title')}
                                                 </Title>
-                                                <Text size="sm" c="dimmed" style={{ lineHeight: 1.7 }}>
+                                                <Text
+                                                    size="sm"
+                                                    c="dimmed"
+                                                    style={{
+                                                        lineHeight: 'clamp(1.5, 0.3vw + 1.45, 1.7)',
+                                                    }}
+                                                >
                                                     {t('about.pillars.pillar3Desc')}
                                                 </Text>
                                             </Paper>
@@ -379,20 +463,27 @@ function About() {
                         3. INTERACTIVE CAREER & LEARNING JOURNEY (TIMELINE)
                        ======================================================== */}
                     <section aria-label={t('about.timeline.sectionTitle')}>
-                        <Stack gap="lg" mt="xl">
+                        <Stack gap={{ base: 'md', sm: 'lg' }} mt={{ base: 'lg', sm: 'xl' }}>
                             <ScrollReveal>
-                                <Group justify="space-between" align="flex-end" wrap="wrap">
+                                <Group justify="space-between" align="flex-end" wrap="wrap" gap="sm">
                                     <div>
-                                        <Title order={2} size="h2" fw={700} className="section-title">
+                                        <Title
+                                            order={2}
+                                            fw={700}
+                                            className="section-title"
+                                            style={{
+                                                fontSize: 'clamp(1.35rem, 2.5vw + 0.8rem, 1.85rem)',
+                                            }}
+                                        >
                                             {t('about.timeline.sectionTitle')}
                                         </Title>
-                                        <Text size="md" c="dimmed">
+                                        <Text fz={{ base: '0.875rem', sm: '1rem' }} c="dimmed">
                                             {t('about.timeline.sectionSubtitle')}
                                         </Text>
                                     </div>
 
                                     {/* Controles de filtrado por pestañas adaptados a móvil */}
-                                    <Box style={{ width: '100%', maxWidth: 520, overflowX: 'auto' }}>
+                                    <Box style={{ width: '100%', maxWidth: 520, overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
                                         <SegmentedControl
                                             fullWidth
                                             value={activeTab}
@@ -405,6 +496,7 @@ function About() {
                                             ]}
                                             radius="md"
                                             size="xs"
+                                            style={{ minWidth: 340 }}
                                         />
                                     </Box>
                                 </Group>
@@ -432,7 +524,7 @@ function About() {
                                             return (
                                                 <MotionDiv key={item.id} variants={shouldReduceMotion ? undefined : listItem}>
                                                     <Paper
-                                                        p="lg"
+                                                        p={{ base: 'sm', sm: 'md', md: 'lg' }}
                                                         radius="md"
                                                         withBorder
                                                         className="glass-hover-card"
@@ -440,14 +532,21 @@ function About() {
                                                             borderLeft: `4px solid var(--mantine-color-${theme.primaryColor}-5)`,
                                                         }}
                                                     >
-                                                        <Grid gutter="md" align="flex-start">
+                                                        <Grid gutter={{ base: 'sm', md: 'md' }} align="flex-start">
                                                             <Grid.Col span={{ base: 12, md: 8 }}>
                                                                 <Stack gap="xs">
                                                                     <Group gap="xs" wrap="wrap">
                                                                         <ThemeIcon size="md" radius="sm" variant="light" color={theme.primaryColor}>
                                                                             <ItemIcon size={16} />
                                                                         </ThemeIcon>
-                                                                        <Title order={3} size="h4" fw={700}>
+                                                                        <Title
+                                                                            order={3}
+                                                                            fw={700}
+                                                                            style={{
+                                                                                fontSize: 'clamp(1rem, 1.2vw + 0.75rem, 1.25rem)',
+                                                                                lineHeight: 1.3,
+                                                                            }}
+                                                                        >
                                                                             {item.title}
                                                                         </Title>
                                                                         {item.badgeText && (
@@ -466,32 +565,36 @@ function About() {
                                                                         </Badge>
                                                                     </Group>
 
-                                                                    <Group gap="md" c="dimmed" wrap="wrap">
-                                                                        <Text fw={600} size="sm" c="gray.1">
+                                                                    <Group gap={{ base: 'xs', sm: 'md' }} c="dimmed" wrap="wrap">
+                                                                        <Text fw={600} fz={{ base: '0.8rem', sm: '0.875rem' }} c="gray.1">
                                                                             {item.organization}
                                                                         </Text>
                                                                         {item.location && (
                                                                             <Group gap={4}>
-                                                                                <IconMapPin size={14} />
-                                                                                <Text size="xs">{item.location}</Text>
+                                                                                <IconMapPin size={13} />
+                                                                                <Text fz={{ base: '0.75rem', sm: '0.8125rem' }}>{item.location}</Text>
                                                                             </Group>
                                                                         )}
                                                                         <Group gap={4}>
-                                                                            <IconCalendar size={14} />
-                                                                            <Text size="xs">
+                                                                            <IconCalendar size={13} />
+                                                                            <Text fz={{ base: '0.75rem', sm: '0.8125rem' }}>
                                                                                 {formatDate(item.startDate, i18n.language)} -{' '}
                                                                                 {formatDate(item.endDate, i18n.language)}
                                                                             </Text>
                                                                         </Group>
                                                                     </Group>
 
-                                                                    <Stack gap={6} mt="xs">
+                                                                    <Stack gap={4} mt="xs">
                                                                         {item.description.map((desc, idx) => (
                                                                             <Group key={idx} gap="xs" wrap="nowrap" align="flex-start">
-                                                                                <ThemeIcon size={16} radius="xl" color={theme.primaryColor} variant="subtle" mt={2}>
-                                                                                    <IconCheck size={12} />
+                                                                                <ThemeIcon size={15} radius="xl" color={theme.primaryColor} variant="subtle" mt={3}>
+                                                                                    <IconCheck size={11} />
                                                                                 </ThemeIcon>
-                                                                                <Text size="sm" c="dimmed" style={{ lineHeight: 1.6 }}>
+                                                                                <Text
+                                                                                    fz={{ base: '0.8125rem', sm: '0.875rem' }}
+                                                                                    c="dimmed"
+                                                                                    style={{ lineHeight: 'clamp(1.45, 0.2vw + 1.45, 1.6)' }}
+                                                                                >
                                                                                     {desc}
                                                                                 </Text>
                                                                             </Group>
@@ -501,11 +604,11 @@ function About() {
                                                             </Grid.Col>
 
                                                             <Grid.Col span={{ base: 12, md: 4 }}>
-                                                                <Stack gap="xs" align={{ base: 'flex-start', md: 'flex-end' }}>
+                                                                <Stack gap="xs" align={{ base: 'flex-start', md: 'flex-end' }} mt={{ base: 'xs', md: 0 }}>
                                                                     <Text size="xs" fw={600} c="dimmed" tt="uppercase">
                                                                         {t('skills.title')}
                                                                     </Text>
-                                                                    <Group gap={6} justify={{ base: 'flex-start', md: 'flex-end' }} wrap="wrap">
+                                                                    <Group gap={{ base: 4, sm: 6 }} justify={{ base: 'flex-start', md: 'flex-end' }} wrap="wrap">
                                                                         {item.skills.map((sk) => (
                                                                             <Badge key={sk} variant="outline" size="xs" color="gray">
                                                                                 {sk}
@@ -519,7 +622,7 @@ function About() {
                                                                             to="/projects"
                                                                             size="compact-xs"
                                                                             variant="subtle"
-                                                                            mt="xs"
+                                                                            mt={{ base: 2, md: 'xs' }}
                                                                             rightSection={<IconExternalLink size={12} />}
                                                                         >
                                                                             {t('about.timeline.relatedProject')}
@@ -544,7 +647,7 @@ function About() {
                     <section aria-label={t('about.horizon.title')}>
                         <ScrollReveal amount={0.15}>
                             <Paper
-                                p={{ base: 'xl', md: 'xl' }}
+                                p={{ base: 'lg', sm: 'xl' }}
                                 radius="lg"
                                 withBorder
                                 bg="var(--mantine-color-body)"
@@ -552,28 +655,40 @@ function About() {
                                     borderColor: `var(--mantine-color-${theme.primaryColor}-5)`,
                                     textAlign: 'center',
                                 }}
-                                mt="xl"
+                                mt={{ base: 'lg', sm: 'xl' }}
                             >
-                                <Stack align="center" gap="md" maw={700} mx="auto">
-                                    <ThemeIcon size="xl" radius="xl" variant="light" color="cyan">
-                                        <IconRocket size={26} />
+                                <Stack align="center" gap={{ base: 'sm', sm: 'md' }} maw={700} mx="auto">
+                                    <ThemeIcon size={{ base: 'lg', sm: 'xl' }} radius="xl" variant="light" color="cyan">
+                                        <IconRocket size={22} />
                                     </ThemeIcon>
 
-                                    <Title order={2} size="h2" fw={800}>
+                                    <Title
+                                        order={2}
+                                        fw={800}
+                                        style={{
+                                            fontSize: 'clamp(1.35rem, 2.5vw + 0.8rem, 2.125rem)',
+                                            lineHeight: 1.2,
+                                        }}
+                                    >
                                         {t('about.horizon.title')}
                                     </Title>
 
-                                    <Text size="md" c="dimmed" style={{ lineHeight: 1.8 }}>
+                                    <Text
+                                        fz={{ base: '0.875rem', sm: '1rem' }}
+                                        c="dimmed"
+                                        style={{ lineHeight: 'clamp(1.5, 0.4vw + 1.45, 1.8)' }}
+                                    >
                                         {t('about.horizon.description')}
                                     </Text>
 
-                                    <Group gap="md" mt="md" justify="center" wrap="wrap">
+                                    <Group gap={{ base: 'xs', sm: 'md' }} mt={{ base: 'xs', sm: 'md' }} justify="center" wrap="wrap" w="100%">
                                         <RippleButton
                                             component={Link}
                                             to="/contact"
                                             size="md"
                                             variant="filled"
                                             leftSection={<IconMail size={18} />}
+                                            w={{ base: '100%', xs: 'auto' }}
                                         >
                                             {t('about.horizon.contactCta')}
                                         </RippleButton>
@@ -585,6 +700,7 @@ function About() {
                                             size="md"
                                             variant="outline"
                                             leftSection={<IconDownload size={18} />}
+                                            w={{ base: '100%', xs: 'auto' }}
                                         >
                                             {t('about.horizon.downloadCvCta')}
                                         </RippleButton>
