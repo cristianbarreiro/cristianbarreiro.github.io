@@ -192,13 +192,26 @@ function Contact({ embedded = false }) {
             {/* Encabezado de página — solo en modo standalone */}
             {!embedded && (
             <section aria-label={t('contact.aria')}>
-                <Stack gap="xl">
+                <Stack gap={{ base: 'md', sm: 'xl' }}>
                     <ScrollReveal>
                         <div>
-                            <Title order={1} mb="sm" className="section-title">
+                            <Title
+                                order={1}
+                                mb="sm"
+                                className="section-title"
+                                style={{
+                                    fontSize: 'clamp(1.65rem, 4vw + 0.5rem, 2.125rem)',
+                                    letterSpacing: '-0.5px',
+                                    lineHeight: 1.15,
+                                }}
+                            >
                                 {t('contact.title')}
                             </Title>
-                            <Text size="lg" className="section-subtitle">
+                            <Text
+                                className="section-subtitle"
+                                fz={{ base: '0.95rem', sm: '1.125rem' }}
+                                lh={{ base: 1.4, sm: 1.6 }}
+                            >
                                 {t('contact.subtitle')}
                             </Text>
                         </div>
@@ -207,13 +220,13 @@ function Contact({ embedded = false }) {
             </section>
             )}
 
-            <Grid mt="xl" gutter="xl">
+            <Grid mt={{ base: 'lg', sm: 'xl' }} gutter={{ base: 'md', sm: 'xl' }}>
                 {/* Formulario de contacto */}
                 <Grid.Col span={{ base: 12, md: 7 }}>
                   <ScrollReveal delay={embedded ? 0 : 0.1}>
-                    <Paper p="xl" radius="md" withBorder className="glass-hover-card">
+                    <Paper p={{ base: 'md', sm: 'xl' }} radius="md" withBorder className="glass-hover-card">
                         <form onSubmit={handleSubmit}>
-                            <Stack gap="md">
+                            <Stack gap={{ base: 'sm', sm: 'md' }}>
                                 {/* Mensaje de éxito */}
                                 {submitted && (
                                     <Alert
@@ -260,7 +273,7 @@ function Contact({ embedded = false }) {
                                     label={t('contact.messageLabel')}
                                     placeholder={t('contact.messagePlaceholder')}
                                     required
-                                    minRows={5}
+                                    minRows={4}
                                     value={formData.message}
                                     onChange={handleChange('message')}
                                     error={errors.message}
@@ -272,6 +285,7 @@ function Contact({ embedded = false }) {
                                     type="submit"
                                     size="md"
                                     loading={loading}
+                                    w={{ base: '100%', sm: 'auto' }}
                                     leftSection={
                                         <IconSend
                                             size={18}
@@ -302,27 +316,43 @@ function Contact({ embedded = false }) {
                 {/* Información de contacto alternativa */}
                 <Grid.Col span={{ base: 12, md: 5 }}>
                   <ScrollReveal delay={embedded ? 0.05 : 0.2}>
-                    <Paper p="xl" radius="md" withBorder h="100%" className="glass-hover-card">
-                        <Stack gap="lg">
+                    <Paper p={{ base: 'md', sm: 'xl' }} radius="md" withBorder h="100%" className="glass-hover-card">
+                        <Stack gap={{ base: 'md', sm: 'lg' }}>
                             <div>
-                                <Title order={2} size="h4" mb="sm">
+                                <Title
+                                    order={2}
+                                    fw={700}
+                                    mb={{ base: 'xs', sm: 'sm' }}
+                                    style={{
+                                        fontSize: 'clamp(1.05rem, 1.5vw + 0.7rem, 1.25rem)',
+                                    }}
+                                >
                                     {t('contact.otherWaysTitle')}
                                 </Title>
-                                <Text size="sm" c="dimmed">
+                                <Text fz={{ base: '0.85rem', sm: '0.875rem' }} c="dimmed" lh={{ base: 1.4, sm: 1.55 }}>
                                     {t('contact.otherWaysSubtitle')}
                                 </Text>
                             </div>
 
                             {/* Email directo */}
-                            <Group gap="md">
-                                <ThemeIcon size="lg" radius="md" variant="light">
-                                    <IconMail size={20} className="icon-mail-rotate" />
+                            <Group gap={{ base: 'sm', sm: 'md' }} wrap="nowrap" align="flex-start">
+                                <ThemeIcon size={{ base: 'md', sm: 'lg' }} radius="md" variant="light" mt={2}>
+                                    <IconMail size={18} className="icon-mail-rotate" />
                                 </ThemeIcon>
-                                <div>
+                                <div style={{ minWidth: 0, flex: 1 }}>
                                     <Text size="sm" fw={500}>
                                         {t('contact.directEmail')}
                                     </Text>
-                                    <Anchor href={`mailto:${siteConfig.email}`} size="sm">
+                                    <Anchor
+                                        href={`mailto:${siteConfig.email}`}
+                                        size="sm"
+                                        style={{
+                                            wordBreak: 'break-word',
+                                            overflowWrap: 'anywhere',
+                                            display: 'inline-block',
+                                            maxWidth: '100%',
+                                        }}
+                                    >
                                         {siteConfig.email}
                                     </Anchor>
                                 </div>
@@ -330,11 +360,11 @@ function Contact({ embedded = false }) {
 
                             {/* GitHub */}
                             {siteConfig.socialLinks.github && (
-                                <Group gap="md">
-                                    <ThemeIcon size="lg" radius="md" variant="light" color="gray">
-                                        <IconBrandGithub size={20} />
+                                <Group gap={{ base: 'sm', sm: 'md' }} wrap="nowrap" align="flex-start">
+                                    <ThemeIcon size={{ base: 'md', sm: 'lg' }} radius="md" variant="light" color="gray" mt={2}>
+                                        <IconBrandGithub size={18} />
                                     </ThemeIcon>
-                                    <div>
+                                    <div style={{ minWidth: 0, flex: 1 }}>
                                         <Text size="sm" fw={500}>
                                             GitHub
                                         </Text>
@@ -342,6 +372,10 @@ function Contact({ embedded = false }) {
                                             href={siteConfig.socialLinks.github}
                                             target="_blank"
                                             size="sm"
+                                            style={{
+                                                wordBreak: 'break-word',
+                                                overflowWrap: 'anywhere',
+                                            }}
                                         >
                                             {t('contact.viewProfile')}
                                         </Anchor>
@@ -351,11 +385,11 @@ function Contact({ embedded = false }) {
 
                             {/* LinkedIn */}
                             {siteConfig.socialLinks.linkedin && (
-                                <Group gap="md">
-                                    <ThemeIcon size="lg" radius="md" variant="light" color="blue">
-                                        <IconBrandLinkedin size={20} />
+                                <Group gap={{ base: 'sm', sm: 'md' }} wrap="nowrap" align="flex-start">
+                                    <ThemeIcon size={{ base: 'md', sm: 'lg' }} radius="md" variant="light" color="blue" mt={2}>
+                                        <IconBrandLinkedin size={18} />
                                     </ThemeIcon>
-                                    <div>
+                                    <div style={{ minWidth: 0, flex: 1 }}>
                                         <Text size="sm" fw={500}>
                                             LinkedIn
                                         </Text>
@@ -363,6 +397,10 @@ function Contact({ embedded = false }) {
                                             href={siteConfig.socialLinks.linkedin}
                                             target="_blank"
                                             size="sm"
+                                            style={{
+                                                wordBreak: 'break-word',
+                                                overflowWrap: 'anywhere',
+                                            }}
                                         >
                                             {t('contact.connect')}
                                         </Anchor>
@@ -372,11 +410,11 @@ function Contact({ embedded = false }) {
 
                             {/* Twitter */}
                             {siteConfig.socialLinks.twitter && (
-                                <Group gap="md">
-                                    <ThemeIcon size="lg" radius="md" variant="light" color="cyan">
-                                        <IconBrandTwitter size={20} />
+                                <Group gap={{ base: 'sm', sm: 'md' }} wrap="nowrap" align="flex-start">
+                                    <ThemeIcon size={{ base: 'md', sm: 'lg' }} radius="md" variant="light" color="cyan" mt={2}>
+                                        <IconBrandTwitter size={18} />
                                     </ThemeIcon>
-                                    <div>
+                                    <div style={{ minWidth: 0, flex: 1 }}>
                                         <Text size="sm" fw={500}>
                                             Twitter
                                         </Text>
@@ -384,6 +422,10 @@ function Contact({ embedded = false }) {
                                             href={siteConfig.socialLinks.twitter}
                                             target="_blank"
                                             size="sm"
+                                            style={{
+                                                wordBreak: 'break-word',
+                                                overflowWrap: 'anywhere',
+                                            }}
                                         >
                                             {t('contact.follow')}
                                         </Anchor>
