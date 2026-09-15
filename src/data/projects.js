@@ -74,7 +74,7 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/cdevstudio_platform',
-            featured: true,
+            featured: false,
         },
         {
             id: 2,
@@ -222,7 +222,7 @@ const projectsByLanguage = {
             ],
             demoUrl: 'https://novavoltshop.vercel.app/',
             repoUrl: '',
-            featured: true
+            featured: false
         },
         {
             id: 5,
@@ -311,7 +311,7 @@ const projectsByLanguage = {
             demoUrl: 'https://cataleyaperfumeria.vercel.app/',
             backofficeUrl: 'https://cataleyabackoffice.vercel.app/',
             repoUrl: '',
-            featured: true
+            featured: false
         },
         {
             id: 6,
@@ -343,7 +343,7 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: '',
-            featured: true
+            featured: false
         },
         {
             id: 7,
@@ -530,7 +530,7 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/cdevstudio_platform',
-            featured: true,
+            featured: false,
         },
         {
             id: 2,
@@ -678,7 +678,7 @@ const projectsByLanguage = {
             ],
             demoUrl: 'https://novavoltshop.vercel.app/',
             repoUrl: '',
-            featured: true,
+            featured: false,
         },
         {
             id: 5,
@@ -767,7 +767,7 @@ const projectsByLanguage = {
             demoUrl: 'https://cataleyaperfumeria.vercel.app/',
             backofficeUrl: 'https://cataleyabackoffice.vercel.app/',
             repoUrl: '',
-            featured: true,
+            featured: false,
         },
         {
             id: 6,
@@ -799,7 +799,7 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: '',
-            featured: true
+            featured: false
         },
         {
             id: 7,
