@@ -192,7 +192,7 @@
       "card1Title": "CDEV Studios & Genius Platform",
       "card1Category": "Full-Stack & Microservices Ecosystem",
       "card1Desc": "Modular architectures with JWT auth, RBAC access control, OpenAPI docs, and relational persistence in PostgreSQL.",
-      "card2Title": "PrivLock (.NET 10 WPF) & MCP Security Tools",
+      "card2Title": "PrivGvard (.NET 10 & Avalonia UI) & MCP Security Tools",
       "card2Category": "Security & Native Windows Engineering",
       "card2Desc": "Native desktop application leveraging Win32 P/Invoke, hardware-level PnP device control, and MCP protocols for AI assistants.",
       "card3Title": "Monorepo E-commerce Platforms",
