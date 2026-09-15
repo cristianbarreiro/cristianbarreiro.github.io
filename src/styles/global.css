@@ -707,6 +707,120 @@ button:hover .icon-send-jello {
   transform: translateY(-2px);
 }
 
+/* ==========================================================================
+   Project Card - List View Variant
+   ========================================================================== */
+
+.fh-project-card--list {
+  padding: var(--mantine-spacing-xs) var(--mantine-spacing-md);
+}
+
+.fh-project-list-row {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-md);
+  width: 100%;
+  min-width: 0;
+}
+
+.fh-project-list-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-xs);
+  flex-shrink: 0;
+  min-width: 0;
+  max-width: 46%;
+}
+
+.fh-project-list-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.fh-project-list-featured {
+  flex-shrink: 0;
+}
+
+.fh-project-list-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.fh-project-list-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  gap: 4px;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 calc(100% - 28px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 calc(100% - 28px),
+    transparent 100%
+  );
+}
+
+.fh-project-list-tag {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.fh-project-list-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-xs);
+  flex-shrink: 0;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .fh-project-list-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "meta actions"
+      "tags tags";
+    row-gap: 8px;
+    column-gap: 12px;
+    align-items: center;
+  }
+
+  .fh-project-list-meta {
+    grid-area: meta;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .fh-project-list-actions {
+    grid-area: actions;
+    margin-left: 0;
+    justify-self: end;
+  }
+
+  .fh-project-list-tags {
+    grid-area: tags;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+
 /* ========================================
    GLOW TEXT — destello por carácter en hover
    ======================================== */

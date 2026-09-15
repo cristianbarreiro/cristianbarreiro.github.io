@@ -95,10 +95,10 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                 >
                     <Card
                         shadow="xs"
-                        padding="sm"
+                        padding="xs"
                         radius="md"
                         withBorder
-                        className={`fh-project-card glass-hover-card${isSelected ? ' fh-project-card--selected' : ''}`}
+                        className={`fh-project-card fh-project-card--list glass-hover-card${isSelected ? ' fh-project-card--selected' : ''}`}
                         onClick={onSelect}
                         style={{
                             cursor: 'pointer',
@@ -107,46 +107,51 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                             '--fh-card-border-width': project.featured ? 2 : 1,
                         }}
                     >
-                        <Group justify="space-between" align="center" wrap="wrap" gap="md">
-                            <Group gap="md" align="center" wrap="wrap" style={{ flex: '1 1 300px' }}>
-                                <Group gap="xs" align="center" wrap="wrap">
-                                    <Text fw={600} size="sm">
-                                        {project.title}
-                                    </Text>
+                        <div className="fh-project-list-row">
+                            <div className="fh-project-list-meta">
+                                <Text fw={600} size="sm" className="fh-project-list-title">
+                                    {project.title}
+                                </Text>
 
-                                    {project.featured && (
-                                        <Badge
-                                            color={theme.primaryColor}
-                                            variant="light"
-                                            size="xs"
-                                        >
-                                            {t('projectCard.featured')}
-                                        </Badge>
-                                    )}
+                                {project.featured && (
+                                    <Badge
+                                        color={theme.primaryColor}
+                                        variant="light"
+                                        size="xs"
+                                        className="fh-project-list-featured"
+                                    >
+                                        {t('projectCard.featured')}
+                                    </Badge>
+                                )}
 
-                                    {formatProjectDate(project.date) && (
-                                        <Group gap={4} align="center">
-                                            <IconCalendar
-                                                size={13}
-                                                style={{ color: 'var(--mantine-color-dimmed)', opacity: 0.75 }}
-                                            />
-                                            <Text size="xs" c="dimmed" fw={500}>
-                                                {formatProjectDate(project.date)}
-                                            </Text>
-                                        </Group>
-                                    )}
-                                </Group>
+                                {formatProjectDate(project.date) && (
+                                    <div className="fh-project-list-date">
+                                        <IconCalendar
+                                            size={13}
+                                            style={{ color: 'var(--mantine-color-dimmed)', opacity: 0.75, flexShrink: 0 }}
+                                        />
+                                        <Text size="xs" c="dimmed" fw={500}>
+                                            {formatProjectDate(project.date)}
+                                        </Text>
+                                    </div>
+                                )}
+                            </div>
 
-                                <Group gap={4} wrap="wrap">
-                                    {project.tags.map((tag) => (
-                                        <Badge key={tag} variant="light" size="xs" radius="sm">
-                                            {tag}
-                                        </Badge>
-                                    ))}
-                                </Group>
-                            </Group>
+                            <div className="fh-project-list-tags">
+                                {project.tags.map((tag) => (
+                                    <Badge
+                                        key={tag}
+                                        variant="light"
+                                        size="xs"
+                                        radius="sm"
+                                        className="fh-project-list-tag"
+                                    >
+                                        {tag}
+                                    </Badge>
+                                ))}
+                            </div>
 
-                            <Group gap="xs" align="center" wrap="nowrap" style={{ flexShrink: 0 }}>
+                            <div className="fh-project-list-actions">
                                 {project.demoUrl && (
                                     <Button
                                         component="a"
@@ -207,8 +212,8 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                                         {t('projectCard.code')}
                                     </Button>
                                 )}
-                            </Group>
-                        </Group>
+                            </div>
+                        </div>
                     </Card>
                 </Tooltip>
 
