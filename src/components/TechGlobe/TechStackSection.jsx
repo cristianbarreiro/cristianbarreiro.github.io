@@ -59,7 +59,7 @@ function TechStackSection() {
   const theme = useMantineTheme();
   const { t } = useTranslation();
 
-  const [viewMode, setViewMode] = useState('globe');
+  const [viewMode, setViewMode] = useState('list');
   const [selectedTech, setSelectedTech] = useState(null);
   const [canShow3D, setCanShow3D] = useState(() => !detectMobile() && detectWebGL());
 
