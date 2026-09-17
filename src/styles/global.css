@@ -1903,3 +1903,83 @@ button:hover .icon-send-jello {
   border-color: rgba(59, 130, 246, 0.25);
 }
 
+/* ----------------------------------------------
+ * Contact: Rounded icon boxes for contact methods (Static)
+ * ---------------------------------------------- */
+
+.contact-icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: box-shadow 220ms ease, border-color 220ms ease, background-color 220ms ease, color 220ms ease;
+}
+
+@media (max-width: 480px) {
+  .contact-icon-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+  }
+}
+
+.contact-icon-box--email {
+  background: rgba(var(--accent-color-rgb, 0, 136, 255), 0.12);
+  border: 1px solid var(--accent-color, #0088ff);
+  color: var(--accent-color, #0088ff);
+  box-shadow: 0 4px 14px var(--accent-color-glow, rgba(0, 136, 255, 0.14));
+}
+
+.contact-icon-box--github {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  color: #f1f5f9;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+
+.contact-icon-box--linkedin {
+  background: rgba(10, 102, 194, 0.14);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  box-shadow: 0 4px 14px rgba(10, 102, 194, 0.16);
+}
+
+.contact-icon-box--twitter {
+  background: rgba(14, 165, 233, 0.14);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  color: #38bdf8;
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.16);
+}
+
+/* Light mode overrides */
+[data-mantine-color-scheme="light"] .contact-icon-box--email {
+  background: rgba(var(--accent-color-rgb, 0, 136, 255), 0.1);
+  border-color: var(--accent-color, #0066cc);
+  color: var(--accent-color, #0066cc);
+  box-shadow: 0 4px 12px var(--accent-color-glow, rgba(0, 136, 255, 0.12));
+}
+
+[data-mantine-color-scheme="light"] .contact-icon-box--github {
+  background: rgba(24, 24, 27, 0.06);
+  border-color: rgba(24, 24, 27, 0.16);
+  color: #18181b;
+  box-shadow: 0 4px 12px rgba(24, 24, 27, 0.06);
+}
+
+[data-mantine-color-scheme="light"] .contact-icon-box--linkedin {
+  background: rgba(10, 102, 194, 0.08);
+  border-color: rgba(10, 102, 194, 0.25);
+  color: #0a66c2;
+  box-shadow: 0 4px 12px rgba(10, 102, 194, 0.1);
+}
+
+[data-mantine-color-scheme="light"] .contact-icon-box--twitter {
+  background: rgba(14, 165, 233, 0.08);
+  border-color: rgba(14, 165, 233, 0.25);
+  color: #0284c7;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.1);
+}
+
