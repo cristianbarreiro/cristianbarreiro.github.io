@@ -14,6 +14,7 @@ import { useRef, useMemo, useCallback, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Html, OrbitControls } from '@react-three/drei';
 import { useMantineTheme } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
 import * as THREE from 'three';
 import { getDeviconUrl } from '../../data/globeTechStack';
 
@@ -115,8 +116,10 @@ function GlobeParticles({ reducedMotion, particleColorHex }) {
    Recibe globeRef para ocluir el badge cuando está detrás de la esfera
 ───────────────────────────────────────── */
 function TechNode({ tech, selectedId, onSelect, reducedMotion, globeRef }) {
+  const { t } = useTranslation();
   const groupRef = useRef();
   const isActive = selectedId === tech.id;
+  const techName = t(tech.nameKey);
 
   // Posición inicial fija calculada desde los datos
   const basePos = useMemo(
@@ -158,6 +161,13 @@ function TechNode({ tech, selectedId, onSelect, reducedMotion, globeRef }) {
     onSelect(isActive ? null : tech);
   }, [isActive, tech, onSelect]);
 
+  const badgeLevelClass =
+    tech.level === 'core'
+      ? 'tech-node-badge--core'
+      : tech.level === 'working'
+      ? 'tech-node-badge--working'
+      : 'tech-node-badge--ecosystem';
+
   return (
     <group ref={groupRef} position={[basePos.x, basePos.y, basePos.z]}>
       <Html
@@ -170,16 +180,16 @@ function TechNode({ tech, selectedId, onSelect, reducedMotion, globeRef }) {
         <div
           className={[
             'tech-node-badge',
-            tech.isCore ? 'tech-node-badge--core' : '',
+            badgeLevelClass,
             isActive ? 'tech-node-badge--active' : '',
-          ].join(' ')}
+          ].filter(Boolean).join(' ')}
           onClick={handleClick}
           onKeyDown={(e) => e.key === 'Enter' && handleClick()}
           role="button"
           tabIndex={0}
           aria-pressed={isActive}
-          aria-label={tech.nameKey}
-          title={tech.nameKey}
+          aria-label={techName}
+          title={techName}
         >
           <img
             src={getDeviconUrl(tech.devicon)}
@@ -187,7 +197,7 @@ function TechNode({ tech, selectedId, onSelect, reducedMotion, globeRef }) {
             loading="lazy"
             draggable={false}
           />
-          <span className="tech-node-label">{tech.nameKey.split('.').pop()}</span>
+          <span className="tech-node-label">{techName}</span>
         </div>
       </Html>
     </group>

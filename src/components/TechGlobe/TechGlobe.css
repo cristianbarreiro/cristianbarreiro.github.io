@@ -136,11 +136,12 @@
   white-space: nowrap;
 }
 
-.tech-globe-category-badge--frontend  { background: color-mix(in srgb, var(--mantine-primary-color-filled) 15%, transparent); color: var(--mantine-primary-color-filled); border: 1px solid color-mix(in srgb, var(--mantine-primary-color-filled) 30%, transparent); }
-.tech-globe-category-badge--backend   { background: rgba(52, 211, 153, 0.12); color: #6ee7b7; border: 1px solid rgba(52, 211, 153, 0.2); }
-.tech-globe-category-badge--database  { background: rgba(251, 191, 36, 0.12); color: #fcd34d; border: 1px solid rgba(251, 191, 36, 0.2); }
-.tech-globe-category-badge--tools     { background: rgba(167, 139, 250, 0.12); color: #c4b5fd; border: 1px solid rgba(167, 139, 250, 0.2); }
-.tech-globe-category-badge--languages { background: rgba(248, 113, 113, 0.12); color: #fca5a5; border: 1px solid rgba(248, 113, 113, 0.2); }
+.tech-globe-category-badge--frontend     { background: color-mix(in srgb, var(--mantine-primary-color-filled) 15%, transparent); color: var(--mantine-primary-color-filled); border: 1px solid color-mix(in srgb, var(--mantine-primary-color-filled) 30%, transparent); }
+.tech-globe-category-badge--backend      { background: rgba(52, 211, 153, 0.12); color: #6ee7b7; border: 1px solid rgba(52, 211, 153, 0.2); }
+.tech-globe-category-badge--database     { background: rgba(251, 191, 36, 0.12); color: #fcd34d; border: 1px solid rgba(251, 191, 36, 0.2); }
+.tech-globe-category-badge--cloud-devops { background: rgba(56, 189, 248, 0.12); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.25); }
+.tech-globe-category-badge--tools        { background: rgba(167, 139, 250, 0.12); color: #c4b5fd; border: 1px solid rgba(167, 139, 250, 0.2); }
+.tech-globe-category-badge--languages    { background: rgba(248, 113, 113, 0.12); color: #fca5a5; border: 1px solid rgba(248, 113, 113, 0.2); }
 
 /* ── Projects list ──────────────────────────────────── */
 .tech-globe-projects-list {
@@ -172,13 +173,34 @@
   flex-shrink: 0;
 }
 
+/* ── Related stack chips ────────────────────────────── */
+.tech-globe-stack-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+.tech-globe-stack-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid color-mix(in srgb, var(--mantine-primary-color-filled) 18%, transparent);
+  color: rgba(210, 225, 250, 0.85);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
 /* ── HTML node badges (overlaid on canvas) ─────────── */
 .tech-node-badge {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background: rgba(8, 12, 22, 0.85);
-  border: 1.5px solid color-mix(in srgb, var(--mantine-primary-color-filled) 30%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--mantine-primary-color-filled) 28%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -193,17 +215,34 @@
   user-select: none;
 }
 
+/* Core tier — largest, prominent accent glow */
 .tech-node-badge--core {
-  width: 44px;
-  height: 44px;
-  border-color: color-mix(in srgb, var(--mantine-primary-color-filled) 45%, transparent);
-  box-shadow: 0 0 12px color-mix(in srgb, var(--mantine-primary-color-filled) 25%, transparent);
+  width: 46px;
+  height: 46px;
+  border-color: color-mix(in srgb, var(--mantine-primary-color-filled) 55%, transparent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--mantine-primary-color-filled) 30%, transparent);
+}
+
+/* Working tier — medium standard */
+.tech-node-badge--working {
+  width: 38px;
+  height: 38px;
+  border-color: color-mix(in srgb, var(--mantine-primary-color-filled) 30%, transparent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--mantine-primary-color-filled) 15%, transparent);
+}
+
+/* Ecosystem tier — compact, subtle */
+.tech-node-badge--ecosystem {
+  width: 32px;
+  height: 32px;
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 .tech-node-badge:hover {
-  transform: scale(1.22);
+  transform: scale(1.15);
   border-color: var(--mantine-primary-color-filled);
-  box-shadow: 0 0 18px color-mix(in srgb, var(--mantine-primary-color-filled) 50%, transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--mantine-primary-color-filled) 55%, transparent);
   background: rgba(10, 20, 40, 0.9);
 }
 
@@ -211,7 +250,7 @@
   border-color: var(--mantine-primary-color-filled);
   box-shadow: 0 0 22px color-mix(in srgb, var(--mantine-primary-color-filled) 70%, transparent);
   background: rgba(15, 30, 60, 0.92);
-  transform: scale(1.15);
+  transform: scale(1.18);
 }
 
 .tech-node-badge img {
@@ -222,8 +261,29 @@
 }
 
 .tech-node-badge--core img {
-  width: 22px;
-  height: 22px;
+  width: 23px;
+  height: 23px;
+}
+
+.tech-node-badge--working img {
+  width: 18px;
+  height: 18px;
+}
+
+.tech-node-badge--ecosystem img {
+  width: 15px;
+  height: 15px;
+}
+
+/* Dark icon contrast fixes for GitHub and Express on dark badge */
+.tech-node-badge img[src*="github"],
+.tech-node-badge img[src*="express"] {
+  filter: invert(1) brightness(1.15);
+}
+
+.tech-globe-panel-icon[src*="github"],
+.tech-globe-panel-icon[src*="express"] {
+  filter: invert(1) brightness(1.15) drop-shadow(0 0 10px color-mix(in srgb, var(--mantine-primary-color-filled) 40%, transparent));
 }
 
 .tech-node-label {
@@ -232,13 +292,14 @@
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
-  font-size: 0.62rem;
-  font-weight: 500;
-  color: rgba(180, 210, 255, 0.75);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(220, 235, 255, 0.9);
   pointer-events: none;
   letter-spacing: 0.03em;
   opacity: 0;
   transition: opacity 0.2s ease;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
 }
 
 .tech-node-badge:hover .tech-node-label,

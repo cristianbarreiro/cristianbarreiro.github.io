@@ -45,7 +45,8 @@
       "backend": "Backend",
       "database": "Database",
       "tools": "Tools",
-      "languages": "Languages"
+      "languages": "Languages",
+      "cloudDevops": "Cloud & DevOps"
     },
     "aboutPreviewTitle": "About Me",
     "aboutPreviewSubtitle": "A developer passionate about building solutions that make an impact",
@@ -84,6 +85,7 @@
     "techGlobe": {
       "selectPrompt": "Click a technology to explore it",
       "relatedProjects": "Related Projects",
+      "relatedStack": "Related stack",
       "noProjects": "No linked projects yet",
       "panelAria": "Technology information panel",
       "gridAria": "Technology grid"
@@ -96,6 +98,8 @@
     "python": "Python",
     "typescript": "TypeScript",
     "javascript": "JavaScript",
+    "csharp": "C#",
+    "dotnet": ".NET",
     "go": "Go",
     "java": "Java",
     "springBoot": "Spring Boot",
@@ -121,6 +125,8 @@
     "cpp": "C++"
   },
   "techDesc": {
+    "csharp": "Strongly-typed language for the .NET ecosystem. Used in PrivGvard for native Windows security and in PayFlow for transactional backend services.",
+    "dotnet": "High-performance cross-platform framework. Used with .NET 10 and Avalonia UI for desktop security tools and ASP.NET Core for transactional REST APIs.",
     "react": "My primary library for building reactive, component-based user interfaces. Used across all my modern frontend projects.",
     "typescript": "A typed superset of JavaScript that improves maintainability and catches errors at compile time. Foundation of my current frontend work.",
     "javascript": "The fundamental language of the web. Used in both frontend and backend (Node.js) and in scripting projects.",
