@@ -409,23 +409,27 @@ const projectsByLanguage = {
             longDescription:
                 'Herramienta de seguridad y privacidad nativa para Windows diseñada para desactivar y bloquear el acceso al micrófono y a la cámara web de forma instantánea. La aplicación utiliza una arquitectura de doble capa: directivas AppPrivacy a nivel de sistema operativo y control de hardware mediante PnP (CfgMgr32 / Win32 APIs). Opera bajo el principio de menor privilegio (Least Privilege) con elevación UAC bajo demanda únicamente al autorizar cambios. Desarrollada con .NET 10 y Avalonia UI, cuenta con diseño Fluent Dark, atajo de teclado global (Ctrl+Alt+B), minimización en bandeja del sistema (System Tray), soporte multilenguaje dinámico (ES/EN) y registro estructurado con Serilog.',
             date: '2026',
-            image: '/images/projects/privgvard/main-window.png',
+            image: '/images/projects/privgvard/privgvard_presentation.png',
             images: [
                 {
-                    src: '/images/projects/privgvard/main-window.png',
-                    alt: 'Ventana principal de PrivGvard con controles de privacidad',
+                    src: '/images/projects/privgvard/privgvard_presentation.png',
+                    alt: 'Presentación oficial de PrivGvard con logotipo y lema',
                 },
                 {
-                    src: '/images/projects/privgvard/mainwindow_dark.png',
-                    alt: 'Estado de protección activa y bloqueo dual en PrivGvard',
+                    src: '/images/projects/privgvard/privgvard_description.png',
+                    alt: 'Descripción de características y mockup de PrivGvard en portátil',
                 },
                 {
-                    src: '/images/projects/privgvard/protection_overview.png',
-                    alt: 'Detalle del sistema de doble capa de seguridad',
+                    src: '/images/projects/privgvard/privgvard_first.png',
+                    alt: 'Ventana principal de PrivGvard con controles de privacidad y hardware detectado',
                 },
                 {
-                    src: '/images/projects/privgvard/tray_menu.png',
-                    alt: 'Integración de PrivGvard en la bandeja del sistema (System Tray)',
+                    src: '/images/projects/privgvard/privgvard_second.png',
+                    alt: 'Menú desplegable de opciones y configuración de PrivGvard',
+                },
+                {
+                    src: '/images/projects/privgvard/privgvard_third.png',
+                    alt: 'Panel de configuración general y preferencias de PrivGvard',
                 },
             ],
             tags: [
@@ -920,23 +924,27 @@ const projectsByLanguage = {
             longDescription:
                 'Native security and privacy tool for Windows designed to instantly disable and block access to the webcam and microphone. The application leverages a dual-layer architecture: OS-level AppPrivacy policies and PnP hardware control via CfgMgr32 / Win32 APIs. Built on the Principle of Least Privilege, it runs with standard user permissions by default and elevates privileges strictly on-demand for authorized actions. Developed with .NET 10 and Avalonia UI, it features a modern Fluent Dark design, global keyboard shortcut (Ctrl+Alt+B), system tray integration, dynamic multilingual support (ES/EN), and structured logging with Serilog.',
             date: '2026',
-            image: '/images/projects/privgvard/main-window.png',
+            image: '/images/projects/privgvard/privgvard_presentation.png',
             images: [
                 {
-                    src: '/images/projects/privgvard/main-window.png',
-                    alt: 'PrivGvard main window with privacy controls',
+                    src: '/images/projects/privgvard/privgvard_presentation.png',
+                    alt: 'PrivGvard official presentation banner with logo and brand tagline',
                 },
                 {
-                    src: '/images/projects/privgvard/mainwindow_dark.png',
-                    alt: 'Active protection and dual-layer blocking state in PrivGvard',
+                    src: '/images/projects/privgvard/privgvard_description.png',
+                    alt: 'PrivGvard feature overview and laptop mockup',
                 },
                 {
-                    src: '/images/projects/privgvard/protection_overview.png',
-                    alt: 'Dual-layer security system overview',
+                    src: '/images/projects/privgvard/privgvard_first.png',
+                    alt: 'PrivGvard main window with privacy controls and detected hardware',
                 },
                 {
-                    src: '/images/projects/privgvard/tray_menu.png',
-                    alt: 'PrivGvard system tray integration menu',
+                    src: '/images/projects/privgvard/privgvard_second.png',
+                    alt: 'PrivGvard dropdown options and settings menu',
+                },
+                {
+                    src: '/images/projects/privgvard/privgvard_third.png',
+                    alt: 'PrivGvard general settings and preferences panel',
                 },
             ],
             tags: [
