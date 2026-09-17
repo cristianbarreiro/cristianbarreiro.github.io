@@ -8,19 +8,20 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getDeviconUrl, globeTechnologies } from '../../data/globeTechStack';
 
-const CATEGORY_ORDER = ['frontend', 'backend', 'database', 'tools', 'languages'];
+const CATEGORY_ORDER = ['languages', 'frontend', 'backend', 'database', 'cloud-devops', 'tools'];
 
 const CATEGORY_COLORS = {
-  frontend:  { dot: '#63b3ed', label: 'Frontend'  },
-  backend:   { dot: '#6ee7b7', label: 'Backend'   },
-  database:  { dot: '#fcd34d', label: 'Database'  },
-  tools:     { dot: '#c4b5fd', label: 'Tools'     },
-  languages: { dot: '#fca5a5', label: 'Languages' },
+  languages:      { dot: '#fca5a5', key: 'languages' },
+  frontend:       { dot: '#63b3ed', key: 'frontend' },
+  backend:        { dot: '#6ee7b7', key: 'backend' },
+  database:       { dot: '#fcd34d', key: 'database' },
+  'cloud-devops': { dot: '#7dd3fc', key: 'cloudDevops' },
+  tools:          { dot: '#c4b5fd', key: 'tools' },
 };
 
 function MobileFallback({ selectedTech, onSelectTech }) {
   const { t } = useTranslation();
-  const [openCategory, setOpenCategory] = useState('frontend');
+  const [openCategory, setOpenCategory] = useState('languages');
 
   // Agrupar tecnologías por categoría en el orden definido
   const grouped = CATEGORY_ORDER.reduce((acc, cat) => {
@@ -56,7 +57,7 @@ function MobileFallback({ selectedTech, onSelectTech }) {
                 style={{ background: color.dot }}
               />
               <span className="tech-mobile-cat-label">
-                {t(`home.techStackCategory.${cat}`)}
+                {t(`home.techStackCategory.${color.key}`)}
               </span>
               <span className="tech-mobile-cat-count">
                 {techs.length}
