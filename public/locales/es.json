@@ -306,7 +306,10 @@
     "showNebula": "Mostrar nebulosa",
     "blendMinimal": "Integrar con Oscuro Minimalista",
     "current": "Activo",
-    "comingSoon": "Próximamente"
+    "comingSoon": "Próximamente",
+    "prevTheme": "Tema anterior",
+    "nextTheme": "Tema siguiente",
+    "activateTheme": "Activar"
   },
   "underConstruction": {
     "message": "Esta página está en construcción.",

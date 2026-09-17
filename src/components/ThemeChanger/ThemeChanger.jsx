@@ -10,6 +10,8 @@ import {
   IconAtom,
   IconReload,
   IconColorPicker,
+  IconChevronLeft,
+  IconChevronRight,
 } from '@tabler/icons-react';
 import { useThemeContext } from '../../context/ThemeContext';
 import { BACKGROUND_THEMES } from '../../config/backgroundThemes';
@@ -60,6 +62,42 @@ function ThemeChanger() {
   const [hexInput, setHexInput] = useState(primaryColor);
   const [prevPrimaryColor, setPrevPrimaryColor] = useState(primaryColor);
   const [hexError, setHexError] = useState(false);
+
+  // Estado del carrusel de temas de fondo (mostrar un tema a la vez)
+  const [prevBackgroundTheme, setPrevBackgroundTheme] = useState(backgroundTheme);
+  const [currentThemeIndex, setCurrentThemeIndex] = useState(() => {
+    const initialIndex = BACKGROUND_THEMES.findIndex((t) => t.id === backgroundTheme);
+    return initialIndex >= 0 ? initialIndex : 0;
+  });
+
+  if (prevBackgroundTheme !== backgroundTheme) {
+    setPrevBackgroundTheme(backgroundTheme);
+    const activeIndex = BACKGROUND_THEMES.findIndex((t) => t.id === backgroundTheme);
+    if (activeIndex >= 0) {
+      setCurrentThemeIndex(activeIndex);
+    }
+  }
+
+  const handlePrevTheme = useCallback(() => {
+    setCurrentThemeIndex((prev) => (prev - 1 + BACKGROUND_THEMES.length) % BACKGROUND_THEMES.length);
+  }, []);
+
+  const handleNextTheme = useCallback(() => {
+    setCurrentThemeIndex((prev) => (prev + 1) % BACKGROUND_THEMES.length);
+  }, []);
+
+  const handleCarouselKeyDown = useCallback(
+    (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        handlePrevTheme();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        handleNextTheme();
+      }
+    },
+    [handlePrevTheme, handleNextTheme],
+  );
 
   // Sincronizar estados locales cuando el color aplicado externamente cambia (ej. carga inicial o reset)
   if (prevPrimaryColor !== primaryColor) {
@@ -410,7 +448,18 @@ function ThemeChanger() {
 
   const close = useCallback(() => setOpen(false), []);
 
-  const handleToggle = () => setOpen((prev) => !prev);
+  const handleToggle = () => {
+    setOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        const activeIndex = BACKGROUND_THEMES.findIndex((t) => t.id === backgroundTheme);
+        if (activeIndex >= 0) {
+          setCurrentThemeIndex(activeIndex);
+        }
+      }
+      return next;
+    });
+  };
 
   const handleClickOutside = useCallback(
     (e) => {
@@ -457,6 +506,12 @@ function ThemeChanger() {
       document.removeEventListener('scroll', handleScroll, true);
     };
   }, [handleClickOutside, handleEscape, handleScroll]);
+
+  const activeThemeItem =
+    BACKGROUND_THEMES[currentThemeIndex] || BACKGROUND_THEMES[0];
+  const isThemeSelected = backgroundTheme === activeThemeItem.id;
+  const isThemeAvailable = activeThemeItem.available;
+  const ActiveThemeIcon = ICON_MAP[activeThemeItem.icon] || IconWorld;
 
   return (
     <>
@@ -600,74 +655,126 @@ function ThemeChanger() {
           </button>
         </div>
 
-        {/* Sección 2: Tema de Fondo */}
-        <div className="theme-changer-section" style={{ marginTop: 16 }}>
+        {/* Sección 2: Tema de Fondo (Carrusel Compacto) */}
+        <div className="theme-changer-section theme-changer-section-bg" style={{ marginTop: 14 }}>
           <span className="theme-changer-section-label">
             {t('themeChanger.backgroundTheme')}
           </span>
-          <div className="theme-changer-bg-list">
-            {BACKGROUND_THEMES.map((themeItem) => {
-              const isSelected = backgroundTheme === themeItem.id;
-              const isAvailable = themeItem.available;
-              const IconComp = ICON_MAP[themeItem.icon] || IconWorld;
 
-              return (
-                <div key={themeItem.id} className="theme-changer-bg-item">
-                  <button
-                    type="button"
-                    disabled={!isAvailable}
-                    className={`theme-changer-bg-card ${isSelected ? 'is-selected' : ''} ${!isAvailable ? 'is-disabled' : ''}`}
-                    onClick={() => isAvailable && setBackgroundTheme(themeItem.id)}
-                    aria-pressed={isSelected}
-                  >
-                    <div className="theme-changer-bg-card-header">
-                      <div className="theme-changer-bg-icon">
-                        <IconComp size={15} />
-                      </div>
-                      <span className="theme-changer-bg-title">
-                        {t(themeItem.nameKey)}
-                      </span>
-                      {isSelected && (
-                        <span className="theme-changer-bg-badge is-active">
-                          <IconCheck size={10} /> {t('themeChanger.current')}
-                        </span>
-                      )}
-                      {!isAvailable && (
-                        <span className="theme-changer-bg-badge is-coming">
-                          {t('themeChanger.comingSoon')}
-                        </span>
-                      )}
-                    </div>
-                    <p className="theme-changer-bg-desc">
-                      {t(themeItem.descriptionKey)}
-                    </p>
-                  </button>
+          <div
+            className="theme-changer-carousel"
+            tabIndex={0}
+            onKeyDown={handleCarouselKeyDown}
+            role="region"
+            aria-label={t('themeChanger.backgroundTheme')}
+          >
+            {/* Navegación del Carrusel: < [Icono + Título] > */}
+            <div className="theme-changer-carousel-nav">
+              <button
+                type="button"
+                className="theme-changer-carousel-arrow"
+                onClick={handlePrevTheme}
+                aria-label={t('themeChanger.prevTheme')}
+                title={t('themeChanger.prevTheme')}
+              >
+                <IconChevronLeft size={16} stroke={2} />
+              </button>
 
-                  {isSelected && themeItem.id === 'space' && (
-                    <div className="theme-changer-nebula-option">
-                      <label className="theme-changer-checkbox-label">
-                        <input
-                          type="checkbox"
-                          checked={showNebula}
-                          onChange={(e) => setShowNebula(e.target.checked)}
-                          className="theme-changer-checkbox"
-                        />
-                        <span>{t('themeChanger.showNebula')}</span>
-                      </label>
-                      <label className="theme-changer-checkbox-label">
-                        <input
-                          type="checkbox"
-                          checked={blendMinimalBackground}
-                          onChange={(e) => setBlendMinimalBackground(e.target.checked)}
-                          className="theme-changer-checkbox"
-                        />
-                        <span>{t('themeChanger.blendMinimal')}</span>
-                      </label>
-                    </div>
-                  )}
+              <div className="theme-changer-carousel-title-wrap">
+                <div className="theme-changer-carousel-icon">
+                  <ActiveThemeIcon size={15} />
                 </div>
-              );
-            })}
+                <span className="theme-changer-carousel-title">
+                  {t(activeThemeItem.nameKey)}
+                </span>
+              </div>
+
+              <button
+                type="button"
+                className="theme-changer-carousel-arrow"
+                onClick={handleNextTheme}
+                aria-label={t('themeChanger.nextTheme')}
+                title={t('themeChanger.nextTheme')}
+              >
+                <IconChevronRight size={16} stroke={2} />
+              </button>
+            </div>
+
+            {/* Descripción del tema */}
+            <p className="theme-changer-carousel-desc">
+              {t(activeThemeItem.descriptionKey)}
+            </p>
+
+            {/* Botón de Acción / Estado */}
+            <div className="theme-changer-carousel-action">
+              {isThemeSelected ? (
+                <button
+                  type="button"
+                  disabled
+                  className="theme-changer-carousel-btn is-active"
+                  aria-pressed="true"
+                >
+                  <IconCheck size={12} stroke={2.5} />
+                  <span>{t('themeChanger.current')}</span>
+                </button>
+              ) : isThemeAvailable ? (
+                <button
+                  type="button"
+                  className="theme-changer-carousel-btn is-apply"
+                  onClick={() => setBackgroundTheme(activeThemeItem.id)}
+                >
+                  <span>{t('themeChanger.activateTheme')}</span>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  disabled
+                  className="theme-changer-carousel-btn is-disabled"
+                >
+                  <span>{t('themeChanger.comingSoon')}</span>
+                </button>
+              )}
+            </div>
+
+            {/* Opciones secundarias cuando Espacio WebGL 3D está activo */}
+            {isThemeSelected && activeThemeItem.id === 'space' && (
+              <div className="theme-changer-nebula-option">
+                <label className="theme-changer-checkbox-label">
+                  <input
+                    type="checkbox"
+                    checked={showNebula}
+                    onChange={(e) => setShowNebula(e.target.checked)}
+                    className="theme-changer-checkbox"
+                  />
+                  <span>{t('themeChanger.showNebula')}</span>
+                </label>
+                <label className="theme-changer-checkbox-label">
+                  <input
+                    type="checkbox"
+                    checked={blendMinimalBackground}
+                    onChange={(e) => setBlendMinimalBackground(e.target.checked)}
+                    className="theme-changer-checkbox"
+                  />
+                  <span>{t('themeChanger.blendMinimal')}</span>
+                </label>
+              </div>
+            )}
+
+            {/* Indicadores de diapositiva (Dots) */}
+            <div className="theme-changer-carousel-dots" aria-hidden="true">
+              {BACKGROUND_THEMES.map((themeItem, idx) => (
+                <button
+                  key={themeItem.id}
+                  type="button"
+                  tabIndex={-1}
+                  className={`theme-changer-carousel-dot ${
+                    idx === currentThemeIndex ? 'is-current' : ''
+                  } ${backgroundTheme === themeItem.id ? 'is-selected' : ''}`}
+                  onClick={() => setCurrentThemeIndex(idx)}
+                  aria-label={t(themeItem.nameKey)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

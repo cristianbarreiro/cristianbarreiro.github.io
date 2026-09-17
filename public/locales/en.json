@@ -306,7 +306,10 @@
     "showNebula": "Show nebula",
     "blendMinimal": "Blend with Minimal Dark",
     "current": "Active",
-    "comingSoon": "Coming Soon"
+    "comingSoon": "Coming Soon",
+    "prevTheme": "Previous theme",
+    "nextTheme": "Next theme",
+    "activateTheme": "Activate"
   },
   "underConstruction": {
     "message": "This page is under construction.",
