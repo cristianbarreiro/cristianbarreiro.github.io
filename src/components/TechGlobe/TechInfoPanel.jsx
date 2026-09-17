@@ -17,6 +17,7 @@ const categoryClass = {
   frontend: 'tech-globe-category-badge--frontend',
   backend: 'tech-globe-category-badge--backend',
   database: 'tech-globe-category-badge--database',
+  'cloud-devops': 'tech-globe-category-badge--cloud-devops',
   tools: 'tech-globe-category-badge--tools',
   languages: 'tech-globe-category-badge--languages',
 };
@@ -101,6 +102,30 @@ function TechInfoPanel({ tech }) {
               >
                 {t(tech.descriptionKey)}
               </Text>
+
+              {/* Stack relacionado */}
+              {tech.relatedStack && tech.relatedStack.length > 0 && (
+                <Stack gap={6}>
+                  <Text
+                    size="xs"
+                    fw={600}
+                    tt="uppercase"
+                    style={{
+                      letterSpacing: '0.08em',
+                      color: 'rgba(99,179,237,0.7)',
+                    }}
+                  >
+                    {t('home.techGlobe.relatedStack')}
+                  </Text>
+                  <div className="tech-globe-stack-chips">
+                    {tech.relatedStack.map((item) => (
+                      <span key={item} className="tech-globe-stack-chip">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </Stack>
+              )}
 
               {/* Proyectos relacionados */}
               {tech.projects && tech.projects.length > 0 && (
