@@ -8,11 +8,21 @@
  */
 
 import { useState, useMemo, useCallback, useEffect, Suspense, lazy } from 'react';
-import { Container, Title, Text, Stack, useMantineTheme } from '@mantine/core';
+import {
+  Container,
+  Title,
+  Text,
+  Stack,
+  useMantineTheme,
+  SegmentedControl,
+  Center,
+  Box,
+} from '@mantine/core';
+import { IconWorld, IconList } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 import { computeNodePositions, globeTechnologies } from '../../data/globeTechStack';
 import TechInfoPanel from './TechInfoPanel';
-import MobileFallback from './MobileFallback';
+import CategorizedTechList from './CategorizedTechList';
 import './TechGlobe.css';
 
 /** Lazy-load the heavy 3D canvas — Three.js only loads if/when needed */
@@ -49,8 +59,9 @@ function TechStackSection() {
   const theme = useMantineTheme();
   const { t } = useTranslation();
 
+  const [viewMode, setViewMode] = useState('globe');
   const [selectedTech, setSelectedTech] = useState(null);
-  const [hasWebGL, setHasWebGL] = useState(() => !detectMobile() && detectWebGL());
+  const [canShow3D, setCanShow3D] = useState(() => !detectMobile() && detectWebGL());
 
   // Calcular posiciones una sola vez
   const technologies = useMemo(
@@ -61,7 +72,7 @@ function TechStackSection() {
   // Escuchar cambios de tamaño de ventana
   useEffect(() => {
     const handleResize = () => {
-      setHasWebGL(!detectMobile() && detectWebGL());
+      setCanShow3D(!detectMobile() && detectWebGL());
     };
 
     window.addEventListener('resize', handleResize);
@@ -92,14 +103,46 @@ function TechStackSection() {
               background: `linear-gradient(90deg, transparent, var(--mantine-color-${theme.primaryColor}-5), transparent)`,
             }}
           />
+          {canShow3D && (
+            <Box mt="xs">
+              <SegmentedControl
+                value={viewMode}
+                onChange={setViewMode}
+                size="sm"
+                radius="md"
+                data={[
+                  {
+                    value: 'globe',
+                    label: (
+                      <Center style={{ gap: 7 }}>
+                        <IconWorld size={16} stroke={1.75} />
+                        <span>{t('home.techGlobe.viewGlobe')}</span>
+                      </Center>
+                    ),
+                  },
+                  {
+                    value: 'list',
+                    label: (
+                      <Center style={{ gap: 7 }}>
+                        <IconList size={16} stroke={1.75} />
+                        <span>{t('home.techGlobe.viewList')}</span>
+                      </Center>
+                    ),
+                  },
+                ]}
+                aria-label={t('home.techGlobe.viewSelectorAria')}
+                className="tech-stack-view-selector"
+              />
+            </Box>
+          )}
         </Stack>
 
-        {/* Main layout: globe + panel */}
+        {/* Main layout: globe or list + panel */}
         <div className="tech-globe-layout">
 
-          {/* Left / Top: Globe or Fallback */}
+          {/* Left / Top: Globe or Categorized List */}
           <div>
-            {hasWebGL ? (
+            {canShow3D && viewMode === 'globe' ? (
               <Suspense
                 fallback={
                   <div
@@ -124,7 +167,7 @@ function TechStackSection() {
                 />
               </Suspense>
             ) : (
-              <MobileFallback
+              <CategorizedTechList
                 technologies={globeTechnologies}
                 selectedTech={selectedTech}
                 onSelectTech={handleSelectTech}

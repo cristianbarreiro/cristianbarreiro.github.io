@@ -88,7 +88,10 @@
       "relatedStack": "Stack relacionado",
       "noProjects": "Sin proyectos vinculados aún",
       "panelAria": "Panel de información de tecnología",
-      "gridAria": "Grilla de tecnologías"
+      "gridAria": "Grilla de tecnologías",
+      "viewGlobe": "Globo 3D",
+      "viewList": "Vista de lista",
+      "viewSelectorAria": "Modo de visualización del stack tecnológico"
     }
   },
   "techStack": {

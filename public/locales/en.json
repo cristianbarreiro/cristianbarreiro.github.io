@@ -88,7 +88,10 @@
       "relatedStack": "Related stack",
       "noProjects": "No linked projects yet",
       "panelAria": "Technology information panel",
-      "gridAria": "Technology grid"
+      "gridAria": "Technology grid",
+      "viewGlobe": "3D Globe",
+      "viewList": "List View",
+      "viewSelectorAria": "Tech stack visualization mode"
     }
   },
   "techStack": {
