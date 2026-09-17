@@ -8,8 +8,10 @@ tags:
   - theme
   - mantine
   - css-tokens
-timestamp: "2026-09-06T03:15:00-03:00"
-lifecycle: stable
+generated:
+  by: human:cristianbarreiro
+  at: "2026-09-06T03:15:00-03:00"
+status: stable
 ---
 
 # ADR-0001: Límite del Estado de Tema y Tokens Dinámicos
@@ -60,5 +62,6 @@ Establecer un límite estricto de responsabilidades dividido en tres capas:
 ---
 
 ## Documentos Relacionados
+- [Índice Maestro OKF y Router: docs/index.md](../index.md)
 - [ADR-0002: Rendimiento del Selector de Color](0002-color-picker-performance.md)
 - [Arquitectura General](../architecture/system-overview.md)

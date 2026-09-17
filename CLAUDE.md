@@ -4,13 +4,14 @@ Operational bootstrap adapter for **Claude Code** and Anthropic models working i
 
 ---
 
-## 🧭 Source of Truth & Progressive Disclosure
+## 🧭 Source of Truth & Context Routing
 
-Do not duplicate architectural concepts. Reference the canonical project knowledge:
-- **Master Governance & Rules:** [AGENTS.md](AGENTS.md) *(Section 0 is strictly locked)*
-- **Architecture Overview:** [docs/architecture/system-overview.md](docs/architecture/system-overview.md)
-- **Architectural Decisions (ADRs):** [docs/decisions/](docs/decisions/)
-- **Validation Protocol:** [docs/development/validation.md](docs/development/validation.md)
+Apply **Progressive Disclosure**. Do not read the entire repository before editing:
+- **Master Governance & Rules:** [AGENTS.md](AGENTS.md) *(Sección Bloqueada is strictly locked)*
+- **Context Router & Directory Index:** [docs/index.md](docs/index.md)
+- **Procedural Workflows:** Inspect [skills/](skills/) (`portfolio-projects`, `portfolio-i18n`, `portfolio-ui`, `portfolio-validation`)
+- **Deep Architecture & ADRs:** [docs/architecture/system-overview.md](docs/architecture/system-overview.md) and [docs/decisions/](docs/decisions/)
+- **Validation Protocol (DoD):** [docs/development/validation.md](docs/development/validation.md)
 
 ---
 
@@ -26,7 +27,7 @@ Do not duplicate architectural concepts. Reference the canonical project knowled
 
 ## 🛡️ Critical Invariants & Coding Standards
 
-1. **Pure JSX / No TypeScript:** This project uses vanilla JavaScript modules (`"type": "module"`) with JSX. Never introduce `.ts`/`.tsx` files or tsconfig.
+1. **Pure JSX / No TypeScript:** Vanilla JavaScript modules (`"type": "module"`) with JSX. Never introduce `.ts`/`.tsx` files or tsconfig.
 2. **Client-Only (No Backend):** Do not create Node servers, Express routes, serverless functions, or database connections.
 3. **Storage Abstraction:** Direct access to `localStorage` or `document.cookie` is strictly prohibited. Always use helpers from `src/utils/storage.js`.
 4. **i18n Mandatory:** Every user-facing string must use `useTranslation()` (`t('key')`) and exist simultaneously in both `public/locales/es.json` and `public/locales/en.json`.

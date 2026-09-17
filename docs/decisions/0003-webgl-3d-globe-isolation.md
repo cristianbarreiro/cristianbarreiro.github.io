@@ -10,8 +10,10 @@ tags:
   - r3f
   - performance
   - accessibility
-timestamp: "2026-09-06T03:15:00-03:00"
-lifecycle: stable
+generated:
+  by: human:cristianbarreiro
+  at: "2026-09-06T03:15:00-03:00"
+status: stable
 ---
 
 # ADR-0003: Aislamiento, Oclusión y Code-Splitting de Three.js / WebGL
@@ -79,6 +81,7 @@ Las bibliotecas necesarias (`three`, `@react-three/fiber`, `@react-three/drei`, 
 ---
 
 ## Documentos Relacionados
+- [Índice Maestro OKF y Router: docs/index.md](../index.md)
 - [ADR-0001: Límite del Estado de Tema](0001-theme-state-boundary.md)
 - [ADR-0002: Rendimiento del Selector de Color](0002-color-picker-performance.md)
 - [Arquitectura General](../architecture/system-overview.md)

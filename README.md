@@ -137,9 +137,11 @@ La navegación SPA persistente (evitando errores 404 al recargar rutas profundas
 
 ## 📚 Documentación y Desarrollo Asistido por IA
 
-El repositorio cuenta con una arquitectura de contexto estructurada para desarrolladores y agentes de IA (Gemini, Claude, Copilot, Codex) bajo el estándar **Open Knowledge Format (OKF v0.2)**:
+El repositorio cuenta con una arquitectura de contexto estructurada para desarrolladores y agentes de IA (Gemini, Claude, Copilot, Codex) bajo el estándar **Open Knowledge Format (OKF v0.2)** y el principio de *Progressive Disclosure*:
 
 - **Guía Maestra y Gobernanza:** [AGENTS.md](AGENTS.md)
+- **Índice y Router de Contexto:** [docs/index.md](docs/index.md)
+- **Workflows y Procedimientos:** [skills/](skills/)
 - **Arquitectura del Sistema:** [docs/architecture/system-overview.md](docs/architecture/system-overview.md)
 - **Registros de Decisiones de Arquitectura (ADRs):** [docs/decisions/](docs/decisions/)
 - **Protocolo de Validación (DoD):** [docs/development/validation.md](docs/development/validation.md)

@@ -9,8 +9,10 @@ tags:
   - color-picker
   - raf
   - dom
-timestamp: "2026-09-06T03:15:00-03:00"
-lifecycle: stable
+generated:
+  by: human:cristianbarreiro
+  at: "2026-09-06T03:15:00-03:00"
+status: stable
 ---
 
 # ADR-0002: Rendimiento y Aislamiento del Selector de Color
@@ -90,5 +92,6 @@ commitColor(hex) ──> setPrimaryColor(hex) ──> Re-renderizado Global (1 s
 ---
 
 ## Documentos Relacionados
+- [Índice Maestro OKF y Router: docs/index.md](../index.md)
 - [ADR-0001: Límite del Estado de Tema](0001-theme-state-boundary.md)
 - [Arquitectura General](../architecture/system-overview.md)

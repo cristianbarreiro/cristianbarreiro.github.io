@@ -9,8 +9,10 @@ tags:
   - build
   - i18n
   - accessibility
-timestamp: "2026-09-06T03:15:00-03:00"
-lifecycle: stable
+generated:
+  by: human:cristianbarreiro
+  at: "2026-09-06T03:15:00-03:00"
+status: stable
 ---
 
 # Protocolo de Validación y Calidad
@@ -69,5 +71,7 @@ npm run preview
 ---
 
 ## Documentos Relacionados
+- [Índice Maestro OKF y Router: docs/index.md](../index.md)
+- [Skill: portfolio-validation](../../skills/portfolio-validation/SKILL.md)
 - [Gobernanza Maestro: AGENTS.md](../../AGENTS.md)
 - [Arquitectura General](../architecture/system-overview.md)

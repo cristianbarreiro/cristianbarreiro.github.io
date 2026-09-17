@@ -6,11 +6,12 @@ Este archivo actúa como adaptador de entrada para modelos **Google Gemini** y e
 
 ## 🧭 Fuente de Verdad y Navegación Rápida
 
-La fuente de verdad maestra del repositorio reside en:
+Aplica **Progressive Disclosure**. No leas todo el repositorio antes de editar:
 - **Gobernanza y Reglas:** [AGENTS.md](AGENTS.md) *(Respetar obligatoriamente la Sección Bloqueada)*
-- **Arquitectura de Conocimiento:** [docs/architecture/system-overview.md](docs/architecture/system-overview.md)
-- **Decisiones Críticas (ADRs):** [docs/decisions/](docs/decisions/)
-- **Protocolo de Validación:** [docs/development/validation.md](docs/development/validation.md)
+- **Router de Contexto y Directorio OKF:** [docs/index.md](docs/index.md)
+- **Workflows Operativos:** Consultar [skills/](skills/) (`portfolio-projects`, `portfolio-i18n`, `portfolio-ui`, `portfolio-validation`)
+- **Arquitectura Profunda y ADRs:** [docs/architecture/system-overview.md](docs/architecture/system-overview.md) y [docs/decisions/](docs/decisions/)
+- **Protocolo de Validación (DoD):** [docs/development/validation.md](docs/development/validation.md)
 
 ---
 
@@ -20,7 +21,7 @@ La fuente de verdad maestra del repositorio reside en:
 |---|---|---|
 | **Desarrollo** | `npm run dev` | Servidor HMR en `http://localhost:5173` |
 | **Linter** | `npm run lint` | ESLint 9 (Obligatorio terminar con 0 errores) |
-| **Build** | `npm run build` | Empaquetado Vite en `dist/` con chunks diferidos |
+| **Build** | `npm run build` | Empaquetado Vite en `dist/` con code-splitting dinámico |
 | **Preview** | `npm run preview` | Servidor de prueba para el bundle de producción |
 
 ---

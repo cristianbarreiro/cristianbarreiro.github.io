@@ -5,7 +5,7 @@ Context instructions for **GitHub Copilot**, Codex, and AI code completion model
 ---
 
 ## 🧭 Source of Truth
-Refer to [AGENTS.md](../AGENTS.md) and the [docs/](../docs/) directory for complete architecture and governance.
+Refer to [AGENTS.md](../AGENTS.md), [docs/index.md](../docs/index.md), and [skills/](../skills/) for complete architecture, skills, and governance.
 
 ---
 

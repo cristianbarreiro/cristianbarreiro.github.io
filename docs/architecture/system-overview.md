@@ -8,8 +8,10 @@ tags:
   - mantine
   - vite
   - dataflow
-timestamp: "2026-09-06T03:15:00-03:00"
-lifecycle: stable
+generated:
+  by: human:cristianbarreiro
+  at: "2026-09-06T03:15:00-03:00"
+status: stable
 ---
 
 # Arquitectura General del Sistema
@@ -76,7 +78,7 @@ storage.js               ThemeRoot.jsx               Layout.jsx
 
 ## 3. Principio de Aislamiento de Renderizado
 
-Para garantizar 60 FPS estables y tiempos de carga óptimos, los componentes costosos están arquitecturalmente desacoplados:
+Para mitigar caídas de frames y optimizar tiempos de carga, los componentes de interacción intensiva o renderizado costoso están arquitecturalmente desacoplados:
 
 - **ThemeChanger vs React State:** Las operaciones de alta frecuencia (drag en paleta 2D) actualizan directamente nodos DOM y CSS Custom Properties locales. El estado global solo se actualiza al soltar el puntero (*commit-on-release*). Ver [ADR-0002](../decisions/0002-color-picker-performance.md).
 - **Theme State Boundary:** El estado global está acotado al contexto mínimo indispensable, separando tokens Mantine de variables de animación. Ver [ADR-0001](../decisions/0001-theme-state-boundary.md).
@@ -100,6 +102,7 @@ Para garantizar 60 FPS estables y tiempos de carga óptimos, los componentes cos
 
 ## 5. Documentos Relacionados
 
+- [Índice Maestro OKF y Router: docs/index.md](../index.md)
 - [Gobernanza Maestro: AGENTS.md](../../AGENTS.md)
 - [ADR-0001: Límite del Estado de Tema](../decisions/0001-theme-state-boundary.md)
 - [ADR-0002: Rendimiento del Selector de Color](../decisions/0002-color-picker-performance.md)
