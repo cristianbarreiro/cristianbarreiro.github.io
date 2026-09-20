@@ -20,6 +20,7 @@ import { IconExternalLink, IconBrandGithub, IconPhoto, IconCalendar } from '@tab
 import { useTranslation } from 'react-i18next';
 import ProjectImagesModal from './ProjectImagesModal';
 import ProjectDownloadMenu from './ProjectDownloadMenu';
+import ProjectCardGridCanvas from './ProjectCardGridCanvas';
 import { formatProjectDate } from '../utils/formatDate';
 
 /**
@@ -109,6 +110,7 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                             '--fh-card-border-width': project.featured ? 2 : 1,
                         }}
                     >
+                        <ProjectCardGridCanvas />
                         <div className="fh-project-list-row">
                             <div className="fh-project-list-meta">
                                 <Text fw={600} size="sm" className="fh-project-list-title">
@@ -269,6 +271,7 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                     '--fh-card-border-width': project.featured ? 2 : 1,
                 }}
             >
+                <ProjectCardGridCanvas />
             {/* Badge de destacado (solo si featured es true) */}
                 {project.featured && (
                     <Badge
