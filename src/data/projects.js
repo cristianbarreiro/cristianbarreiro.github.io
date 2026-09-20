@@ -547,6 +547,31 @@ const projectsByLanguage = {
             repoUrl: 'https://github.com/cristianbarreiro/Rumbo_Platform',
             featured: false,
         },
+        {
+            id: 19,
+            title: 'AntiSpam MCP — InboxGuardian',
+            description:
+                'Servidor Model Context Protocol (MCP) y dashboard web para clasificación inteligente de correo, detección de spam y flujos seguros de limpieza asistida.',
+            longDescription:
+                'Servidor Model Context Protocol (MCP) complementado con un dashboard web interactivo diseñado para la gestión y clasificación inteligente del correo electrónico. Incorpora un motor de reglas determinista para categorizar mensajes (importantes, transaccionales, notificaciones, boletines, promociones y spam sospechoso) y automatizar tareas de limpieza del buzón. Su arquitectura prioriza la seguridad con un enfoque human-in-the-loop: requiere tokens criptográficos de confirmación (SHA-256) en dos fases antes de ejecutar acciones destructivas como el envío a la papelera, registra intenciones de forma atómica antes de invocar side-effects en proveedores externos con capacidad de reconciliación ante fallos imprevistos, y asegura una persistencia robusta en SQLite con modo WAL y registro completo de auditoría.',
+            date: '2026',
+            image: null,
+            images: [],
+            tags: [
+                'TypeScript',
+                'Node.js',
+                'Model Context Protocol',
+                'MCP Server',
+                'SQLite',
+                'Cybersecurity',
+                'Vite',
+                'REST API',
+                'Clean Architecture',
+            ],
+            demoUrl: '',
+            repoUrl: 'https://github.com/cristianbarreiro/AntiSpam-MCP',
+            featured: false,
+        },
     ],
     en: [
         {
@@ -1076,6 +1101,31 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/Rumbo_Platform',
+            featured: false,
+        },
+        {
+            id: 19,
+            title: 'AntiSpam MCP — InboxGuardian',
+            description:
+                'Model Context Protocol (MCP) server and web dashboard for intelligent email triage, spam detection, and human-confirmed cleanup workflows.',
+            longDescription:
+                'Security-focused Model Context Protocol (MCP) server paired with an interactive web dashboard designed for intelligent email management and mailbox hygiene. It implements a deterministic rule engine to classify incoming messages (important, transactional, notifications, newsletters, promotions, and suspected spam) and automate assisted cleanup tasks. The system is designed around a human-in-the-loop security model: requiring two-phase cryptographic confirmation tokens (SHA-256) prior to executing destructive actions such as moving messages to the trash, logging intent atomically before invoking provider side-effects with crash-resilient reconciliation, and enforcing strict SQLite persistence in WAL mode with comprehensive audit trails.',
+            date: '2026',
+            image: null,
+            images: [],
+            tags: [
+                'TypeScript',
+                'Node.js',
+                'Model Context Protocol',
+                'MCP Server',
+                'SQLite',
+                'Cybersecurity',
+                'Vite',
+                'REST API',
+                'Clean Architecture',
+            ],
+            demoUrl: '',
+            repoUrl: 'https://github.com/cristianbarreiro/AntiSpam-MCP',
             featured: false,
         },
     ],
