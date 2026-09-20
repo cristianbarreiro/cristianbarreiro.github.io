@@ -447,6 +447,22 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/PrivGvard',
+            downloads: [
+                {
+                    platform: 'windows',
+                    label: 'Instalador',
+                    format: 'EXE',
+                    arch: 'x64',
+                    url: 'https://github.com/cristianbarreiro/PrivGvard/releases/download/v2.0.0/PrivGvard-Setup-2.0.0.exe',
+                },
+                {
+                    platform: 'windows',
+                    label: 'Portable',
+                    format: 'ZIP',
+                    arch: 'x64',
+                    url: 'https://github.com/cristianbarreiro/PrivGvard/releases/download/v2.0.0/PrivGvard-Portable-2.0.0.zip',
+                },
+            ],
             featured: true,
         },
         {
@@ -962,6 +978,22 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/PrivGvard',
+            downloads: [
+                {
+                    platform: 'windows',
+                    label: 'Installer',
+                    format: 'EXE',
+                    arch: 'x64',
+                    url: 'https://github.com/cristianbarreiro/PrivGvard/releases/download/v2.0.0/PrivGvard-Setup-2.0.0.exe',
+                },
+                {
+                    platform: 'windows',
+                    label: 'Portable',
+                    format: 'ZIP',
+                    arch: 'x64',
+                    url: 'https://github.com/cristianbarreiro/PrivGvard/releases/download/v2.0.0/PrivGvard-Portable-2.0.0.zip',
+                },
+            ],
             featured: true,
         },
         {

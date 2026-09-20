@@ -820,6 +820,56 @@ button:hover .icon-send-jello {
   }
 }
 
+/* ==========================================================================
+   Project Install / Download Action Button & Menu
+   ========================================================================== */
+
+.fh-install-btn {
+  padding-right: 8px !important;
+}
+
+.fh-install-btn-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1;
+}
+
+.fh-install-btn-label {
+  white-space: nowrap;
+}
+
+.fh-install-btn-divider {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background-color: currentColor;
+  opacity: 0.28;
+  margin: 0 1px;
+  vertical-align: middle;
+}
+
+.fh-install-btn-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.85;
+}
+
+.fh-install-btn[data-expanded="true"] .fh-install-btn-chevron {
+  transform: rotate(180deg);
+}
+
+.fh-install-menu-label {
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--mantine-color-dimmed);
+}
+
+.fh-install-menu-item {
+  transition: background-color 0.15s ease;
+  border-radius: var(--mantine-radius-sm);
+}
 
 /* ========================================
    GLOW TEXT — destello por carácter en hover

@@ -247,6 +247,14 @@
     "ecommerce": "E-commerce",
     "backoffice": "Backoffice",
     "code": "Code",
+    "install": "Install...",
+    "download": "Download",
+    "downloadAria": "Installation and download options for {{project}}",
+    "platforms": {
+      "windows": "Windows",
+      "linux": "Linux",
+      "macos": "macOS"
+    },
     "images": "Images",
     "imagesUnavailable": "No images available",
     "mediaUnavailable": "Content not available yet...",

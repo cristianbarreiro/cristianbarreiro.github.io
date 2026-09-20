@@ -19,6 +19,7 @@ import { useMemo, useState } from 'react';
 import { IconExternalLink, IconBrandGithub, IconPhoto, IconCalendar } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 import ProjectImagesModal from './ProjectImagesModal';
+import ProjectDownloadMenu from './ProjectDownloadMenu';
 import { formatProjectDate } from '../utils/formatDate';
 
 /**
@@ -182,6 +183,14 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                                     </Button>
                                 )}
 
+                                {project.downloads && project.downloads.length > 0 && (
+                                    <ProjectDownloadMenu
+                                        downloads={project.downloads}
+                                        projectTitle={project.title}
+                                        size="xs"
+                                    />
+                                )}
+
                                 {hasImages && (
                                     <ActionIcon
                                         variant="subtle"
@@ -336,6 +345,14 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                         >
                             {t('projectCard.backoffice')}
                         </Button>
+                    )}
+
+                    {project.downloads && project.downloads.length > 0 && (
+                        <ProjectDownloadMenu
+                            downloads={project.downloads}
+                            projectTitle={project.title}
+                            size={isCarousel ? 'sm' : 'xs'}
+                        />
                     )}
 
                     {hasImages && (

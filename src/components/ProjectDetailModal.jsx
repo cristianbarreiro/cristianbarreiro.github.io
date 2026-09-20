@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import { IconExternalLink, IconBrandGithub, IconPhoto, IconCalendar } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 import ProjectImagesModal from './ProjectImagesModal';
+import ProjectDownloadMenu from './ProjectDownloadMenu';
 import { formatProjectDate } from '../utils/formatDate';
 
 function ProjectDetailModal({ project, opened, onClose }) {
@@ -138,6 +139,14 @@ function ProjectDetailModal({ project, opened, onClose }) {
                                 </Button>
                             )}
 
+                            {project.downloads && project.downloads.length > 0 && (
+                                <ProjectDownloadMenu
+                                    downloads={project.downloads}
+                                    projectTitle={project.title}
+                                    size="md"
+                                />
+                            )}
+
                             {hasImages && (
                                 <Button
                                     variant="light"
@@ -166,7 +175,6 @@ function ProjectDetailModal({ project, opened, onClose }) {
                     </Stack>
                 )}
             </Modal>
-
             {galleryOpened && hasImages && (
                 <ProjectImagesModal
                     opened={galleryOpened}
