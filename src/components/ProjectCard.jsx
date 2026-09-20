@@ -91,8 +91,9 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                 <Tooltip
                     label={t('projectCard.viewMore')}
                     openDelay={600}
-                    position="top"
-                    offset={8}
+                    position="bottom"
+                    offset={10}
+                    middlewares={{ flip: false, shift: true }}
                 >
                     <Card
                         shadow="xs"
@@ -243,8 +244,9 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
             <Tooltip
                 label={t('projectCard.viewMore')}
                 openDelay={600}
-                position="top"
-                offset={8}
+                position="bottom"
+                offset={10}
+                middlewares={{ flip: false, shift: true }}
             >
             <Card
                 shadow={isCarousel ? 'md' : 'sm'}
