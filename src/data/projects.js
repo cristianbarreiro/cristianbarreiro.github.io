@@ -572,6 +572,31 @@ const projectsByLanguage = {
             repoUrl: 'https://github.com/cristianbarreiro/AntiSpam-MCP',
             featured: false,
         },
+        {
+            id: 20,
+            title: 'Desktop Calendar',
+            description:
+                'Aplicación desktop de calendario con widget, gestión de eventos, notas y configuración de personalización.',
+            longDescription:
+                'Desktop Calendar es una aplicación Windows para gestionar calendarios, notas y ajustes de forma práctica y accesible. Combina un widget compacto para consultar fechas rápidamente con una experiencia completa de gestión de eventos, organización de notas y preferencias visuales. El proyecto se desarrolló con .NET 10, C# y WPF, integrando MVVM, Entity Framework Core y SQLite para una base sólida de persistencia y mantenimiento.',
+            date: '2026',
+            image: null,
+            images: [],
+            tags: [
+                '.NET 10',
+                'C#',
+                'WPF',
+                'XAML',
+                'MVVM',
+                'SQLite',
+                'Entity Framework Core',
+                'Windows',
+                'Desktop App',
+            ],
+            demoUrl: '',
+            repoUrl: 'https://github.com/cristianbarreiro/Desktop-Calendar',
+            featured: false,
+        },
     ],
     en: [
         {
@@ -1126,6 +1151,31 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/AntiSpam-MCP',
+            featured: false,
+        },
+        {
+            id: 20,
+            title: 'Desktop Calendar',
+            description:
+                'Desktop calendar application with widget, event management, notes, and personalization settings.',
+            longDescription:
+                'Desktop Calendar is a Windows application for managing calendars, notes, and settings in a practical and accessible way. It combines a compact widget for quick date checks with a complete event management experience, note organization, and visual preferences. The project was built with .NET 10, C#, and WPF, integrating MVVM, Entity Framework Core, and SQLite for a solid persistence and maintenance foundation.',
+            date: '2026',
+            image: null,
+            images: [],
+            tags: [
+                '.NET 10',
+                'C#',
+                'WPF',
+                'XAML',
+                'MVVM',
+                'SQLite',
+                'Entity Framework Core',
+                'Windows',
+                'Desktop App',
+            ],
+            demoUrl: '',
+            repoUrl: 'https://github.com/cristianbarreiro/Desktop-Calendar',
             featured: false,
         },
     ],
