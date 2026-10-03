@@ -1,11 +1,140 @@
-import { Modal, Text, Badge, Group, Button, Stack, Title } from '@mantine/core';
+import { Modal, Text, Badge, Group, Button, Stack, Title, Box } from '@mantine/core';
 import { useMemo, useState } from 'react';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconExternalLink, IconBrandGithub, IconPhoto, IconCalendar } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 import ProjectImagesViewer from './ProjectImagesViewer';
+import ProjectDescriptionVisual from './ProjectDescriptionVisual';
 import ProjectDownloadMenu from './ProjectDownloadMenu';
 import { formatProjectDate } from '../utils/formatDate';
+
+const PROJECT_DESCRIPTION_VISUAL_PILOT = {
+    viewBox: [0, 0, 1200, 580],
+    background: {
+        type: 'linearGradient',
+        x1: '0%',
+        y1: '0%',
+        x2: '100%',
+        y2: '100%',
+        stops: [
+            { offset: '0%', color: 'var(--mantine-color-body)' },
+            { offset: '100%', color: 'color-mix(in srgb, var(--accent-color) 18%, var(--mantine-color-body))' },
+        ],
+    },
+    elements: [
+        {
+            type: 'group',
+            opacity: 0.9,
+            children: [
+                {
+                    type: 'ellipse',
+                    cx: 1000,
+                    cy: 280,
+                    rx: 145,
+                    ry: 190,
+                    fill: 'none',
+                    stroke: 'var(--mantine-color-default-border)',
+                    strokeWidth: 1,
+                },
+                {
+                    type: 'circle',
+                    cx: 1000,
+                    cy: 280,
+                    r: 116,
+                    fill: {
+                        type: 'radialGradient',
+                        cx: '50%',
+                        cy: '45%',
+                        r: '65%',
+                        stops: [
+                            { offset: '0%', color: 'var(--accent-color)', opacity: 0.48 },
+                            { offset: '100%', color: 'var(--accent-color)', opacity: 0 },
+                        ],
+                    },
+                },
+                {
+                    type: 'path',
+                    d: 'M790 405 C860 330 900 345 958 270 S1060 170 1130 205',
+                    fill: 'none',
+                    stroke: 'var(--accent-color)',
+                    strokeWidth: 3,
+                    strokeLinecap: 'round',
+                },
+                {
+                    type: 'line',
+                    x1: 830,
+                    y1: 125,
+                    x2: 1125,
+                    y2: 125,
+                    stroke: 'var(--mantine-color-default-border)',
+                    strokeWidth: 1,
+                },
+                {
+                    type: 'polyline',
+                    points: [[830, 438], [880, 418], [930, 430], [980, 392], [1030, 407], [1080, 370]],
+                    fill: 'none',
+                    stroke: 'var(--accent-color)',
+                    strokeWidth: 2,
+                    strokeLinejoin: 'round',
+                },
+                {
+                    type: 'polygon',
+                    points: [[1090, 165], [1110, 176], [1098, 194]],
+                    fill: 'var(--accent-color)',
+                },
+                {
+                    type: 'rect',
+                    x: 830,
+                    y: 455,
+                    width: 275,
+                    height: 2,
+                    fill: 'var(--mantine-color-default-border)',
+                },
+            ],
+        },
+        {
+            type: 'text',
+            content: { bind: 'title' },
+            x: 64,
+            y: 92,
+            fill: 'var(--mantine-color-text)',
+            fontFamily: 'var(--mantine-font-family)',
+            fontSize: 34,
+            fontWeight: 700,
+            maxLength: 42,
+        },
+        {
+            type: 'text',
+            content: { bind: 'description' },
+            x: 66,
+            y: 142,
+            fill: 'var(--mantine-color-dimmed)',
+            fontFamily: 'var(--mantine-font-family)',
+            fontSize: 16,
+            maxLength: 84,
+        },
+        {
+            type: 'text',
+            content: { text: '•' },
+            x: 66,
+            y: 190,
+            fill: 'var(--accent-color)',
+            fontFamily: 'var(--mantine-font-family)',
+            fontSize: 20,
+        },
+        {
+            type: 'textList',
+            content: { bind: 'tags' },
+            x: 66,
+            y: 232,
+            gap: 20,
+            fill: 'var(--mantine-color-dimmed)',
+            fontFamily: 'var(--mantine-font-family)',
+            fontSize: 14,
+            fontWeight: 500,
+        },
+    ],
+};
 
 function ProjectDetailModal({ project, opened, onClose }) {
     const { t } = useTranslation();
@@ -147,6 +276,22 @@ function ProjectDetailModal({ project, opened, onClose }) {
                         <Text size="md" style={{ lineHeight: 1.7 }}>
                             {project.longDescription || project.description}
                         </Text>
+
+                        <Box
+                            component="figure"
+                            m={0}
+                            style={{
+                                width: '100%',
+                                overflow: 'hidden',
+                                border: '1px solid var(--mantine-color-default-border)',
+                                borderRadius: 'var(--mantine-radius-md)',
+                            }}
+                        >
+                            <ProjectDescriptionVisual
+                                project={project}
+                                visualData={PROJECT_DESCRIPTION_VISUAL_PILOT}
+                            />
+                        </Box>
 
                         <Group gap="xs" wrap="wrap">
                             {project.tags.map((tag) => (
