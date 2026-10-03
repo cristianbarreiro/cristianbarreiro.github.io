@@ -1,13 +1,12 @@
 /**
  * ProjectCardGridCanvas
  * 
- * Componente que ilumina de forma sutil y pseudo-aleatoria celdas de la cuadrícula
- * existente (64px x 64px) en las tarjetas de proyectos al pasar el cursor (hover).
+ * Dibuja la cuadrícula y sus celdas iluminadas en un único sistema de coordenadas.
  * 
  * Invariantes:
- * - NO dibuja líneas de cuadrícula ni crea una cuadrícula secundaria.
- * - Respeta estrictamente las dimensiones existentes (64px x 64px, origen 0,0).
- * - Utiliza la misma máscara radial que el pseudo-elemento ::before original.
+ * - CELL_SIZE es la única definición geométrica del tamaño de celda.
+ * - Las luces ocupan la celda completa; las líneas se dibujan encima.
+ * - Una máscara radial única se aplica a todo el dibujo del Canvas.
  * - Ciclo de vida desacoplado de los re-renders de React para máximo rendimiento (RAF).
  * - Respeta prefers-reduced-motion.
  */
@@ -71,12 +70,14 @@ function ProjectCardGridCanvas() {
     };
     motionQuery.addEventListener('change', handleMotionChange);
 
-    // Ajustar resolución del canvas según tamaño real y DPI
+    // Mantener las medidas CSS fraccionarias y adaptar el bitmap al DPR real.
     const updateSize = () => {
-      const rect = parent.getBoundingClientRect();
-      cardWidth = Math.round(rect.width);
-      cardHeight = Math.round(rect.height);
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      // El canvas ocupa el padding box de la Card; medirlo evita incluir el borde
+      // de Mantine en una superficie de dibujo que queda dentro de ese borde.
+      const rect = canvas.getBoundingClientRect();
+      cardWidth = rect.width;
+      cardHeight = rect.height;
+      dpr = window.devicePixelRatio || 1;
 
       const targetPixelWidth = Math.round(cardWidth * dpr);
       const targetPixelHeight = Math.round(cardHeight * dpr);
@@ -91,35 +92,23 @@ function ProjectCardGridCanvas() {
       updateSize();
     });
     resizeObserver.observe(parent);
+    window.addEventListener('resize', updateSize);
     updateSize();
 
-    // Obtener candidatos de celdas visibles según la máscara radial
+    // La máscara recorta el dibujo completo; no se aproxima aquí para elegir celdas.
     const getEligibleCells = () => {
       const cols = Math.ceil(cardWidth / CELL_SIZE);
       const rows = Math.ceil(cardHeight / CELL_SIZE);
       const eligible = [];
 
-      // Centro de la máscara radial original: 60% x, 8% y
-      const maskCenterX = cardWidth * 0.6;
-      const maskCenterY = cardHeight * 0.08;
-      const maxDim = Math.max(cardWidth, cardHeight);
-      const maxRadius = maxDim * 0.7; // Radio efectivo donde la máscara es visible
-
       for (let c = 0; c < cols; c++) {
         for (let r = 0; r < rows; r++) {
-          const cellCenterX = c * CELL_SIZE + CELL_SIZE / 2;
-          const cellCenterY = r * CELL_SIZE + CELL_SIZE / 2;
-          const dist = Math.hypot(cellCenterX - maskCenterX, cellCenterY - maskCenterY);
-
-          // Incluir celdas que caen dentro del área visible de la máscara
-          if (dist <= maxRadius) {
-            // Evitar seleccionar una celda que ya esté activa
-            const isAlreadyActive = activeCells.some(
-              (cell) => cell.col === c && cell.row === r
-            );
-            if (!isAlreadyActive) {
-              eligible.push({ col: c, row: r, dist });
-            }
+          // Evitar seleccionar una celda que ya esté activa.
+          const isAlreadyActive = activeCells.some(
+            (cell) => cell.col === c && cell.row === r
+          );
+          if (!isAlreadyActive) {
+            eligible.push({ col: c, row: r });
           }
         }
       }
@@ -132,7 +121,6 @@ function ProjectCardGridCanvas() {
       const eligible = getEligibleCells();
       if (eligible.length === 0) return;
 
-      // Ponderar ligeramente celdas más cercanas a la zona de luz
       const selected = eligible[Math.floor(Math.random() * eligible.length)];
 
       // Parámetros de animación sutiles
@@ -194,31 +182,7 @@ function ProjectCardGridCanvas() {
         }
       }
 
-      // Limpiar y dibujar
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      if (activeCells.length > 0) {
-        ctx.save();
-        ctx.scale(dpr, dpr);
-
-        const { r, g, b } = colorRef.current;
-
-        for (let i = 0; i < activeCells.length; i++) {
-          const cell = activeCells[i];
-          if (cell.currentOpacity <= 0) continue;
-
-          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${cell.currentOpacity.toFixed(3)})`;
-          // Rellenar exactamente el espacio interior de la celda de 64x64 entre las líneas de 1px
-          ctx.fillRect(
-            cell.col * CELL_SIZE + 1,
-            cell.row * CELL_SIZE + 1,
-            CELL_SIZE - 1,
-            CELL_SIZE - 1
-          );
-        }
-
-        ctx.restore();
-      }
+      drawCanvas();
 
       // Continuar el bucle mientras esté en hover o queden celdas desvaneciéndose
       if (isHovered || activeCells.length > 0) {
@@ -227,6 +191,89 @@ function ProjectCardGridCanvas() {
         rafId = null;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
+    };
+
+    // Dibuja toda la composición en coordenadas CSS. La transformación se deriva
+    // del tamaño final del bitmap para conservar la geometría incluso al redondear DPR.
+    const drawCanvas = () => {
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (!cardWidth || !cardHeight) return;
+
+      const scaleX = canvas.width / cardWidth;
+      const scaleY = canvas.height / cardHeight;
+      ctx.setTransform(scaleX, 0, 0, scaleY, 0, 0);
+
+      // Conserva el resplandor radial de la capa CSS anterior.
+      const tileColor = getComputedStyle(parent)
+        .getPropertyValue('--fh-card-tile-color')
+        .trim();
+      if (tileColor) {
+        const centerX = cardWidth * 0.18;
+        const centerY = cardHeight * 0.12;
+        const radius = Math.max(
+          Math.hypot(centerX, centerY),
+          Math.hypot(cardWidth - centerX, centerY),
+          Math.hypot(centerX, cardHeight - centerY),
+          Math.hypot(cardWidth - centerX, cardHeight - centerY)
+        );
+        const glow = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+        glow.addColorStop(0, tileColor);
+        glow.addColorStop(0.55, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = glow;
+        ctx.fillRect(0, 0, cardWidth, cardHeight);
+      }
+
+      // Iluminación: cada rectángulo ocupa exactamente su celda geométrica.
+      const { r, g, b } = colorRef.current;
+      for (const cell of activeCells) {
+        if (cell.currentOpacity <= 0) continue;
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${cell.currentOpacity.toFixed(3)})`;
+        ctx.fillRect(
+          cell.col * CELL_SIZE,
+          cell.row * CELL_SIZE,
+          CELL_SIZE,
+          CELL_SIZE
+        );
+      }
+
+      // Rellenos rectangulares de 1 CSS px evitan el medio píxel de los strokes.
+      // En escalas enteras de dispositivo, cada línea cae en límites de píxel.
+      ctx.fillStyle = getComputedStyle(parent)
+        .getPropertyValue('--fh-card-line-color')
+        .trim();
+      const cols = Math.ceil(cardWidth / CELL_SIZE);
+      const rows = Math.ceil(cardHeight / CELL_SIZE);
+      for (let col = 0; col <= cols; col++) {
+        const x = col * CELL_SIZE;
+        if (x <= cardWidth) ctx.fillRect(x, 0, 1, cardHeight);
+      }
+      for (let row = 0; row <= rows; row++) {
+        const y = row * CELL_SIZE;
+        if (y <= cardHeight) ctx.fillRect(0, y, cardWidth, 1);
+      }
+
+      // Equivalente único de radial-gradient(circle at 60% 8%, #000 0%, #000 20%, transparent 68%).
+      const maskCenterX = cardWidth * 0.6;
+      const maskCenterY = cardHeight * 0.08;
+      const maskRadius = Math.max(
+        Math.hypot(maskCenterX, maskCenterY),
+        Math.hypot(cardWidth - maskCenterX, maskCenterY),
+        Math.hypot(maskCenterX, cardHeight - maskCenterY),
+        Math.hypot(cardWidth - maskCenterX, cardHeight - maskCenterY)
+      );
+      const mask = ctx.createRadialGradient(
+        maskCenterX, maskCenterY, 0,
+        maskCenterX, maskCenterY, maskRadius
+      );
+      mask.addColorStop(0, 'rgba(0, 0, 0, 1)');
+      mask.addColorStop(0.2, 'rgba(0, 0, 0, 1)');
+      mask.addColorStop(0.68, 'rgba(0, 0, 0, 0)');
+      ctx.globalCompositeOperation = 'destination-in';
+      ctx.fillStyle = mask;
+      ctx.fillRect(0, 0, cardWidth, cardHeight);
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
     };
 
     // Controladores de eventos de hover en la tarjeta
@@ -251,6 +298,7 @@ function ProjectCardGridCanvas() {
     return () => {
       parent.removeEventListener('pointerenter', handlePointerEnter);
       parent.removeEventListener('pointerleave', handlePointerLeave);
+      window.removeEventListener('resize', updateSize);
       motionQuery.removeEventListener('change', handleMotionChange);
       resizeObserver.disconnect();
       if (rafId) {
