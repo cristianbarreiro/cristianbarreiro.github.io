@@ -1,3 +1,5 @@
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_HEADER_DIVIDER } from './common';
+
 const rumboDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
     background: {
@@ -12,8 +14,8 @@ const rumboDescriptionVisual = {
         ],
     },
     elements: [
-        { type: 'rect', x: 24, y: 24, width: 952, height: 572, rx: 22, fill: 'none', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
-        { type: 'line', x1: 25, y1: 126, x2: 975, y2: 126, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
+        PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_HEADER_DIVIDER,
         { type: 'rect', x: 48, y: 158, width: 250, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 70, cy: 184, r: 3, fill: 'var(--accent-color)' },
         { type: 'line', x1: 70, y1: 207, x2: 276, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },

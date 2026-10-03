@@ -1,3 +1,5 @@
+import { PROJECT_VISUAL_FRAME } from './common';
+
 const privGvardDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
     background: {
@@ -16,7 +18,7 @@ const privGvardDescriptionVisual = {
             type: 'group',
             opacity: 0.82,
             children: [
-                { type: 'rect', x: 24, y: 24, width: 952, height: 572, rx: 22, fill: 'none', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
+                PROJECT_VISUAL_FRAME,
                 { type: 'line', x1: 25, y1: 145, x2: 975, y2: 145, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'circle', cx: 54, cy: 55, r: 4, fill: 'var(--accent-color)' },
                 { type: 'circle', cx: 72, cy: 55, r: 4, fill: 'var(--mantine-color-default-border)' },
