@@ -9,3 +9,7 @@ export { default as desktopCalendarDescriptionVisual } from './desktopCalendar';
 export { default as geniusDescriptionVisual } from './genius';
 export { default as antiSpamMcpDescriptionVisual } from './antiSpamMcp';
 export { default as shopHubDescriptionVisual } from './shopHub';
+export { default as mcpSecureDeleteDescriptionVisual } from './mcpSecureDelete';
+export { default as footwearBoutiqueDescriptionVisual } from './footwearBoutique';
+export { default as automotoraDescriptionVisual } from './automotora';
+export { default as messagingSystemDescriptionVisual } from './messagingSystem';

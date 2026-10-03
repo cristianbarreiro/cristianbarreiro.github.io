@@ -28,6 +28,10 @@ import {
     geniusDescriptionVisual,
     antiSpamMcpDescriptionVisual,
     shopHubDescriptionVisual,
+    mcpSecureDeleteDescriptionVisual,
+    footwearBoutiqueDescriptionVisual,
+    automotoraDescriptionVisual,
+    messagingSystemDescriptionVisual,
 } from './projectVisuals';
 
 const projectsByLanguage = {
@@ -142,6 +146,7 @@ const projectsByLanguage = {
             tags: ['Javascript', 'HTML', 'CSS', 'API Fetch', 'LocalStorage'],
             demoUrl: 'https://carsauto.vercel.app',
             repoUrl: 'https://github.com/cristianbarreiro/carsauto',
+            descriptionVisual: automotoraDescriptionVisual,
             featured: false,
         },
         {
@@ -193,6 +198,7 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/mcp-secure-delete',
+            descriptionVisual: mcpSecureDeleteDescriptionVisual,
             featured: false,
         },
         {
@@ -376,6 +382,7 @@ const projectsByLanguage = {
             tags: ['Python', 'Sockets', 'Redes'],
             demoUrl: '',
             repoUrl: 'https://github.com/labredesproyectito/laboratorio_redes',
+            descriptionVisual: messagingSystemDescriptionVisual,
             featured: false
         },
         {
@@ -418,6 +425,7 @@ const projectsByLanguage = {
             tags: ['TypeScript', 'React', 'TailwindCSS', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Vite', 'Stripe'],
             demoUrl: 'https://boutique-exclusivi-ds7v.vercel.app/',
             repoUrl: '',
+            descriptionVisual: footwearBoutiqueDescriptionVisual,
             featured: false
         },
         {
@@ -734,6 +742,7 @@ const projectsByLanguage = {
             tags: ['JavaScript', 'HTML', 'CSS', 'Fetch API', 'LocalStorage'],
             demoUrl: 'https://carsauto.vercel.app',
             repoUrl: 'https://github.com/cristianbarreiro/carsauto',
+            descriptionVisual: automotoraDescriptionVisual,
             featured: false,
         },
         {
@@ -785,6 +794,7 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/mcp-secure-delete',
+            descriptionVisual: mcpSecureDeleteDescriptionVisual,
             featured: false,
         },
         {
@@ -968,6 +978,7 @@ const projectsByLanguage = {
             tags: ['Python', 'Sockets', 'Networking'],
             demoUrl: '',
             repoUrl: 'https://github.com/labredesproyectito/laboratorio_redes',
+            descriptionVisual: messagingSystemDescriptionVisual,
             featured: false
         },
         {
@@ -1010,6 +1021,7 @@ const projectsByLanguage = {
             tags: ['TypeScript', 'React', 'TailwindCSS', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Vite', 'Stripe'],
             demoUrl: 'https://boutique-exclusivi-ds7v.vercel.app/',
             repoUrl: '',
+            descriptionVisual: footwearBoutiqueDescriptionVisual,
             featured: false
         },
         {
