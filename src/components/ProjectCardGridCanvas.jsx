@@ -47,6 +47,9 @@ function ProjectCardGridCanvas() {
     let cssWidth = 0;
     let cssHeight = 0;
     let activeCells = [];
+    const activeTouchPointers = new Set();
+    let isMouseHovered = false;
+    const hoverCapabilityQuery = window.matchMedia('(any-hover: hover)');
     let lastSpawnTime = 0;
     let nextSpawnDelay = 200;
     let dprMediaQuery = null;
@@ -270,15 +273,17 @@ function ProjectCardGridCanvas() {
       }
     }
 
-    const handlePointerEnter = () => {
+    const startInteraction = () => {
+      if (isHovered) return;
       isHovered = true;
       if (prefersReducedMotion) return;
       lastSpawnTime = performance.now() - nextSpawnDelay;
       scheduleFrame();
     };
 
-    const handlePointerLeave = () => {
+    const stopInteraction = () => {
       isHovered = false;
+      if (prefersReducedMotion) return;
       const now = performance.now();
       for (const cell of activeCells) {
         cell.exitFadeStart = now;
@@ -286,6 +291,37 @@ function ProjectCardGridCanvas() {
         cell.exitFadeStartOpacity = cell.currentOpacity;
       }
       if (activeCells.length > 0) scheduleFrame();
+    };
+
+    const handlePointerEnter = (event) => {
+      if (event.pointerType !== 'mouse' || !hoverCapabilityQuery.matches) return;
+      isMouseHovered = true;
+      startInteraction();
+    };
+
+    const handlePointerLeave = (event) => {
+      if (event.pointerType !== 'mouse' || !hoverCapabilityQuery.matches) return;
+      isMouseHovered = false;
+      if (activeTouchPointers.size === 0) stopInteraction();
+    };
+
+    const handlePointerDown = (event) => {
+      // Some touch emulators report presses as mouse pointers despite having no hover.
+      const isTouchInput = event.pointerType !== 'mouse' || !hoverCapabilityQuery.matches;
+      if (!isTouchInput || activeTouchPointers.has(event.pointerId)) return;
+      activeTouchPointers.add(event.pointerId);
+      if (activeTouchPointers.size === 1) {
+        canvas.classList.add('fh-project-card-canvas--touch-active');
+        startInteraction();
+      }
+    };
+
+    const handlePointerEnd = (event) => {
+      if (!activeTouchPointers.delete(event.pointerId)) return;
+      if (activeTouchPointers.size > 0) return;
+      canvas.classList.remove('fh-project-card-canvas--touch-active');
+      if (isMouseHovered) return;
+      stopInteraction();
     };
 
     const handleMotionChange = (event) => {
@@ -336,6 +372,9 @@ function ProjectCardGridCanvas() {
     window.addEventListener('resize', handleWindowResize);
     parent.addEventListener('pointerenter', handlePointerEnter);
     parent.addEventListener('pointerleave', handlePointerLeave);
+    parent.addEventListener('pointerdown', handlePointerDown);
+    window.addEventListener('pointerup', handlePointerEnd);
+    window.addEventListener('pointercancel', handlePointerEnd);
 
     const styleObserver = new MutationObserver(handleStyleChange);
     styleObserver.observe(parent, { attributes: true, attributeFilter: ['style', 'class'] });
@@ -352,11 +391,15 @@ function ProjectCardGridCanvas() {
     return () => {
       parent.removeEventListener('pointerenter', handlePointerEnter);
       parent.removeEventListener('pointerleave', handlePointerLeave);
+      parent.removeEventListener('pointerdown', handlePointerDown);
+      window.removeEventListener('pointerup', handlePointerEnd);
+      window.removeEventListener('pointercancel', handlePointerEnd);
       window.removeEventListener('resize', handleWindowResize);
       motionQuery.removeEventListener('change', handleMotionChange);
       dprMediaQuery?.removeEventListener('change', handleDprChange);
       styleObserver.disconnect();
       resizeObserver.disconnect();
+      canvas.classList.remove('fh-project-card-canvas--touch-active');
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);

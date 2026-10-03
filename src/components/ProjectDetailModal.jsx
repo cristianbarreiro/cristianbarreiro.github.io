@@ -1,14 +1,27 @@
 import { Modal, Text, Badge, Group, Button, Stack, Title } from '@mantine/core';
 import { useMemo, useState } from 'react';
+import { useMediaQuery } from '@mantine/hooks';
 import { IconExternalLink, IconBrandGithub, IconPhoto, IconCalendar } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
-import ProjectImagesModal from './ProjectImagesModal';
+import ProjectImagesViewer from './ProjectImagesViewer';
 import ProjectDownloadMenu from './ProjectDownloadMenu';
 import { formatProjectDate } from '../utils/formatDate';
 
 function ProjectDetailModal({ project, opened, onClose }) {
     const { t } = useTranslation();
-    const [galleryOpened, setGalleryOpened] = useState(false);
+    const isMobile = useMediaQuery('(max-width: 48em)');
+    const [viewState, setViewState] = useState({ project, view: 'description' });
+    const view = opened && viewState.project === project ? viewState.view : 'description';
+    const isMediaView = view === 'media';
+
+    const changeView = (nextView) => {
+        setViewState({ project, view: nextView });
+    };
+
+    const handleClose = () => {
+        setViewState({ project, view: 'description' });
+        onClose();
+    };
 
     const projectImages = useMemo(() => {
         if (!project) return [];
@@ -54,24 +67,57 @@ function ProjectDetailModal({ project, opened, onClose }) {
     const hasImages = projectImages.length > 0;
 
     return (
-        <>
-            <Modal
-                opened={opened}
-                onClose={onClose}
-                size="lg"
-                centered
-                withCloseButton
-                closeOnClickOutside
-                closeOnEscape
-                transitionProps={{ transition: 'scale', duration: 300 }}
-                className="project-detail-modal"
-                styles={{
-                    body: {
-                        padding: 'var(--mantine-spacing-xl)',
-                    },
-                }}
-            >
-                {project && (
+        <Modal
+            opened={opened}
+            onClose={handleClose}
+            size={isMediaView ? (isMobile ? '100%' : 'min(94vw, 1280px)') : 'lg'}
+            centered
+            fullScreen={isMediaView && isMobile}
+            radius={isMediaView ? (isMobile ? 0 : 'xl') : 'md'}
+            padding={isMediaView ? 0 : undefined}
+            withCloseButton={!isMediaView}
+            closeOnClickOutside
+            closeOnEscape={!isMediaView}
+            transitionProps={isMediaView ? undefined : { transition: 'scale', duration: 300 }}
+            className={isMediaView ? 'project-media-modal' : 'project-detail-modal'}
+            overlayProps={isMediaView ? { backgroundOpacity: 0.7, blur: 12 } : undefined}
+            styles={isMediaView ? {
+                overlay: {
+                    backdropFilter: 'blur(16px) saturate(180%)',
+                    WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+                },
+                content: {
+                    background: 'var(--media-viewer-bg)',
+                    backdropFilter: 'blur(24px) saturate(190%)',
+                    WebkitBackdropFilter: 'blur(24px) saturate(190%)',
+                    boxShadow: 'var(--media-viewer-shadow)',
+                    border: '1px solid var(--media-viewer-border)',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    flexDirection: 'column',
+                },
+                body: {
+                    padding: 0,
+                    overflow: 'hidden',
+                    flex: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                },
+            } : {
+                body: {
+                    padding: 'var(--mantine-spacing-xl)',
+                },
+            }}
+        >
+                {project && (isMediaView ? (
+                    <ProjectImagesViewer
+                        opened={opened}
+                        onClose={handleClose}
+                        onBackToDescription={() => changeView('description')}
+                        images={projectImages}
+                        projectTitle={project.title}
+                    />
+                ) : (
                     <Stack gap="lg">
                         {project.featured && (
                             <Badge
@@ -152,9 +198,9 @@ function ProjectDetailModal({ project, opened, onClose }) {
                                     variant="light"
                                     size="md"
                                     leftSection={<IconPhoto size={18} />}
-                                    onClick={() => setGalleryOpened(true)}
+                                    onClick={() => changeView('media')}
                                 >
-                                    {t('projectCard.images')}
+                                    {t('projectCard.viewImagesAndVideos')}
                                 </Button>
                             )}
 
@@ -173,17 +219,8 @@ function ProjectDetailModal({ project, opened, onClose }) {
                             )}
                         </Group>
                     </Stack>
-                )}
-            </Modal>
-            {galleryOpened && hasImages && (
-                <ProjectImagesModal
-                    opened={galleryOpened}
-                    onClose={() => setGalleryOpened(false)}
-                    images={projectImages}
-                    projectTitle={project.title}
-                />
-            )}
-        </>
+                ))}
+        </Modal>
     );
 }
 

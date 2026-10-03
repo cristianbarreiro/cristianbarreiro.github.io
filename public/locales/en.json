@@ -256,6 +256,8 @@
       "macos": "macOS"
     },
     "images": "Images",
+    "viewImagesAndVideos": "View images and videos",
+    "viewDescription": "View description",
     "imagesUnavailable": "No images available",
     "mediaUnavailable": "Content not available yet...",
     "mediaUnavailableDesc": "The file for this content is not yet available.",

@@ -605,6 +605,7 @@ button:hover .icon-send-jello {
 .fh-project-card {
   position: relative;
   overflow: hidden;
+  --fh-project-card-padding: var(--mantine-spacing-lg);
   background-color: var(--fh-card-background-color);
   box-shadow: 0px var(--fh-card-shadow-1-y) var(--fh-card-shadow-1-blur)
       var(--fh-card-shadow-1),
@@ -631,6 +632,10 @@ button:hover .icon-send-jello {
   transition: opacity 0.9s ease-in-out;
 }
 
+.fh-project-card--carousel {
+  --fh-project-card-padding: var(--mantine-spacing-xl);
+}
+
 /* Shine layer */
 .fh-project-card::after {
   content: "";
@@ -649,23 +654,30 @@ button:hover .icon-send-jello {
   );
 }
 
-.fh-project-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0px var(--fh-card-hover-shadow-1-y)
-      var(--fh-card-hover-shadow-1-blur) var(--fh-card-hover-shadow-1),
-    0px var(--fh-card-hover-shadow-2-y) var(--fh-card-hover-shadow-2-blur)
-      var(--fh-card-hover-shadow-2),
-    0 0 0 var(--fh-card-border-width) var(--fh-card-hover-border-color);
+@media (any-hover: hover) {
+  .fh-project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px var(--fh-card-hover-shadow-1-y)
+        var(--fh-card-hover-shadow-1-blur) var(--fh-card-hover-shadow-1),
+      0px var(--fh-card-hover-shadow-2-y) var(--fh-card-hover-shadow-2-blur)
+        var(--fh-card-hover-shadow-2),
+      0 0 0 var(--fh-card-border-width) var(--fh-card-hover-border-color);
+  }
+
+  .fh-project-card:hover > .fh-project-card-canvas {
+    opacity: 1;
+    transition-duration: 0.35s;
+    transition-timing-function: ease-in-out;
+  }
+
+  .fh-project-card:hover::after {
+    opacity: var(--fh-card-shine-opacity);
+  }
 }
 
-.fh-project-card:hover > .fh-project-card-canvas {
+.fh-project-card > .fh-project-card-canvas.fh-project-card-canvas--touch-active {
   opacity: 1;
-  transition-duration: 0.35s;
-  transition-timing-function: ease-in-out;
-}
-
-.fh-project-card:hover::after {
-  opacity: var(--fh-card-shine-opacity);
+  transition-duration: 0.15s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -803,6 +815,60 @@ button:hover .icon-send-jello {
 /* ==========================================================================
    Project Install / Download Action Button & Menu
    ========================================================================== */
+
+@media (max-width: 480px) {
+  .fh-project-card {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .fh-project-card:not(.fh-project-card--list) {
+    --fh-project-card-padding: var(--mantine-spacing-md);
+  }
+
+  .fh-project-card--list {
+    padding: var(--mantine-spacing-xs);
+  }
+
+  .fh-project-list-row {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "meta"
+      "tags"
+      "actions";
+    row-gap: var(--mantine-spacing-sm);
+    align-items: start;
+  }
+
+  .fh-project-list-meta {
+    flex-wrap: wrap;
+    gap: var(--mantine-spacing-xs);
+  }
+
+  .fh-project-list-title {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-overflow: clip;
+  }
+
+  .fh-project-list-date {
+    white-space: normal;
+  }
+
+  .fh-project-list-tags {
+    flex-wrap: wrap;
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .fh-project-list-actions {
+    justify-self: start;
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+}
 
 .fh-install-btn {
   padding-right: 8px !important;

@@ -255,7 +255,7 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                 padding={isCarousel ? 'xl' : 'lg'}
                 radius="md"
                 withBorder
-                className={`fh-project-card glass-hover-card${isSelected ? ' fh-project-card--selected' : ''}`}
+                className={`fh-project-card${isCarousel ? ' fh-project-card--carousel' : ''} glass-hover-card${isSelected ? ' fh-project-card--selected' : ''}`}
                 onClick={onSelect}
                 style={{
                     height: '100%',
@@ -263,6 +263,7 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                     display: 'flex',
                     flexDirection: 'column',
                     cursor: 'pointer',
+                    '--card-padding': 'var(--fh-project-card-padding)',
                     // Variables para el efecto hover (estilo “Prismic”).
                     '--fh-card-accent': accentColor,
                     '--fh-card-border-color': project.featured
