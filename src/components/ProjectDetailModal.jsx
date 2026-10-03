@@ -8,7 +8,7 @@ import ProjectDescriptionVisual from './ProjectDescriptionVisual';
 import ProjectDownloadMenu from './ProjectDownloadMenu';
 import { formatProjectDate } from '../utils/formatDate';
 
-const PROJECT_DESCRIPTION_VISUAL_PILOT = {
+const DEFAULT_DESCRIPTION_VISUAL = {
     viewBox: [0, 0, 1200, 580],
     background: {
         type: 'linearGradient',
@@ -91,47 +91,6 @@ const PROJECT_DESCRIPTION_VISUAL_PILOT = {
                     fill: 'var(--mantine-color-default-border)',
                 },
             ],
-        },
-        {
-            type: 'text',
-            content: { bind: 'title' },
-            x: 64,
-            y: 92,
-            fill: 'var(--mantine-color-text)',
-            fontFamily: 'var(--mantine-font-family)',
-            fontSize: 34,
-            fontWeight: 700,
-            maxLength: 42,
-        },
-        {
-            type: 'text',
-            content: { bind: 'description' },
-            x: 66,
-            y: 142,
-            fill: 'var(--mantine-color-dimmed)',
-            fontFamily: 'var(--mantine-font-family)',
-            fontSize: 16,
-            maxLength: 84,
-        },
-        {
-            type: 'text',
-            content: { text: '•' },
-            x: 66,
-            y: 190,
-            fill: 'var(--accent-color)',
-            fontFamily: 'var(--mantine-font-family)',
-            fontSize: 20,
-        },
-        {
-            type: 'textList',
-            content: { bind: 'tags' },
-            x: 66,
-            y: 232,
-            gap: 20,
-            fill: 'var(--mantine-color-dimmed)',
-            fontFamily: 'var(--mantine-font-family)',
-            fontSize: 14,
-            fontWeight: 500,
         },
     ],
 };
@@ -289,7 +248,7 @@ function ProjectDetailModal({ project, opened, onClose }) {
                         >
                             <ProjectDescriptionVisual
                                 project={project}
-                                visualData={PROJECT_DESCRIPTION_VISUAL_PILOT}
+                                visualData={project.descriptionVisual || DEFAULT_DESCRIPTION_VISUAL}
                             />
                         </Box>
 

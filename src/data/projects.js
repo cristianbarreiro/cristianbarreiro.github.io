@@ -16,6 +16,110 @@
  * - featured: si es un proyecto destacado (aparece primero)
  */
 
+const privGvardDescriptionVisual = {
+    viewBox: [0, 0, 1200, 580],
+    background: {
+        type: 'linearGradient',
+        x1: '0%',
+        y1: '0%',
+        x2: '100%',
+        y2: '100%',
+        stops: [
+            { offset: '0%', color: 'var(--mantine-color-body)' },
+            { offset: '100%', color: 'color-mix(in srgb, var(--accent-color) 14%, var(--mantine-color-body))' },
+        ],
+    },
+    elements: [
+        {
+            type: 'group',
+            opacity: 0.8,
+            children: [
+                { type: 'line', x1: 0, y1: 78, x2: 1200, y2: 78, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
+                { type: 'line', x1: 0, y1: 502, x2: 1200, y2: 502, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
+                { type: 'circle', cx: 28, cy: 38, r: 4, fill: 'var(--accent-color)' },
+                { type: 'circle', cx: 48, cy: 38, r: 4, fill: 'var(--mantine-color-default-border)' },
+                { type: 'circle', cx: 68, cy: 38, r: 4, fill: 'var(--mantine-color-default-border)' },
+                { type: 'rect', x: 44, y: 106, width: 500, height: 362, rx: 18, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
+                { type: 'rect', x: 70, y: 190, width: 448, height: 1, fill: 'var(--mantine-color-default-border)' },
+                { type: 'rect', x: 70, y: 220, width: 5, height: 5, rx: 2.5, fill: 'var(--accent-color)' },
+            ],
+        },
+        {
+            type: 'text',
+            content: { bind: 'title' },
+            x: 70,
+            y: 158,
+            fill: 'var(--mantine-color-text)',
+            fontFamily: 'var(--mantine-font-family)',
+            fontSize: 27,
+            fontWeight: 700,
+            maxLength: 9,
+        },
+        {
+            type: 'textList',
+            content: { bind: 'tags' },
+            x: 86,
+            y: 245,
+            gap: 19,
+            fill: 'var(--mantine-color-dimmed)',
+            fontFamily: 'var(--mantine-font-family)',
+            fontSize: 14,
+            fontWeight: 500,
+        },
+        {
+            type: 'group',
+            children: [
+                {
+                    type: 'polygon',
+                    points: [[850, 122], [1030, 190], [1016, 332], [940, 424], [864, 332], [850, 190]],
+                    fill: {
+                        type: 'radialGradient',
+                        cx: '50%',
+                        cy: '38%',
+                        r: '72%',
+                        stops: [
+                            { offset: '0%', color: 'var(--accent-color)', opacity: 0.35 },
+                            { offset: '100%', color: 'var(--mantine-color-body)', opacity: 0.08 },
+                        ],
+                    },
+                    stroke: 'var(--accent-color)',
+                    strokeWidth: 2,
+                },
+                {
+                    type: 'path',
+                    d: 'M940 160 L990 180 L986 294 Q982 336 940 366 Q898 336 894 294 L890 180 Z',
+                    fill: 'none',
+                    stroke: 'var(--mantine-color-text)',
+                    strokeWidth: 2,
+                    opacity: 0.72,
+                },
+                { type: 'rect', x: 908, y: 235, width: 64, height: 48, rx: 12, fill: 'var(--accent-color)' },
+                { type: 'path', d: 'M922 235 V222 A18 18 0 0 1 958 222 V235', fill: 'none', stroke: 'var(--mantine-color-text)', strokeWidth: 7, strokeLinecap: 'round' },
+                { type: 'circle', cx: 940, cy: 256, r: 5, fill: 'var(--mantine-color-body)' },
+                { type: 'line', x1: 940, y1: 261, x2: 940, y2: 270, stroke: 'var(--mantine-color-body)', strokeWidth: 3, strokeLinecap: 'round' },
+                { type: 'circle', cx: 940, cy: 221, r: 105, fill: { type: 'radialGradient', cx: '50%', cy: '50%', r: '50%', stops: [{ offset: '0%', color: 'var(--accent-color)', opacity: 0.22 }, { offset: '100%', color: 'var(--accent-color)', opacity: 0 }] } },
+            ],
+        },
+        {
+            type: 'group',
+            opacity: 0.9,
+            children: [
+                { type: 'rect', x: 724, y: 180, width: 58, height: 42, rx: 8, fill: 'none', stroke: 'var(--mantine-color-text)', strokeWidth: 2 },
+                { type: 'circle', cx: 753, cy: 201, r: 10, fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 3 },
+                { type: 'polygon', points: [[782, 190], [798, 184], [798, 218], [782, 212]], fill: 'var(--accent-color)' },
+                { type: 'rect', x: 747, y: 275, width: 12, height: 43, rx: 6, fill: 'var(--mantine-color-default-border)', stroke: 'var(--mantine-color-text)', strokeWidth: 2 },
+                { type: 'path', d: 'M738 304 V309 A15 15 0 0 0 768 309 V304', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 3, strokeLinecap: 'round' },
+                { type: 'line', x1: 753, y1: 324, x2: 753, y2: 335, stroke: 'var(--mantine-color-text)', strokeWidth: 2 },
+                { type: 'line', x1: 741, y1: 336, x2: 765, y2: 336, stroke: 'var(--mantine-color-text)', strokeWidth: 2, strokeLinecap: 'round' },
+                { type: 'line', x1: 790, y1: 201, x2: 838, y2: 201, stroke: 'var(--accent-color)', strokeWidth: 1, strokeDasharray: [4, 6] },
+                { type: 'line', x1: 768, y1: 309, x2: 838, y2: 309, stroke: 'var(--accent-color)', strokeWidth: 1, strokeDasharray: [4, 6] },
+                { type: 'rect', x: 846, y: 450, width: 188, height: 20, rx: 10, fill: 'none', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
+                { type: 'rect', x: 852, y: 456, width: 124, height: 8, rx: 4, fill: 'var(--accent-color)', opacity: 0.65 },
+            ],
+        },
+    ],
+};
+
 const projectsByLanguage = {
     es: [
         {
@@ -463,6 +567,7 @@ const projectsByLanguage = {
                     url: 'https://github.com/cristianbarreiro/PrivGvard/releases/download/v2.0.0/PrivGvard-Portable-2.0.0.zip',
                 },
             ],
+            descriptionVisual: privGvardDescriptionVisual,
             featured: true,
         },
         {
@@ -1044,6 +1149,7 @@ const projectsByLanguage = {
                     url: 'https://github.com/cristianbarreiro/PrivGvard/releases/download/v2.0.0/PrivGvard-Portable-2.0.0.zip',
                 },
             ],
+            descriptionVisual: privGvardDescriptionVisual,
             featured: true,
         },
         {
