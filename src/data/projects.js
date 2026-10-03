@@ -32,6 +32,10 @@ import {
     footwearBoutiqueDescriptionVisual,
     automotoraDescriptionVisual,
     messagingSystemDescriptionVisual,
+    versionControlDescriptionVisual,
+    socraticaDescriptionVisual,
+    libraryManagementDescriptionVisual,
+    trafficLightsDescriptionVisual,
 } from './projectVisuals';
 
 const projectsByLanguage = {
@@ -51,6 +55,7 @@ const projectsByLanguage = {
             tags: ['C', 'C++', 'Librerías del Sistema Operativo', 'Estructuras de Datos'],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_EDA',
+            descriptionVisual: versionControlDescriptionVisual,
             featured: false,
         },
         {
@@ -118,6 +123,7 @@ const projectsByLanguage = {
             tags: ['Laravel', 'API REST', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB', 'MVC'],
             demoUrl: '',
             repoUrl: '',
+            descriptionVisual: socraticaDescriptionVisual,
             featured: false,
         },
         {
@@ -397,6 +403,7 @@ const projectsByLanguage = {
             tags: ['C', 'C++', 'POO', 'Interfaces', 'Factory Pattern'],
             demoUrl: '',
             repoUrl: 'https://github.com/proyectitopa/laboratorio_5',
+            descriptionVisual: libraryManagementDescriptionVisual,
             featured: false
         },
         {
@@ -411,6 +418,7 @@ const projectsByLanguage = {
             tags: ['C', 'C++', 'Librerías del Sistema Operativo'],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_SO-parte-2',
+            descriptionVisual: trafficLightsDescriptionVisual,
             featured: false
         },
         {
@@ -647,6 +655,7 @@ const projectsByLanguage = {
             tags: ['C', 'C++', 'Operating System Libraries', 'Data Structures'],
             demoUrl: '#',
             repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_EDA',
+            descriptionVisual: versionControlDescriptionVisual,
             featured: false,
         },
         {
@@ -714,6 +723,7 @@ const projectsByLanguage = {
             tags: ['Laravel', 'REST API', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MariaDB', 'MVC'],
             demoUrl: '#',
             repoUrl: 'https://github.com/BinaryTech-corp',
+            descriptionVisual: socraticaDescriptionVisual,
             featured: false,
         },
         {
@@ -993,6 +1003,7 @@ const projectsByLanguage = {
             tags: ['C', 'C++', 'POO', 'Interfaces', 'Factory Pattern'],
             demoUrl: '',
             repoUrl: 'https://github.com/proyectitopa/laboratorio_5',
+            descriptionVisual: libraryManagementDescriptionVisual,
             featured: false
         },
         {
@@ -1007,6 +1018,7 @@ const projectsByLanguage = {
             tags: ['C', 'C++', 'Operating System Libraries'],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_SO-parte-2',
+            descriptionVisual: trafficLightsDescriptionVisual,
             featured: false
         },
         {
