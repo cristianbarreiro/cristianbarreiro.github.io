@@ -5,3 +5,7 @@ export { default as novaVoltDescriptionVisual } from './novaVolt';
 export { default as cataleyaDescriptionVisual } from './cataleya';
 export { default as payFlowDescriptionVisual } from './payFlow';
 export { default as rumboDescriptionVisual } from './rumbo';
+export { default as desktopCalendarDescriptionVisual } from './desktopCalendar';
+export { default as geniusDescriptionVisual } from './genius';
+export { default as antiSpamMcpDescriptionVisual } from './antiSpamMcp';
+export { default as shopHubDescriptionVisual } from './shopHub';

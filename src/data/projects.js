@@ -24,6 +24,10 @@ import {
     cataleyaDescriptionVisual,
     payFlowDescriptionVisual,
     rumboDescriptionVisual,
+    desktopCalendarDescriptionVisual,
+    geniusDescriptionVisual,
+    antiSpamMcpDescriptionVisual,
+    shopHubDescriptionVisual,
 } from './projectVisuals';
 
 const projectsByLanguage = {
@@ -161,6 +165,7 @@ const projectsByLanguage = {
             ],
             demoUrl: 'https://e-commerce-monorepo-three.vercel.app/',
             repoUrl: '',
+            descriptionVisual: shopHubDescriptionVisual,
             featured: false
         },
         {
@@ -356,6 +361,7 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: '',
+            descriptionVisual: geniusDescriptionVisual,
             featured: false
         },
         {
@@ -587,6 +593,7 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/AntiSpam-MCP',
+            descriptionVisual: antiSpamMcpDescriptionVisual,
             featured: false,
         },
         {
@@ -612,6 +619,7 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/Desktop-Calendar',
+            descriptionVisual: desktopCalendarDescriptionVisual,
             featured: false,
         },
     ],
@@ -749,6 +757,7 @@ const projectsByLanguage = {
             ],
             demoUrl: 'https://e-commerce-monorepo-three.vercel.app/',
             repoUrl: '',
+            descriptionVisual: shopHubDescriptionVisual,
             featured: false,
         },
         {
@@ -944,6 +953,7 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: '',
+            descriptionVisual: geniusDescriptionVisual,
             featured: false
         },
         {
@@ -1175,6 +1185,7 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/AntiSpam-MCP',
+            descriptionVisual: antiSpamMcpDescriptionVisual,
             featured: false,
         },
         {
@@ -1200,6 +1211,7 @@ const projectsByLanguage = {
             ],
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/Desktop-Calendar',
+            descriptionVisual: desktopCalendarDescriptionVisual,
             featured: false,
         },
     ],
