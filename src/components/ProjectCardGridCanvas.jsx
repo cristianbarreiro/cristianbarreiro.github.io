@@ -18,9 +18,9 @@ import { hexToRgb } from '../utils/colors';
 const CELL_SIZE = 64;
 const MAX_ACTIVE_CELLS = 3;
 
-function smoothstep(min, max, value) {
+function smootherstep(min, max, value) {
   const x = Math.max(0, Math.min(1, (value - min) / (max - min)));
-  return x * x * (3 - 2 * x);
+  return x * x * x * (x * (x * 6 - 15) + 10);
 }
 
 function ProjectCardGridCanvas() {
@@ -105,7 +105,7 @@ function ProjectCardGridCanvas() {
       const { r, g, b } = colorRef.current;
       for (const cell of activeCells) {
         if (cell.currentOpacity <= 0) continue;
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${cell.currentOpacity.toFixed(3)})`;
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${cell.currentOpacity})`;
         ctx.fillRect(
           cell.col * CELL_SIZE,
           cell.row * CELL_SIZE,
@@ -209,10 +209,10 @@ function ProjectCardGridCanvas() {
       if (eligible.length === 0) return;
 
       const selected = eligible[Math.floor(Math.random() * eligible.length)];
-      const fadeInDuration = 300 + Math.random() * 200;
-      const holdDuration = 180 + Math.random() * 220;
-      const fadeOutDuration = 400 + Math.random() * 300;
-      const peakOpacity = 0.16 + Math.random() * 0.08;
+      const fadeInDuration = 600 + Math.random() * 300;
+      const holdDuration = 240 + Math.random() * 240;
+      const fadeOutDuration = 750 + Math.random() * 350;
+      const peakOpacity = 0.14 + Math.random() * 0.06;
 
       activeCells.push({
         col: selected.col,
@@ -225,7 +225,7 @@ function ProjectCardGridCanvas() {
         currentOpacity: 0,
       });
       lastSpawnTime = now;
-      nextSpawnDelay = 250 + Math.random() * 450;
+      nextSpawnDelay = 400 + Math.random() * 500;
     }
 
     function loop(timestamp) {
@@ -242,13 +242,19 @@ function ProjectCardGridCanvas() {
 
       for (let i = activeCells.length - 1; i >= 0; i--) {
         const cell = activeCells[i];
-        if (timestamp < cell.fadeInEnd) {
-          const progress = smoothstep(cell.startTime, cell.fadeInEnd, timestamp);
+        if (cell.exitFadeEnd !== undefined) {
+          const progress = smootherstep(cell.exitFadeStart, cell.exitFadeEnd, timestamp);
+          cell.currentOpacity = cell.exitFadeStartOpacity * (1 - progress);
+          if (timestamp >= cell.exitFadeEnd) {
+            activeCells.splice(i, 1);
+          }
+        } else if (timestamp < cell.fadeInEnd) {
+          const progress = smootherstep(cell.startTime, cell.fadeInEnd, timestamp);
           cell.currentOpacity = cell.peakOpacity * progress;
         } else if (timestamp < cell.holdEnd) {
           cell.currentOpacity = cell.peakOpacity;
         } else if (timestamp < cell.endTime) {
-          const progress = 1 - smoothstep(cell.holdEnd, cell.endTime, timestamp);
+          const progress = 1 - smootherstep(cell.holdEnd, cell.endTime, timestamp);
           cell.currentOpacity = cell.peakOpacity * progress;
         } else {
           cell.currentOpacity = 0;
@@ -273,7 +279,13 @@ function ProjectCardGridCanvas() {
 
     const handlePointerLeave = () => {
       isHovered = false;
-      // Los fades activos terminan antes de detener el único RAF.
+      const now = performance.now();
+      for (const cell of activeCells) {
+        cell.exitFadeStart = now;
+        cell.exitFadeEnd = now + 650 + Math.random() * 250;
+        cell.exitFadeStartOpacity = cell.currentOpacity;
+      }
+      if (activeCells.length > 0) scheduleFrame();
     };
 
     const handleMotionChange = (event) => {

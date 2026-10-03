@@ -628,7 +628,7 @@ button:hover .icon-send-jello {
   pointer-events: none;
   z-index: 0;
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.9s ease-in-out;
 }
 
 /* Shine layer */
@@ -660,6 +660,8 @@ button:hover .icon-send-jello {
 
 .fh-project-card:hover > .fh-project-card-canvas {
   opacity: 1;
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
 }
 
 .fh-project-card:hover::after {
