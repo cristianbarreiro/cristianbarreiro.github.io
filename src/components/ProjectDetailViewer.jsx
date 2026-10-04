@@ -8,6 +8,7 @@ import {
     Stack,
     Text,
     Title,
+    Tooltip,
 } from '@mantine/core';
 import {
     IconBrandGithub,
@@ -80,17 +81,34 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
                         </Text>
                     </Group>
 
-                    <ActionIcon
-                        variant="light"
-                        color="gray"
-                        size="md"
-                        radius="xl"
-                        onClick={onClose}
-                        aria-label={t('underConstruction.close')}
-                        className="project-media-viewer__close-btn"
-                    >
-                        <IconX size={18} />
-                    </ActionIcon>
+                    <Group gap={6} align="center" className="project-media-viewer__controls">
+                        {hasImages && (
+                            <Tooltip label={t('projectCard.viewImagesAndVideos')} openDelay={400}>
+                                <ActionIcon
+                                    variant="subtle"
+                                    color={primaryColor}
+                                    size="md"
+                                    radius="xl"
+                                    onClick={onOpenMedia}
+                                    aria-label={t('projectCard.viewImagesAndVideos')}
+                                >
+                                    <IconPhoto size={18} />
+                                </ActionIcon>
+                            </Tooltip>
+                        )}
+
+                        <ActionIcon
+                            variant="light"
+                            color="gray"
+                            size="md"
+                            radius="xl"
+                            onClick={onClose}
+                            aria-label={t('underConstruction.close')}
+                            className="project-media-viewer__close-btn"
+                        >
+                            <IconX size={18} />
+                        </ActionIcon>
+                    </Group>
                 </Group>
             </Box>
 
@@ -192,17 +210,6 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
                                                 projectTitle={project.title}
                                                 size="md"
                                             />
-                                        )}
-
-                                        {hasImages && (
-                                            <Button
-                                                variant="light"
-                                                size="md"
-                                                leftSection={<IconPhoto size={18} />}
-                                                onClick={onOpenMedia}
-                                            >
-                                                {t('projectCard.viewImagesAndVideos')}
-                                            </Button>
                                         )}
 
                                         {project.repoUrl && (
