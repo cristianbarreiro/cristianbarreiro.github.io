@@ -48,3 +48,18 @@ Este archivo registra solo las comprobaciones automáticas y manuales directamen
 - Console: ✅ sin errores capturados.
 - **Nota:** se detectó y corrigió pérdida de foco al cerrar desde una card no enfocable y al desmontar controles al cambiar de slide. Prueba en navegador integrado; no había sesión de Chrome externo conectada.
 - **Automáticas:** lint, build y `git diff --check` ✅; build mantiene el aviso de chunks >500 kB ya existente.
+
+## Fase 25 — QA Delta
+
+- Integrated viewer UX: ✅
+- Description → Visual → Media: ✅
+- Media jump: ✅ salto desde Description a `03/05`, dentro del mismo modal.
+- Header/Close uniqueness: ✅ un título y un cierre en el shell integrado.
+- Keyboard/focus regression: ✅ foco dentro, navegación por teclado y retorno al disparador.
+- Desktop 1280×800: ✅ CDEV, Socratica, MCP Secure Delete y PrivGvard.
+- Mobile 390×844: ✅ Description, Visual, Media, cierre y sin overflow horizontal.
+- ES / EN: ✅ contenido, acciones y Close/Cerrar.
+- Direct Gallery: ✅ imagen, navegación a vídeo y cierre.
+- Console: ✅ sin errores capturados.
+- **Límite:** prueba en navegador integrado; Chrome externo no estaba conectado. No se detectó defecto que requiera cambios de código.
+- **Automáticas:** `npm run lint`, `npm run build` y `git diff --check` ✅; build mantiene el aviso histórico de chunks >500 kB.
