@@ -11,7 +11,14 @@ import { formatProjectDate } from '../utils/formatDate';
 import ProjectDownloadMenu from './ProjectDownloadMenu';
 import './ProjectDescriptionSlide.css';
 
-function ProjectDescriptionSlide({ project, hasMedia = false, hasVisual = false, onViewVisual, onViewMedia }) {
+function ProjectDescriptionSlide({
+    project,
+    hasMedia = false,
+    hasVisual = false,
+    showTitle = true,
+    onViewVisual,
+    onViewMedia,
+}) {
     const { t } = useTranslation();
     const titleId = useId();
     const svgIdPrefix = `project-description-bg-${useId().replace(/[^a-zA-Z0-9_-]/g, '')}`;
@@ -22,7 +29,12 @@ function ProjectDescriptionSlide({ project, hasMedia = false, hasVisual = false,
     if (!project) return null;
 
     return (
-        <Box className="project-description-slide" component="section" aria-labelledby={titleId}>
+        <Box
+            className="project-description-slide"
+            component="section"
+            aria-labelledby={showTitle ? titleId : undefined}
+            aria-label={showTitle ? undefined : project.title}
+        >
             <svg
                 className="project-description-slide__art"
                 viewBox="0 0 1440 900"
@@ -65,9 +77,11 @@ function ProjectDescriptionSlide({ project, hasMedia = false, hasVisual = false,
                         </Badge>
                     )}
 
-                    <Title id={titleId} order={1} className="project-description-slide__title">
-                        {project.title}
-                    </Title>
+                    {showTitle && (
+                        <Title id={titleId} order={1} className="project-description-slide__title">
+                            {project.title}
+                        </Title>
+                    )}
 
                     {formattedDate && (
                         <Group gap={6} align="center">
@@ -136,7 +150,7 @@ function ProjectDescriptionSlide({ project, hasMedia = false, hasVisual = false,
                         />
                     )}
 
-                    {hasVisual && onViewVisual ? (
+                    {hasVisual && onViewVisual && (
                         <Button
                             variant="light"
                             size="md"
@@ -145,7 +159,9 @@ function ProjectDescriptionSlide({ project, hasMedia = false, hasVisual = false,
                         >
                             {t('projectCard.viewProjectVisual')}
                         </Button>
-                    ) : hasMedia && onViewMedia ? (
+                    )}
+
+                    {hasMedia && onViewMedia && (
                         <Button
                             variant="light"
                             size="md"
@@ -154,7 +170,7 @@ function ProjectDescriptionSlide({ project, hasMedia = false, hasVisual = false,
                         >
                             {t('projectCard.viewImagesAndVideos')}
                         </Button>
-                    ) : null}
+                    )}
 
                     {project.repoUrl && (
                         <Button

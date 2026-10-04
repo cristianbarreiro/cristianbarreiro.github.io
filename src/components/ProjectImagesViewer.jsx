@@ -46,6 +46,8 @@ function ProjectImagesViewer({
     counterPosition,
     counterTotal,
     contentThumbnails,
+    showCloseButton = true,
+    showProjectTitle = true,
 }) {
     const { t } = useTranslation();
     const { primaryColor } = useThemeContext();
@@ -379,7 +381,7 @@ function ProjectImagesViewer({
 
     return (
         <Box
-            className="project-media-viewer"
+            className={`project-media-viewer${showCloseButton ? '' : ' project-media-viewer--external-close'}`}
             style={{ '--glow-color': `var(--mantine-color-${primaryColor}-6)` }}
         >
                 {/* Header Toolbar */}
@@ -397,9 +399,11 @@ function ProjectImagesViewer({
                             >
                                 {currentImage.type === 'video' ? t('projectCard.videoMedia') : t('projectCard.imageMedia')}
                             </Badge>
-                            <Text fw={600} size="sm" lineClamp={1} className="project-media-viewer__title">
-                                {projectTitle}
-                            </Text>
+                            {showProjectTitle && (
+                                <Text fw={600} size="sm" lineClamp={1} className="project-media-viewer__title">
+                                    {projectTitle}
+                                </Text>
+                            )}
                         </Group>
 
                         {/* Interactive Toolbar Controls */}
@@ -474,20 +478,21 @@ function ProjectImagesViewer({
                                 </Tooltip>
                             )}
 
-                            {/* Integrated Floating Close Button */}
-                            <Tooltip label={t('projectCard.closeImages')} openDelay={400}>
-                                <ActionIcon
-                                    variant="light"
-                                    color="gray"
-                                    size="md"
-                                    radius="xl"
-                                    onClick={onClose}
-                                    aria-label={t('projectCard.closeImages')}
-                                    className="project-media-viewer__close-btn"
-                                >
-                                    <IconX size={18} />
-                                </ActionIcon>
-                            </Tooltip>
+                            {showCloseButton && (
+                                <Tooltip label={t('projectCard.closeImages')} openDelay={400}>
+                                    <ActionIcon
+                                        variant="light"
+                                        color="gray"
+                                        size="md"
+                                        radius="xl"
+                                        onClick={onClose}
+                                        aria-label={t('projectCard.closeImages')}
+                                        className="project-media-viewer__close-btn"
+                                    >
+                                        <IconX size={18} />
+                                    </ActionIcon>
+                                </Tooltip>
+                            )}
                         </Group>
                     </Group>
                 </Box>

@@ -13,6 +13,20 @@
   background: var(--media-viewer-bg, var(--mantine-color-body));
 }
 
+.project-content-viewer--description.project-content-viewer--modal,
+.project-content-viewer--visual.project-content-viewer--modal {
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+  max-height: 100%;
+}
+
+.project-content-viewer--description.project-content-viewer--modal .project-description-slide {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+}
+
 .project-content-viewer__header {
   position: relative;
   z-index: 2;

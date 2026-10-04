@@ -8,14 +8,27 @@ import ProjectVisualSlide from './ProjectVisualSlide';
 import './ProjectContentViewer.css';
 
 const CONTENT_SLIDE_TYPES = new Set(['description', 'visual', 'image', 'video']);
+const projectViewerKeys = new WeakMap();
+let nextProjectViewerKey = 0;
 
-function normalizeSlides(slides) {
+function getProjectViewerKey(project) {
+    if (!project || typeof project !== 'object') return null;
+
+    if (!projectViewerKeys.has(project)) {
+        nextProjectViewerKey += 1;
+        projectViewerKeys.set(project, nextProjectViewerKey);
+    }
+
+    return projectViewerKeys.get(project);
+}
+
+function normalizeSlides(slides, visualFallback) {
     if (!Array.isArray(slides)) return [];
 
     return slides.filter((slide) => (
         slide &&
         CONTENT_SLIDE_TYPES.has(slide.type) &&
-        (slide.type !== 'visual' || Boolean(slide.project?.descriptionVisual))
+        (slide.type !== 'visual' || Boolean(slide.project?.descriptionVisual || visualFallback))
     ));
 }
 
@@ -28,12 +41,19 @@ function normalizeMediaSlide(slide) {
     };
 }
 
-function ProjectContentViewer({ slides, initialSlide = 0, onClose, projectTitle = '' }) {
-    const contentSlides = normalizeSlides(slides);
+function ProjectContentViewer({
+    slides,
+    initialSlide = 0,
+    onClose,
+    projectTitle = '',
+    showCloseButton = true,
+    showProjectTitle = true,
+    visualFallback,
+}) {
+    const contentSlides = normalizeSlides(slides, visualFallback);
     const project = contentSlides.find((slide) => slide.project)?.project;
-    const viewerKey = project?.id != null
-        ? `${project.id}-${project.title || ''}`
-        : project?.title || projectTitle || contentSlides[0]?.src || 'project-content';
+    const projectKey = getProjectViewerKey(project);
+    const viewerKey = projectKey ?? projectTitle ?? contentSlides[0]?.src ?? 'project-content';
 
     return (
         <ProjectContentViewerSession
@@ -42,11 +62,22 @@ function ProjectContentViewer({ slides, initialSlide = 0, onClose, projectTitle 
             initialSlide={initialSlide}
             onClose={onClose}
             projectTitle={projectTitle}
+            showCloseButton={showCloseButton}
+            showProjectTitle={showProjectTitle}
+            visualFallback={visualFallback}
         />
     );
 }
 
-function ProjectContentViewerSession({ slides, initialSlide = 0, onClose, projectTitle = '' }) {
+function ProjectContentViewerSession({
+    slides,
+    initialSlide = 0,
+    onClose,
+    projectTitle = '',
+    showCloseButton,
+    showProjectTitle,
+    visualFallback,
+}) {
     const { t } = useTranslation();
     const contentSlides = slides;
     const requestedIndex = Number.isInteger(initialSlide) ? initialSlide : 0;
@@ -159,25 +190,29 @@ function ProjectContentViewerSession({ slides, initialSlide = 0, onClose, projec
         const title = currentSlide.project?.title || resolvedProjectTitle;
 
         return (
-            <Box className="project-content-viewer project-content-viewer--description">
+            <Box className={`project-content-viewer project-content-viewer--description${showCloseButton ? '' : ' project-content-viewer--modal'}`}>
                 <Group className="project-content-viewer__header" justify="space-between" wrap="nowrap">
-                    <Text fw={600} size="sm" lineClamp={1} className="project-content-viewer__project-title">
-                        {title}
-                    </Text>
+                    {showProjectTitle && (
+                        <Text fw={600} size="sm" lineClamp={1} className="project-content-viewer__project-title">
+                            {title}
+                        </Text>
+                    )}
                     <Group gap="sm" wrap="nowrap">
                         <Text size="xs" fw={600} className="project-content-viewer__counter" role="status" aria-live="polite">
                             {String(activeSlideIndex + 1).padStart(2, '0')} / {String(contentSlides.length).padStart(2, '0')}
                         </Text>
-                        <ActionIcon
-                            variant="light"
-                            color="gray"
-                            size="md"
-                            radius="xl"
-                            onClick={onClose}
-                            aria-label={t('underConstruction.close')}
-                        >
-                            <IconX size={18} aria-hidden="true" />
-                        </ActionIcon>
+                        {showCloseButton && (
+                            <ActionIcon
+                                variant="light"
+                                color="gray"
+                                size="md"
+                                radius="xl"
+                                onClick={onClose}
+                                aria-label={t('underConstruction.close')}
+                            >
+                                <IconX size={18} aria-hidden="true" />
+                            </ActionIcon>
+                        )}
                     </Group>
                 </Group>
 
@@ -185,6 +220,7 @@ function ProjectContentViewerSession({ slides, initialSlide = 0, onClose, projec
                     project={currentSlide.project}
                     hasMedia={mediaSlides.length > 0}
                     hasVisual={visualIndex >= 0}
+                    showTitle={showProjectTitle}
                     onViewVisual={() => setActiveSlideIndex(visualIndex)}
                     onViewMedia={() => setActiveSlideIndex(firstMediaIndex)}
                 />
@@ -200,25 +236,29 @@ function ProjectContentViewerSession({ slides, initialSlide = 0, onClose, projec
         const canNavigate = contentSlides.length > 1;
 
         return (
-            <Box className="project-content-viewer project-content-viewer--visual">
+            <Box className={`project-content-viewer project-content-viewer--visual${showCloseButton ? '' : ' project-content-viewer--modal'}`}>
                 <Group className="project-content-viewer__header" justify="space-between" wrap="nowrap">
-                    <Text fw={600} size="sm" lineClamp={1} className="project-content-viewer__project-title">
-                        {resolvedProjectTitle}
-                    </Text>
+                    {showProjectTitle && (
+                        <Text fw={600} size="sm" lineClamp={1} className="project-content-viewer__project-title">
+                            {resolvedProjectTitle}
+                        </Text>
+                    )}
                     <Group gap="sm" wrap="nowrap">
                         <Text size="xs" fw={600} className="project-content-viewer__counter" role="status" aria-live="polite">
                             {String(activeSlideIndex + 1).padStart(2, '0')} / {String(contentSlides.length).padStart(2, '0')}
                         </Text>
-                        <ActionIcon
-                            variant="light"
-                            color="gray"
-                            size="md"
-                            radius="xl"
-                            onClick={onClose}
-                            aria-label={t('underConstruction.close')}
-                        >
-                            <IconX size={18} aria-hidden="true" />
-                        </ActionIcon>
+                        {showCloseButton && (
+                            <ActionIcon
+                                variant="light"
+                                color="gray"
+                                size="md"
+                                radius="xl"
+                                onClick={onClose}
+                                aria-label={t('underConstruction.close')}
+                            >
+                                <IconX size={18} aria-hidden="true" />
+                            </ActionIcon>
+                        )}
                     </Group>
                 </Group>
 
@@ -235,7 +275,7 @@ function ProjectContentViewerSession({ slides, initialSlide = 0, onClose, projec
                             <IconChevronLeft size={22} aria-hidden="true" />
                         </ActionIcon>
                     )}
-                    <ProjectVisualSlide project={currentSlide.project} />
+                    <ProjectVisualSlide project={currentSlide.project} visualFallback={visualFallback} />
                     {canNavigate && (
                         <ActionIcon
                             className="project-content-viewer__visual-nav project-content-viewer__visual-nav--next"
@@ -271,6 +311,8 @@ function ProjectContentViewerSession({ slides, initialSlide = 0, onClose, projec
             key={`content-media-${currentMediaIndex}-${mediaSlides[currentMediaIndex]?.src || ''}`}
             opened
             onClose={onClose}
+            showCloseButton={showCloseButton}
+            showProjectTitle={showProjectTitle}
             onBackToDescription={descriptionIndex >= 0
                 ? () => setActiveSlideIndex(descriptionIndex)
                 : undefined}
