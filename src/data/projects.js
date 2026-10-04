@@ -187,13 +187,8 @@ const projectsByLanguage = {
             longDescription:
                 'Security-focused project that implements a Model Context Protocol (MCP) server to provide controlled and secure file deletion capabilities for AI-powered tools. The project explores safe automation workflows by adding validation layers, controlled file operations and secure resource handling when interacting with the local filesystem through MCP-compatible clients.',
             date: '2025',
-            image: '/images/projects/mcp-secure-delete/Captura.png',
-            images: [
-                {
-                    src: '/images/projects/mcp-secure-delete/Captura.png',
-                    alt: 'Screenshot of MCP Secure Delete project',
-                },
-            ],
+            image: null,
+            images: [],
             tags: [
                 'TypeScript',
                 'Node.js',
@@ -787,13 +782,8 @@ const projectsByLanguage = {
             longDescription:
                 'Security-focused project that implements a Model Context Protocol (MCP) server to provide controlled and secure file deletion capabilities for AI-powered tools. The project explores safe automation workflows by adding validation layers, controlled file operations and secure resource handling when interacting with the local filesystem through MCP-compatible clients.',
             date: '2025',
-            image: '/images/projects/mcp-secure-delete/Captura.png',
-            images: [
-                {
-                    src: '/images/projects/mcp-secure-delete/Captura.png',
-                    alt: 'Screenshot of MCP Secure Delete project',
-                },
-            ],
+            image: null,
+            images: [],
             tags: [
                 'TypeScript',
                 'Node.js',

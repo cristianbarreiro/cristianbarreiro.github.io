@@ -164,6 +164,7 @@ function ProjectDetailModal({ project, opened, onClose }) {
             radius={isMediaView ? (isMobile ? 0 : 'xl') : 'md'}
             padding={isMediaView ? 0 : undefined}
             withCloseButton={!isMediaView}
+            closeButtonProps={{ 'aria-label': t('underConstruction.close') }}
             closeOnClickOutside
             closeOnEscape={!isMediaView}
             transitionProps={isMediaView ? undefined : { transition: 'scale', duration: 300 }}
