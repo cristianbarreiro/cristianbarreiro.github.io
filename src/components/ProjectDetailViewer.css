@@ -7,13 +7,26 @@
   max-height: calc(88vh - 130px);
 }
 
-.project-detail-viewer__canvas--description .project-media-viewer__glow {
+/*
+ * Fondo CSS de la diapositiva Description.
+ * Capa a sangre: `inset: 0` contra el canvas (position: relative) cubre todo el
+ * contenedor sin ancho/alto fijo, sin franjas y sin overflow.
+ */
+.project-detail-viewer__description-background {
+  position: absolute;
   inset: 0;
-  top: 0;
-  left: 0;
-  width: auto;
-  height: auto;
-  transform: none;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse farthest-side at 50% 50%,
+    color-mix(in srgb, var(--glow-color, #228be6) 18%, transparent) 0%,
+    transparent 100%
+  );
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .project-detail-viewer__stage {

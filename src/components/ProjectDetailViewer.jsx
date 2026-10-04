@@ -31,6 +31,9 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
     const { primaryColor } = useThemeContext();
     const shouldReduceMotion = useReducedMotion();
     const [activeSlide, setActiveSlide] = useState(0);
+    // Diapositiva realmente pintada. El fondo de Description se sincroniza con
+    // ella al terminar la transición, para que no cambie de tamaño al hacer clic.
+    const [paintedSlide, setPaintedSlide] = useState(0);
     const slideTransition = shouldReduceMotion
         ? { duration: 0 }
         : { duration: 0.25, ease: [0.16, 1, 0.3, 1] };
@@ -91,10 +94,8 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
                 </Group>
             </Box>
 
-            <Box
-                className={`project-media-viewer__canvas project-detail-viewer__canvas${activeSlide === 0 ? ' project-detail-viewer__canvas--description' : ''}`}
-            >
-                <div className="project-media-viewer__glow" />
+            <Box className="project-media-viewer__canvas project-detail-viewer__canvas">
+                {paintedSlide === 0 && <div className="project-detail-viewer__description-background" />}
 
                 <ActionIcon
                     variant="subtle"
@@ -108,7 +109,7 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
                 </ActionIcon>
 
                 <Box className="project-media-viewer__stage project-detail-viewer__stage">
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence mode="wait" onExitComplete={() => setPaintedSlide(activeSlide)}>
                         {activeSlide === 0 ? (
                             <Motion.div
                                 key="description"
