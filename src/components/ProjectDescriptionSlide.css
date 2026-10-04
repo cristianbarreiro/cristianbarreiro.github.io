@@ -1,0 +1,103 @@
+.project-description-slide {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  height: min(90vh, 900px);
+  min-height: min(620px, 100vh);
+  overflow: auto;
+  overscroll-behavior: contain;
+  border-radius: inherit;
+  background: var(--mantine-color-body);
+}
+
+.project-description-slide__art,
+.project-description-slide__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.project-description-slide__art {
+  object-fit: cover;
+}
+
+.project-description-slide__scrim {
+  background: linear-gradient(
+    105deg,
+    color-mix(in srgb, var(--mantine-color-body) 96%, transparent) 0%,
+    color-mix(in srgb, var(--mantine-color-body) 89%, transparent) 58%,
+    color-mix(in srgb, var(--mantine-color-body) 72%, transparent) 100%
+  );
+}
+
+.project-description-slide__content {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1120px;
+  min-width: 0;
+  min-height: 100%;
+  justify-content: center;
+  margin-inline: auto;
+  padding: clamp(28px, 6vw, 88px);
+}
+
+.project-description-slide__title {
+  max-width: 900px;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 1.04;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.project-description-slide__description {
+  max-width: 850px;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  line-height: 1.75;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.project-description-slide__actions {
+  padding-top: var(--mantine-spacing-xs);
+}
+
+.project-description-slide__content > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 48em) {
+  .project-description-slide {
+    height: min(90dvh, 900px);
+    min-height: min(560px, 100dvh);
+    border-radius: 0;
+  }
+
+  .project-description-slide__content {
+    justify-content: flex-start;
+    gap: var(--mantine-spacing-md);
+    padding: 24px 20px 32px;
+  }
+
+  .project-description-slide__title {
+    font-size: clamp(1.9rem, 9vw, 3rem);
+  }
+
+  .project-description-slide__actions > * {
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-description-slide {
+    scroll-behavior: auto;
+  }
+}

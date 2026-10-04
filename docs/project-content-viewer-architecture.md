@@ -238,8 +238,8 @@ La tabla presenta una secuencia técnica propuesta, no autorización para adelan
 - `src/pages/Projects.jsx`, `src/components/FeaturedProjects.jsx`, routing, traducciones y dependencias — no cambiar en esta fase; sólo reconsiderar consumidores si una implementación posterior demuestra una necesidad.
 - `global.css` y tema — no son necesarios para este diseño.
 
-## Estado tras Fase 19
+## Estado tras Fase 20
 
-La Fase 19 añade `ProjectContentViewer` como adaptador base para slides `image` y `video`. Normaliza esas entradas y delega chrome, navegación, controles, teclado y gestos al `ProjectImagesViewer` existente. Este último acepta ahora un `initialIndex` opcional cuyo valor predeterminado conserva el inicio en cero del flujo legacy. El nuevo viewer todavía no está conectado a `ProjectDetailModal`; Description y Visual siguen fuera de alcance. Ver [informe de Fase 19](project-content-viewer-phase-19.md) para el alcance y las limitaciones de validación.
+La Fase 19 añadió `ProjectContentViewer` para `image` y `video`, delegando la presentación multimedia en `ProjectImagesViewer`. La Fase 20 agrega `ProjectDescriptionSlide` y el tipo `description`: la descripción queda como HTML/Mantine sobre un SVG genérico decorativo, y el CTA cambia al primer medio dentro del viewer aislado. El contenido de media todavía usa el motor existente. El nuevo flujo no está conectado a `ProjectDetailModal`; el tipo `visual` queda para la siguiente fase. Ver [informe de Fase 19](project-content-viewer-phase-19.md) y [informe de Fase 20](project-content-viewer-phase-20.md).
 
-Las siguientes fases deben cubrir secuencia de tipos, Description → primer medio, visual propio y fallback, navegación global, reinicio de estado por cambio de slide/proyecto, zoom/Escape, teclado y lector de pantalla, desktop y móvil, cierre y retorno de foco. La galería directa desde `ProjectCard` en variantes default, carousel y list debe permanecer bajo QA en cada etapa.
+La integración futura debe unificar la secuencia completa, thumbnails tipados, navegación, reset de estado y shell modal antes de conectar el nuevo viewer al detalle. Mantener la galería directa desde `ProjectCard` independiente en variantes default, carousel y list.
