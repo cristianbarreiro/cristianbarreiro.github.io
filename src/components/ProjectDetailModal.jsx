@@ -1,8 +1,12 @@
-import { Modal } from '@mantine/core';
-import { useMemo } from 'react';
+import { Modal, Text, Badge, Group, Button, Stack, Title, Box } from '@mantine/core';
+import { useMemo, useState } from 'react';
 import { useMediaQuery } from '@mantine/hooks';
+import { IconExternalLink, IconBrandGithub, IconPhoto, IconCalendar } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
-import ProjectContentViewer from './ProjectContentViewer';
+import ProjectImagesViewer from './ProjectImagesViewer';
+import ProjectDescriptionVisual from './ProjectDescriptionVisual';
+import ProjectDownloadMenu from './ProjectDownloadMenu';
+import { formatProjectDate } from '../utils/formatDate';
 
 const DEFAULT_DESCRIPTION_VISUAL = {
     viewBox: [0, 0, 1200, 580],
@@ -91,9 +95,21 @@ const DEFAULT_DESCRIPTION_VISUAL = {
     ],
 };
 
-function ProjectDetailModal({ project, opened, onClose, returnFocusTarget }) {
+function ProjectDetailModal({ project, opened, onClose }) {
     const { t } = useTranslation();
     const isMobile = useMediaQuery('(max-width: 48em)');
+    const [viewState, setViewState] = useState({ project, view: 'description' });
+    const view = opened && viewState.project === project ? viewState.view : 'description';
+    const isMediaView = view === 'media';
+
+    const changeView = (nextView) => {
+        setViewState({ project, view: nextView });
+    };
+
+    const handleClose = () => {
+        setViewState({ project, view: 'description' });
+        onClose();
+    };
 
     const projectImages = useMemo(() => {
         if (!project) return [];
@@ -117,14 +133,18 @@ function ProjectDetailModal({ project, opened, onClose, returnFocusTarget }) {
                 }
 
                 const src = item?.src || item?.url || item?.image;
-                if (!src) return null;
+                if (!src) {
+                    return null;
+                }
 
                 return {
                     src,
-                    alt: item.alt || t('projectCard.galleryImageAlt', {
-                        project: project.title,
-                        index: index + 1,
-                    }),
+                    alt:
+                        item.alt ||
+                        t('projectCard.galleryImageAlt', {
+                            project: project.title,
+                            index: index + 1,
+                        }),
                     caption: item.caption || '',
                     type: item.type,
                 };
@@ -132,45 +152,25 @@ function ProjectDetailModal({ project, opened, onClose, returnFocusTarget }) {
             .filter(Boolean);
     }, [project, t]);
 
-    const slides = useMemo(() => {
-        if (!project) return [];
-
-        return [
-            { type: 'description', project },
-            { type: 'visual', project },
-            ...projectImages.map((media) => ({
-                ...media,
-                type: media.type === 'video' ? 'video' : 'image',
-            })),
-        ];
-    }, [project, projectImages]);
-
-    const handleClose = () => onClose?.();
+    const hasImages = projectImages.length > 0;
 
     return (
         <Modal
             opened={opened}
             onClose={handleClose}
-            title={project?.title}
-            size={isMobile ? '100%' : 'min(94vw, 1280px)'}
+            size={isMediaView ? (isMobile ? '100%' : 'min(94vw, 1280px)') : 'lg'}
             centered
-            fullScreen={isMobile}
-            radius={isMobile ? 0 : 'xl'}
-            padding={0}
-            withCloseButton
+            fullScreen={isMediaView && isMobile}
+            radius={isMediaView ? (isMobile ? 0 : 'xl') : 'md'}
+            padding={isMediaView ? 0 : undefined}
+            withCloseButton={!isMediaView}
             closeButtonProps={{ 'aria-label': t('underConstruction.close') }}
             closeOnClickOutside
-            closeOnEscape={false}
-            returnFocus={!returnFocusTarget}
-            onExitTransitionEnd={() => {
-                if (returnFocusTarget?.isConnected) {
-                    returnFocusTarget.focus({ preventScroll: true });
-                }
-            }}
-            transitionProps={{ transition: 'scale', duration: 300 }}
-            className="project-media-modal project-content-viewer-modal"
-            overlayProps={{ backgroundOpacity: 0.7, blur: 12 }}
-            styles={{
+            closeOnEscape={!isMediaView}
+            transitionProps={isMediaView ? undefined : { transition: 'scale', duration: 300 }}
+            className={isMediaView ? 'project-media-modal' : 'project-detail-modal'}
+            overlayProps={isMediaView ? { backgroundOpacity: 0.7, blur: 12 } : undefined}
+            styles={isMediaView ? {
                 overlay: {
                     backdropFilter: 'blur(16px) saturate(180%)',
                     WebkitBackdropFilter: 'blur(16px) saturate(180%)',
@@ -184,37 +184,149 @@ function ProjectDetailModal({ project, opened, onClose, returnFocusTarget }) {
                     overflow: 'hidden',
                     display: 'flex',
                     flexDirection: 'column',
-                    height: isMobile ? '100dvh' : 'min(90vh, 900px)',
-                    maxHeight: isMobile ? '100dvh' : '90vh',
-                },
-                header: {
-                    minHeight: 48,
-                    flex: '0 0 auto',
-                    background: 'var(--media-viewer-header-bg)',
-                    borderBottom: '1px solid var(--media-viewer-border)',
                 },
                 body: {
-                    minHeight: 0,
                     padding: 0,
                     overflow: 'hidden',
-                    flex: '1 1 auto',
+                    flex: 1,
                     display: 'flex',
                     flexDirection: 'column',
                 },
+            } : {
+                body: {
+                    padding: 'var(--mantine-spacing-xl)',
+                },
             }}
         >
-            {opened && project && (
-                <ProjectContentViewer
-                    slides={slides}
-                    initialSlide={0}
-                    onClose={handleClose}
-                    projectTitle={project.title}
-                    showCloseButton={false}
-                    showProjectTitle={false}
-                    visualFallback={DEFAULT_DESCRIPTION_VISUAL}
-                />
-            )}
+                {project && (isMediaView ? (
+                    <ProjectImagesViewer
+                        opened={opened}
+                        onClose={handleClose}
+                        onBackToDescription={() => changeView('description')}
+                        images={projectImages}
+                        projectTitle={project.title}
+                    />
+                ) : (
+                    <Stack gap="lg">
+                        {project.featured && (
+                            <Badge
+                                color="var(--mantine-primary-color-filled)"
+                                variant="light"
+                                size="sm"
+                                style={{ alignSelf: 'flex-start' }}
+                            >
+                                {t('projectCard.featured')}
+                            </Badge>
+                        )}
+
+                        <Title order={2}>{project.title}</Title>
+
+                        {formatProjectDate(project.date) && (
+                            <Group gap={6} align="center" style={{ marginTop: -8 }}>
+                                <IconCalendar
+                                    size={16}
+                                    style={{ color: 'var(--mantine-color-dimmed)', opacity: 0.85, flexShrink: 0 }}
+                                />
+                                <Text size="sm" c="dimmed" fw={500}>
+                                    {formatProjectDate(project.date)}
+                                </Text>
+                            </Group>
+                        )}
+
+                        <Text size="md" style={{ lineHeight: 1.7 }}>
+                            {project.longDescription || project.description}
+                        </Text>
+
+                        <Box
+                            component="figure"
+                            m={0}
+                            style={{
+                                width: '100%',
+                                overflow: 'hidden',
+                                border: '1px solid var(--mantine-color-default-border)',
+                                borderRadius: 'var(--mantine-radius-md)',
+                            }}
+                        >
+                            <ProjectDescriptionVisual
+                                project={project}
+                                visualData={project.descriptionVisual || DEFAULT_DESCRIPTION_VISUAL}
+                            />
+                        </Box>
+
+                        <Group gap="xs" wrap="wrap">
+                            {project.tags.map((tag) => (
+                                <Badge key={tag} variant="light" size="md" radius="sm">
+                                    {tag}
+                                </Badge>
+                            ))}
+                        </Group>
+
+                        <Group gap="md" wrap="wrap" mt="sm">
+                            {project.demoUrl && (
+                                <Button
+                                    component="a"
+                                    href={project.demoUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    variant="light"
+                                    size="md"
+                                    leftSection={<IconExternalLink size={18} />}
+                                >
+                                    {t(project.backofficeUrl ? 'projectCard.ecommerce' : 'projectCard.demo')}
+                                </Button>
+                            )}
+
+                            {project.backofficeUrl && (
+                                <Button
+                                    component="a"
+                                    href={project.backofficeUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    variant="light"
+                                    size="md"
+                                    leftSection={<IconExternalLink size={18} />}
+                                >
+                                    {t('projectCard.backoffice')}
+                                </Button>
+                            )}
+
+                            {project.downloads && project.downloads.length > 0 && (
+                                <ProjectDownloadMenu
+                                    downloads={project.downloads}
+                                    projectTitle={project.title}
+                                    size="md"
+                                />
+                            )}
+
+                            {hasImages && (
+                                <Button
+                                    variant="light"
+                                    size="md"
+                                    leftSection={<IconPhoto size={18} />}
+                                    onClick={() => changeView('media')}
+                                >
+                                    {t('projectCard.viewImagesAndVideos')}
+                                </Button>
+                            )}
+
+                            {project.repoUrl && (
+                                <Button
+                                    component="a"
+                                    href={project.repoUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    variant="subtle"
+                                    size="md"
+                                    leftSection={<IconBrandGithub size={18} />}
+                                >
+                                    {t('projectCard.code')}
+                                </Button>
+                            )}
+                        </Group>
+                    </Stack>
+                ))}
         </Modal>
     );
 }
+
 export default ProjectDetailModal;

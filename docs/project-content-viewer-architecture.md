@@ -238,8 +238,6 @@ La tabla presenta una secuencia técnica propuesta, no autorización para adelan
 - `src/pages/Projects.jsx`, `src/components/FeaturedProjects.jsx`, routing, traducciones y dependencias — no cambiar en esta fase; sólo reconsiderar consumidores si una implementación posterior demuestra una necesidad.
 - `global.css` y tema — no son necesarios para este diseño.
 
-## Estado tras Fase 21
+## Criterio para iniciar la implementación
 
-La Fase 19 añadió `ProjectContentViewer` para `image` y `video`, delegando la presentación multimedia en `ProjectImagesViewer`. La Fase 20 agregó `ProjectDescriptionSlide` y el tipo `description`. La Fase 21 añade la slide `visual` mediante `ProjectVisualSlide`, que reutiliza `ProjectDescriptionVisual` y `project.descriptionVisual`. El viewer aislado navega la secuencia Description → Visual → Media con contador global y miniaturas de contenido; `ProjectImagesViewer` conserva sus controles y acepta callbacks opcionales para esa secuencia. La galería directa no proporciona esos callbacks y conserva su navegación de medios. El nuevo flujo sigue sin conectarse a `ProjectDetailModal`. Ver [informe de Fase 19](project-content-viewer-phase-19.md), [informe de Fase 20](project-content-viewer-phase-20.md) y [informe de Fase 21](project-content-viewer-phase-21.md).
-
-La integración futura debe unificar la secuencia completa, thumbnails tipados, navegación, reset de estado y shell modal antes de conectar el nuevo viewer al detalle. Mantener la galería directa desde `ProjectCard` independiente en variantes default, carousel y list.
+La siguiente fase puede comenzar cuando se acepte este diseño y se trabaje por etapas. Su primera validación funcional debe cubrir: proyecto con varios medios; vídeo; sin medios; visual propio y fallback; Description → primer medio; navegación circular de tipos; zoom/Escape; teclado y lector de pantalla; desktop y móvil; cierre, cambio de proyecto y retorno de foco; galería directa desde `ProjectCard` en variantes default, carousel y list. La auditoría no declara implementada ni aprobada ninguna de esas funcionalidades nuevas.

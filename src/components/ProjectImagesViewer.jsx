@@ -33,27 +33,12 @@ const ZOOM_MIN = 1.0;
 const ZOOM_MAX = 3.0;
 const ZOOM_STEP = 0.5;
 
-function ProjectImagesViewer({
-    opened,
-    onClose,
-    onBackToDescription,
-    images,
-    projectTitle,
-    initialIndex = 0,
-    onNavigatePrevious,
-    onNavigateNext,
-    onMediaIndexChange,
-    counterPosition,
-    counterTotal,
-    contentThumbnails,
-    showCloseButton = true,
-    showProjectTitle = true,
-}) {
+function ProjectImagesViewer({ opened, onClose, onBackToDescription, images, projectTitle }) {
     const { t } = useTranslation();
     const { primaryColor } = useThemeContext();
     const isMobile = useMediaQuery('(max-width: 48em)');
 
-    const [activeIndex, setActiveIndex] = useState(initialIndex);
+    const [activeIndex, setActiveIndex] = useState(0);
     const [zoomScale, setZoomScale] = useState(1.0);
     const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
     const [isDraggingState, setIsDraggingState] = useState(false);
@@ -77,8 +62,6 @@ function ProjectImagesViewer({
     const totalImages = images ? images.length : 0;
     const currentImage = images && images[activeIndex] ? images[activeIndex] : null;
     const hasMultipleImages = totalImages > 1;
-    const hasMultipleSlides = Number.isInteger(counterTotal) ? counterTotal > 1 : hasMultipleImages;
-    const canNavigate = hasMultipleImages || Boolean(onNavigatePrevious && hasMultipleSlides);
 
     const resetZoomAndPan = useCallback(() => {
         setZoomScale(1.0);
@@ -120,21 +103,13 @@ function ProjectImagesViewer({
 
     const goToPrev = useCallback(() => {
         resetZoomAndPan();
-        if (onNavigatePrevious) {
-            onNavigatePrevious();
-            return;
-        }
         setActiveIndex((prev) => (prev - 1 + totalImages) % totalImages);
-    }, [onNavigatePrevious, totalImages, resetZoomAndPan]);
+    }, [totalImages, resetZoomAndPan]);
 
     const goToNext = useCallback(() => {
         resetZoomAndPan();
-        if (onNavigateNext) {
-            onNavigateNext();
-            return;
-        }
         setActiveIndex((prev) => (prev + 1) % totalImages);
-    }, [onNavigateNext, totalImages, resetZoomAndPan]);
+    }, [totalImages, resetZoomAndPan]);
 
     // Zoom controls
     const zoomIn = useCallback(() => {
@@ -180,7 +155,7 @@ function ProjectImagesViewer({
                 return;
             }
 
-            if (!canNavigate) return;
+            if (!hasMultipleImages) return;
             if (event.key === 'ArrowLeft') {
                 event.preventDefault();
                 goToPrev();
@@ -193,7 +168,7 @@ function ProjectImagesViewer({
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [opened, canNavigate, goToPrev, goToNext, zoomScale, resetZoomAndPan, onClose, zoomIn, zoomOut]);
+    }, [opened, hasMultipleImages, goToPrev, goToNext, zoomScale, resetZoomAndPan, onClose, zoomIn, zoomOut]);
 
     // Preload neighboring images for rapid switching
     useEffect(() => {
@@ -381,7 +356,7 @@ function ProjectImagesViewer({
 
     return (
         <Box
-            className={`project-media-viewer${showCloseButton ? '' : ' project-media-viewer--external-close'}`}
+            className="project-media-viewer"
             style={{ '--glow-color': `var(--mantine-color-${primaryColor}-6)` }}
         >
                 {/* Header Toolbar */}
@@ -399,11 +374,9 @@ function ProjectImagesViewer({
                             >
                                 {currentImage.type === 'video' ? t('projectCard.videoMedia') : t('projectCard.imageMedia')}
                             </Badge>
-                            {showProjectTitle && (
-                                <Text fw={600} size="sm" lineClamp={1} className="project-media-viewer__title">
-                                    {projectTitle}
-                                </Text>
-                            )}
+                            <Text fw={600} size="sm" lineClamp={1} className="project-media-viewer__title">
+                                {projectTitle}
+                            </Text>
                         </Group>
 
                         {/* Interactive Toolbar Controls */}
@@ -463,7 +436,7 @@ function ProjectImagesViewer({
                                 </Group>
                             )}
 
-                            {canNavigate && (
+                            {hasMultipleImages && (
                                 <Tooltip label={t('projectCard.toggleThumbnails')} openDelay={400}>
                                     <ActionIcon
                                         variant={showThumbnails ? 'light' : 'subtle'}
@@ -478,21 +451,20 @@ function ProjectImagesViewer({
                                 </Tooltip>
                             )}
 
-                            {showCloseButton && (
-                                <Tooltip label={t('projectCard.closeImages')} openDelay={400}>
-                                    <ActionIcon
-                                        variant="light"
-                                        color="gray"
-                                        size="md"
-                                        radius="xl"
-                                        onClick={onClose}
-                                        aria-label={t('projectCard.closeImages')}
-                                        className="project-media-viewer__close-btn"
-                                    >
-                                        <IconX size={18} />
-                                    </ActionIcon>
-                                </Tooltip>
-                            )}
+                            {/* Integrated Floating Close Button */}
+                            <Tooltip label={t('projectCard.closeImages')} openDelay={400}>
+                                <ActionIcon
+                                    variant="light"
+                                    color="gray"
+                                    size="md"
+                                    radius="xl"
+                                    onClick={onClose}
+                                    aria-label={t('projectCard.closeImages')}
+                                    className="project-media-viewer__close-btn"
+                                >
+                                    <IconX size={18} />
+                                </ActionIcon>
+                            </Tooltip>
                         </Group>
                     </Group>
                 </Box>
@@ -507,13 +479,13 @@ function ProjectImagesViewer({
                     <div className="project-media-viewer__glow" />
 
                     {/* Previous Image Lateral Button */}
-                    {canNavigate && (
+                    {hasMultipleImages && (
                         <ActionIcon
                             variant="subtle"
                             size={isMobile ? 'lg' : 'xl'}
                             radius="xl"
                             onClick={goToPrev}
-                            aria-label={t(onNavigatePrevious ? 'projectViewer.previousSlide' : 'projectCard.prevImage')}
+                            aria-label={t('projectCard.prevImage')}
                             className="project-media-viewer__nav-btn project-media-viewer__nav-btn--prev"
                         >
                             <IconChevronLeft size={isMobile ? 22 : 26} />
@@ -589,13 +561,13 @@ function ProjectImagesViewer({
                     </Box>
 
                     {/* Next Image Lateral Button */}
-                    {canNavigate && (
+                    {hasMultipleImages && (
                         <ActionIcon
                             variant="subtle"
                             size={isMobile ? 'lg' : 'xl'}
                             radius="xl"
                             onClick={goToNext}
-                            aria-label={t(onNavigateNext ? 'projectViewer.nextSlide' : 'projectCard.nextImage')}
+                            aria-label={t('projectCard.nextImage')}
                             className="project-media-viewer__nav-btn project-media-viewer__nav-btn--next"
                         >
                             <IconChevronRight size={isMobile ? 22 : 26} />
@@ -603,10 +575,10 @@ function ProjectImagesViewer({
                     )}
 
                     {/* Floating Counter Badge */}
-                    {canNavigate && (
+                    {hasMultipleImages && (
                         <Box className="project-media-viewer__counter-badge">
                             <Text size="xs" fw={600} className="project-media-viewer__counter-text">
-                                {String(counterPosition ?? activeIndex + 1).padStart(2, '0')} / {String(counterTotal ?? totalImages).padStart(2, '0')}
+                                {String(activeIndex + 1).padStart(2, '0')} / {String(totalImages).padStart(2, '0')}
                             </Text>
                         </Box>
                     )}
@@ -635,8 +607,6 @@ function ProjectImagesViewer({
                     )}
 
                     {/* Collapsible Thumbnail Strip */}
-                    {showThumbnails && contentThumbnails}
-
                     {hasMultipleImages && showThumbnails && (
                         <Box className="project-media-viewer__thumbnails" ref={thumbnailsRef}>
                             <div className="project-media-viewer__thumbnails-track">
@@ -648,7 +618,6 @@ function ProjectImagesViewer({
                                             type="button"
                                             onClick={() => {
                                                 resetZoomAndPan();
-                                                onMediaIndexChange?.(index);
                                                 setActiveIndex(index);
                                             }}
                                             className={`project-media-viewer__thumb ${

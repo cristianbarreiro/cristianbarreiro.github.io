@@ -79,13 +79,8 @@ function Projects() {
 
     // Proyecto seleccionado para el modal de detalle
     const [selectedProject, setSelectedProject] = useState(null);
-    const [projectTrigger, setProjectTrigger] = useState(null);
 
-    const handleSelectProject = useCallback((project, trigger) => {
-        if (trigger instanceof HTMLElement) {
-            trigger.tabIndex = -1;
-            setProjectTrigger(trigger);
-        }
+    const handleSelectProject = useCallback((project) => {
         setSelectedProject(project);
     }, []);
 
@@ -261,7 +256,7 @@ function Projects() {
                                         <MotionDiv variants={shouldReduceMotion ? undefined : cardItem} style={{ height: '100%' }}>
                                             <ProjectCard
                                                 project={project}
-                                                onSelect={(event) => handleSelectProject(project, event.currentTarget)}
+                                                onSelect={() => handleSelectProject(project)}
                                                 isSelected={selectedProject?.id === project.id}
                                             />
                                         </MotionDiv>
@@ -284,7 +279,7 @@ function Projects() {
                                         <ProjectCard
                                             project={project}
                                             variant="list"
-                                            onSelect={(event) => handleSelectProject(project, event.currentTarget)}
+                                            onSelect={() => handleSelectProject(project)}
                                             isSelected={selectedProject?.id === project.id}
                                         />
                                     </MotionDiv>
@@ -322,7 +317,7 @@ function Projects() {
                                                 <ProjectCard
                                                     project={project}
                                                     variant="carousel"
-                                                    onSelect={(event) => handleSelectProject(project, event.currentTarget)}
+                                                    onSelect={() => handleSelectProject(project)}
                                                     isSelected={selectedProject?.id === project.id}
                                                 />
                                             </Box>
@@ -404,7 +399,6 @@ function Projects() {
                 project={selectedProject}
                 opened={!!selectedProject}
                 onClose={handleDeselectProject}
-                returnFocusTarget={projectTrigger}
             />
         </main>
     );
