@@ -238,6 +238,8 @@ La tabla presenta una secuencia técnica propuesta, no autorización para adelan
 - `src/pages/Projects.jsx`, `src/components/FeaturedProjects.jsx`, routing, traducciones y dependencias — no cambiar en esta fase; sólo reconsiderar consumidores si una implementación posterior demuestra una necesidad.
 - `global.css` y tema — no son necesarios para este diseño.
 
-## Criterio para iniciar la implementación
+## Estado tras Fase 19
 
-La siguiente fase puede comenzar cuando se acepte este diseño y se trabaje por etapas. Su primera validación funcional debe cubrir: proyecto con varios medios; vídeo; sin medios; visual propio y fallback; Description → primer medio; navegación circular de tipos; zoom/Escape; teclado y lector de pantalla; desktop y móvil; cierre, cambio de proyecto y retorno de foco; galería directa desde `ProjectCard` en variantes default, carousel y list. La auditoría no declara implementada ni aprobada ninguna de esas funcionalidades nuevas.
+La Fase 19 añade `ProjectContentViewer` como adaptador base para slides `image` y `video`. Normaliza esas entradas y delega chrome, navegación, controles, teclado y gestos al `ProjectImagesViewer` existente. Este último acepta ahora un `initialIndex` opcional cuyo valor predeterminado conserva el inicio en cero del flujo legacy. El nuevo viewer todavía no está conectado a `ProjectDetailModal`; Description y Visual siguen fuera de alcance. Ver [informe de Fase 19](project-content-viewer-phase-19.md) para el alcance y las limitaciones de validación.
+
+Las siguientes fases deben cubrir secuencia de tipos, Description → primer medio, visual propio y fallback, navegación global, reinicio de estado por cambio de slide/proyecto, zoom/Escape, teclado y lector de pantalla, desktop y móvil, cierre y retorno de foco. La galería directa desde `ProjectCard` en variantes default, carousel y list debe permanecer bajo QA en cada etapa.

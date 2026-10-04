@@ -33,12 +33,12 @@ const ZOOM_MIN = 1.0;
 const ZOOM_MAX = 3.0;
 const ZOOM_STEP = 0.5;
 
-function ProjectImagesViewer({ opened, onClose, onBackToDescription, images, projectTitle }) {
+function ProjectImagesViewer({ opened, onClose, onBackToDescription, images, projectTitle, initialIndex = 0 }) {
     const { t } = useTranslation();
     const { primaryColor } = useThemeContext();
     const isMobile = useMediaQuery('(max-width: 48em)');
 
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(initialIndex);
     const [zoomScale, setZoomScale] = useState(1.0);
     const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
     const [isDraggingState, setIsDraggingState] = useState(false);
