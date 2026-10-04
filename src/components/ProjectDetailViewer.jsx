@@ -1,0 +1,262 @@
+import { useEffect, useState } from 'react';
+import {
+    ActionIcon,
+    Badge,
+    Box,
+    Button,
+    Group,
+    Stack,
+    Text,
+    Title,
+} from '@mantine/core';
+import {
+    IconBrandGithub,
+    IconCalendar,
+    IconChevronLeft,
+    IconChevronRight,
+    IconExternalLink,
+    IconPhoto,
+    IconX,
+} from '@tabler/icons-react';
+import { motion as Motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { useThemeContext } from '../context/ThemeContext';
+import ProjectDescriptionVisual from './ProjectDescriptionVisual';
+import ProjectDownloadMenu from './ProjectDownloadMenu';
+import { formatProjectDate } from '../utils/formatDate';
+import './ProjectDetailViewer.css';
+
+function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onClose }) {
+    const { t } = useTranslation();
+    const { primaryColor } = useThemeContext();
+    const shouldReduceMotion = useReducedMotion();
+    const [activeSlide, setActiveSlide] = useState(0);
+    const slideTransition = shouldReduceMotion
+        ? { duration: 0 }
+        : { duration: 0.25, ease: [0.16, 1, 0.3, 1] };
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+
+            const target = event.target;
+            if (
+                target instanceof HTMLElement &&
+                (target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName))
+            ) {
+                return;
+            }
+
+            event.preventDefault();
+            setActiveSlide((current) => (current === 0 ? 1 : 0));
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
+
+    return (
+        <Box
+            className="project-media-viewer project-detail-viewer"
+            style={{ '--glow-color': `var(--mantine-color-${primaryColor}-6)` }}
+        >
+            <Box className="project-media-viewer__header">
+                <Group justify="space-between" align="center" wrap="nowrap" style={{ width: '100%' }}>
+                    <Group gap="xs" align="center" style={{ minWidth: 0 }}>
+                        <Badge
+                            variant="light"
+                            color={primaryColor}
+                            size="sm"
+                            radius="sm"
+                            className="project-media-viewer__type-badge"
+                        >
+                            {t(activeSlide === 0 ? 'projectCard.detailDescription' : 'projectCard.detailVisual')}
+                        </Badge>
+                        <Text fw={600} size="sm" lineClamp={1} className="project-media-viewer__title">
+                            {project.title}
+                        </Text>
+                    </Group>
+
+                    <ActionIcon
+                        variant="light"
+                        color="gray"
+                        size="md"
+                        radius="xl"
+                        onClick={onClose}
+                        aria-label={t('underConstruction.close')}
+                        className="project-media-viewer__close-btn"
+                    >
+                        <IconX size={18} />
+                    </ActionIcon>
+                </Group>
+            </Box>
+
+            <Box className="project-media-viewer__canvas project-detail-viewer__canvas">
+                <div className="project-media-viewer__glow" />
+
+                <ActionIcon
+                    variant="subtle"
+                    size="xl"
+                    radius="xl"
+                    onClick={() => setActiveSlide((current) => (current === 0 ? 1 : 0))}
+                    aria-label={t('projectCard.previousDetailView')}
+                    className="project-media-viewer__nav-btn project-media-viewer__nav-btn--prev"
+                >
+                    <IconChevronLeft size={26} />
+                </ActionIcon>
+
+                <Box className="project-media-viewer__stage project-detail-viewer__stage">
+                    <AnimatePresence mode="wait">
+                        {activeSlide === 0 ? (
+                            <Motion.div
+                                key="description"
+                                initial={{ opacity: 0, scale: 0.97 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.97 }}
+                                transition={slideTransition}
+                                className="project-detail-viewer__slide project-detail-viewer__description"
+                            >
+                                <Stack gap="md" className="project-detail-viewer__description-content">
+                                    {project.featured && (
+                                        <Badge
+                                            color="var(--mantine-primary-color-filled)"
+                                            variant="light"
+                                            size="sm"
+                                            style={{ alignSelf: 'flex-start' }}
+                                        >
+                                            {t('projectCard.featured')}
+                                        </Badge>
+                                    )}
+
+                                    <Title order={2}>{project.title}</Title>
+
+                                    {formatProjectDate(project.date) && (
+                                        <Group gap={6} align="center" className="project-detail-viewer__date">
+                                            <IconCalendar
+                                                size={16}
+                                                style={{ color: 'var(--mantine-color-dimmed)', opacity: 0.85, flexShrink: 0 }}
+                                            />
+                                            <Text size="sm" c="dimmed" fw={500}>
+                                                {formatProjectDate(project.date)}
+                                            </Text>
+                                        </Group>
+                                    )}
+
+                                    <Text size="md" style={{ lineHeight: 1.7 }}>
+                                        {project.longDescription || project.description}
+                                    </Text>
+
+                                    <Group gap="xs" wrap="wrap">
+                                        {(project.tags || []).map((tag) => (
+                                            <Badge key={tag} variant="light" size="md" radius="sm">
+                                                {tag}
+                                            </Badge>
+                                        ))}
+                                    </Group>
+
+                                    <Group gap="md" wrap="wrap" mt="xs">
+                                        {project.demoUrl && (
+                                            <Button
+                                                component="a"
+                                                href={project.demoUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                variant="light"
+                                                size="md"
+                                                leftSection={<IconExternalLink size={18} />}
+                                            >
+                                                {t(project.backofficeUrl ? 'projectCard.ecommerce' : 'projectCard.demo')}
+                                            </Button>
+                                        )}
+
+                                        {project.backofficeUrl && (
+                                            <Button
+                                                component="a"
+                                                href={project.backofficeUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                variant="light"
+                                                size="md"
+                                                leftSection={<IconExternalLink size={18} />}
+                                            >
+                                                {t('projectCard.backoffice')}
+                                            </Button>
+                                        )}
+
+                                        {project.downloads?.length > 0 && (
+                                            <ProjectDownloadMenu
+                                                downloads={project.downloads}
+                                                projectTitle={project.title}
+                                                size="md"
+                                            />
+                                        )}
+
+                                        {hasImages && (
+                                            <Button
+                                                variant="light"
+                                                size="md"
+                                                leftSection={<IconPhoto size={18} />}
+                                                onClick={onOpenMedia}
+                                            >
+                                                {t('projectCard.viewImagesAndVideos')}
+                                            </Button>
+                                        )}
+
+                                        {project.repoUrl && (
+                                            <Button
+                                                component="a"
+                                                href={project.repoUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                variant="subtle"
+                                                size="md"
+                                                leftSection={<IconBrandGithub size={18} />}
+                                            >
+                                                {t('projectCard.code')}
+                                            </Button>
+                                        )}
+                                    </Group>
+                                </Stack>
+                            </Motion.div>
+                        ) : (
+                            <Motion.div
+                                key="visual"
+                                initial={{ opacity: 0, scale: 0.97 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.97 }}
+                                transition={slideTransition}
+                                className="project-detail-viewer__slide project-detail-viewer__visual"
+                            >
+                                <Box component="figure" className="project-detail-viewer__visual-frame">
+                                    <ProjectDescriptionVisual project={project} visualData={visualData} />
+                                </Box>
+                            </Motion.div>
+                        )}
+                    </AnimatePresence>
+                </Box>
+
+                <ActionIcon
+                    variant="subtle"
+                    size="xl"
+                    radius="xl"
+                    onClick={() => setActiveSlide((current) => (current === 0 ? 1 : 0))}
+                    aria-label={t('projectCard.nextDetailView')}
+                    className="project-media-viewer__nav-btn project-media-viewer__nav-btn--next"
+                >
+                    <IconChevronRight size={26} />
+                </ActionIcon>
+
+            </Box>
+
+            <Box className="project-media-viewer__footer project-detail-viewer__footer">
+                <Box className="project-media-viewer__counter-badge project-detail-viewer__counter" aria-live="polite">
+                    <Text size="xs" fw={600} className="project-media-viewer__counter-text">
+                        {String(activeSlide + 1).padStart(2, '0')} / 02
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+    );
+}
+
+export default ProjectDetailViewer;

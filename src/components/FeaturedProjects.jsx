@@ -44,7 +44,12 @@ function FeaturedProjects() {
     const [selectedProject, setSelectedProject] = useState(null);
     const shouldReduceMotion = useReducedMotion();
 
-    const handleSelect = useCallback((project) => {
+    const handleSelect = useCallback((project, event) => {
+        const opener = event?.currentTarget;
+        if (opener instanceof HTMLElement) {
+            opener.setAttribute('tabindex', '-1');
+            opener.focus({ preventScroll: true });
+        }
         setSelectedProject(project);
     }, []);
 
@@ -107,7 +112,7 @@ function FeaturedProjects() {
                                 <MotionDiv variants={shouldReduceMotion ? undefined : cardItem} style={{ height: '100%' }}>
                                     <ProjectCard
                                         project={project}
-                                        onSelect={() => handleSelect(project)}
+                                        onSelect={(event) => handleSelect(project, event)}
                                         isSelected={selectedProject?.id === project.id}
                                     />
                                 </MotionDiv>

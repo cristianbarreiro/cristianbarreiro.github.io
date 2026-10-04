@@ -256,6 +256,10 @@
       "macos": "macOS"
     },
     "images": "Imágenes",
+    "detailDescription": "Descripción",
+    "detailVisual": "Visual",
+    "previousDetailView": "Vista anterior del proyecto",
+    "nextDetailView": "Vista siguiente del proyecto",
     "viewImagesAndVideos": "Ver imágenes y vídeos",
     "viewDescription": "Ver descripción",
     "imagesUnavailable": "Sin imágenes disponibles",

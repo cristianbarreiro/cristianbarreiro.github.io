@@ -80,7 +80,12 @@ function Projects() {
     // Proyecto seleccionado para el modal de detalle
     const [selectedProject, setSelectedProject] = useState(null);
 
-    const handleSelectProject = useCallback((project) => {
+    const handleSelectProject = useCallback((project, event) => {
+        const opener = event?.currentTarget;
+        if (opener instanceof HTMLElement) {
+            opener.setAttribute('tabindex', '-1');
+            opener.focus({ preventScroll: true });
+        }
         setSelectedProject(project);
     }, []);
 
@@ -256,7 +261,7 @@ function Projects() {
                                         <MotionDiv variants={shouldReduceMotion ? undefined : cardItem} style={{ height: '100%' }}>
                                             <ProjectCard
                                                 project={project}
-                                                onSelect={() => handleSelectProject(project)}
+                                                onSelect={(event) => handleSelectProject(project, event)}
                                                 isSelected={selectedProject?.id === project.id}
                                             />
                                         </MotionDiv>
@@ -279,7 +284,7 @@ function Projects() {
                                         <ProjectCard
                                             project={project}
                                             variant="list"
-                                            onSelect={() => handleSelectProject(project)}
+                                            onSelect={(event) => handleSelectProject(project, event)}
                                             isSelected={selectedProject?.id === project.id}
                                         />
                                     </MotionDiv>
@@ -317,7 +322,7 @@ function Projects() {
                                                 <ProjectCard
                                                     project={project}
                                                     variant="carousel"
-                                                    onSelect={() => handleSelectProject(project)}
+                                                    onSelect={(event) => handleSelectProject(project, event)}
                                                     isSelected={selectedProject?.id === project.id}
                                                 />
                                             </Box>

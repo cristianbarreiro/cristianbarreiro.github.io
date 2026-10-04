@@ -256,6 +256,10 @@
       "macos": "macOS"
     },
     "images": "Images",
+    "detailDescription": "Description",
+    "detailVisual": "Visual",
+    "previousDetailView": "Previous project view",
+    "nextDetailView": "Next project view",
     "viewImagesAndVideos": "View images and videos",
     "viewDescription": "View description",
     "imagesUnavailable": "No images available",
