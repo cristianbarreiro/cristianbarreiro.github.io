@@ -1,10 +1,10 @@
 .project-detail-viewer {
-  max-height: 90vh;
+  max-height: min(90vh, 720px);
 }
 
 .project-detail-viewer__canvas {
-  min-height: 50vh;
-  max-height: calc(88vh - 130px);
+  min-height: min(50vh, 400px);
+  max-height: min(calc(88vh - 130px), 620px);
 }
 
 /*
@@ -88,7 +88,7 @@
 
 @media (max-width: 48em) {
   .project-detail-viewer {
-    max-height: 100dvh;
+    max-height: min(100dvh, 844px);
   }
 
   .project-detail-viewer__canvas {
