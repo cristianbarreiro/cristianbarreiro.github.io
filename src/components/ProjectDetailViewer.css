@@ -32,7 +32,7 @@
 .project-detail-viewer .project-detail-viewer__stage {
   min-width: 0;
   overflow: hidden;
-  padding: 16px 72px;
+  padding: 16px 0;
 }
 
 .project-detail-viewer__slide {
@@ -42,6 +42,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  padding: 0 72px;
 }
 
 .project-detail-viewer__description {
@@ -99,7 +101,11 @@
 
   .project-detail-viewer .project-detail-viewer__stage {
     min-height: 0;
-    padding: 8px 60px;
+    padding: 8px 0;
+  }
+
+  .project-detail-viewer__slide {
+    padding: 0 60px;
   }
 
   .project-detail-viewer__description-content {
