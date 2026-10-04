@@ -11,7 +11,7 @@ import { formatProjectDate } from '../utils/formatDate';
 import ProjectDownloadMenu from './ProjectDownloadMenu';
 import './ProjectDescriptionSlide.css';
 
-function ProjectDescriptionSlide({ project, hasMedia = false, onViewMedia }) {
+function ProjectDescriptionSlide({ project, hasMedia = false, hasVisual = false, onViewVisual, onViewMedia }) {
     const { t } = useTranslation();
     const titleId = useId();
     const svgIdPrefix = `project-description-bg-${useId().replace(/[^a-zA-Z0-9_-]/g, '')}`;
@@ -136,7 +136,16 @@ function ProjectDescriptionSlide({ project, hasMedia = false, onViewMedia }) {
                         />
                     )}
 
-                    {hasMedia && onViewMedia && (
+                    {hasVisual && onViewVisual ? (
+                        <Button
+                            variant="light"
+                            size="md"
+                            leftSection={<IconPhoto size={18} aria-hidden="true" />}
+                            onClick={onViewVisual}
+                        >
+                            {t('projectCard.viewProjectVisual')}
+                        </Button>
+                    ) : hasMedia && onViewMedia ? (
                         <Button
                             variant="light"
                             size="md"
@@ -145,7 +154,7 @@ function ProjectDescriptionSlide({ project, hasMedia = false, onViewMedia }) {
                         >
                             {t('projectCard.viewImagesAndVideos')}
                         </Button>
-                    )}
+                    ) : null}
 
                     {project.repoUrl && (
                         <Button

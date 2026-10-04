@@ -1,4 +1,5 @@
-.project-content-viewer--description {
+.project-content-viewer--description,
+.project-content-viewer--visual {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -24,6 +25,72 @@
 
 .project-content-viewer__project-title {
   min-width: 0;
+}
+
+.project-content-viewer__visual-stage {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+  padding: 24px 68px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+:root[data-mantine-color-scheme="light"] .project-content-viewer__visual-stage {
+  background: rgba(245, 247, 250, 0.5);
+}
+
+.project-content-viewer__visual-artwork {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 1200px);
+  height: 100%;
+  min-height: 0;
+}
+
+.project-content-viewer__visual-svg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.project-content-viewer__visual-nav {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.project-content-viewer__visual-nav--previous {
+  left: 16px;
+}
+
+.project-content-viewer__visual-nav--next {
+  right: 16px;
+}
+
+.project-content-viewer__visual-footer {
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  padding: 10px 16px 14px;
+  border-top: 1px solid var(--media-viewer-border, var(--mantine-color-default-border));
+  background: var(--media-viewer-header-bg, var(--mantine-color-default));
+}
+
+.project-content-viewer__content-thumbnails {
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+.project-content-viewer--description > .project-content-viewer__content-thumbnails {
+  justify-content: center;
+  min-height: 48px;
+  padding: 6px 12px;
+  border-top: 1px solid var(--media-viewer-border, var(--mantine-color-default-border));
+  background: var(--media-viewer-header-bg, var(--mantine-color-default));
 }
 
 .project-content-viewer__counter {
@@ -53,11 +120,29 @@
   .project-content-viewer__header {
     padding-inline: 14px;
   }
+
+  .project-content-viewer__visual-stage {
+    padding: 18px 48px;
+  }
+
+  .project-content-viewer__visual-footer {
+    padding-inline: 8px;
+  }
+
+  .project-content-viewer__visual-nav--previous {
+    left: 8px;
+  }
+
+  .project-content-viewer__visual-nav--next {
+    right: 8px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .project-content-viewer--description,
-  .project-content-viewer--description * {
+  .project-content-viewer--description *,
+  .project-content-viewer--visual,
+  .project-content-viewer--visual * {
     scroll-behavior: auto;
   }
 }

@@ -257,6 +257,7 @@
     },
     "images": "Images",
     "viewImagesAndVideos": "View images and videos",
+    "viewProjectVisual": "View project visual",
     "viewDescription": "View description",
     "imagesUnavailable": "No images available",
     "mediaUnavailable": "Content not available yet...",
@@ -329,6 +330,15 @@
     "prevTheme": "Previous theme",
     "nextTheme": "Next theme",
     "activateTheme": "Activate"
+  },
+  "projectViewer": {
+    "contentSlides": "Content slides",
+    "description": "Description",
+    "visual": "Visual",
+    "image": "Image",
+    "video": "Video",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide"
   },
   "underConstruction": {
     "message": "This page is under construction.",

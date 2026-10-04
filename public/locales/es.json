@@ -257,6 +257,7 @@
     },
     "images": "Imágenes",
     "viewImagesAndVideos": "Ver imágenes y vídeos",
+    "viewProjectVisual": "Ver visual del proyecto",
     "viewDescription": "Ver descripción",
     "imagesUnavailable": "Sin imágenes disponibles",
     "mediaUnavailable": "Contenido aún no disponible...",
@@ -329,6 +330,15 @@
     "prevTheme": "Tema anterior",
     "nextTheme": "Tema siguiente",
     "activateTheme": "Activar"
+  },
+  "projectViewer": {
+    "contentSlides": "Diapositivas de contenido",
+    "description": "Descripción",
+    "visual": "Visual",
+    "image": "Imagen",
+    "video": "Vídeo",
+    "previousSlide": "Diapositiva anterior",
+    "nextSlide": "Diapositiva siguiente"
   },
   "underConstruction": {
     "message": "Esta página está en construcción.",
