@@ -91,7 +91,9 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
                 </Group>
             </Box>
 
-            <Box className="project-media-viewer__canvas project-detail-viewer__canvas">
+            <Box
+                className={`project-media-viewer__canvas project-detail-viewer__canvas${activeSlide === 0 ? ' project-detail-viewer__canvas--description' : ''}`}
+            >
                 <div className="project-media-viewer__glow" />
 
                 <ActionIcon

@@ -7,6 +7,15 @@
   max-height: calc(88vh - 130px);
 }
 
+.project-detail-viewer__canvas--description .project-media-viewer__glow {
+  inset: 0;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  transform: none;
+}
+
 .project-detail-viewer__stage {
   min-width: 0;
   overflow: hidden;
