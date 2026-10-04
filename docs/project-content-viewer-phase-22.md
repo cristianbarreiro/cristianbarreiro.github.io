@@ -74,17 +74,9 @@ El modal desactiva su cierre automático con Escape para evitar competir con el 
 
 La integración utiliza las traducciones existentes. No se modificaron proyectos, visuales ni archivos de locales. El catálogo conserva las 19 configuraciones visuales bilingües (38 referencias en el archivo de datos).
 
-## QA realizado
+## QA
 
-- `npm run lint`: correcto.
-- Paridad i18n: correcta, 314 claves.
-- `npm run build`: correcto. Vite generó el bundle y emitió el aviso de chunks mayores a 500 kB (`TechGlobe` y bundle principal).
-- `git diff --check`: correcto.
-- Chrome, escritorio 1280 × 800: CDEV Studios mostró Description `01/05`, Visual `02/05` y el salto a la primera imagen `03/05`; Socratica mostró el vídeo como `04/04`.
-- Chrome, móvil: las capturas de Description de MCP Secure Delete y Media de Socratica confirmaron que se activa el breakpoint móvil y mantienen las slides esperadas. Chrome headless de este entorno impuso un viewport CSS mínimo superior al tamaño físico de captura solicitado; por eso el ajuste exacto a 390 × 844 en una ventana interactiva queda pendiente.
-- La secuencia para vídeo se avanzó con una pulsación sintética de ArrowRight. El control interactivo completo de Tab, Shift+Tab, Enter, Space, cierre y retorno real del foco no pudo completarse con la automatización de ventanas disponible; su comportamiento se revisó en el código y Mantine mantiene el shell nativo.
-- No se abrió manualmente la galería directa en el navegador durante esta QA. Se verificó que `ProjectCard.jsx` permanece intacto, que `ProjectImagesModal.jsx` no cambia y que las props nuevas del visor conservan `true` por defecto.
-- No se probó una carga fallida de medio ni el fallback SVG mediante un proyecto alterado; ambos caminos permanecen conectados a sus manejadores actuales y el fallback se pasa desde `ProjectDetailModal`.
+El resultado diferencial de esta fase está registrado en [project-content-viewer-qa.md](project-content-viewer-qa.md). La auditoría completa queda reservada para la fase final.
 
 ## Archivos de implementación
 
