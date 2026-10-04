@@ -1,16 +1,15 @@
-import { useRef } from 'react';
-import { Stack, Text, UnstyledButton } from '@mantine/core';
-import { motion, useReducedMotion } from 'framer-motion';
+import { useLayoutEffect, useRef, useState } from 'react';
+import { Box, Stack, Text, UnstyledButton } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { formatProjectDate } from '../utils/formatDate';
-import { DURATION, EASE_OUT } from '../utils/motionVariants';
 
-const MotionSpan = motion.span;
+const INDICATOR_HEIGHT = 20;
 
 function FeaturedProjectCarousel({ projects, activeIndex, onIndexChange }) {
-    const { t } = useTranslation();
-    const shouldReduceMotion = useReducedMotion();
+    const { t, i18n } = useTranslation();
+    const containerRef = useRef(null);
     const itemRefs = useRef([]);
+    const [indicatorY, setIndicatorY] = useState(0);
 
     const selectIndex = (index, { focus = false } = {}) => {
         if (index < 0 || index >= projects.length) return;
@@ -41,8 +40,28 @@ function FeaturedProjectCarousel({ projects, activeIndex, onIndexChange }) {
         }
     };
 
+    useLayoutEffect(() => {
+        const container = containerRef.current;
+        const item = itemRefs.current[activeIndex];
+        if (!container || !item) return undefined;
+
+        const measure = () => {
+            const containerRect = container.getBoundingClientRect();
+            const itemRect = item.getBoundingClientRect();
+            const offset = itemRect.top - containerRect.top + (itemRect.height - INDICATOR_HEIGHT) / 2;
+            setIndicatorY(Math.round(offset * 100) / 100);
+        };
+
+        measure();
+
+        const observer = new ResizeObserver(measure);
+        observer.observe(container);
+        return () => observer.disconnect();
+    }, [activeIndex, projects.length, i18n.language]);
+
     return (
         <Stack
+            ref={containerRef}
             gap={6}
             role="listbox"
             aria-orientation="vertical"
@@ -79,17 +98,17 @@ function FeaturedProjectCarousel({ projects, activeIndex, onIndexChange }) {
                                 {date}
                             </Text>
                         )}
-
-                        {isActive && !shouldReduceMotion && (
-                            <MotionSpan
-                                layoutId="featured-carousel-indicator"
-                                transition={{ duration: DURATION.fast, ease: EASE_OUT }}
-                                className="featured-carousel__indicator"
-                            />
-                        )}
                     </UnstyledButton>
                 );
             })}
+
+            {projects.length > 0 && (
+                <Box
+                    aria-hidden="true"
+                    className="featured-carousel__indicator"
+                    style={{ transform: `translateY(${indicatorY}px)` }}
+                />
+            )}
         </Stack>
     );
 }

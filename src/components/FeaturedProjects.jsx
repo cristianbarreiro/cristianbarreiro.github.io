@@ -106,12 +106,32 @@ function FeaturedProjects() {
 
                 {/* Selector vertical + showcase inline */}
                 <div className="featured-projects__layout">
-                    <ScrollReveal>
-                        <FeaturedProjectCarousel
-                            projects={featuredProjects}
-                            activeIndex={safeIndex}
-                            onIndexChange={handleIndexChange}
-                        />
+                    <ScrollReveal direction="none" className="featured-projects__panel">
+                        <Stack gap={12}>
+                            <FeaturedProjectCarousel
+                                projects={featuredProjects}
+                                activeIndex={safeIndex}
+                                onIndexChange={handleIndexChange}
+                            />
+
+                            {/* CTA para ver todos */}
+                            <Group justify="center" className="featured-projects__cta">
+                                <RippleButton
+                                    component={Link}
+                                    to="/projects"
+                                    variant="outline"
+                                    size="xs"
+                                    rightSection={
+                                        <IconArrowRight
+                                            size={14}
+                                            className="icon-arrow-right"
+                                        />
+                                    }
+                                >
+                                    {t('home.featuredViewAll')}
+                                </RippleButton>
+                            </Group>
+                        </Stack>
                     </ScrollReveal>
 
                     <MotionDiv
@@ -124,26 +144,6 @@ function FeaturedProjects() {
                         <FeaturedProjectShowcase project={activeProject} />
                     </MotionDiv>
                 </div>
-
-                {/* CTA para ver todos */}
-                <ScrollReveal delay={0.2}>
-                    <Group justify="center" mt="xl">
-                        <RippleButton
-                            component={Link}
-                            to="/projects"
-                            variant="outline"
-                            size="md"
-                            rightSection={
-                                <IconArrowRight
-                                    size={16}
-                                    className="icon-arrow-right"
-                                />
-                            }
-                        >
-                            {t('home.featuredViewAll')}
-                        </RippleButton>
-                    </Group>
-                </ScrollReveal>
             </Container>
         </section>
     );
