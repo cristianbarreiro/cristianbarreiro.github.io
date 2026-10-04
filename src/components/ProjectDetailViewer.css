@@ -83,7 +83,6 @@
   position: relative;
   flex-direction: row;
   align-items: center;
-  min-height: 58px;
   justify-content: center;
 }
 
@@ -111,9 +110,4 @@
   .project-detail-viewer__visual-frame svg {
     max-height: calc(100dvh - 180px);
   }
-
-  .project-detail-viewer__footer {
-    min-height: 50px;
-  }
-
 }
