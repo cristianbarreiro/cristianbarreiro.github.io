@@ -3,23 +3,28 @@
  * Define las rutas de la aplicación
  */
 
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 // Componente de layout
 import Layout from './components/Layout';
 import ThemeChanger from './components/ThemeChanger';
 import SplashScreen from './components/SplashScreen';
+import Contact from './pages/Contact';
 
 import UnderConstructionModal from './components/UnderConstructionModal';
 
 // Páginas
 import Home from './pages/Home';
-import About from './pages/About';
-import Projects from './pages/Projects';
-import Skills from './pages/Skills';
-import Contact from './pages/Contact';
 import { useTranslation } from 'react-i18next';
+
+const About = lazy(() => import('./pages/About'));
+const Projects = lazy(() => import('./pages/Projects'));
+const Skills = lazy(() => import('./pages/Skills'));
+
+function RouteContent({ children }) {
+  return <Suspense fallback={null}>{children}</Suspense>;
+}
 
 /**
  * Configuración de rutas
@@ -47,13 +52,13 @@ function App() {
           <Route index element={<Home isSplashActive={showSplash} />} />
 
           {/* Página Sobre mí */}
-          <Route path="about" element={<About />} />
+          <Route path="about" element={<RouteContent><About /></RouteContent>} />
 
           {/* Página de proyectos */}
-          <Route path="projects" element={<Projects />} />
+          <Route path="projects" element={<RouteContent><Projects /></RouteContent>} />
 
           {/* Página de habilidades */}
-          <Route path="skills" element={<Skills />} />
+          <Route path="skills" element={<RouteContent><Skills /></RouteContent>} />
 
           {/* Página de contacto */}
           <Route path="contact" element={<Contact />} />
