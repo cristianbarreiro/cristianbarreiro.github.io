@@ -3,7 +3,7 @@
  * Landing page con estructura de portfolio profesional completa
  *
  * Flujo de secciones:
- * Hero → Tech Stack → About Preview → Featured Projects → Dev Approach → Contact
+ * Hero → About Preview → Featured Projects → Tech Stack → Dev Approach → Contact
  */
 
 import { useRef, useEffect, lazy, Suspense } from 'react';
@@ -371,18 +371,18 @@ function Home({ isSplashActive: isSplashProp }) {
                 </MotionDiv>
             </section>
 
-            {/* ===== 2. Tech Stack Globe ===== */}
+            {/* ===== 2. About Preview ===== */}
+            <AboutPreview />
+
+            {/* ===== 3. Featured Projects ===== */}
+            <FeaturedProjects />
+
+            {/* ===== 4. Tech Stack Globe ===== */}
             <ScrollReveal direction="none" amount={0.1}>
                 <Suspense fallback={null}>
                     <TechStackSection />
                 </Suspense>
             </ScrollReveal>
-
-            {/* ===== 3. About Preview ===== */}
-            <AboutPreview />
-
-            {/* ===== 4. Featured Projects ===== */}
-            <FeaturedProjects />
 
             {/* ===== 5. Development Approach ===== */}
             <DevApproach />
