@@ -1,0 +1,121 @@
+.featured-projects__layout {
+  display: grid;
+  grid-template-columns: clamp(150px, 13vw, 180px) minmax(0, 1fr);
+  gap: clamp(14px, 2vw, 26px);
+  align-items: start;
+}
+
+.featured-projects__layout > * {
+  min-width: 0;
+}
+
+/* ── Vertical selector ─────────────────────────────────────────── */
+.featured-carousel {
+  width: 100%;
+}
+
+.featured-carousel__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    "index title"
+    "index date";
+  align-items: center;
+  column-gap: 8px;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--mantine-radius-md);
+  text-align: left;
+  transition:
+    background-color 200ms var(--featured-ease, ease),
+    border-color 200ms var(--featured-ease, ease);
+}
+
+.featured-carousel__item:hover {
+  background: var(--media-viewer-control-bg);
+}
+
+.featured-carousel__item--active {
+  background: color-mix(in srgb, var(--accent-color) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent-color) 42%, transparent);
+}
+
+.featured-carousel__item:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.featured-carousel__index {
+  grid-area: index;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  color: var(--mantine-color-dimmed);
+  transition: color 200ms var(--featured-ease, ease);
+}
+
+.featured-carousel__item--active .featured-carousel__index,
+.featured-carousel__item--active .featured-carousel__title {
+  color: var(--accent-color);
+}
+
+.featured-carousel__title {
+  grid-area: title;
+  color: var(--mantine-color-text);
+}
+
+.featured-carousel__date {
+  grid-area: date;
+  color: var(--mantine-color-dimmed);
+}
+
+.featured-carousel__indicator {
+  position: absolute;
+  left: -1px;
+  top: 22%;
+  bottom: 22%;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--accent-color);
+  box-shadow: 0 0 12px var(--accent-color-glow);
+}
+
+/* ── Inline showcase shell ─────────────────────────────────────── */
+.featured-showcase {
+  position: relative;
+  height: clamp(460px, 76vh, 720px);
+  border: 1px solid var(--media-viewer-border);
+  border-radius: var(--mantine-radius-lg);
+  background: var(--media-viewer-bg);
+  box-shadow: var(--media-viewer-shadow);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  overflow: hidden;
+}
+
+.featured-showcase .project-media-viewer {
+  height: 100%;
+  max-height: none;
+}
+
+@media (max-width: 62em) {
+  .featured-projects__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .featured-showcase {
+    height: min(70dvh, 520px);
+  }
+
+  .featured-carousel__item {
+    padding: 9px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-carousel__item,
+  .featured-carousel__index {
+    transition: none;
+  }
+}

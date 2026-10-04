@@ -2,16 +2,15 @@
  * FeaturedProjects
  * Sección de proyectos destacados para la homepage
  * Muestra un máximo de 4 proyectos marcados como featured
- * Reutiliza ProjectCard y ProjectDetailModal existentes
+ * Selector vertical + showcase inline que reutilizan los viewers existentes
  */
 
-import { useState, useMemo, useCallback } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
     Container,
     Title,
     Text,
-    Grid,
     Group,
     Stack,
     useMantineTheme,
@@ -20,18 +19,17 @@ import { IconArrowRight } from '@tabler/icons-react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { getProjects } from '../data/projects';
-import ProjectCard from './ProjectCard';
-import ProjectDetailModal from './ProjectDetailModal';
+import FeaturedProjectCarousel from './FeaturedProjectCarousel';
+import FeaturedProjectShowcase from './FeaturedProjectShowcase';
 import RippleButton from './RippleButton';
 import ScrollReveal from './ScrollReveal';
 import {
-    staggerContainer,
-    cardItem,
     scaleX,
     DURATION,
-    STAGGER,
     VIEWPORT_ONCE,
+    EASE_OUT,
 } from '../utils/motionVariants';
+import './FeaturedProjects.css';
 
 const MotionDiv = motion.div;
 
@@ -41,21 +39,9 @@ const MAX_FEATURED = 4;
 function FeaturedProjects() {
     const theme = useMantineTheme();
     const { t, i18n } = useTranslation();
-    const [selectedProject, setSelectedProject] = useState(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [direction, setDirection] = useState(1);
     const shouldReduceMotion = useReducedMotion();
-
-    const handleSelect = useCallback((project, event) => {
-        const opener = event?.currentTarget;
-        if (opener instanceof HTMLElement) {
-            opener.setAttribute('tabindex', '-1');
-            opener.focus({ preventScroll: true });
-        }
-        setSelectedProject(project);
-    }, []);
-
-    const handleDeselect = useCallback(() => {
-        setSelectedProject(null);
-    }, []);
 
     // Obtener solo los proyectos featured, limitados a MAX_FEATURED
     const featuredProjects = useMemo(() => {
@@ -64,13 +50,35 @@ function FeaturedProjects() {
         return all.filter((p) => p.featured).slice(0, MAX_FEATURED);
     }, [i18n.resolvedLanguage, i18n.language]);
 
+    const handleIndexChange = (nextIndex) => {
+        setDirection(nextIndex >= activeIndex ? 1 : -1);
+        setActiveIndex(nextIndex);
+    };
+
     if (featuredProjects.length === 0) return null;
 
     const accentLineVariants = scaleX(0.2, DURATION.slow);
+    const safeIndex = Math.min(activeIndex, featuredProjects.length - 1);
+    const activeProject = featuredProjects[safeIndex];
+
+    const showcaseVariants = {
+        hidden: {
+            opacity: 0,
+            y: shouldReduceMotion ? 0 : direction * 16,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: shouldReduceMotion ? 0 : DURATION.fast,
+                ease: EASE_OUT,
+            },
+        },
+    };
 
     return (
         <section className="home-section" aria-label={t('home.featuredAria')}>
-            <Container size="lg">
+            <Container size="xl">
                 {/* Encabezado */}
                 <Stack align="center" ta="center" mb="xl" gap="xs" style={{ userSelect: 'none' }}>
                     <ScrollReveal style={{ width: 'fit-content', margin: '0 auto' }}>
@@ -96,30 +104,26 @@ function FeaturedProjects() {
                     />
                 </Stack>
 
-                {/* Grid de proyectos */}
-                <MotionDiv
-                    variants={shouldReduceMotion ? undefined : staggerContainer(STAGGER.relaxed)}
-                    initial={shouldReduceMotion ? undefined : 'hidden'}
-                    whileInView={shouldReduceMotion ? undefined : 'visible'}
-                    viewport={VIEWPORT_ONCE}
-                >
-                    <Grid gutter="lg">
-                        {featuredProjects.map((project) => (
-                            <Grid.Col
-                                key={project.id}
-                                span={{ base: 12, sm: 6 }}
-                            >
-                                <MotionDiv variants={shouldReduceMotion ? undefined : cardItem} style={{ height: '100%' }}>
-                                    <ProjectCard
-                                        project={project}
-                                        onSelect={(event) => handleSelect(project, event)}
-                                        isSelected={selectedProject?.id === project.id}
-                                    />
-                                </MotionDiv>
-                            </Grid.Col>
-                        ))}
-                    </Grid>
-                </MotionDiv>
+                {/* Selector vertical + showcase inline */}
+                <div className="featured-projects__layout">
+                    <ScrollReveal>
+                        <FeaturedProjectCarousel
+                            projects={featuredProjects}
+                            activeIndex={safeIndex}
+                            onIndexChange={handleIndexChange}
+                        />
+                    </ScrollReveal>
+
+                    <MotionDiv
+                        key={activeProject.id}
+                        variants={showcaseVariants}
+                        initial={shouldReduceMotion ? undefined : 'hidden'}
+                        whileInView={shouldReduceMotion ? undefined : 'visible'}
+                        viewport={VIEWPORT_ONCE}
+                    >
+                        <FeaturedProjectShowcase project={activeProject} />
+                    </MotionDiv>
+                </div>
 
                 {/* CTA para ver todos */}
                 <ScrollReveal delay={0.2}>
@@ -141,12 +145,6 @@ function FeaturedProjects() {
                     </Group>
                 </ScrollReveal>
             </Container>
-
-            <ProjectDetailModal
-                project={selectedProject}
-                opened={!!selectedProject}
-                onClose={handleDeselect}
-            />
         </section>
     );
 }

@@ -33,7 +33,7 @@ const ZOOM_MIN = 1.0;
 const ZOOM_MAX = 3.0;
 const ZOOM_STEP = 0.5;
 
-function ProjectImagesViewer({ opened, onClose, onBackToDescription, images, projectTitle }) {
+function ProjectImagesViewer({ opened, onClose, onBackToDescription, images, projectTitle, keyboardNav = true }) {
     const { t } = useTranslation();
     const { primaryColor } = useThemeContext();
     const isMobile = useMediaQuery('(max-width: 48em)');
@@ -130,7 +130,7 @@ function ProjectImagesViewer({ opened, onClose, onBackToDescription, images, pro
 
     // Keyboard navigation & Esc handling
     useEffect(() => {
-        if (!opened) return undefined;
+        if (!opened || !keyboardNav) return undefined;
 
         const handleKeyDown = (event) => {
             if (event.key === 'Escape') {
@@ -168,7 +168,7 @@ function ProjectImagesViewer({ opened, onClose, onBackToDescription, images, pro
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [opened, hasMultipleImages, goToPrev, goToNext, zoomScale, resetZoomAndPan, onClose, zoomIn, zoomOut]);
+    }, [opened, keyboardNav, hasMultipleImages, goToPrev, goToNext, zoomScale, resetZoomAndPan, onClose, zoomIn, zoomOut]);
 
     // Preload neighboring images for rapid switching
     useEffect(() => {

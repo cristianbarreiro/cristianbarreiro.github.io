@@ -27,7 +27,7 @@ import ProjectDownloadMenu from './ProjectDownloadMenu';
 import { formatProjectDate } from '../utils/formatDate';
 import './ProjectDetailViewer.css';
 
-function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onClose }) {
+function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onClose, keyboardNav = true }) {
     const { t } = useTranslation();
     const { primaryColor } = useThemeContext();
     const shouldReduceMotion = useReducedMotion();
@@ -40,6 +40,8 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
         : { duration: 0.25, ease: [0.16, 1, 0.3, 1] };
 
     useEffect(() => {
+        if (!keyboardNav) return undefined;
+
         const handleKeyDown = (event) => {
             if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
 
@@ -57,7 +59,7 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, []);
+    }, [keyboardNav]);
 
     return (
         <Box
@@ -97,17 +99,19 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
                             </Tooltip>
                         )}
 
-                        <ActionIcon
-                            variant="light"
-                            color="gray"
-                            size="md"
-                            radius="xl"
-                            onClick={onClose}
-                            aria-label={t('underConstruction.close')}
-                            className="project-media-viewer__close-btn"
-                        >
-                            <IconX size={18} />
-                        </ActionIcon>
+                        {onClose && (
+                            <ActionIcon
+                                variant="light"
+                                color="gray"
+                                size="md"
+                                radius="xl"
+                                onClick={onClose}
+                                aria-label={t('underConstruction.close')}
+                                className="project-media-viewer__close-btn"
+                            >
+                                <IconX size={18} />
+                            </ActionIcon>
+                        )}
                     </Group>
                 </Group>
             </Box>
