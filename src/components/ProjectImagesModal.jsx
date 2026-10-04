@@ -2,7 +2,7 @@ import { Modal } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import ProjectImagesViewer from './ProjectImagesViewer';
 
-function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
+function ProjectImagesModal({ opened, onClose, onBackToDescription, images, projectTitle }) {
     const isMobile = useMediaQuery('(max-width: 48em)');
 
     return (
@@ -46,6 +46,7 @@ function ProjectImagesModal({ opened, onClose, images, projectTitle }) {
             <ProjectImagesViewer
                 opened={opened}
                 onClose={onClose}
+                onBackToDescription={onBackToDescription}
                 images={images}
                 projectTitle={projectTitle}
             />

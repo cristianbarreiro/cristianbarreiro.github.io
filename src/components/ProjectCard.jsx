@@ -233,6 +233,10 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                     <ProjectImagesModal
                         opened={galleryOpened}
                         onClose={() => setGalleryOpened(false)}
+                        onBackToDescription={() => {
+                            setGalleryOpened(false);
+                            onSelect();
+                        }}
                         images={projectImages}
                         projectTitle={project.title}
                     />
@@ -399,6 +403,10 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                 <ProjectImagesModal
                     opened={galleryOpened}
                     onClose={() => setGalleryOpened(false)}
+                    onBackToDescription={() => {
+                        setGalleryOpened(false);
+                        onSelect();
+                    }}
                     images={projectImages}
                     projectTitle={project.title}
                 />

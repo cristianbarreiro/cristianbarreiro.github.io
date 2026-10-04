@@ -1,7 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import {
     Box,
-    Button,
     Group,
     Text,
     ActionIcon,
@@ -451,6 +450,21 @@ function ProjectImagesViewer({ opened, onClose, onBackToDescription, images, pro
                                 </Tooltip>
                             )}
 
+                            {onBackToDescription && (
+                                <Tooltip label={t('projectCard.viewDescription')} openDelay={400}>
+                                    <ActionIcon
+                                        variant="subtle"
+                                        color={primaryColor}
+                                        size="md"
+                                        radius="xl"
+                                        onClick={onBackToDescription}
+                                        aria-label={t('projectCard.viewDescription')}
+                                    >
+                                        <IconChevronLeft size={18} />
+                                    </ActionIcon>
+                                </Tooltip>
+                            )}
+
                             {/* Integrated Floating Close Button */}
                             <Tooltip label={t('projectCard.closeImages')} openDelay={400}>
                                 <ActionIcon
@@ -586,19 +600,6 @@ function ProjectImagesViewer({ opened, onClose, onBackToDescription, images, pro
 
                 {/* Footer Info & Thumbnail Ribbon */}
                 <Box className="project-media-viewer__footer">
-                    {onBackToDescription && (
-                        <Button
-                            variant="subtle"
-                            color={primaryColor}
-                            size="sm"
-                            leftSection={<IconChevronLeft size={16} />}
-                            onClick={onBackToDescription}
-                            style={{ alignSelf: 'flex-start' }}
-                        >
-                            {t('projectCard.viewDescription')}
-                        </Button>
-                    )}
-
                     {/* Image Caption if present */}
                     {currentImage.caption && (
                         <Text size="sm" c="dimmed" ta="center" className="project-media-viewer__caption">
