@@ -18,6 +18,7 @@ import {
     IconZoomReset,
     IconLayoutGrid,
     IconVideo,
+    IconFileText,
     IconPhoto,
     IconPlayerPlay,
     IconVideoOff,
@@ -460,7 +461,7 @@ function ProjectImagesViewer({ opened, onClose, onBackToDescription, images, pro
                                         onClick={onBackToDescription}
                                         aria-label={t('projectCard.viewDescription')}
                                     >
-                                        <IconChevronLeft size={18} />
+                                        <IconFileText size={18} />
                                     </ActionIcon>
                                 </Tooltip>
                             )}
