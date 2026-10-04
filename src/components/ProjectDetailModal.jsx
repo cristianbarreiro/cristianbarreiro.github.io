@@ -91,7 +91,7 @@ const DEFAULT_DESCRIPTION_VISUAL = {
     ],
 };
 
-function ProjectDetailModal({ project, opened, onClose }) {
+function ProjectDetailModal({ project, opened, onClose, returnFocusTarget }) {
     const { t } = useTranslation();
     const isMobile = useMediaQuery('(max-width: 48em)');
 
@@ -161,6 +161,12 @@ function ProjectDetailModal({ project, opened, onClose }) {
             closeButtonProps={{ 'aria-label': t('underConstruction.close') }}
             closeOnClickOutside
             closeOnEscape={false}
+            returnFocus={!returnFocusTarget}
+            onExitTransitionEnd={() => {
+                if (returnFocusTarget?.isConnected) {
+                    returnFocusTarget.focus({ preventScroll: true });
+                }
+            }}
             transitionProps={{ transition: 'scale', duration: 300 }}
             className="project-media-modal project-content-viewer-modal"
             overlayProps={{ backgroundOpacity: 0.7, blur: 12 }}

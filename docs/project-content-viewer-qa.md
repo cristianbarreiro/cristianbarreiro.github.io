@@ -36,3 +36,15 @@ Este archivo registra solo las comprobaciones automáticas y manuales directamen
 - Console: ✅ sin errores capturados durante estas comprobaciones.
 - **Automáticas:** `npm run lint`, `npm run build` y `git diff --check` ✅. Build conserva el aviso conocido de chunks >500 kB.
 - **Límite:** se utilizó el navegador integrado disponible; Chrome no estaba conectado. No se observó un fallo funcional que justifique cambios de código.
+
+## Fase 24 — QA Delta
+
+- Focus return: ✅ foco vuelve a la card que abrió el detalle, al cerrar con botón o Escape.
+- Close button accessibility: ✅ `Cerrar` / `Close`, focusable y activable.
+- Keyboard smoke test: ✅ Tab, Shift+Tab, ArrowRight, Enter, Space y Escape; el foco permanece en controles del viewer al cambiar slides.
+- Integrated viewer regression: ✅ Description → Visual → Media, navegación y cierre.
+- Direct Gallery smoke test: ✅ imagen → siguiente/vídeo → cierre; `ProjectCard.jsx` intacto.
+- 390×844 smoke test: ✅ apertura/cierre, controles y sin overflow horizontal.
+- Console: ✅ sin errores capturados.
+- **Nota:** se detectó y corrigió pérdida de foco al cerrar desde una card no enfocable y al desmontar controles al cambiar de slide. Prueba en navegador integrado; no había sesión de Chrome externo conectada.
+- **Automáticas:** lint, build y `git diff --check` ✅; build mantiene el aviso de chunks >500 kB ya existente.

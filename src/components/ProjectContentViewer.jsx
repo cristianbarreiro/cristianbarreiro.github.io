@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { ActionIcon, Box, Button, Group, Text } from '@mantine/core';
 import { IconChevronLeft, IconChevronRight, IconFileText, IconPhoto, IconVideo, IconX } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
@@ -85,6 +85,39 @@ function ProjectContentViewerSession({
         ? Math.min(Math.max(requestedIndex, 0), contentSlides.length - 1)
         : 0;
     const [activeSlideIndex, setActiveSlideIndex] = useState(safeInitialIndex);
+    const pendingFocusSelector = useRef(null);
+
+    const changeSlide = (nextIndex) => {
+        const focusedElement = document.activeElement;
+
+        if (focusedElement?.closest('.project-content-viewer, .project-media-viewer')) {
+            if (focusedElement.closest('.project-content-viewer__content-thumbnails')) {
+                pendingFocusSelector.current = '[aria-current="step"]';
+            } else if (focusedElement.classList.contains('project-media-viewer__nav-btn--prev')) {
+                pendingFocusSelector.current = '.project-media-viewer__nav-btn--prev';
+            } else if (focusedElement.classList.contains('project-media-viewer__nav-btn--next')) {
+                pendingFocusSelector.current = '.project-media-viewer__nav-btn--next';
+            } else {
+                pendingFocusSelector.current = '[aria-current="step"]';
+            }
+        }
+
+        setActiveSlideIndex(nextIndex);
+    };
+
+    useLayoutEffect(() => {
+        const selector = pendingFocusSelector.current;
+        if (!selector) return;
+
+        pendingFocusSelector.current = null;
+        const modal = document.querySelector('.project-content-viewer-modal');
+        const focusTarget = modal?.querySelector(selector)
+            || modal?.querySelector('[aria-current="step"]')
+            || modal?.querySelector('.project-media-viewer__nav-btn--next')
+            || modal?.querySelector('button[aria-label]');
+
+        focusTarget?.focus({ preventScroll: true });
+    }, [activeSlideIndex]);
 
     const currentSlide = contentSlides[activeSlideIndex];
     const descriptionIndex = contentSlides.findIndex((slide) => slide.type === 'description');
@@ -143,7 +176,7 @@ function ProjectContentViewerSession({
                         variant={index === activeSlideIndex ? 'light' : 'subtle'}
                         size="xs"
                         leftSection={<SlideIcon size={15} aria-hidden="true" />}
-                        onClick={() => setActiveSlideIndex(index)}
+                        onClick={() => changeSlide(index)}
                         aria-current={index === activeSlideIndex ? 'step' : undefined}
                     >
                         {t(slideLabel)}
@@ -169,13 +202,13 @@ function ProjectContentViewerSession({
             event.preventDefault();
             if (currentSlide.type === 'description' && event.key === 'ArrowRight') {
                 const nextContentIndex = visualIndex >= 0 ? visualIndex : firstMediaIndex;
-                if (nextContentIndex >= 0) setActiveSlideIndex(nextContentIndex);
+                if (nextContentIndex >= 0) changeSlide(nextContentIndex);
             } else if (currentSlide.type === 'visual' && event.key === 'ArrowRight') {
-                setActiveSlideIndex(firstMediaIndex >= 0
+                changeSlide(firstMediaIndex >= 0
                     ? firstMediaIndex
                     : (activeSlideIndex + 1) % contentSlides.length);
             } else {
-                setActiveSlideIndex((activeSlideIndex + (event.key === 'ArrowRight' ? 1 : -1) + contentSlides.length)
+                changeSlide((activeSlideIndex + (event.key === 'ArrowRight' ? 1 : -1) + contentSlides.length)
                     % contentSlides.length);
             }
         };
@@ -221,8 +254,8 @@ function ProjectContentViewerSession({
                     hasMedia={mediaSlides.length > 0}
                     hasVisual={visualIndex >= 0}
                     showTitle={showProjectTitle}
-                    onViewVisual={() => setActiveSlideIndex(visualIndex)}
-                    onViewMedia={() => setActiveSlideIndex(firstMediaIndex)}
+                    onViewVisual={() => changeSlide(visualIndex)}
+                    onViewMedia={() => changeSlide(firstMediaIndex)}
                 />
                 {contentThumbnails}
             </Box>
@@ -269,7 +302,7 @@ function ProjectContentViewerSession({
                             variant="light"
                             size="lg"
                             radius="xl"
-                            onClick={() => setActiveSlideIndex(previousIndex)}
+                            onClick={() => changeSlide(previousIndex)}
                             aria-label={t('projectViewer.previousSlide')}
                         >
                             <IconChevronLeft size={22} aria-hidden="true" />
@@ -282,7 +315,7 @@ function ProjectContentViewerSession({
                             variant="light"
                             size="lg"
                             radius="xl"
-                            onClick={() => setActiveSlideIndex(nextSlideIndex)}
+                            onClick={() => changeSlide(nextSlideIndex)}
                             aria-label={t('projectViewer.nextSlide')}
                         >
                             <IconChevronRight size={22} aria-hidden="true" />
@@ -296,7 +329,7 @@ function ProjectContentViewerSession({
                         <Button
                             variant="light"
                             leftSection={<IconChevronRight size={18} aria-hidden="true" />}
-                            onClick={() => setActiveSlideIndex(firstMediaIndex)}
+                            onClick={() => changeSlide(firstMediaIndex)}
                         >
                             {t('projectCard.viewImagesAndVideos')}
                         </Button>
@@ -314,7 +347,7 @@ function ProjectContentViewerSession({
             showCloseButton={showCloseButton}
             showProjectTitle={showProjectTitle}
             onBackToDescription={descriptionIndex >= 0
-                ? () => setActiveSlideIndex(descriptionIndex)
+                ? () => changeSlide(descriptionIndex)
                 : undefined}
             images={mediaSlides}
             projectTitle={resolvedProjectTitle}
@@ -322,11 +355,11 @@ function ProjectContentViewerSession({
             counterPosition={activeSlideIndex + 1}
             counterTotal={contentSlides.length}
             contentThumbnails={contentThumbnails}
-            onNavigatePrevious={() => setActiveSlideIndex((index) => (index - 1 + contentSlides.length) % contentSlides.length)}
-            onNavigateNext={() => setActiveSlideIndex((index) => (index + 1) % contentSlides.length)}
+            onNavigatePrevious={() => changeSlide((activeSlideIndex - 1 + contentSlides.length) % contentSlides.length)}
+            onNavigateNext={() => changeSlide((activeSlideIndex + 1) % contentSlides.length)}
             onMediaIndexChange={(index) => {
                 const slideIndex = mediaGlobalIndices[index];
-                if (Number.isInteger(slideIndex)) setActiveSlideIndex(slideIndex);
+                if (Number.isInteger(slideIndex)) changeSlide(slideIndex);
             }}
         />
     );

@@ -42,9 +42,14 @@ function FeaturedProjects() {
     const theme = useMantineTheme();
     const { t, i18n } = useTranslation();
     const [selectedProject, setSelectedProject] = useState(null);
+    const [projectTrigger, setProjectTrigger] = useState(null);
     const shouldReduceMotion = useReducedMotion();
 
-    const handleSelect = useCallback((project) => {
+    const handleSelect = useCallback((project, trigger) => {
+        if (trigger instanceof HTMLElement) {
+            trigger.tabIndex = -1;
+            setProjectTrigger(trigger);
+        }
         setSelectedProject(project);
     }, []);
 
@@ -107,7 +112,7 @@ function FeaturedProjects() {
                                 <MotionDiv variants={shouldReduceMotion ? undefined : cardItem} style={{ height: '100%' }}>
                                     <ProjectCard
                                         project={project}
-                                        onSelect={() => handleSelect(project)}
+                                        onSelect={(event) => handleSelect(project, event.currentTarget)}
                                         isSelected={selectedProject?.id === project.id}
                                     />
                                 </MotionDiv>
@@ -141,6 +146,7 @@ function FeaturedProjects() {
                 project={selectedProject}
                 opened={!!selectedProject}
                 onClose={handleDeselect}
+                returnFocusTarget={projectTrigger}
             />
         </section>
     );
