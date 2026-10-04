@@ -87,12 +87,6 @@
   justify-content: center;
 }
 
-.project-detail-viewer__counter {
-  bottom: auto;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 @media (max-width: 48em) {
   .project-detail-viewer {
     max-height: 100dvh;

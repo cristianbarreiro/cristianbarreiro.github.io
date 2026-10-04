@@ -256,15 +256,14 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
                     <IconChevronRight size={26} />
                 </ActionIcon>
 
-            </Box>
-
-            <Box className="project-media-viewer__footer project-detail-viewer__footer">
-                <Box className="project-media-viewer__counter-badge project-detail-viewer__counter" aria-live="polite">
+                <Box className="project-media-viewer__counter-badge" aria-live="polite">
                     <Text size="xs" fw={600} className="project-media-viewer__counter-text">
                         {String(activeSlide + 1).padStart(2, '0')} / 02
                     </Text>
                 </Box>
             </Box>
+
+            <Box className="project-media-viewer__footer project-detail-viewer__footer" />
         </Box>
     );
 }
