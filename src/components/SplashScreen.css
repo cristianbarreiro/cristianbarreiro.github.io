@@ -106,6 +106,54 @@
   text-transform: uppercase;
 }
 
+/* ── Progress Loader (0 → 100) ── */
+
+.splash-screen__loader {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 280px;
+  max-width: 100%;
+  pointer-events: none;
+}
+
+.splash-screen__loader-track {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.splash-screen__loader-fill {
+  position: relative;
+  display: block;
+  height: 100%;
+  border-radius: 9999px;
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    var(--splash-primary, #00e5ff) 55%,
+    var(--splash-primary, #00e5ff) 100%
+  );
+  box-shadow: 0 0 10px 1px var(--splash-primary, #00e5ff);
+  transition: width 140ms linear;
+  animation: splashBarFlicker 3.2s steps(1, end) infinite;
+}
+
+.splash-screen__loader-value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  font-variant-numeric: tabular-nums;
+  min-width: 4.8ch;
+  text-align: right;
+}
+
 /* ── Telemetry & Status Chip ── */
 
 .splash-screen__status-chip {
@@ -238,6 +286,30 @@
   }
 }
 
+/* Micro-flicker tecnológico aplicado únicamente a la barra */
+@keyframes splashBarFlicker {
+  0%, 92%, 100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  93% {
+    opacity: 0.55;
+    transform: translateX(-0.5px);
+  }
+  94% {
+    opacity: 1;
+    transform: translateX(0.5px);
+  }
+  96% {
+    opacity: 0.75;
+    transform: translateX(0);
+  }
+  97% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* ==========================================================================
    Responsive Adaptations
    ========================================================================== */
@@ -260,6 +332,15 @@
   .splash-screen__role {
     font-size: 0.74rem;
     letter-spacing: 0.16em;
+  }
+
+  .splash-screen__loader {
+    width: 220px;
+    gap: 0.55rem;
+  }
+
+  .splash-screen__loader-value {
+    font-size: 0.58rem;
   }
 
   .splash-screen__status-chip {
@@ -295,5 +376,11 @@
   .splash-screen__logo,
   .splash-screen__pulse-dot {
     animation: none !important;
+  }
+
+  .splash-screen__loader-fill {
+    animation: none !important;
+    transition: none;
+    box-shadow: none;
   }
 }
