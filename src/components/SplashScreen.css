@@ -154,6 +154,57 @@
   text-align: right;
 }
 
+/* ── Glitch Text (title) ── */
+
+.splash-screen__glitch-title {
+  /* Paleta Glitch 100% derivada del Accent Color activo (tokens de src/utils/colors.js).
+     Base = token claro del acento; capas = variantes ancladas al fondo y al blanco. */
+  --glitch-base: var(--accent-color-light, #f1f5f9);
+  --glitch-a: var(--accent-color-active, #f1f5f9);
+  --glitch-b: var(--accent-color-light, #f1f5f9);
+  --glitch-glow: var(--accent-color-glow, rgba(241, 245, 249, 0.45));
+
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--glitch-base);
+  letter-spacing: 0.18em;
+  position: relative;
+  text-shadow: 0 0 10px var(--glitch-glow), 0 0 24px var(--glitch-glow);
+  animation: splash-glitch-flicker 3s step-end infinite;
+  margin: 0;
+}
+
+/* Derivación armónica del Accent Color: desplazamiento de tono +32° / -28° (misma
+   estrategia que generateFluxNebulaPalette en src/utils/colors.js). La capa A se
+   mezcla con el fondo del Splash y la B con el blanco, de modo que la separación
+   visual es equivalente con cualquier acento elegido por el usuario. */
+@supports (color: hsl(from red h s l)) {
+  .splash-screen__glitch-title {
+    --glitch-a: color-mix(in oklab, hsl(from var(--accent-color, #f1f5f9) calc(h + 32) s l) 62%, #07080c);
+    --glitch-b: color-mix(in oklab, hsl(from var(--accent-color, #f1f5f9) calc(h - 28) s l) 78%, #ffffff);
+  }
+}
+
+.splash-screen__glitch-title::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--glitch-a);
+  animation: splash-glitch-r 2.5s step-end infinite;
+  clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+}
+
+.splash-screen__glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--glitch-b);
+  animation: splash-glitch-b 2s step-end infinite;
+  clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+}
+
 /* ── Telemetry & Status Chip ── */
 
 .splash-screen__status-chip {
@@ -286,6 +337,101 @@
   }
 }
 
+/* Glitch Text: flicker + desplazamientos RGB del título */
+@keyframes splash-glitch-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  92% {
+    opacity: 1;
+  }
+
+  93% {
+    opacity: 0;
+  }
+
+  94% {
+    opacity: 1;
+  }
+
+  96% {
+    opacity: 0;
+  }
+
+  97% {
+    opacity: 1;
+  }
+}
+
+@keyframes splash-glitch-r {
+  0% {
+    transform: translateX(0);
+  }
+
+  15% {
+    transform: translateX(-3px);
+  }
+
+  16% {
+    transform: translateX(3px);
+  }
+
+  17% {
+    transform: translateX(0);
+  }
+
+  85% {
+    transform: translateX(0);
+  }
+
+  86% {
+    transform: translateX(2px);
+  }
+
+  87% {
+    transform: translateX(-2px);
+  }
+
+  88% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes splash-glitch-b {
+  0% {
+    transform: translateX(0);
+  }
+
+  10% {
+    transform: translateX(2px);
+  }
+
+  11% {
+    transform: translateX(-2px);
+  }
+
+  12% {
+    transform: translateX(0);
+  }
+
+  75% {
+    transform: translateX(0);
+  }
+
+  76% {
+    transform: translateX(-3px);
+  }
+
+  77% {
+    transform: translateX(3px);
+  }
+
+  78% {
+    transform: translateX(0);
+  }
+}
+
 /* Micro-flicker tecnológico aplicado únicamente a la barra */
 @keyframes splashBarFlicker {
   0%, 92%, 100% {
@@ -325,6 +471,11 @@
   }
 
   .splash-screen__name {
+    font-size: 1.35rem;
+    letter-spacing: 0.14em;
+  }
+
+  .splash-screen__glitch-title {
     font-size: 1.35rem;
     letter-spacing: 0.14em;
   }
@@ -382,5 +533,11 @@
     animation: none !important;
     transition: none;
     box-shadow: none;
+  }
+
+  .splash-screen__glitch-title,
+  .splash-screen__glitch-title::before,
+  .splash-screen__glitch-title::after {
+    animation: none !important;
   }
 }

@@ -137,7 +137,9 @@ function SplashScreen({ onFinish }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h1 className="splash-screen__name">INITIALIZING PORTFOLIO</h1>
+          <h1 className="splash-screen__glitch-title" data-text="INITIALIZING PORTFOLIO">
+            INITIALIZING PORTFOLIO
+          </h1>
           <div
             className="splash-screen__loader"
             role="progressbar"
