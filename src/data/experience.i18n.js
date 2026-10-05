@@ -26,12 +26,12 @@ export const experienceByLanguage = {
     },
     {
       id: 2,
-      type: 'work',
-      category: 'work',
+      type: 'education',
+      category: 'education',
       title: 'Técnico en Redes',
       organization: 'Instituto IBEC',
       location: 'Montevideo',
-      badgeText: 'Infraestructura & Soporte',
+      badgeText: 'Formación Técnica',
       status: 'completed',
       startDate: '2026-05',
       endDate: '2026-08',
@@ -158,21 +158,21 @@ export const experienceByLanguage = {
     },
     {
       id: 2,
-      type: 'work',
-      category: 'work',
+      type: 'education',
+      category: 'education',
       title: 'Network Technician',
-      organization: 'Instituto IBEC',
+      organization: 'IBEC Institute',
       location: 'Montevideo',
-      badgeText: 'Infrastructure & Support',
+      badgeText: 'Technical Training',
       status: 'completed',
       startDate: '2026-05',
       endDate: '2026-08',
       description: [
-        'Support, diagnostics, and maintenance of local network infrastructure.',
-        'Configuration of routers, switches, subnets, and computer equipment.',
-        'Direct user technical assistance and resolution of connectivity incidents.'
+        'Support, diagnosis and maintenance of local network infrastructure.',
+        'Configuration of routers, switches, subnets and computer equipment.',
+        'Direct technical assistance to users and resolution of connectivity incidents.'
       ],
-      skills: ['Networking', 'Technical Support', 'Hardware Configuration', 'Hardware', 'Linux']
+      skills: ['Networking', 'Technical Support', 'Equipment Configuration', 'Hardware', 'Linux']
     },
     // Tertiary & Secondary Education
     {
