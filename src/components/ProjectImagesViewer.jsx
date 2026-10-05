@@ -33,7 +33,15 @@ const ZOOM_MIN = 1.0;
 const ZOOM_MAX = 3.0;
 const ZOOM_STEP = 0.5;
 
-function ProjectImagesViewer({ opened, onClose, onBackToDescription, images, projectTitle, keyboardNav = true }) {
+function ProjectImagesViewer({
+    opened,
+    onClose,
+    onBackToDescription,
+    images,
+    projectTitle,
+    keyboardNav = true,
+    showCloseButton = true,
+}) {
     const { t } = useTranslation();
     const { primaryColor } = useThemeContext();
     const isMobile = useMediaQuery('(max-width: 48em)');
@@ -467,19 +475,21 @@ function ProjectImagesViewer({ opened, onClose, onBackToDescription, images, pro
                             )}
 
                             {/* Integrated Floating Close Button */}
-                            <Tooltip label={t('projectCard.closeImages')} openDelay={400}>
-                                <ActionIcon
-                                    variant="light"
-                                    color="gray"
-                                    size="md"
-                                    radius="xl"
-                                    onClick={onClose}
-                                    aria-label={t('projectCard.closeImages')}
-                                    className="project-media-viewer__close-btn"
-                                >
-                                    <IconX size={18} />
-                                </ActionIcon>
-                            </Tooltip>
+                            {showCloseButton && (
+                                <Tooltip label={t('projectCard.closeImages')} openDelay={400}>
+                                    <ActionIcon
+                                        variant="light"
+                                        color="gray"
+                                        size="md"
+                                        radius="xl"
+                                        onClick={onClose}
+                                        aria-label={t('projectCard.closeImages')}
+                                        className="project-media-viewer__close-btn"
+                                    >
+                                        <IconX size={18} />
+                                    </ActionIcon>
+                                </Tooltip>
+                            )}
                         </Group>
                     </Group>
                 </Box>

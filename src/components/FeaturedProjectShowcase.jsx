@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Box } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import ProjectDetailViewer from './ProjectDetailViewer';
@@ -6,16 +6,19 @@ import ProjectImagesViewer from './ProjectImagesViewer';
 import { DEFAULT_DESCRIPTION_VISUAL } from '../data/defaultDescriptionVisual';
 import { resolveProjectImages } from '../utils/projectImages';
 
-function FeaturedProjectShowcase({ project }) {
+function FeaturedProjectShowcase({ project, view = 'media', onViewChange }) {
     const { t } = useTranslation();
-    const [view, setView] = useState('description');
 
     const projectImages = useMemo(() => resolveProjectImages(project, t), [project, t]);
-    const showDescription = () => setView('description');
+    const hasMedia = projectImages.length > 0;
+    const activeView = hasMedia ? view : 'description';
+
+    const showDescription = () => onViewChange?.('description');
+    const showMedia = () => onViewChange?.('media');
 
     return (
         <Box className="featured-showcase">
-            {view === 'media' ? (
+            {activeView === 'media' ? (
                 <ProjectImagesViewer
                     opened
                     keyboardNav={false}
@@ -23,6 +26,7 @@ function FeaturedProjectShowcase({ project }) {
                     projectTitle={project.title}
                     onClose={showDescription}
                     onBackToDescription={showDescription}
+                    showCloseButton={false}
                 />
             ) : (
                 <ProjectDetailViewer
@@ -30,7 +34,7 @@ function FeaturedProjectShowcase({ project }) {
                     visualData={project.descriptionVisual || DEFAULT_DESCRIPTION_VISUAL}
                     hasImages={projectImages.length > 0}
                     keyboardNav={false}
-                    onOpenMedia={() => setView('media')}
+                    onOpenMedia={showMedia}
                 />
             )}
         </Box>

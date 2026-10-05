@@ -41,6 +41,7 @@ function FeaturedProjects() {
     const { t, i18n } = useTranslation();
     const [activeIndex, setActiveIndex] = useState(0);
     const [direction, setDirection] = useState(1);
+    const [view, setView] = useState('media');
     const shouldReduceMotion = useReducedMotion();
 
     // Obtener solo los proyectos featured, limitados a MAX_FEATURED
@@ -141,7 +142,11 @@ function FeaturedProjects() {
                         whileInView={shouldReduceMotion ? undefined : 'visible'}
                         viewport={VIEWPORT_ONCE}
                     >
-                        <FeaturedProjectShowcase project={activeProject} />
+                        <FeaturedProjectShowcase
+                            project={activeProject}
+                            view={view}
+                            onViewChange={setView}
+                        />
                     </MotionDiv>
                 </div>
             </Container>
