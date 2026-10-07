@@ -124,6 +124,57 @@
   }
 }
 
+/* ── Mobile adaptations (inline showcase only) ─────────────────── */
+@media (max-width: 48em) {
+  /*
+   * Recupera ancho de columna dentro del showcase embebido.
+   * Baseline a 390px: columna de 172px (padding 60px) frente a los
+   * 228px de la tarjeta About. Con 48px la columna pasa a 196px.
+   */
+  .featured-showcase .project-detail-viewer__slide {
+    padding: 0 48px;
+  }
+
+  /* Flechas 44px → 34px: métrica `lg` ya usada por ProjectImagesViewer
+   * en móvil. Huella 42px con `left: 8px` → 6px de aire con el contenido. */
+  .featured-showcase .project-detail-viewer .project-media-viewer__nav-btn {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    min-height: 34px;
+  }
+
+  .featured-showcase .project-detail-viewer .project-media-viewer__nav-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  /*
+   * Escala tipográfica móvil del título (26px fijo → clamp con 5vw).
+   * Evita la fragmentación en 3-4 líneas sin romper la jerarquía.
+   */
+  .featured-showcase .project-detail-viewer__description h2 {
+    font-size: clamp(1.15rem, 5vw, 1.625rem);
+  }
+
+  /* El slide Visual no protege texto: se encuadra a 8px como la vista de
+   * Imágenes, liberando ancho para el diagrama (limitado por width). */
+  .featured-showcase .project-detail-viewer__slide.project-detail-viewer__visual {
+    padding: 0 8px;
+  }
+
+  /* El `max-height: calc(100dvh - 160px)` del modal (móvil) mediría
+   * contra el viewport y podría exceder el canvas embebido. */
+  .featured-showcase .project-media-viewer__media {
+    max-height: 100%;
+  }
+
+  /* Barra inferior del detalle sin contenido: 25px muertos en el showcase. */
+  .featured-showcase .project-detail-viewer__footer {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .featured-carousel__item,
   .featured-carousel__index,
