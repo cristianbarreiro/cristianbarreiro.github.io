@@ -23,6 +23,7 @@ import {
     IconPlayerPlay,
     IconVideoOff,
     IconPhotoOff,
+    IconTool,
 } from '@tabler/icons-react';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -41,6 +42,7 @@ function ProjectImagesViewer({
     projectTitle,
     keyboardNav = true,
     showCloseButton = true,
+    inDevelopment = false,
 }) {
     const { t } = useTranslation();
     const { primaryColor } = useThemeContext();
@@ -502,6 +504,14 @@ function ProjectImagesViewer({
                 >
                     {/* Background Radial Glow */}
                     <div className="project-media-viewer__glow" />
+
+                    {/* Estado del proyecto: en desarrollo */}
+                    {inDevelopment && (
+                        <div className="project-media-viewer__dev-badge" role="status">
+                            <IconTool size={12} aria-hidden="true" />
+                            <span>{t('projectCard.inDevelopment')}</span>
+                        </div>
+                    )}
 
                     {/* Previous Image Lateral Button */}
                     {hasMultipleImages && (

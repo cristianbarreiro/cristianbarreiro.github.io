@@ -14,6 +14,9 @@
  * - backofficeUrl: enlace al backoffice en vivo (opcional)
  * - repoUrl: enlace al repositorio
  * - featured: si es un proyecto destacado (aparece primero)
+ * - inDevelopment: (opcional) `true` si el proyecto sigue en desarrollo.
+ *   Por defecto ausente/`false`: solo se muestra el indicador "En desarrollo"
+ *   en los viewers cuando el valor es `true`.
  */
 
 import {
@@ -523,6 +526,7 @@ const projectsByLanguage = {
             repoUrl: 'https://github.com/cristianbarreiro/Instagram_Analyzer',
             descriptionVisual: followLensDescriptionVisual,
             featured: true,
+            inDevelopment: true,
         },
         {
             id: 17,
@@ -637,6 +641,7 @@ const projectsByLanguage = {
             repoUrl: 'https://github.com/cristianbarreiro/Desktop-Calendar',
             descriptionVisual: desktopCalendarDescriptionVisual,
             featured: true,
+            inDevelopment: true,
         },
     ],
     en: [
@@ -1123,6 +1128,7 @@ const projectsByLanguage = {
             repoUrl: 'https://github.com/cristianbarreiro/Instagram_Analyzer',
             descriptionVisual: followLensDescriptionVisual,
             featured: true,
+            inDevelopment: true,
         },
         {
             id: 17,
@@ -1237,6 +1243,7 @@ const projectsByLanguage = {
             repoUrl: 'https://github.com/cristianbarreiro/Desktop-Calendar',
             descriptionVisual: desktopCalendarDescriptionVisual,
             featured: true,
+            inDevelopment: true,
         },
     ],
 };

@@ -17,6 +17,7 @@ import {
     IconChevronRight,
     IconExternalLink,
     IconPhoto,
+    IconTool,
     IconX,
 } from '@tabler/icons-react';
 import { motion as Motion, AnimatePresence, useReducedMotion } from 'framer-motion';
@@ -118,6 +119,13 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
 
             <Box className="project-media-viewer__canvas project-detail-viewer__canvas">
                 {paintedSlide === 0 && <div className="project-detail-viewer__description-background" />}
+
+                {project.inDevelopment && (
+                    <div className="project-media-viewer__dev-badge" role="status">
+                        <IconTool size={12} aria-hidden="true" />
+                        <span>{t('projectCard.inDevelopment')}</span>
+                    </div>
+                )}
 
                 <ActionIcon
                     variant="subtle"

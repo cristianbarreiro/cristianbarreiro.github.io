@@ -49,6 +49,63 @@
   font-weight: 600;
 }
 
+/* Estado "En desarrollo" (overlay superior izquierdo del canvas) */
+.project-media-viewer__dev-badge {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  z-index: 15;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: calc(100% - 32px);
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-color-background);
+  border: 1px solid var(--accent-color-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 14px var(--accent-color-glow-subtle);
+  color: var(--accent-color);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
+  animation: dev-badge-in 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes dev-badge-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-media-viewer__dev-badge {
+    animation: none;
+  }
+}
+
+@media (max-width: 48em) {
+  .project-media-viewer__dev-badge {
+    top: 8px;
+    left: 10px;
+    max-width: calc(100% - 20px);
+    padding: 3px 8px;
+    gap: 4px;
+    font-size: 0.625rem;
+  }
+}
+
 .project-media-viewer__controls {
   flex-shrink: 0;
 }

@@ -244,6 +244,7 @@
   },
   "projectCard": {
     "featured": "Featured",
+    "inDevelopment": "En desarrollo",
     "demo": "Demo",
     "ecommerce": "E-commerce",
     "backoffice": "Backoffice",

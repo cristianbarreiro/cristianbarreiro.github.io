@@ -67,6 +67,7 @@ function ProjectDetailModal({ project, opened, onClose }) {
                     onBackToDescription={() => changeView('description')}
                     images={projectImages}
                     projectTitle={project.title}
+                    inDevelopment={project.inDevelopment}
                 />
             ) : (
                 <ProjectDetailViewer

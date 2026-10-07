@@ -24,6 +24,7 @@ function FeaturedProjectShowcase({ project, view = 'media', onViewChange }) {
                     keyboardNav={false}
                     images={projectImages}
                     projectTitle={project.title}
+                    inDevelopment={project.inDevelopment}
                     onClose={showDescription}
                     onBackToDescription={showDescription}
                     showCloseButton={false}
