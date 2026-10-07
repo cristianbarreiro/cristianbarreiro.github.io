@@ -217,10 +217,10 @@
       "viewStackCta": "View Full Tech Stack"
     },
     "horizon": {
-      "title": "Where Am I Heading?",
-      "description": "Looking to join software engineering teams where I can contribute to Full-Stack development, backend APIs, and desktop solutions, bringing technical rigor, initiative, and continuous growth.",
-      "contactCta": "Get In Touch",
-      "downloadCvCta": "Download CV"
+      "title": "¿Hacia dónde voy?",
+      "description": "Busco incorporarme a equipos de ingeniería de software donde pueda contribuir al desarrollo Full-Stack, APIs backend y soluciones de escritorio, aportando rigor técnico, iniciativa y un crecimiento continuo.",
+      "contactCta": "Ponerse en contacto",
+      "downloadCvCta": "Descargar CV"
     }
   },
   "projects": {
@@ -320,16 +320,12 @@
     "yellow": "Sentinel Yellow",
     "red": "Sith Red",
     "backgroundTheme": "Background Theme",
-    "bgSpaceTitle": "3D WebGL Space",
-    "bgSpaceDesc": "Dynamic space environment with 3D particles & nebulae",
     "bgGradientTitle": "Animated Gradient",
     "bgGradientDesc": "Fluid moving color gradients",
     "bgMinimalTitle": "Minimal Dark",
     "bgMinimalDesc": "Clean dark background focused on high readability",
     "bgParticlesTitle": "Particle Network",
     "bgParticlesDesc": "Interactive tech node matrix",
-    "showNebula": "Show nebula",
-    "blendMinimal": "Blend with Minimal Dark",
     "current": "Active",
     "comingSoon": "Coming Soon",
     "prevTheme": "Previous theme",

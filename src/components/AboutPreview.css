@@ -1,0 +1,32 @@
+/* ==========================================================================
+   AboutPreview — Responsive typography and layout for Home
+   ========================================================================== */
+
+.about-preview__section-title {
+  font-size: clamp(1.625rem, 1.35rem + 1.2vw, 2.125rem) !important;
+  line-height: 1.25;
+}
+
+.about-preview__section-subtitle {
+  font-size: clamp(0.875rem, 0.82rem + 0.25vw, 1rem) !important;
+  line-height: 1.5;
+}
+
+.about-preview__card-title {
+  font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem) !important;
+}
+
+.about-preview__bio {
+  font-size: clamp(0.875rem, 0.82rem + 0.25vw, 1rem) !important;
+  line-height: clamp(1.55, 1.5 + 0.3vw, 1.75) !important;
+}
+
+.about-preview__subheading {
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.1rem) !important;
+}
+
+@media (max-width: 48em) {
+  .about-preview__bio {
+    line-height: 1.6 !important;
+  }
+}

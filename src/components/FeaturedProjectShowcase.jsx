@@ -17,7 +17,7 @@ function FeaturedProjectShowcase({ project, view = 'media', onViewChange }) {
     const showMedia = () => onViewChange?.('media');
 
     return (
-        <Box className="featured-showcase">
+        <Box className={`featured-showcase featured-showcase--${activeView}`}>
             {activeView === 'media' ? (
                 <ProjectImagesViewer
                     opened

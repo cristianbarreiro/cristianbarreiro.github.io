@@ -38,7 +38,7 @@ index.html
     │                       └── Routes / Route
     │                           └── Layout.jsx (Shell maestro)
     │                               ├── Navbar (navegación y switch de idioma)
-    │                               ├── Fondo Activo (SpaceBackground | MinimalBackground)
+    │                               ├── Fondo Activo (MinimalBackground | Gradiente)
     │                               ├── Outlet (Páginas: Home, About, Projects, Skills, Contact)
     │                               └── Footer
 ```
@@ -56,7 +56,7 @@ La aplicación utiliza un enfoque descentralizado para evitar re-renderizados in
 ThemeChanger (Interacción local / RAF)
        │ (commit al soltar)
        ▼
-ThemeContext (Estado Global: primaryColor, backgroundTheme, nebula, blendMinimal)
+ThemeContext (Estado Global: primaryColor, backgroundTheme)
        │
        ├─────────────────────────┬─────────────────────────┐
        ▼                         ▼                         ▼

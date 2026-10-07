@@ -25,7 +25,7 @@
 | **UI Library** | Mantine 8 | `@mantine/core` + `@mantine/hooks` (tema oscuro forzado, acento dinámico). |
 | **Routing** | React Router DOM 7 | SPA con redirección 404 en GitHub Pages. |
 | **3D & WebGL** | Three.js + R3F + Drei | Escena interactiva `TechGlobe` (carga diferida `lazy()`, oclusión Drei). |
-| **Backgrounds** | Canvas 2D + CSS Lerp | `SpaceBackground` (estrellas/nebulosas) y `MinimalBackground` (spotlight lerp). |
+| **Backgrounds** | CSS Lerp + Ambient Spotlight | `MinimalBackground` (spotlight lerp) y Gradiente Animado. |
 | **Animations** | Framer Motion | Variantes centralizadas con soporte obligatorio para `prefers-reduced-motion`. |
 | **i18n** | i18next + react-i18next | Recursos en `public/locales/es.json` y `en.json`. Fallback: `es`. |
 | **Contact** | EmailJS Browser | Formulario client-side directo sin backend. |
@@ -81,7 +81,7 @@ public/
 ├── images/                    # Capturas y multimedia (public/images/projects/)
 └── 404.html                   # Script SPA redirect para GitHub Pages
 src/
-├── components/                # UI modular (TechGlobe, SpaceBackground, ThemeChanger, etc.)
+├── components/                # UI modular (TechGlobe, MinimalBackground, ThemeChanger, etc.)
 ├── config/                    # siteConfig.js (datos autor) y backgroundThemes.js
 ├── context/                   # ThemeContext.jsx (primaryColor, backgroundTheme)
 ├── data/                      # projects.js, skills.js, experience.js, globeTechStack.js

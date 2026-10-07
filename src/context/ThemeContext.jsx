@@ -8,8 +8,10 @@ import {
 import {
   safeLocalStorageGet,
   safeLocalStorageSet,
+  safeLocalStorageRemove,
   readCookie,
   writeCookie,
+  removeCookie,
 } from '../utils/storage';
 import { normalizeHex, applyGlobalColorTokens } from '../utils/colors';
 
@@ -58,9 +60,22 @@ function persistPrimaryColor(value) {
 
 function getPersistedBackgroundTheme() {
   const ls = safeLocalStorageGet(BG_THEME_KEY);
-  if (ls && BACKGROUND_THEMES.some((t) => t.id === ls)) return ls;
+  if (ls && ls !== 'space' && BACKGROUND_THEMES.some((t) => t.id === ls)) return ls;
   const ck = readCookie(BG_THEME_KEY);
-  if (ck && BACKGROUND_THEMES.some((t) => t.id === ck)) return ck;
+  if (ck && ck !== 'space' && BACKGROUND_THEMES.some((t) => t.id === ck)) return ck;
+
+  // Si venía de 'space' o valor inexistente, persistir fallback seguro
+  if (ls === 'space' || ck === 'space') {
+    safeLocalStorageSet(BG_THEME_KEY, DEFAULT_BACKGROUND_THEME);
+    writeCookie(BG_THEME_KEY, DEFAULT_BACKGROUND_THEME, { maxAgeDays: COOKIE_MAX_AGE_DAYS });
+  }
+
+  // Limpieza de claves obsoletas asociadas a efectos anteriores
+  safeLocalStorageRemove(NEBULA_KEY);
+  safeLocalStorageRemove(BLEND_MINIMAL_KEY);
+  removeCookie(NEBULA_KEY);
+  removeCookie(BLEND_MINIMAL_KEY);
+
   return DEFAULT_BACKGROUND_THEME;
 }
 
@@ -69,37 +84,9 @@ function persistBackgroundTheme(value) {
   writeCookie(BG_THEME_KEY, value, { maxAgeDays: COOKIE_MAX_AGE_DAYS });
 }
 
-function getPersistedShowNebula() {
-  const ls = safeLocalStorageGet(NEBULA_KEY);
-  if (ls !== null) return ls === 'true';
-  const ck = readCookie(NEBULA_KEY);
-  if (ck !== null) return ck === 'true';
-  return false;
-}
-
-function persistShowNebula(value) {
-  safeLocalStorageSet(NEBULA_KEY, String(value));
-  writeCookie(NEBULA_KEY, String(value), { maxAgeDays: COOKIE_MAX_AGE_DAYS });
-}
-
-function getPersistedBlendMinimal() {
-  const ls = safeLocalStorageGet(BLEND_MINIMAL_KEY);
-  if (ls !== null) return ls === 'true';
-  const ck = readCookie(BLEND_MINIMAL_KEY);
-  if (ck !== null) return ck === 'true';
-  return false;
-}
-
-function persistBlendMinimal(value) {
-  safeLocalStorageSet(BLEND_MINIMAL_KEY, String(value));
-  writeCookie(BLEND_MINIMAL_KEY, String(value), { maxAgeDays: COOKIE_MAX_AGE_DAYS });
-}
-
 export function ThemeProvider({ children }) {
   const [primaryColor, setPrimaryColorState] = useState(getPersistedPrimaryColor);
   const [backgroundTheme, setBackgroundThemeState] = useState(getPersistedBackgroundTheme);
-  const [showNebula, setShowNebulaState] = useState(getPersistedShowNebula);
-  const [blendMinimalBackground, setBlendMinimalBackgroundState] = useState(getPersistedBlendMinimal);
 
   // Sincronizar variables CSS globales en :root cada vez que cambia el color de acento
   useEffect(() => {
@@ -127,22 +114,6 @@ export function ThemeProvider({ children }) {
     persistBackgroundTheme(themeId);
   }, []);
 
-  const setShowNebula = useCallback((val) => {
-    setShowNebulaState((prev) => {
-      const next = typeof val === 'function' ? val(prev) : val;
-      persistShowNebula(next);
-      return next;
-    });
-  }, []);
-
-  const setBlendMinimalBackground = useCallback((val) => {
-    setBlendMinimalBackgroundState((prev) => {
-      const next = typeof val === 'function' ? val(prev) : val;
-      persistBlendMinimal(next);
-      return next;
-    });
-  }, []);
-
   return (
     <ThemeContext.Provider
       value={{
@@ -152,10 +123,6 @@ export function ThemeProvider({ children }) {
         defaultPrimaryColor: resolveValidHex(DEFAULT_PRIMARY_COLOR) || '#0088ff',
         backgroundTheme,
         setBackgroundTheme,
-        showNebula,
-        setShowNebula,
-        blendMinimalBackground,
-        setBlendMinimalBackground,
       }}
     >
       {children}

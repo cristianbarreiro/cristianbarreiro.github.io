@@ -4,7 +4,6 @@ import { Tooltip } from '@mantine/core';
 import {
   IconPalette,
   IconCheck,
-  IconWorld,
   IconSparkles,
   IconLayout,
   IconAtom,
@@ -19,7 +18,6 @@ import { isValidHex, normalizeHex, coordsToHex, hexToCoords } from '../../utils/
 import './ThemeChanger.css';
 
 const ICON_MAP = {
-  world: IconWorld,
   sparkles: IconSparkles,
   layout: IconLayout,
   atom: IconAtom,
@@ -51,10 +49,6 @@ function ThemeChanger() {
     defaultPrimaryColor,
     backgroundTheme,
     setBackgroundTheme,
-    showNebula,
-    setShowNebula,
-    blendMinimalBackground,
-    setBlendMinimalBackground,
   } = useThemeContext();
 
   const currentHexRef = useRef(primaryColor);
@@ -511,7 +505,7 @@ function ThemeChanger() {
     BACKGROUND_THEMES[currentThemeIndex] || BACKGROUND_THEMES[0];
   const isThemeSelected = backgroundTheme === activeThemeItem.id;
   const isThemeAvailable = activeThemeItem.available;
-  const ActiveThemeIcon = ICON_MAP[activeThemeItem.icon] || IconWorld;
+  const ActiveThemeIcon = ICON_MAP[activeThemeItem.icon] || IconLayout;
 
   return (
     <>
@@ -736,29 +730,6 @@ function ThemeChanger() {
               )}
             </div>
 
-            {/* Opciones secundarias cuando Espacio WebGL 3D está activo */}
-            {isThemeSelected && activeThemeItem.id === 'space' && (
-              <div className="theme-changer-nebula-option">
-                <label className="theme-changer-checkbox-label">
-                  <input
-                    type="checkbox"
-                    checked={showNebula}
-                    onChange={(e) => setShowNebula(e.target.checked)}
-                    className="theme-changer-checkbox"
-                  />
-                  <span>{t('themeChanger.showNebula')}</span>
-                </label>
-                <label className="theme-changer-checkbox-label">
-                  <input
-                    type="checkbox"
-                    checked={blendMinimalBackground}
-                    onChange={(e) => setBlendMinimalBackground(e.target.checked)}
-                    className="theme-changer-checkbox"
-                  />
-                  <span>{t('themeChanger.blendMinimal')}</span>
-                </label>
-              </div>
-            )}
 
             {/* Indicadores de diapositiva (Dots) */}
             <div className="theme-changer-carousel-dots" aria-hidden="true">

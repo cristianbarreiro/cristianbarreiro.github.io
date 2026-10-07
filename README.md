@@ -52,7 +52,6 @@
 ├── src/
 │   ├── components/            # Componentes reutilizables de UI
 │   │   ├── TechGlobe/         # Escena 3D Three.js, fallback y panel de stack
-│   │   ├── SpaceBackground/   # Fondo espacial Canvas con estrellas y nebulosas
 │   │   ├── MinimalBackground/ # Fondo minimalista con spotlight reactivo al cursor
 │   │   ├── ThemeChanger/      # Widget flotante de selección de tema y fondo
 │   │   ├── Layout.jsx         # AppShell, Navbar, Footer y orquestador de fondos

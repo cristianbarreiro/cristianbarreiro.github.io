@@ -28,7 +28,7 @@ Si cada evento de movimiento del cursor (`pointermove` a 60-120 Hz) invocara `se
 2. `ThemeRoot` recalcularía los 10 tonos Mantine con `generateMantineShades()`.
 3. `createTheme()` crearía un nuevo objeto de tema en Mantine, provocando el re-renderizado de todo el árbol de componentes.
 4. `applyGlobalColorTokens()` reescribiría las variables CSS en `:root`.
-5. `Layout` y `SpaceBackground` / `MinimalBackground` recomputarían estrellas, partículas, colores de nebulosa y shaders WebGL.
+5. `Layout` y `MinimalBackground` recomputarían los gradientes del spotlight y variables CSS.
 
 El resultado sería una degradación severa de la tasa de cuadros (caída a <20 FPS), congelamientos en navegadores móviles y *layout thrashing* continuo.
 

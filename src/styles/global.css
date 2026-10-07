@@ -1570,7 +1570,7 @@ button:hover .icon-send-jello {
   padding: var(--mantine-spacing-md, 16px);
 }
 
-.main-content-wrapper.space-bg::before {
+.main-content-wrapper.minimal-bg::before {
   display: none;
 }
 

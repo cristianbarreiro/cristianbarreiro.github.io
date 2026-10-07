@@ -28,6 +28,7 @@ import { useTranslation } from 'react-i18next';
 import { getEducation } from '../data/experience';
 import RippleButton from './RippleButton';
 import ScrollReveal from './ScrollReveal';
+import './AboutPreview.css';
 import {
     staggerContainer,
     cardItem,
@@ -62,12 +63,12 @@ function AboutPreview() {
                 {/* Encabezado */}
                 <Stack align="center" ta="center" mb="xl" gap="xs" style={{ userSelect: 'none' }}>
                     <ScrollReveal style={{ width: 'fit-content', margin: '0 auto' }}>
-                        <Title order={2} size="h2" fw={700} className="section-title">
+                        <Title order={2} size="h2" fw={700} className="section-title about-preview__section-title">
                             {t('home.aboutPreviewTitle')}
                         </Title>
                     </ScrollReveal>
                     <ScrollReveal delay={0.1}>
-                        <Text size="md" className="section-subtitle" maw={520}>
+                        <Text size="md" className="section-subtitle about-preview__section-subtitle" maw={520}>
                             {t('home.aboutPreviewSubtitle')}
                         </Text>
                     </ScrollReveal>
@@ -96,7 +97,7 @@ function AboutPreview() {
                             <MotionDiv variants={shouldReduceMotion ? undefined : cardItem} style={{ height: '100%' }}>
                                 <Paper
                                     className="glass-hover-card"
-                                    p="xl"
+                                    p={{ base: 'md', sm: 'xl' }}
                                     radius="md"
                                     withBorder
                                     h="100%"
@@ -108,7 +109,7 @@ function AboutPreview() {
                                         <ThemeIcon size="lg" radius="md" variant="light">
                                             <IconUser size={20} />
                                         </ThemeIcon>
-                                        <Title order={3} size="h4">
+                                        <Title order={3} size="h4" className="about-preview__card-title">
                                             {t('home.aboutPreviewTitle')}
                                         </Title>
                                     </Group>
@@ -116,7 +117,7 @@ function AboutPreview() {
                                     <Text
                                         size="md"
                                         c="dimmed"
-                                        style={{ lineHeight: 1.8 }}
+                                        className="about-preview__bio"
                                     >
                                         {t('home.aboutPreviewJourney')}
                                     </Text>
@@ -147,7 +148,7 @@ function AboutPreview() {
                                     {latestEducation && (
                                         <Paper
                                             className="glass-hover-card"
-                                            p="lg"
+                                            p={{ base: 'md', sm: 'lg' }}
                                             radius="md"
                                             withBorder
                                         >
@@ -155,7 +156,7 @@ function AboutPreview() {
                                                 <ThemeIcon size="lg" radius="md" variant="light" color="violet">
                                                     <IconSchool size={20} />
                                                 </ThemeIcon>
-                                                <Title order={4} size="h5">
+                                                <Title order={4} size="h5" className="about-preview__subheading">
                                                     {t('home.aboutPreviewEducationLabel')}
                                                 </Title>
                                             </Group>
@@ -171,7 +172,7 @@ function AboutPreview() {
                                     {/* Intereses */}
                                     <Paper
                                         className="glass-hover-card"
-                                        p="lg"
+                                        p={{ base: 'md', sm: 'lg' }}
                                         radius="md"
                                         withBorder
                                         style={{ flex: 1 }}
@@ -180,7 +181,7 @@ function AboutPreview() {
                                             <ThemeIcon size="lg" radius="md" variant="light" color="pink">
                                                 <IconHeart size={20} />
                                             </ThemeIcon>
-                                            <Title order={4} size="h5">
+                                            <Title order={4} size="h5" className="about-preview__subheading">
                                                 {t('home.aboutPreviewInterestsLabel')}
                                             </Title>
                                         </Group>
