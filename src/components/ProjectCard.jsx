@@ -37,6 +37,8 @@ import { formatProjectDate } from '../utils/formatDate';
  * @param {function} onSelect - Callback al hacer click en la tarjeta
  * @param {boolean} isSelected - Si la tarjeta está seleccionada (modal abierto)
  */
+const MAX_VISIBLE_TAGS = 5;
+
 function ProjectCard({ project, variant = 'default', onSelect, isSelected = false }) {
     const theme = useMantineTheme();
     const { t } = useTranslation();
@@ -44,6 +46,10 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
 
     const isCarousel = variant === 'carousel';
     const isList = variant === 'list';
+    const visibleTags = useMemo(() => {
+        return (project.tags || []).slice(0, MAX_VISIBLE_TAGS);
+    }, [project.tags]);
+    const remainingTags = Math.max(0, (project.tags?.length || 0) - MAX_VISIBLE_TAGS);
     const accentColor = `var(--mantine-color-${theme.primaryColor}-6)`;
     const featuredBorderColor = `var(--mantine-color-${theme.primaryColor}-5)`;
     const projectImages = useMemo(() => {
@@ -142,7 +148,7 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                             </div>
 
                             <div className="fh-project-list-tags">
-                                {project.tags.map((tag) => (
+                                {visibleTags.map((tag) => (
                                     <Badge
                                         key={tag}
                                         variant="light"
@@ -153,6 +159,17 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                                         {tag}
                                     </Badge>
                                 ))}
+                                {remainingTags > 0 && (
+                                    <Badge
+                                        variant="outline"
+                                        size="xs"
+                                        radius="sm"
+                                        className="fh-project-list-tag"
+                                        c="dimmed"
+                                    >
+                                        +{remainingTags} more
+                                    </Badge>
+                                )}
                             </div>
 
                             <div className="fh-project-list-actions">
@@ -262,7 +279,9 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                 className={`fh-project-card glass-hover-card${isSelected ? ' fh-project-card--selected' : ''}`}
                 onClick={onSelect}
                 style={{
-                    height: '100%',
+                    width: '100%',
+                    height: isCarousel ? '100%' : undefined,
+                    aspectRatio: isCarousel ? undefined : '1 / 1',
                     minHeight: isCarousel ? 360 : undefined,
                     display: 'flex',
                     flexDirection: 'column',
@@ -282,22 +301,27 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                         color={theme.primaryColor}
                         variant="light"
                         size="sm"
-                        style={{ position: 'absolute', top: 10, right: 10 }}
+                        style={{ position: 'absolute', top: 10, right: 10, zIndex: 2 }}
                     >
                         {t('projectCard.featured')}
                     </Badge>
                 )}
 
             {/* Contenido principal de la tarjeta */}
-                <Stack gap={isCarousel ? 'md' : 'sm'} style={{ flex: 1 }}>
+                <Stack gap={isCarousel ? 'md' : 'xs'} style={{ flex: 1, minHeight: 0 }}>
                     {/* Título del proyecto */}
-                    <Text fw={600} size={isCarousel ? 'xl' : 'lg'} lineClamp={isCarousel ? 2 : 1}>
+                    <Text
+                        fw={600}
+                        size={isCarousel ? 'xl' : 'lg'}
+                        lineClamp={2}
+                        pr={project.featured && !isCarousel ? 70 : undefined}
+                    >
                         {project.title}
                     </Text>
 
                     {/* Fecha / Cronología del proyecto */}
                     {formatProjectDate(project.date) && (
-                        <Group gap={6} align="center" style={{ marginTop: -4, marginBottom: -2 }}>
+                        <Group gap={6} align="center" style={{ marginTop: -2, marginBottom: -2 }}>
                             <IconCalendar
                                 size={14}
                                 style={{ color: 'var(--mantine-color-dimmed)', opacity: 0.75, flexShrink: 0 }}
@@ -315,16 +339,26 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
 
                     {/* Tags de tecnologías */}
                     <Group gap="xs" wrap="wrap">
-                        {project.tags.map((tag) => (
+                        {visibleTags.map((tag) => (
                             <Badge key={tag} variant="light" size={isCarousel ? 'md' : 'sm'} radius="sm">
                                 {tag}
                             </Badge>
                         ))}
+                        {remainingTags > 0 && (
+                            <Badge
+                                variant="outline"
+                                size={isCarousel ? 'md' : 'sm'}
+                                radius="sm"
+                                c="dimmed"
+                            >
+                                +{remainingTags} more
+                            </Badge>
+                        )}
                     </Group>
                 </Stack>
 
             {/* Botones de acción - siempre al final de la tarjeta */}
-                <Group mt={isCarousel ? 'lg' : 'md'} gap="sm" wrap="wrap">
+                <Group mt={isCarousel ? 'lg' : 'auto'} pt={isCarousel ? undefined : 6} gap="sm" wrap="wrap">
                     {/* Enlace a demo */}
                     {project.demoUrl && (
                         <Button

@@ -258,7 +258,7 @@ function Projects() {
                                         key={project.id}
                                         span={{ base: 12, sm: 6, lg: 4 }}
                                     >
-                                        <MotionDiv variants={shouldReduceMotion ? undefined : cardItem} style={{ height: '100%' }}>
+                                        <MotionDiv variants={shouldReduceMotion ? undefined : cardItem} style={{ width: '100%' }}>
                                             <ProjectCard
                                                 project={project}
                                                 onSelect={(event) => handleSelectProject(project, event)}
