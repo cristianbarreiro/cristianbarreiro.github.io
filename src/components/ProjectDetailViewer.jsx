@@ -120,7 +120,7 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
             <Box className="project-media-viewer__canvas project-detail-viewer__canvas">
                 {paintedSlide === 0 && <div className="project-detail-viewer__description-background" />}
 
-                {project.inDevelopment && (
+                {project.inDevelopment && activeSlide !== 0 && (
                     <div className="project-media-viewer__dev-badge" role="status">
                         <IconTool size={12} aria-hidden="true" />
                         <span>{t('projectCard.inDevelopment')}</span>
@@ -150,18 +150,31 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
                                 className="project-detail-viewer__slide project-detail-viewer__description"
                             >
                                 <Stack gap="md" className="project-detail-viewer__description-content">
-                                    {project.featured && (
-                                        <Badge
-                                            color="var(--mantine-primary-color-filled)"
-                                            variant="light"
-                                            size="sm"
-                                            style={{ alignSelf: 'flex-start' }}
-                                        >
-                                            {t('projectCard.featured')}
-                                        </Badge>
+                                    {(project.featured || project.inDevelopment) && (
+                                        <Group gap="xs" align="center" className="project-detail-viewer__status-badges">
+                                            {project.featured && (
+                                                <Badge
+                                                    color="var(--mantine-primary-color-filled)"
+                                                    variant="light"
+                                                    size="sm"
+                                                >
+                                                    {t('projectCard.featured')}
+                                                </Badge>
+                                            )}
+                                            {project.inDevelopment && (
+                                                <Badge
+                                                    color="yellow"
+                                                    variant="light"
+                                                    size="sm"
+                                                    leftSection={<IconTool size={12} />}
+                                                >
+                                                    {t('projectCard.inDevelopment')}
+                                                </Badge>
+                                            )}
+                                        </Group>
                                     )}
 
-                                    <Title order={2}>{project.title}</Title>
+                                    <Title order={2} className="project-detail-viewer__title">{project.title}</Title>
 
                                     {formatProjectDate(project.date) && (
                                         <Group gap={6} align="center" className="project-detail-viewer__date">
@@ -175,19 +188,19 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
                                         </Group>
                                     )}
 
-                                    <Text size="md" style={{ lineHeight: 1.7 }}>
+                                    <Text className="project-detail-viewer__description-text">
                                         {project.longDescription || project.description}
                                     </Text>
 
-                                    <Group gap="xs" wrap="wrap">
+                                    <Group gap="xs" wrap="wrap" className="project-detail-viewer__badges">
                                         {(project.tags || []).map((tag) => (
-                                            <Badge key={tag} variant="light" size="md" radius="sm">
+                                            <Badge key={tag} className="project-detail-viewer__tag" variant="light" size="md" radius="sm">
                                                 {tag}
                                             </Badge>
                                         ))}
                                     </Group>
 
-                                    <Group gap="md" wrap="wrap" mt="xs">
+                                    <Group gap="md" wrap="wrap" mt="xs" className="project-detail-viewer__actions">
                                         {project.demoUrl && (
                                             <Button
                                                 component="a"

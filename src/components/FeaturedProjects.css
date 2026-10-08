@@ -115,10 +115,6 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .featured-showcase {
-    height: min(70dvh, 520px);
-  }
-
   .featured-carousel__item {
     padding: 9px 12px;
   }
@@ -126,52 +122,134 @@
 
 /* ── Mobile adaptations (inline showcase only) ─────────────────── */
 @media (max-width: 48em) {
-  /*
-   * Recupera ancho de columna dentro del showcase embebido.
-   * Baseline a 390px: columna de 172px (padding 60px) frente a los
-   * 228px de la tarjeta About. Con 48px la columna pasa a 196px.
-   */
-  .featured-showcase .project-detail-viewer__slide {
-    padding: 0 48px;
+  .featured-showcase {
+    height: auto !important;
+    min-height: 0 !important;
   }
 
-  /* Flechas 44px → 34px: métrica `lg` ya usada por ProjectImagesViewer
-   * en móvil. Huella 42px con `left: 8px` → 6px de aire con el contenido. */
+  .featured-showcase .project-media-viewer {
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  /* Media view: adapt canvas and stage to photo/video height without vertical gap */
+  .featured-showcase .project-media-viewer__canvas {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    flex: initial !important;
+    display: block !important;
+    position: relative !important;
+  }
+
+  .featured-showcase .project-media-viewer__stage {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 6px 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .featured-showcase .project-media-viewer__media-wrapper {
+    height: auto !important;
+    min-height: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .featured-showcase .project-media-viewer__media {
+    width: 100% !important;
+    max-height: min(48vh, 320px) !important;
+    height: auto !important;
+    object-fit: contain !important;
+    border-radius: 8px !important;
+  }
+
+  .featured-showcase .project-media-viewer__media--video {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    max-height: min(48vh, 320px) !important;
+  }
+
+  .featured-showcase .project-media-viewer__footer {
+    padding: 8px 10px 10px !important;
+  }
+
+  .featured-showcase .project-media-viewer__thumb {
+    width: 52px !important;
+    height: 36px !important;
+  }
+
+  /* Description & Visual slides: adapt cleanly to content */
+  .featured-showcase .project-detail-viewer {
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  .featured-showcase .project-detail-viewer__canvas {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  .featured-showcase .project-detail-viewer__stage {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+
+  .featured-showcase .project-detail-viewer__slide {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 28px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+  }
+
+  .featured-showcase .project-detail-viewer__description-content {
+    margin: 0 auto !important;
+    padding: 12px 0 16px !important;
+    gap: 8px !important;
+  }
+
+  .featured-showcase .project-detail-viewer__visual {
+    padding: 6px 10px !important;
+  }
+
+  .featured-showcase .project-detail-viewer__visual-frame {
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  .featured-showcase .project-detail-viewer__visual-frame svg {
+    height: auto !important;
+    max-height: min(45vh, 260px) !important;
+    width: 100% !important;
+  }
+
+  /* Flechas 44px → 34px en móvil */
   .featured-showcase .project-detail-viewer .project-media-viewer__nav-btn {
-    width: 34px;
-    height: 34px;
-    min-width: 34px;
-    min-height: 34px;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
   }
 
   .featured-showcase .project-detail-viewer .project-media-viewer__nav-btn svg {
-    width: 22px;
-    height: 22px;
+    width: 20px !important;
+    height: 20px !important;
   }
 
-  /*
-   * Escala tipográfica móvil del título (26px fijo → clamp con 5vw).
-   * Evita la fragmentación en 3-4 líneas sin romper la jerarquía.
-   */
-  .featured-showcase .project-detail-viewer__description h2 {
-    font-size: clamp(1.15rem, 5vw, 1.625rem);
-  }
-
-  /* El slide Visual no protege texto: se encuadra a 8px como la vista de
-   * Imágenes, liberando ancho para el diagrama (limitado por width). */
-  .featured-showcase .project-detail-viewer__slide.project-detail-viewer__visual {
-    padding: 0 8px;
-  }
-
-  /* El `max-height: calc(100dvh - 160px)` del modal (móvil) mediría
-   * contra el viewport y podría exceder el canvas embebido. */
-  .featured-showcase .project-media-viewer__media {
-    max-height: 100%;
-  }
-
-  /* Barra inferior del detalle sin contenido: 25px muertos en el showcase. */
+  /* Barra inferior del detalle sin contenido */
   .featured-showcase .project-detail-viewer__footer {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -182,7 +260,8 @@
     transition: none;
   }
 }
-/* ── Adaptive height for description view in Home showcase ── */
+
+/* ── Adaptive height for description view in Home showcase (Desktop) ── */
 .featured-showcase--description {
   height: auto;
   min-height: 0;
@@ -220,12 +299,3 @@
   padding: 24px 0 28px;
 }
 
-@media (max-width: 48em) {
-  .featured-showcase--description .project-detail-viewer__slide {
-    padding: 0 28px;
-  }
-
-  .featured-showcase--description .project-detail-viewer__description-content {
-    padding: 16px 0 24px;
-  }
-}

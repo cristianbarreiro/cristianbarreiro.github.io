@@ -243,15 +243,15 @@
     "carouselPosition": "{{current}} of {{total}}"
   },
   "projectCard": {
-    "featured": "Featured",
+    "featured": "Destacado",
     "inDevelopment": "En desarrollo",
     "demo": "Demo",
     "ecommerce": "E-commerce",
     "backoffice": "Backoffice",
-    "code": "Code",
-    "install": "Install...",
-    "download": "Download",
-    "downloadAria": "Installation and download options for {{project}}",
+    "code": "Código",
+    "install": "Instalar...",
+    "download": "Descargar",
+    "downloadAria": "Opciones de instalación y descarga para {{project}}",
     "platforms": {
       "windows": "Windows",
       "linux": "Linux",

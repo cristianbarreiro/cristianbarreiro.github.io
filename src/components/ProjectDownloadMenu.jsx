@@ -140,13 +140,16 @@ function ProjectDownloadMenu({ downloads, projectTitle = '', size = 'xs' }) {
                                       ? `${item.label} · ${metaParts.join(' · ')}`
                                       : item.label;
 
+                                const isDirectDownload = Boolean(item.url && item.url.startsWith('/'));
+
                                 return (
                                     <Menu.Item
                                         key={`${item.url}-${itemIndex}`}
                                         component="a"
                                         href={item.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        download={isDirectDownload || item.download ? '' : undefined}
+                                        target={isDirectDownload ? undefined : '_blank'}
+                                        rel={isDirectDownload ? undefined : 'noopener noreferrer'}
                                         leftSection={
                                             <IconDownload
                                                 size={13}
@@ -154,10 +157,17 @@ function ProjectDownloadMenu({ downloads, projectTitle = '', size = 'xs' }) {
                                             />
                                         }
                                         rightSection={
-                                            <IconExternalLink
-                                                size={12}
-                                                style={{ opacity: 0.5, flexShrink: 0 }}
-                                            />
+                                            isDirectDownload ? (
+                                                <IconDownload
+                                                    size={12}
+                                                    style={{ opacity: 0.5, flexShrink: 0 }}
+                                                />
+                                            ) : (
+                                                <IconExternalLink
+                                                    size={12}
+                                                    style={{ opacity: 0.5, flexShrink: 0 }}
+                                                />
+                                            )
                                         }
                                         onClick={(e) => e.stopPropagation()}
                                         className="fh-install-menu-item"
