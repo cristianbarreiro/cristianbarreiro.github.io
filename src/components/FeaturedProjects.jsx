@@ -26,7 +26,6 @@ import ScrollReveal from './ScrollReveal';
 import {
     scaleX,
     DURATION,
-    VIEWPORT_ONCE,
     EASE_OUT,
 } from '../utils/motionVariants';
 import './FeaturedProjects.css';
@@ -139,8 +138,7 @@ function FeaturedProjects() {
                         key={activeProject.id}
                         variants={showcaseVariants}
                         initial={shouldReduceMotion ? undefined : 'hidden'}
-                        whileInView={shouldReduceMotion ? undefined : 'visible'}
-                        viewport={VIEWPORT_ONCE}
+                        animate={shouldReduceMotion ? undefined : 'visible'}
                     >
                         <FeaturedProjectShowcase
                             project={activeProject}

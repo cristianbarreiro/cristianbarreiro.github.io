@@ -1630,6 +1630,18 @@ button:hover .icon-send-jello {
   z-index: 2;
 }
 
+@media (max-width: 48em) {
+  .content-above-video {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .home-section > .mantine-Container-root {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
 [data-mantine-color-scheme="dark"] .main-content-wrapper::before {
   background-image: linear-gradient(
     135deg,

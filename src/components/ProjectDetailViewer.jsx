@@ -288,7 +288,37 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
                 </Box>
             </Box>
 
-            <Box className="project-media-viewer__footer project-detail-viewer__footer" />
+            <Box className="project-media-viewer__footer project-detail-viewer__footer">
+                <Group justify="center" align="center" gap="sm" className="project-detail-viewer__mobile-nav">
+                    <ActionIcon
+                        variant="subtle"
+                        size="lg"
+                        radius="xl"
+                        onClick={() => setActiveSlide((current) => (current === 0 ? 1 : 0))}
+                        aria-label={t('projectCard.previousDetailView')}
+                        className="project-detail-viewer__mobile-nav-btn project-detail-viewer__mobile-nav-btn--prev"
+                    >
+                        <IconChevronLeft size={20} />
+                    </ActionIcon>
+
+                    <Box className="project-detail-viewer__mobile-nav-counter" aria-live="polite">
+                        <Text size="xs" fw={600} className="project-media-viewer__counter-text">
+                            {String(activeSlide + 1).padStart(2, '0')} / 02
+                        </Text>
+                    </Box>
+
+                    <ActionIcon
+                        variant="subtle"
+                        size="lg"
+                        radius="xl"
+                        onClick={() => setActiveSlide((current) => (current === 0 ? 1 : 0))}
+                        aria-label={t('projectCard.nextDetailView')}
+                        className="project-detail-viewer__mobile-nav-btn project-detail-viewer__mobile-nav-btn--next"
+                    >
+                        <IconChevronRight size={20} />
+                    </ActionIcon>
+                </Group>
+            </Box>
         </Box>
     );
 }

@@ -97,6 +97,17 @@ function SplashScreen({ onFinish }) {
     };
   }, [triggerExit, exiting]);
 
+  // Garantiza la salida del Splash Screen si el evento animationend es omitido por el motor CSS
+  useEffect(() => {
+    if (!exiting) return undefined;
+    const safetyTimer = setTimeout(() => {
+      if (typeof onFinish === 'function') {
+        onFinish();
+      }
+    }, 600);
+    return () => clearTimeout(safetyTimer);
+  }, [exiting, onFinish]);
+
   // Finaliza el componente al terminar la animación de salida
   const handleAnimationEnd = (e) => {
     if (exiting && (e.target === e.currentTarget || e.animationName === 'splashFadeOut')) {

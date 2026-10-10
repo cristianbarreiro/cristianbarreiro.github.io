@@ -111,7 +111,7 @@ function DevApproach() {
                                 <MotionDiv key={card.i18nKey} variants={shouldReduceMotion ? undefined : cardItem}>
                                     <Paper
                                         className="dev-approach-card glass-hover-card"
-                                        p="xl"
+                                        p={{ base: 'md', sm: 'xl' }}
                                         radius="md"
                                         withBorder
                                         h="100%"
