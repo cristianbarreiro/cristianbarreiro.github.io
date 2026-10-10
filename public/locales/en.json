@@ -27,7 +27,8 @@
     "srOnly": "Loading Cristian Barreiro's portfolio",
     "role": "FULL-STACK SOFTWARE DEVELOPER",
     "status": "SYSTEM INITIALIZED • PORTFOLIO ONLINE",
-    "skipHint": "Press Esc or click to skip"
+    "skipHint": "Press Esc or click to skip",
+    "initializing": "INITIALIZING PORTFOLIO"
   },
   "home": {
     "presentationAria": "Introduction",

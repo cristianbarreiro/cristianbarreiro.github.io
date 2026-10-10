@@ -50,14 +50,18 @@ export function safeLocalStorageRemove(key) {
 export function readCookie(name) {
   if (!isBrowser()) return null;
 
-  const prefix = `${encodeURIComponent(name)}=`;
-  const cookies = document.cookie ? document.cookie.split(';') : [];
+  try {
+    const prefix = `${encodeURIComponent(name)}=`;
+    const cookies = document.cookie ? document.cookie.split(';') : [];
 
-  for (const raw of cookies) {
-    const part = raw.trim();
-    if (part.startsWith(prefix)) {
-      return decodeURIComponent(part.slice(prefix.length));
+    for (const raw of cookies) {
+      const part = raw.trim();
+      if (part.startsWith(prefix)) {
+        return decodeURIComponent(part.slice(prefix.length));
+      }
     }
+  } catch {
+    return null;
   }
 
   return null;
@@ -70,15 +74,23 @@ export function writeCookie(
 ) {
   if (!isBrowser()) return;
 
-  const secure = window.location?.protocol === 'https:' ? '; Secure' : '';
-  const maxAge = Math.max(0, Math.floor(maxAgeDays * 24 * 60 * 60));
+  try {
+    const secure = window.location?.protocol === 'https:' ? '; Secure' : '';
+    const maxAge = Math.max(0, Math.floor(maxAgeDays * 24 * 60 * 60));
 
-  document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(
-    value
-  )}; Max-Age=${maxAge}; Path=${path}; SameSite=${sameSite}${secure}`;
+    document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(
+      value
+    )}; Max-Age=${maxAge}; Path=${path}; SameSite=${sameSite}${secure}`;
+  } catch {
+    // ignore
+  }
 }
 
 export function removeCookie(name, { path = '/' } = {}) {
   if (!isBrowser()) return;
-  document.cookie = `${encodeURIComponent(name)}=; Max-Age=0; Path=${path}`;
+  try {
+    document.cookie = `${encodeURIComponent(name)}=; Max-Age=0; Path=${path}`;
+  } catch {
+    // ignore
+  }
 }

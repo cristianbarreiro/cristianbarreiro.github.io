@@ -42,16 +42,35 @@ i18n
     },
   });
 
-// Garantiza persistencia doble (localStorage + cookie) desde el arranque.
-// Nota: el detector cachea en cambios de idioma, pero no siempre crea cookie en el primer load.
-i18n.on('initialized', () => {
-  const resolved = (i18n.resolvedLanguage || i18n.language || 'es').split('-')[0];
+const normalizeLanguage = (lng) => {
+  if (!lng) return 'es';
+  const base = lng.split('-')[0].toLowerCase();
+  return SUPPORTED_LANGUAGES.includes(base) ? base : 'es';
+};
+
+const applyLanguageMetadataAndStorage = (lng) => {
+  const resolved = normalizeLanguage(lng);
+
+  if (typeof document !== 'undefined' && document.documentElement) {
+    document.documentElement.lang = resolved;
+  }
 
   const ls = safeLocalStorageGet('lang');
   if (ls !== resolved) safeLocalStorageSet('lang', resolved);
 
   const ck = readCookie('lang');
   if (ck !== resolved) writeCookie('lang', resolved, { maxAgeDays: 365 });
+};
+
+// Sincroniza metadatos del documento y persistencia doble (localStorage + cookie)
+applyLanguageMetadataAndStorage(i18n.resolvedLanguage || i18n.language);
+
+i18n.on('initialized', () => {
+  applyLanguageMetadataAndStorage(i18n.resolvedLanguage || i18n.language);
+});
+
+i18n.on('languageChanged', (lng) => {
+  applyLanguageMetadataAndStorage(lng);
 });
 
 export default i18n;

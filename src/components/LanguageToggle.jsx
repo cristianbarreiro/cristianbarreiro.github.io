@@ -3,34 +3,42 @@
  * Botón para alternar entre Español (es) e Inglés (en)
  */
 
-import { Button, Group } from '@mantine/core';
+import { useState } from 'react';
+import { Button } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { IconLanguage } from '@tabler/icons-react';
-import { safeLocalStorageSet, writeCookie } from '../utils/storage';
 
-const getLanguageOnly = (language) => {
+const normalizeLang = (language) => {
   if (!language) return 'es';
-  return language.split('-')[0];
+  const base = language.split('-')[0].toLowerCase();
+  return base === 'en' ? 'en' : 'es';
 };
 
 function LanguageToggle() {
   const { i18n, t } = useTranslation();
+  const [isChanging, setIsChanging] = useState(false);
 
-  const current = getLanguageOnly(i18n.resolvedLanguage || i18n.language);
+  const current = normalizeLang(i18n.resolvedLanguage || i18n.language);
   const next = current === 'es' ? 'en' : 'es';
   const label = current === 'es' ? 'Lenguaje' : 'Language';
 
   const handleToggle = async () => {
-    await i18n.changeLanguage(next);
+    if (isChanging) return;
+    setIsChanging(true);
 
-    // Persistencia extra (además del detector): localStorage + cookie
-    safeLocalStorageSet('lang', next);
-    writeCookie('lang', next, { maxAgeDays: 365 });
+    try {
+      await i18n.changeLanguage(next);
+    } catch (error) {
+      console.error('Error changing language:', error);
+    } finally {
+      setIsChanging(false);
+    }
   };
 
   return (
     <Button
       onClick={handleToggle}
+      disabled={isChanging}
       variant="default"
       size="compact-sm"
       radius="md"
