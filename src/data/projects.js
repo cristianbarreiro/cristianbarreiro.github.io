@@ -436,11 +436,11 @@ const projectsByLanguage = {
         },
         {
             id: 14,
-            title: 'RAT Shield — Real-Time Camera & Microphone Protection',
+            title: 'Monitor de Privacidad',
             description:
                 'Aplicación de seguridad para Windows orientada a la monitorización continua, registro de auditoría y protección en tiempo real del acceso a cámara y micrófono, enfocada en detectar actividad no autorizada o sospechosa.',
             longDescription:
-                'RAT Shield es una herramienta de seguridad para Windows en constante evolución, centrada en supervisar de forma continua el acceso a la cámara y el micrófono, manteniendo un registro de auditoría en tiempo real de los procesos que interactúan con dispositivos de captura sensibles. El proyecto está diseñado para identificar el proceso solicitante, registrar eventos de acceso permitidos y bloqueados, alertar ante comportamientos inesperados y otorgar a los usuarios visibilidad y control sobre sus dispositivos. Su arquitectura se encuentra en desarrollo activo para incorporar mecanismos avanzados de detección frente a actividades sospechosas y patrones asociados a troyanos de acceso remoto (RATs), manteniendo la privacidad de la cámara y el micrófono como su principal vector de protección.',
+                'Herramienta de seguridad para Windows orientada a la supervisión continua del acceso a la cámara y el micrófono, manteniendo un registro de auditoría en tiempo real de los procesos que interactúan con dispositivos de captura sensibles. El proyecto está diseñado para identificar el proceso solicitante, registrar eventos de acceso permitidos y bloqueados, alertar ante comportamientos inesperados y otorgar a los usuarios visibilidad y control sobre sus dispositivos. Su arquitectura incorpora mecanismos avanzados de detección frente a actividades sospechosas y patrones asociados a troyanos de acceso remoto (RATs), manteniendo la privacidad de la cámara y el micrófono como su principal vector de protección.',
             date: '2026',
             image: '/images/projects/privgvard/privgvard_presentation.png',
             images: [
@@ -1031,11 +1031,11 @@ const projectsByLanguage = {
         },
         {
             id: 14,
-            title: 'RAT Shield — Real-Time Camera & Microphone Protection',
+            title: 'Privacy Monitor',
             description:
                 'Security-focused Windows application for real-time monitoring, logging, and protection of camera and microphone access, with a focus on detecting unauthorized or suspicious activity.',
             longDescription:
-                'RAT Shield is an evolving Windows security tool focused on continuously monitoring camera and microphone access and maintaining a real-time audit trail of which processes interact with sensitive capture devices. The project is designed to identify the requesting process, record allowed and blocked access events, surface unexpected activity, and provide users with greater visibility and control over their camera and microphone. Its architecture is being extended toward stronger detection and protection mechanisms against suspicious remote-access behavior and Remote Access Trojans (RATs), while keeping camera and microphone privacy as its primary protection layer. The project is currently under active development.',
+                'Windows security tool focused on continuously monitoring camera and microphone access and maintaining a real-time audit trail of which processes interact with sensitive capture devices. The project is designed to identify the requesting process, record allowed and blocked access events, surface unexpected activity, and provide users with greater visibility and control over their camera and microphone. Its architecture incorporates detection mechanisms against suspicious remote-access behavior and Remote Access Trojans (RATs), while keeping camera and microphone privacy as its primary protection layer. The project is currently under active development.',
             date: '2026',
             image: '/images/projects/privgvard/privgvard_presentation.png',
             images: [
