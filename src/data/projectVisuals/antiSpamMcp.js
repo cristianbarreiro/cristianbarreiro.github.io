@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_HEADER_DIVIDER } from './common';
+import { PROJECT_VISUAL_FRAME } from './common';
 
 const antiSpamMcpDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,7 +15,6 @@ const antiSpamMcpDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
-        PROJECT_VISUAL_HEADER_DIVIDER,
         { type: 'rect', x: 48, y: 158, width: 256, height: 402, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 70, cy: 184, r: 3, fill: 'var(--accent-color)' },
         { type: 'line', x1: 70, y1: 207, x2: 282, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
@@ -70,16 +69,15 @@ const antiSpamMcpDescriptionVisual = {
         { type: 'rect', x: 700, y: 423, width: 130, height: 3, rx: 1.5, fill: 'var(--mantine-color-dimmed)' },
         { type: 'path', d: 'M675 449 H692 M686 444 L692 449 L686 454', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.6, strokeLinecap: 'round', strokeLinejoin: 'round' },
         { type: 'rect', x: 704, y: 440, width: 172, height: 34, rx: 9, fill: 'var(--accent-color)', opacity: 0.14 },
-        { type: 'text', content: { bind: 'title' }, x: 52, y: 92, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 28, fontWeight: 700, maxLength: 60 },
         { type: 'text', content: { text: 'SECURE INBOX FLOW' }, x: 70, y: 191, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.8 },
         { type: 'textList', content: { bind: 'tags' }, x: 70, y: 237, gap: 34, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 13, fontWeight: 500 },
         { type: 'text', content: { text: 'INBOX' }, x: 420, y: 231, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.4 },
         { type: 'text', content: { text: 'RULE ENGINE' }, x: 581, y: 231, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.4 },
-        { type: 'text', content: { text: 'MCP ACTION GATE' }, x: 784, y: 231, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.3 },
-        { type: 'text', content: { text: 'CLASSIFIED QUEUE' }, x: 366, y: 372, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.4 },
+        { type: 'text', content: { text: 'MCP ACTION GATE' }, x: 784, y: 231, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.3 },
+        { type: 'text', content: { text: 'CLASSIFIED QUEUE' }, x: 366, y: 372, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.4 },
         { type: 'text', content: { text: 'HUMAN APPROVAL' }, x: 428, y: 406, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.4 },
-        { type: 'text', content: { text: 'REVIEW  ·  CONFIRM' }, x: 444, y: 472, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.35 },
-        { type: 'text', content: { text: 'CONTROLLED ACTION  ·  AUDIT LOG' }, x: 704, y: 462, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 8, fontWeight: 700, letterSpacing: 0.25 },
+        { type: 'text', content: { text: 'REVIEW  ·  CONFIRM' }, x: 444, y: 472, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.35 },
+        { type: 'text', content: { text: 'CONTROLLED ACTION  ·  AUDIT LOG' }, x: 704, y: 462, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.25 },
     ],
 };
 

@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_HEADER_DIVIDER } from './common';
+import { PROJECT_VISUAL_FRAME } from './common';
 
 const versionControlDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,7 +15,6 @@ const versionControlDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
-        PROJECT_VISUAL_HEADER_DIVIDER,
         { type: 'rect', x: 52, y: 158, width: 252, height: 428, rx: 17, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 78, cy: 186, r: 4, fill: 'var(--accent-color)' },
         { type: 'rect', x: 96, y: 184, width: 164, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.78 },
@@ -68,12 +67,11 @@ const versionControlDescriptionVisual = {
         { type: 'rect', x: 790, y: 392, width: 92, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.72 },
         { type: 'rect', x: 790, y: 405, width: 68, height: 3, rx: 1.5, fill: 'var(--mantine-color-dimmed)' },
         { type: 'path', d: 'M774 460 H890 M774 470 H864 M774 480 H878', fill: 'none', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1.2, strokeLinecap: 'round' },
-        { type: 'text', content: { bind: 'title' }, x: 52, y: 92, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 28, fontWeight: 700, maxLength: 60 },
-        { type: 'text', content: { text: 'WORKSPACE / REPOSITORY' }, x: 76, y: 204, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.7 },
+        { type: 'text', content: { text: 'WORKSPACE / REPOSITORY' }, x: 76, y: 204, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.7 },
         { type: 'text', content: { text: 'VERSION HISTORY' }, x: 360, y: 250, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.8 },
-        { type: 'text', content: { text: 'HEAD' }, x: 776, y: 295, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 8, fontWeight: 700, letterSpacing: 0.7 },
-        { type: 'text', content: { text: 'SEARCH' }, x: 92, y: 462, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 8, fontWeight: 700, letterSpacing: 0.6 },
-        { type: 'textList', content: { bind: 'tags' }, x: 76, y: 535, gap: 14, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 8, fontWeight: 500 },
+        { type: 'text', content: { text: 'HEAD' }, x: 776, y: 295, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.7 },
+        { type: 'text', content: { text: 'SEARCH' }, x: 92, y: 462, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.6 },
+        { type: 'textList', content: { bind: 'tags' }, x: 76, y: 535, gap: 14, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 500 },
     ],
 };
 

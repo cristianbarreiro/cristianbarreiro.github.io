@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_HEADER_DIVIDER } from './common';
+import { PROJECT_VISUAL_FRAME } from './common';
 
 const footwearBoutiqueDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,14 +15,13 @@ const footwearBoutiqueDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
-        PROJECT_VISUAL_HEADER_DIVIDER,
         { type: 'rect', x: 52, y: 164, width: 896, height: 376, rx: 20, fill: 'color-mix(in srgb, var(--mantine-color-body) 76%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 72, y: 184, width: 856, height: 50, rx: 12, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 99, cy: 209, r: 10, fill: 'var(--accent-color)', opacity: 0.18 },
         { type: 'path', d: 'M95 209 H103 M99 205 V213', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.4, strokeLinecap: 'round' },
         { type: 'rect', x: 122, y: 207, width: 172, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.7 },
         { type: 'rect', x: 770, y: 199, width: 58, height: 20, rx: 10, fill: 'color-mix(in srgb, var(--accent-color) 13%, var(--mantine-color-body))' },
-        { type: 'text', content: { text: 'NEW' }, x: 787, y: 213, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 8, fontWeight: 700, letterSpacing: 0.6 },
+        { type: 'text', content: { text: 'NEW' }, x: 787, y: 213, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.6 },
         { type: 'circle', cx: 884, cy: 209, r: 12, fill: 'none', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'path', d: 'M878 209 H890 M884 203 V215', fill: 'none', stroke: 'var(--mantine-color-dimmed)', strokeWidth: 1.3, strokeLinecap: 'round' },
         { type: 'rect', x: 72, y: 256, width: 222, height: 258, rx: 16, fill: 'color-mix(in srgb, var(--accent-color) 8%, var(--mantine-color-body))', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
@@ -30,8 +29,8 @@ const footwearBoutiqueDescriptionVisual = {
         { type: 'rect', x: 96, y: 302, width: 150, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.8 },
         { type: 'rect', x: 96, y: 314, width: 118, height: 3, rx: 1.5, fill: 'var(--mantine-color-dimmed)' },
         { type: 'line', x1: 96, y1: 338, x2: 270, y2: 338, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
-        { type: 'text', content: { text: 'STACK' }, x: 96, y: 362, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.7 },
-        { type: 'textList', content: { bind: 'tags' }, x: 96, y: 383, gap: 13, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 500 },
+        { type: 'text', content: { text: 'STACK' }, x: 96, y: 362, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.7 },
+        { type: 'textList', content: { bind: 'tags' }, x: 96, y: 383, gap: 13, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 500 },
         { type: 'rect', x: 320, y: 256, width: 190, height: 258, rx: 15, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 334, y: 270, width: 162, height: 158, rx: 11, fill: 'color-mix(in srgb, var(--accent-color) 11%, var(--mantine-color-body))' },
         { type: 'path', d: 'M359 366 Q380 346 399 329 Q408 320 419 329 L447 353 Q455 360 466 360 Q477 360 482 370 L482 383 Q468 393 448 393 H377 Q358 393 351 384 Q350 376 359 366 Z', fill: 'color-mix(in srgb, var(--accent-color) 35%, var(--mantine-color-body))', stroke: 'var(--accent-color)', strokeWidth: 1.5, strokeLinejoin: 'round' },
@@ -59,13 +58,12 @@ const footwearBoutiqueDescriptionVisual = {
         { type: 'rect', x: 752, y: 480, width: 76, height: 5, rx: 2.5, fill: 'var(--accent-color)', opacity: 0.72 },
         { type: 'circle', cx: 893, cy: 463, r: 12, fill: 'color-mix(in srgb, var(--accent-color) 15%, var(--mantine-color-body))' },
         { type: 'path', d: 'M888 463 H898 M893 458 V468', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.3, strokeLinecap: 'round' },
-        { type: 'text', content: { bind: 'title' }, x: 52, y: 92, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 29, fontWeight: 700, maxLength: 60 },
         { type: 'text', content: { text: 'THE EDIT / FOOTWEAR' }, x: 72, y: 218, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 1 },
-        { type: 'text', content: { text: 'CATALOG' }, x: 340, y: 530, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.65 },
-        { type: 'text', content: { text: 'PRODUCT STORY' }, x: 546, y: 530, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.5 },
-        { type: 'text', content: { text: 'CHECKOUT' }, x: 752, y: 530, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.65 },
+        { type: 'text', content: { text: 'CATALOG' }, x: 340, y: 530, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.65 },
+        { type: 'text', content: { text: 'PRODUCT STORY' }, x: 546, y: 530, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.5 },
+        { type: 'text', content: { text: 'CHECKOUT' }, x: 752, y: 530, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.65 },
         { type: 'rect', x: 72, y: 554, width: 856, height: 1, fill: 'var(--mantine-color-default-border)' },
-        { type: 'text', content: { text: 'EXPRESS  →  PRISMA  →  POSTGRESQL' }, x: 594, y: 577, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.5 },
+        { type: 'text', content: { text: 'EXPRESS  →  PRISMA  →  POSTGRESQL' }, x: 594, y: 577, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.5 },
     ],
 };
 

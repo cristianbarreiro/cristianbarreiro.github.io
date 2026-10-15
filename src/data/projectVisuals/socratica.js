@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_HEADER_DIVIDER } from './common';
+import { PROJECT_VISUAL_FRAME } from './common';
 
 const socraticaDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -14,7 +14,6 @@ const socraticaDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
-        PROJECT_VISUAL_HEADER_DIVIDER,
         { type: 'circle', cx: 500, cy: 350, r: 156, fill: 'none', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 500, cy: 350, r: 104, fill: 'color-mix(in srgb, var(--accent-color) 7%, var(--mantine-color-body))', stroke: 'var(--accent-color)', strokeWidth: 1.2, opacity: 0.9 },
         { type: 'path', d: 'M500 350 L350 264 M500 350 L646 260 M500 350 L700 374 M500 350 L614 470 M500 350 L362 458 M500 350 L302 365', fill: 'none', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1.5 },
@@ -58,20 +57,19 @@ const socraticaDescriptionVisual = {
         { type: 'rect', x: 118, y: 191, width: 116, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.75 },
         { type: 'line', x1: 90, y1: 220, x2: 240, y2: 220, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 90, y: 242, width: 150, height: 64, rx: 12, fill: 'color-mix(in srgb, var(--accent-color) 9%, var(--mantine-color-body))', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
-        { type: 'text', content: { text: 'COMMUNITY' }, x: 104, y: 266, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.55 },
+        { type: 'text', content: { text: 'COMMUNITY' }, x: 104, y: 266, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.55 },
         { type: 'rect', x: 104, y: 279, width: 112, height: 3, rx: 1.5, fill: 'var(--mantine-color-dimmed)' },
         { type: 'rect', x: 90, y: 322, width: 150, height: 64, rx: 12, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
-        { type: 'text', content: { text: 'DISCUSSION' }, x: 104, y: 346, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.55 },
+        { type: 'text', content: { text: 'DISCUSSION' }, x: 104, y: 346, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.55 },
         { type: 'rect', x: 104, y: 359, width: 112, height: 3, rx: 1.5, fill: 'var(--mantine-color-dimmed)' },
         { type: 'rect', x: 90, y: 402, width: 150, height: 64, rx: 12, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
-        { type: 'text', content: { text: 'MODERATION' }, x: 104, y: 426, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.55 },
+        { type: 'text', content: { text: 'MODERATION' }, x: 104, y: 426, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.55 },
         { type: 'path', d: 'M105 442 H215 M105 450 H198', fill: 'none', stroke: 'var(--mantine-color-dimmed)', strokeWidth: 2, strokeLinecap: 'round' },
-        { type: 'text', content: { bind: 'title' }, x: 52, y: 92, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 29, fontWeight: 700, maxLength: 60 },
-        { type: 'text', content: { text: 'IDEAS IN CONVERSATION' }, x: 74, y: 516, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.65 },
-        { type: 'text', content: { text: 'COMMUNITY GRAPH' }, x: 388, y: 196, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.75 },
-        { type: 'text', content: { text: 'CULTURAL DEBATE' }, x: 690, y: 304, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 8, fontWeight: 700, letterSpacing: 0.5 },
-        { type: 'text', content: { text: 'PROFILE' }, x: 392, y: 406, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 8, fontWeight: 700, letterSpacing: 0.5 },
-        { type: 'textList', content: { bind: 'tags' }, x: 90, y: 490, gap: 14, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 8, fontWeight: 500 },
+        { type: 'text', content: { text: 'IDEAS IN CONVERSATION' }, x: 388, y: 560, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.65 },
+        { type: 'text', content: { text: 'COMMUNITY GRAPH' }, x: 388, y: 196, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.75 },
+        { type: 'text', content: { text: 'CULTURAL DEBATE' }, x: 690, y: 304, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.5 },
+        { type: 'text', content: { text: 'PROFILE' }, x: 392, y: 406, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.5 },
+        { type: 'textList', content: { bind: 'tags' }, x: 90, y: 478, gap: 14, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 500 },
     ],
 };
 

@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_HEADER_DIVIDER } from './common';
+import { PROJECT_VISUAL_FRAME } from './common';
 
 const mcpSecureDeleteDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,7 +15,6 @@ const mcpSecureDeleteDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
-        PROJECT_VISUAL_HEADER_DIVIDER,
         { type: 'rect', x: 52, y: 170, width: 226, height: 354, rx: 18, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 82, cy: 202, r: 15, fill: 'var(--accent-color)', opacity: 0.17 },
         { type: 'path', d: 'M75 204 Q82 193 89 204 M77 208 H87 M82 198 V204', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.6, strokeLinecap: 'round' },
@@ -26,7 +25,7 @@ const mcpSecureDeleteDescriptionVisual = {
         { type: 'rect', x: 124, y: 271, width: 108, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.72 },
         { type: 'rect', x: 124, y: 284, width: 84, height: 3, rx: 1.5, fill: 'var(--mantine-color-dimmed)' },
         { type: 'rect', x: 90, y: 316, width: 148, height: 20, rx: 10, fill: 'color-mix(in srgb, var(--accent-color) 14%, var(--mantine-color-body))' },
-        { type: 'text', content: { text: 'REQUEST' }, x: 128, y: 330, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.65 },
+        { type: 'text', content: { text: 'REQUEST' }, x: 128, y: 330, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.65 },
         { type: 'rect', x: 72, y: 376, width: 186, height: 108, rx: 13, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 101, cy: 408, r: 11, fill: 'var(--accent-color)', opacity: 0.18 },
         { type: 'path', d: 'M96 408 L100 412 L107 404', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' },
@@ -65,15 +64,14 @@ const mcpSecureDeleteDescriptionVisual = {
         { type: 'path', d: 'M804 260 V286 H884 M801 305 H863 M801 316 H850 M801 327 H858', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.3, strokeLinecap: 'round' },
         { type: 'circle', cx: 860, cy: 374, r: 16, fill: 'var(--accent-color)', opacity: 0.16 },
         { type: 'path', d: 'M853 374 L858 379 L868 368', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' },
-        { type: 'text', content: { text: 'FILESYSTEM' }, x: 822, y: 414, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.6 },
-        { type: 'textList', content: { bind: 'tags' }, x: 750, y: 454, gap: 12, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 500 },
-        { type: 'text', content: { bind: 'title' }, x: 52, y: 92, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 29, fontWeight: 700, maxLength: 60 },
-        { type: 'text', content: { text: 'AI CONTROL PLANE' }, x: 75, y: 230, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.8 },
-        { type: 'text', content: { text: 'MCP SERVER' }, x: 366, y: 228, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.8 },
-        { type: 'text', content: { text: 'VALIDATE' }, x: 418, y: 278, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.6 },
-        { type: 'text', content: { text: 'POLICY GATE' }, x: 418, y: 360, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.6 },
-        { type: 'text', content: { text: 'SECURE DELETE' }, x: 418, y: 442, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.6 },
-        { type: 'text', content: { text: 'PROTECTED RESOURCE' }, x: 761, y: 204, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.65 },
+        { type: 'text', content: { text: 'FILESYSTEM' }, x: 822, y: 414, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.6 },
+        { type: 'textList', content: { bind: 'tags' }, x: 750, y: 454, gap: 14, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 500 },
+        { type: 'text', content: { text: 'AI CONTROL PLANE' }, x: 75, y: 230, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 700, letterSpacing: 0.8 },
+        { type: 'text', content: { text: 'MCP SERVER' }, x: 366, y: 228, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 700, letterSpacing: 0.8 },
+        { type: 'text', content: { text: 'VALIDATE' }, x: 418, y: 278, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.6 },
+        { type: 'text', content: { text: 'POLICY GATE' }, x: 418, y: 360, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.6 },
+        { type: 'text', content: { text: 'SECURE DELETE' }, x: 418, y: 442, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.6 },
+        { type: 'text', content: { text: 'PROTECTED RESOURCE' }, x: 761, y: 204, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.65 },
     ],
 };
 

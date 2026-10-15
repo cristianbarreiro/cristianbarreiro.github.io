@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_HEADER_DIVIDER } from './common';
+import { PROJECT_VISUAL_FRAME } from './common';
 
 const geniusDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,7 +15,6 @@ const geniusDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
-        PROJECT_VISUAL_HEADER_DIVIDER,
         { type: 'rect', x: 48, y: 158, width: 256, height: 402, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 70, cy: 184, r: 3, fill: 'var(--accent-color)' },
         { type: 'line', x1: 70, y1: 207, x2: 282, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
@@ -45,12 +44,11 @@ const geniusDescriptionVisual = {
         { type: 'circle', cx: 510, cy: 467, r: 9, fill: 'var(--accent-color)', opacity: 0.7 },
         { type: 'rect', x: 534, y: 456, width: 158, height: 5, rx: 2.5, fill: 'var(--mantine-color-text)', opacity: 0.78 },
         { type: 'rect', x: 534, y: 470, width: 112, height: 4, rx: 2, fill: 'var(--mantine-color-dimmed)' },
-        { type: 'text', content: { bind: 'title' }, x: 52, y: 92, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 28, fontWeight: 700, maxLength: 60 },
         { type: 'text', content: { text: 'TECH STACK' }, x: 70, y: 191, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.8 },
-        { type: 'textList', content: { bind: 'tags' }, x: 70, y: 237, gap: 18.5, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 500 },
-        { type: 'text', content: { text: 'BUDGET MANAGER' }, x: 392, y: 377, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.3 },
-        { type: 'text', content: { text: 'CRM' }, x: 586, y: 377, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.3 },
-        { type: 'text', content: { text: 'DASHBOARD' }, x: 780, y: 377, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.3 },
+        { type: 'textList', content: { bind: 'tags' }, x: 70, y: 237, gap: 18.5, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 13, fontWeight: 500 },
+        { type: 'text', content: { text: 'BUDGET MANAGER' }, x: 392, y: 377, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.3 },
+        { type: 'text', content: { text: 'CRM' }, x: 586, y: 377, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.3 },
+        { type: 'text', content: { text: 'DASHBOARD' }, x: 780, y: 377, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.3 },
         { type: 'text', content: { text: 'SPRING BOOT  ·  REST APIs' }, x: 534, y: 488, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.4 },
     ],
 };

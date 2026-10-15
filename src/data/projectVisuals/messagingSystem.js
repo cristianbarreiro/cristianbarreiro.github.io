@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_HEADER_DIVIDER } from './common';
+import { PROJECT_VISUAL_FRAME } from './common';
 
 const messagingSystemDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,7 +15,6 @@ const messagingSystemDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
-        PROJECT_VISUAL_HEADER_DIVIDER,
         { type: 'rect', x: 70, y: 204, width: 216, height: 272, rx: 22, fill: 'color-mix(in srgb, var(--mantine-color-body) 76%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 112, cy: 247, r: 17, fill: 'var(--accent-color)', opacity: 0.2 },
         { type: 'circle', cx: 112, cy: 242, r: 5, fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.4 },
@@ -74,14 +73,13 @@ const messagingSystemDescriptionVisual = {
         { type: 'path', d: 'M492 521 H528 M522 515 L528 521 L522 527', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round' },
         { type: 'rect', x: 544, y: 509, width: 164, height: 24, rx: 12, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 562, cy: 521, r: 4, fill: 'var(--accent-color)' },
-        { type: 'text', content: { text: 'SOCKET CHANNEL' }, x: 577, y: 524, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 8, fontWeight: 700, letterSpacing: 0.5 },
-        { type: 'text', content: { bind: 'title' }, x: 52, y: 92, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 29, fontWeight: 700, maxLength: 60 },
+        { type: 'text', content: { text: 'SOCKET CHANNEL' }, x: 577, y: 524, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.5 },
         { type: 'text', content: { text: 'REAL-TIME NETWORK' }, x: 72, y: 188, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.9 },
-        { type: 'textList', content: { bind: 'tags' }, x: 746, y: 550, gap: 12, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 500 },
-        { type: 'text', content: { text: 'CLIENT A' }, x: 92, y: 463, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.7 },
-        { type: 'text', content: { text: 'MESSAGE SERVER' }, x: 432, y: 506, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.7 },
-        { type: 'text', content: { text: 'CLIENT B' }, x: 738, y: 463, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.7 },
-        { type: 'text', content: { text: 'BIDIRECTIONAL SOCKETS' }, x: 413, y: 194, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.7 },
+        { type: 'textList', content: { bind: 'tags' }, x: 746, y: 550, gap: 14, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 500 },
+        { type: 'text', content: { text: 'CLIENT A' }, x: 92, y: 463, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.7 },
+        { type: 'text', content: { text: 'MESSAGE SERVER' }, x: 432, y: 506, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.7 },
+        { type: 'text', content: { text: 'CLIENT B' }, x: 738, y: 463, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.7 },
+        { type: 'text', content: { text: 'BIDIRECTIONAL SOCKETS' }, x: 413, y: 194, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.7 },
     ],
 };
 

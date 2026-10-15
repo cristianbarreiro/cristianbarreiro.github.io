@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_HEADER_DIVIDER } from './common';
+import { PROJECT_VISUAL_FRAME } from './common';
 
 const shopHubDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,7 +15,6 @@ const shopHubDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
-        PROJECT_VISUAL_HEADER_DIVIDER,
         { type: 'rect', x: 48, y: 158, width: 240, height: 402, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 70, cy: 184, r: 3, fill: 'var(--accent-color)' },
         { type: 'line', x1: 70, y1: 207, x2: 266, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
@@ -50,23 +49,22 @@ const shopHubDescriptionVisual = {
         { type: 'rect', x: 392, y: 464, width: 178, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.8 },
         { type: 'rect', x: 392, y: 477, width: 136, height: 3, rx: 1.5, fill: 'var(--mantine-color-dimmed)' },
         { type: 'rect', x: 392, y: 493, width: 76, height: 16, rx: 8, fill: 'var(--accent-color)', opacity: 0.2 },
-        { type: 'text', content: { text: 'EXPRESS API' }, x: 496, y: 505, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.45 },
+        { type: 'text', content: { text: 'EXPRESS API' }, x: 496, y: 505, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.45 },
         { type: 'rect', x: 626, y: 446, width: 124, height: 78, rx: 14, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'path', d: 'M649 467 L666 461 L683 467 V480 Q680 491 666 497 Q652 491 649 480 Z', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.5, strokeLinejoin: 'round' },
         { type: 'path', d: 'M659 479 H673 M666 472 V486', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.4, strokeLinecap: 'round' },
-        { type: 'text', content: { text: 'PRISMA' }, x: 694, y: 485, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.35 },
+        { type: 'text', content: { text: 'PRISMA' }, x: 694, y: 485, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.35 },
         { type: 'rect', x: 772, y: 446, width: 152, height: 78, rx: 14, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'ellipse', cx: 798, cy: 466, rx: 13, ry: 5, fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.4 },
         { type: 'path', d: 'M785 466 V488 C785 495 811 495 811 488 V466 M785 477 C785 484 811 484 811 477', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.4 },
-        { type: 'text', content: { text: 'POSTGRESQL' }, x: 820, y: 482, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 8, fontWeight: 700, letterSpacing: 0.25 },
+        { type: 'text', content: { text: 'POSTGRESQL' }, x: 820, y: 482, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.25 },
         { type: 'rect', x: 344, y: 540, width: 580, height: 1, fill: 'var(--mantine-color-default-border)' },
-        { type: 'text', content: { bind: 'title' }, x: 52, y: 92, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 29, fontWeight: 700, maxLength: 60 },
         { type: 'text', content: { text: 'STOREFRONT STACK' }, x: 70, y: 191, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.8 },
         { type: 'textList', content: { bind: 'tags' }, x: 70, y: 237, gap: 31, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 14, fontWeight: 500 },
-        { type: 'text', content: { text: 'CATALOG' }, x: 370, y: 375, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.35 },
-        { type: 'text', content: { text: 'FEATURED' }, x: 558, y: 375, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.35 },
-        { type: 'text', content: { text: 'CART  ·  WISHLIST' }, x: 746, y: 375, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.25 },
-        { type: 'text', content: { text: 'REACT CLIENT' }, x: 392, y: 515, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 8, fontWeight: 700, letterSpacing: 0.35 },
+        { type: 'text', content: { text: 'CATALOG' }, x: 370, y: 375, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.35 },
+        { type: 'text', content: { text: 'FEATURED' }, x: 558, y: 375, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.35 },
+        { type: 'text', content: { text: 'CART  ·  WISHLIST' }, x: 746, y: 375, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.25 },
+        { type: 'text', content: { text: 'REACT CLIENT' }, x: 392, y: 515, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.35 },
     ],
 };
 

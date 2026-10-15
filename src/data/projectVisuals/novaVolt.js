@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_HEADER_DIVIDER } from './common';
+import { PROJECT_VISUAL_FRAME } from './common';
 
 const novaVoltDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,7 +15,6 @@ const novaVoltDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
-        PROJECT_VISUAL_HEADER_DIVIDER,
         { type: 'rect', x: 48, y: 158, width: 246, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 70, cy: 184, r: 3, fill: 'var(--accent-color)' },
         { type: 'line', x1: 70, y1: 207, x2: 270, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
@@ -56,7 +55,6 @@ const novaVoltDescriptionVisual = {
         { type: 'path', d: 'M790 451 H798 M794 447 V455', fill: 'none', stroke: 'var(--mantine-color-body)', strokeWidth: 1.6, strokeLinecap: 'round' },
         { type: 'rect', x: 812, y: 444, width: 66, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.8 },
         { type: 'rect', x: 812, y: 454, width: 42, height: 3, rx: 1.5, fill: 'var(--mantine-color-dimmed)' },
-        { type: 'text', content: { bind: 'title' }, x: 52, y: 92, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 30, fontWeight: 700, maxLength: 60 },
         { type: 'text', content: { text: 'STORE TECHNOLOGY' }, x: 70, y: 191, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 700, letterSpacing: 0.8 },
         { type: 'textList', content: { bind: 'tags' }, x: 70, y: 242, gap: 36, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 17, fontWeight: 500 },
         { type: 'text', content: { text: 'PRODUCT CATALOG' }, x: 370, y: 224, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.8 },

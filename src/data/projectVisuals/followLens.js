@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_HEADER_DIVIDER } from './common';
+import { PROJECT_VISUAL_FRAME } from './common';
 
 const followLensDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -18,7 +18,6 @@ const followLensDescriptionVisual = {
             type: 'group',
             children: [
                 PROJECT_VISUAL_FRAME,
-                PROJECT_VISUAL_HEADER_DIVIDER,
                 { type: 'rect', x: 748, y: 158, width: 210, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 76%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'line', x1: 770, y1: 207, x2: 936, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'circle', cx: 772, cy: 184, r: 3, fill: 'var(--accent-color)' },
@@ -53,35 +52,24 @@ const followLensDescriptionVisual = {
         },
         {
             type: 'text',
-            content: { bind: 'title' },
-            x: 52,
-            y: 92,
-            fill: 'var(--mantine-color-text)',
-            fontFamily: 'var(--mantine-font-family)',
-            fontSize: 30,
-            fontWeight: 700,
-            maxLength: 60,
-        },
-        {
-            type: 'text',
             content: { text: 'LOCAL RELATIONSHIP ANALYSIS' },
             x: 374,
             y: 164,
             fill: 'var(--mantine-color-dimmed)',
             fontFamily: 'var(--mantine-font-family)',
-            fontSize: 12,
+            fontSize: 16,
             fontWeight: 700,
             letterSpacing: 0.8,
         },
         {
             type: 'textList',
             content: { bind: 'tags' },
-            x: 790,
+            x: 760,
             y: 244,
-            gap: 25,
+            gap: 28,
             fill: 'var(--mantine-color-text)',
             fontFamily: 'var(--mantine-font-family)',
-            fontSize: 16,
+            fontSize: 20,
             fontWeight: 500,
         },
         {
@@ -91,7 +79,7 @@ const followLensDescriptionVisual = {
             y: 191,
             fill: 'var(--mantine-color-dimmed)',
             fontFamily: 'var(--mantine-font-family)',
-            fontSize: 12,
+            fontSize: 14,
             fontWeight: 700,
             letterSpacing: 1,
         },

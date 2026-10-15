@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_HEADER_DIVIDER } from './common';
+import { PROJECT_VISUAL_FRAME } from './common';
 
 const rumboDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,7 +15,6 @@ const rumboDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
-        PROJECT_VISUAL_HEADER_DIVIDER,
         { type: 'rect', x: 48, y: 158, width: 250, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 70, cy: 184, r: 3, fill: 'var(--accent-color)' },
         { type: 'line', x1: 70, y1: 207, x2: 276, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
@@ -52,11 +51,10 @@ const rumboDescriptionVisual = {
         { type: 'line', x1: 725, y1: 532, x2: 731, y2: 532, stroke: 'var(--accent-color)', strokeWidth: 1.5 },
         { type: 'rect', x: 760, y: 510, width: 132, height: 5, rx: 2.5, fill: 'var(--mantine-color-text)', opacity: 0.78 },
         { type: 'rect', x: 760, y: 523, width: 88, height: 4, rx: 2, fill: 'var(--mantine-color-dimmed)' },
-        { type: 'text', content: { bind: 'title' }, x: 52, y: 92, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 29, fontWeight: 700, maxLength: 60 },
         { type: 'text', content: { text: 'MOBILITY STACK' }, x: 70, y: 191, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 700, letterSpacing: 0.8 },
         { type: 'textList', content: { bind: 'tags' }, x: 70, y: 241, gap: 29, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 15, fontWeight: 500 },
         { type: 'text', content: { text: 'TRANSIT ROUTE' }, x: 352, y: 174, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.8 },
-        { type: 'text', content: { text: 'SHARED PLATFORM CONTRACTS' }, x: 418, y: 454, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 9, fontWeight: 700, letterSpacing: 0.5 },
+        { type: 'text', content: { text: 'SHARED PLATFORM CONTRACTS' }, x: 418, y: 454, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.5 },
         { type: 'text', content: { text: 'WEB CLIENT' }, x: 428, y: 542, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.45 },
         { type: 'text', content: { text: 'ANDROID CLIENT' }, x: 760, y: 542, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.45 },
     ],
