@@ -45,6 +45,7 @@ const trafficLightsDescriptionVisual = {
         { type: 'circle', cx: 326, cy: 382, r: 4, fill: 'var(--accent-color)', opacity: 0.52 },
         { type: 'circle', cx: 326, cy: 464, r: 4, fill: 'var(--accent-color)', opacity: 0.34 },
         { type: 'rect', x: 382, y: 258, width: 228, height: 250, rx: 26, fill: 'color-mix(in srgb, var(--accent-color) 8%, var(--mantine-color-body))', stroke: 'var(--accent-color)', strokeWidth: 1.2 },
+        { type: 'ellipse', cx: 496, cy: 382, rx: 118, ry: 104, fill: { type: 'radialGradient', cx: '50%', cy: '50%', r: '50%', stops: [{ offset: '0%', color: 'var(--accent-color)', opacity: 0.13 }, { offset: '100%', color: 'var(--accent-color)', opacity: 0 }] } },
         { type: 'rect', x: 406, y: 282, width: 180, height: 44, rx: 12, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 430, cy: 304, r: 8, fill: 'var(--accent-color)' },
         { type: 'rect', x: 450, y: 302, width: 112, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.76 },

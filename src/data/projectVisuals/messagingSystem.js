@@ -33,6 +33,7 @@ const messagingSystemDescriptionVisual = {
         { type: 'circle', cx: 326, cy: 324, r: 4, fill: 'var(--accent-color)' },
         { type: 'circle', cx: 326, cy: 384, r: 3, fill: 'var(--mantine-color-dimmed)' },
         { type: 'rect', x: 384, y: 210, width: 232, height: 270, rx: 24, fill: 'color-mix(in srgb, var(--accent-color) 7%, var(--mantine-color-body))', stroke: 'var(--accent-color)', strokeWidth: 1.2 },
+        { type: 'ellipse', cx: 500, cy: 350, rx: 102, ry: 118, fill: { type: 'radialGradient', cx: '50%', cy: '48%', r: '50%', stops: [{ offset: '0%', color: 'var(--accent-color)', opacity: 0.12 }, { offset: '100%', color: 'var(--accent-color)', opacity: 0 }] } },
         { type: 'rect', x: 404, y: 232, width: 192, height: 54, rx: 13, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 428, cy: 259, r: 9, fill: 'var(--accent-color)', opacity: 0.68 },
         { type: 'rect', x: 448, y: 252, width: 122, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.78 },

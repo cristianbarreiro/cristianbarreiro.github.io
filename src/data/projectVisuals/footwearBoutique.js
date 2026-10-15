@@ -19,7 +19,6 @@ const footwearBoutiqueDescriptionVisual = {
         { type: 'rect', x: 72, y: 184, width: 856, height: 50, rx: 12, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 99, cy: 209, r: 10, fill: 'var(--accent-color)', opacity: 0.18 },
         { type: 'path', d: 'M95 209 H103 M99 205 V213', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.4, strokeLinecap: 'round' },
-        { type: 'rect', x: 122, y: 207, width: 172, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.7 },
         { type: 'rect', x: 770, y: 199, width: 58, height: 20, rx: 10, fill: 'color-mix(in srgb, var(--accent-color) 13%, var(--mantine-color-body))' },
         { type: 'text', content: { text: 'NEW' }, x: 787, y: 213, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.6 },
         { type: 'circle', cx: 884, cy: 209, r: 12, fill: 'none', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
