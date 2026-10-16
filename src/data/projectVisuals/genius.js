@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
 const geniusDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,9 +15,11 @@ const geniusDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 48, y: 158, width: 256, height: 402, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 70, cy: 184, r: 3, fill: 'var(--accent-color)' },
         { type: 'line', x1: 70, y1: 207, x2: 282, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
+        { type: 'line', x1: 323, y1: 178, x2: 323, y2: 550, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 342, y: 158, width: 606, height: 370, rx: 18, fill: 'color-mix(in srgb, var(--mantine-color-body) 72%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 644, cy: 199, r: 17, fill: 'var(--accent-color)', opacity: 0.2 },
         { type: 'path', d: 'M637 199 H651 M644 192 V206', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.8, strokeLinecap: 'round' },

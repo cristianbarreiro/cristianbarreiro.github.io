@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
 const payFlowDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,9 +15,11 @@ const payFlowDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 48, y: 158, width: 270, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 70, cy: 184, r: 3, fill: 'var(--accent-color)' },
         { type: 'line', x1: 70, y1: 207, x2: 296, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
+        { type: 'line', x1: 353, y1: 178, x2: 353, y2: 548, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 388, y: 174, width: 526, height: 74, rx: 16, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 424, cy: 211, r: 17, fill: 'var(--accent-color)', opacity: 0.18 },
         { type: 'path', d: 'M424 201 V221 M414 211 H434', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 2, strokeLinecap: 'round' },

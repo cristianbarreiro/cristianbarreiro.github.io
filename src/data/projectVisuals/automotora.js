@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
 const automotoraDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,6 +15,7 @@ const automotoraDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 52, y: 164, width: 896, height: 382, rx: 20, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 72, y: 184, width: 856, height: 54, rx: 12, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 101, cy: 211, r: 10, fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.5 },

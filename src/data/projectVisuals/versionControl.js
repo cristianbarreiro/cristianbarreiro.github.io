@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
 const versionControlDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,9 +15,11 @@ const versionControlDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 52, y: 158, width: 252, height: 428, rx: 17, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 78, cy: 186, r: 4, fill: 'var(--accent-color)' },
         { type: 'rect', x: 96, y: 184, width: 164, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.78 },
+        { type: 'line', x1: 320, y1: 178, x2: 320, y2: 550, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 76, y: 216, width: 202, height: 34, rx: 9, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'path', d: 'M91 226 H104 V239 H91 Z M94 229 H101 M94 233 H101', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.2, strokeLinejoin: 'round' },
         { type: 'rect', x: 115, y: 230, width: 126, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.68 },

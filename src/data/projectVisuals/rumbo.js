@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
 const rumboDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,9 +15,11 @@ const rumboDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 48, y: 158, width: 250, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 70, cy: 184, r: 3, fill: 'var(--accent-color)' },
         { type: 'line', x1: 70, y1: 207, x2: 276, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
+        { type: 'line', x1: 325, y1: 178, x2: 325, y2: 550, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'path', d: 'M374 214 C430 214 418 296 494 296 S552 214 626 214 S698 316 774 316 S826 230 902 230', fill: 'none', stroke: 'var(--mantine-color-default-border)', strokeWidth: 14, strokeLinecap: 'round', strokeLinejoin: 'round' },
         { type: 'path', d: 'M374 214 C430 214 418 296 494 296 S552 214 626 214 S698 316 774 316 S826 230 902 230', fill: 'none', stroke: { type: 'linearGradient', x1: '0%', y1: '0%', x2: '100%', y2: '0%', stops: [{ offset: '0%', color: 'var(--accent-color)', opacity: 0.35 }, { offset: '45%', color: 'var(--accent-color)' }, { offset: '100%', color: 'var(--accent-color)', opacity: 0.45 }] }, strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' },
         { type: 'circle', cx: 374, cy: 214, r: 13, fill: 'var(--mantine-color-body)', stroke: 'var(--accent-color)', strokeWidth: 3 },

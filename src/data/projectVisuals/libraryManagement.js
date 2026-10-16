@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
 const libraryManagementDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,8 +15,10 @@ const libraryManagementDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 52, y: 158, width: 228, height: 422, rx: 18, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 84, cy: 194, r: 16, fill: 'var(--accent-color)', opacity: 0.17 },
+        { type: 'line', x1: 304, y1: 178, x2: 304, y2: 550, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 84, cy: 189, r: 5, fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.3 },
         { type: 'path', d: 'M75 201 Q84 190 93 201', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.3, strokeLinecap: 'round' },
         { type: 'rect', x: 110, y: 190, width: 134, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.78 },

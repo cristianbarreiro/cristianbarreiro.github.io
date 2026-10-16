@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
 const cdevStudiosDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -14,10 +14,11 @@ const cdevStudiosDescriptionVisual = {
         ],
     },
     elements: [
+        PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_TOP_BAR,
         {
             type: 'group',
             children: [
-                PROJECT_VISUAL_FRAME,
                 { type: 'rect', x: 48, y: 158, width: 250, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 76%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'line', x1: 70, y1: 207, x2: 276, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'circle', cx: 72, cy: 184, r: 3, fill: 'var(--accent-color)' },

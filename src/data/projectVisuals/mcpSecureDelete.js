@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
 const mcpSecureDeleteDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,6 +15,7 @@ const mcpSecureDeleteDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 52, y: 170, width: 226, height: 354, rx: 18, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 82, cy: 202, r: 15, fill: 'var(--accent-color)', opacity: 0.17 },
         { type: 'path', d: 'M75 204 Q82 193 89 204 M77 208 H87 M82 198 V204', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.6, strokeLinecap: 'round' },

@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
 const privGvardDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -14,15 +14,12 @@ const privGvardDescriptionVisual = {
         ],
     },
     elements: [
+        PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_TOP_BAR,
         {
             type: 'group',
             opacity: 0.82,
             children: [
-                PROJECT_VISUAL_FRAME,
-                { type: 'line', x1: 25, y1: 145, x2: 975, y2: 145, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
-                { type: 'circle', cx: 54, cy: 55, r: 4, fill: 'var(--accent-color)' },
-                { type: 'circle', cx: 72, cy: 55, r: 4, fill: 'var(--mantine-color-default-border)' },
-                { type: 'circle', cx: 90, cy: 55, r: 4, fill: 'var(--mantine-color-default-border)' },
                 { type: 'rect', x: 48, y: 174, width: 258, height: 374, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 74%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'line', x1: 70, y1: 220, x2: 284, y2: 220, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'circle', cx: 72, cy: 198, r: 3, fill: 'var(--accent-color)' },

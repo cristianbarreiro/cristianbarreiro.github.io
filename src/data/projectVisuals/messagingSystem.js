@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
 const messagingSystemDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,6 +15,7 @@ const messagingSystemDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 70, y: 204, width: 216, height: 272, rx: 22, fill: 'color-mix(in srgb, var(--mantine-color-body) 76%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 112, cy: 247, r: 17, fill: 'var(--accent-color)', opacity: 0.2 },
         { type: 'circle', cx: 112, cy: 242, r: 5, fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.4 },

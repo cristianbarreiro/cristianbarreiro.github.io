@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
 const socraticaDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -14,6 +14,7 @@ const socraticaDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_TOP_BAR,
         { type: 'circle', cx: 500, cy: 350, r: 156, fill: 'none', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 500, cy: 350, r: 104, fill: 'color-mix(in srgb, var(--accent-color) 7%, var(--mantine-color-body))', stroke: 'var(--accent-color)', strokeWidth: 1.2, opacity: 0.9 },
         { type: 'path', d: 'M500 350 L350 264 M500 350 L646 260 M500 350 L700 374 M500 350 L614 470 M500 350 L362 458 M500 350 L302 365', fill: 'none', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1.5 },

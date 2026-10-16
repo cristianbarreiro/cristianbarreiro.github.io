@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
 const desktopCalendarDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,9 +15,11 @@ const desktopCalendarDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 48, y: 158, width: 240, height: 402, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 70, cy: 184, r: 3, fill: 'var(--accent-color)' },
         { type: 'line', x1: 70, y1: 207, x2: 266, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
+        { type: 'line', x1: 303, y1: 178, x2: 303, y2: 550, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 318, y: 158, width: 630, height: 340, rx: 18, fill: 'color-mix(in srgb, var(--mantine-color-body) 72%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 340, y: 178, width: 586, height: 48, rx: 11, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 366, cy: 202, r: 9, fill: 'var(--accent-color)', opacity: 0.18 },

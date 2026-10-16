@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
 const cataleyaDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,9 +15,11 @@ const cataleyaDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 48, y: 158, width: 250, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 70, cy: 184, r: 3, fill: 'var(--accent-color)' },
         { type: 'line', x1: 70, y1: 207, x2: 276, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
+        { type: 'line', x1: 314, y1: 178, x2: 314, y2: 548, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 330, y: 158, width: 294, height: 300, rx: 18, fill: 'color-mix(in srgb, var(--mantine-color-body) 72%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 354, y: 182, width: 246, height: 202, rx: 14, fill: { type: 'radialGradient', cx: '50%', cy: '40%', r: '70%', stops: [{ offset: '0%', color: 'var(--accent-color)', opacity: 0.2 }, { offset: '100%', color: 'var(--mantine-color-body)' }] } },
         { type: 'ellipse', cx: 478, cy: 354, rx: 58, ry: 12, fill: 'var(--accent-color)', opacity: 0.12 },

@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
 const trafficLightsDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -15,6 +15,7 @@ const trafficLightsDescriptionVisual = {
     },
     elements: [
         PROJECT_VISUAL_FRAME,
+        PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 52, y: 168, width: 896, height: 420, rx: 20, fill: 'color-mix(in srgb, var(--mantine-color-body) 76%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 74, y: 192, width: 852, height: 48, rx: 12, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 100, cy: 216, r: 9, fill: 'var(--accent-color)', opacity: 0.19 },
