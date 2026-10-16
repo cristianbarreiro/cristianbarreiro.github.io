@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
 
 const privGvardDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -23,16 +23,13 @@ const privGvardDescriptionVisual = {
                 { type: 'rect', x: 48, y: 174, width: 258, height: 374, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 74%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'line', x1: 70, y1: 220, x2: 284, y2: 220, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'circle', cx: 72, cy: 198, r: 3.5, fill: 'var(--accent-color)' },
-                { type: 'circle', cx: 72, cy: 253, r: 2, fill: 'var(--accent-color)' },
-                { type: 'circle', cx: 72, cy: 309, r: 2, fill: 'var(--accent-color)' },
-                { type: 'circle', cx: 72, cy: 365, r: 2, fill: 'var(--accent-color)' },
-                { type: 'circle', cx: 72, cy: 421, r: 2, fill: 'var(--accent-color)' },
+                ...createTechListBullets({ cx: 72, startY: 260, gap: 56, count: 4, fontSize: 21 }),
                 { type: 'line', x1: 335, y1: 184, x2: 335, y2: 548, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
             ],
         },
         {
             type: 'text',
-            content: { text: 'CORE TECH STACK' },
+            content: { text: 'TECH STACK' },
             x: 88,
             y: 204,
             fill: 'var(--mantine-color-dimmed)',

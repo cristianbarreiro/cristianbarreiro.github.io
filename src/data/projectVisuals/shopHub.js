@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
 
 const shopHubDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -18,6 +18,7 @@ const shopHubDescriptionVisual = {
         PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 48, y: 158, width: 240, height: 402, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 72, cy: 187, r: 3.5, fill: 'var(--accent-color)' },
+        ...createTechListBullets({ cx: 72, startY: 237, gap: 31, count: 8, fontSize: 14 }),
         { type: 'line', x1: 70, y1: 207, x2: 266, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'line', x1: 303, y1: 178, x2: 303, y2: 550, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 318, y: 158, width: 630, height: 248, rx: 18, fill: 'color-mix(in srgb, var(--mantine-color-body) 72%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
@@ -61,7 +62,7 @@ const shopHubDescriptionVisual = {
         { type: 'path', d: 'M785 466 V488 C785 495 811 495 811 488 V466 M785 477 C785 484 811 484 811 477', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1.4 },
         { type: 'text', content: { text: 'POSTGRESQL' }, x: 820, y: 482, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.25 },
         { type: 'rect', x: 344, y: 540, width: 580, height: 1, fill: 'var(--mantine-color-default-border)' },
-        { type: 'text', content: { text: 'STOREFRONT STACK' }, x: 88, y: 191, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.8 },
+        { type: 'text', content: { text: 'TECH STACK' }, x: 88, y: 191, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 700, letterSpacing: 0.8 },
         { type: 'textList', content: { bind: 'tags' }, x: 88, y: 237, gap: 31, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 14, fontWeight: 500 },
         { type: 'text', content: { text: 'CATALOG' }, x: 370, y: 375, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.35 },
         { type: 'text', content: { text: 'FEATURED' }, x: 558, y: 375, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.35 },

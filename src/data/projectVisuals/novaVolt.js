@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
 
 const novaVoltDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -18,6 +18,7 @@ const novaVoltDescriptionVisual = {
         PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 48, y: 158, width: 246, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 72, cy: 187, r: 3.5, fill: 'var(--accent-color)' },
+        ...createTechListBullets({ cx: 72, startY: 242, gap: 36, count: 8, fontSize: 17 }),
         { type: 'line', x1: 70, y1: 207, x2: 270, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'line', x1: 316, y1: 178, x2: 316, y2: 548, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 338, y: 158, width: 590, height: 390, rx: 18, fill: 'color-mix(in srgb, var(--mantine-color-body) 68%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
@@ -57,7 +58,7 @@ const novaVoltDescriptionVisual = {
         { type: 'path', d: 'M790 451 H798 M794 447 V455', fill: 'none', stroke: 'var(--mantine-color-body)', strokeWidth: 1.6, strokeLinecap: 'round' },
         { type: 'rect', x: 812, y: 444, width: 66, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.8 },
         { type: 'rect', x: 812, y: 454, width: 42, height: 3, rx: 1.5, fill: 'var(--mantine-color-dimmed)' },
-        { type: 'text', content: { text: 'STORE TECHNOLOGY' }, x: 88, y: 191, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 700, letterSpacing: 0.8 },
+        { type: 'text', content: { text: 'TECH STACK' }, x: 88, y: 191, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 700, letterSpacing: 0.8 },
         { type: 'textList', content: { bind: 'tags' }, x: 88, y: 242, gap: 36, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 17, fontWeight: 500 },
         { type: 'text', content: { text: 'PRODUCT CATALOG' }, x: 370, y: 224, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.8 },
         { type: 'text', content: { text: 'CART  →  CHECKOUT' }, x: 768, y: 497, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.4 },

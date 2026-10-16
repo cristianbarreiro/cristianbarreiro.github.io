@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
 
 const payFlowDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -18,6 +18,7 @@ const payFlowDescriptionVisual = {
         PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 48, y: 158, width: 270, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 72, cy: 187, r: 3.5, fill: 'var(--accent-color)' },
+        ...createTechListBullets({ cx: 72, startY: 237, gap: 27, count: 12, fontSize: 14 }),
         { type: 'line', x1: 70, y1: 207, x2: 296, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'line', x1: 353, y1: 178, x2: 353, y2: 548, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 388, y: 174, width: 526, height: 74, rx: 16, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
@@ -52,7 +53,7 @@ const payFlowDescriptionVisual = {
         { type: 'circle', cx: 780, cy: 489, r: 4, fill: 'var(--accent-color)', opacity: 0.45 },
         { type: 'circle', cx: 795, cy: 505, r: 3, fill: 'var(--accent-color)', opacity: 0.7 },
         { type: 'circle', cx: 780, cy: 522, r: 4, fill: 'var(--accent-color)' },
-        { type: 'text', content: { text: 'PAYMENT SYSTEMS' }, x: 88, y: 191, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 700, letterSpacing: 0.8 },
+        { type: 'text', content: { text: 'TECH STACK' }, x: 88, y: 191, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 700, letterSpacing: 0.8 },
         { type: 'textList', content: { bind: 'tags' }, x: 88, y: 237, gap: 27, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 14, fontWeight: 500 },
         { type: 'text', content: { text: 'PAYMENT REQUEST' }, x: 408, y: 164, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.8 },
         { type: 'text', content: { text: 'TRANSACTION CORE' }, x: 432, y: 299, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.7 },

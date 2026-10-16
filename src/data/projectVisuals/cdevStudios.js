@@ -1,4 +1,4 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
 
 const cdevStudiosDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -22,12 +22,13 @@ const cdevStudiosDescriptionVisual = {
                 { type: 'rect', x: 48, y: 158, width: 250, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 76%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'line', x1: 70, y1: 207, x2: 276, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'circle', cx: 72, cy: 187, r: 3.5, fill: 'var(--accent-color)' },
+                ...createTechListBullets({ cx: 72, startY: 242, gap: 25, count: 12, fontSize: 17 }),
                 { type: 'line', x1: 352, y1: 178, x2: 352, y2: 550, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
             ],
         },
         {
             type: 'text',
-            content: { text: 'TECHNOLOGY STACK' },
+            content: { text: 'TECH STACK' },
             x: 88,
             y: 191,
             fill: 'var(--mantine-color-dimmed)',

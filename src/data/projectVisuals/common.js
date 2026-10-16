@@ -59,3 +59,25 @@ export function createProjectVisualTopBar(options = {}) {
 }
 
 export const PROJECT_VISUAL_TOP_BAR = createProjectVisualTopBar();
+
+export function createTechListBullets(options = {}) {
+    const {
+        cx,
+        startY,
+        gap,
+        count,
+        fontSize = 16,
+        r = 2,
+        fill = 'var(--accent-color)',
+    } = options;
+
+    const opticalOffset = Math.round(fontSize * 0.35);
+
+    return Array.from({ length: count }, (_, i) => Object.freeze({
+        type: 'circle',
+        cx,
+        cy: startY - opticalOffset + i * gap,
+        r,
+        fill,
+    }));
+}
