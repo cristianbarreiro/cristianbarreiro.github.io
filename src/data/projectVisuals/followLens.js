@@ -21,7 +21,7 @@ const followLensDescriptionVisual = {
             children: [
                 { type: 'rect', x: 708, y: 158, width: 244, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 76%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'line', x1: 730, y1: 207, x2: 928, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
-                { type: 'circle', cx: 732, cy: 184, r: 3, fill: 'var(--accent-color)' },
+                { type: 'circle', cx: 732, cy: 186, r: 3.5, fill: 'var(--accent-color)' },
                 { type: 'line', x1: 672, y1: 168, x2: 672, y2: 548, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'circle', cx: 348, cy: 316, r: 134, fill: { type: 'radialGradient', cx: '50%', cy: '50%', r: '50%', stops: [{ offset: '0%', color: 'var(--accent-color)', opacity: 0.15 }, { offset: '100%', color: 'var(--accent-color)', opacity: 0 }] } },
                 { type: 'path', d: 'M270 236 L346 306 L444 218 M270 236 L260 371 L348 316 M346 306 L444 218 M346 306 L450 378 M348 316 L450 378 M260 371 L348 316 M444 218 L520 290 L450 378', fill: 'none', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1.5 },
@@ -66,7 +66,7 @@ const followLensDescriptionVisual = {
         {
             type: 'textList',
             content: { bind: 'tags' },
-            x: 730,
+            x: 746,
             y: 244,
             gap: 28,
             fill: 'var(--mantine-color-text)',

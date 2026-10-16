@@ -21,7 +21,7 @@ const cdevStudiosDescriptionVisual = {
             children: [
                 { type: 'rect', x: 48, y: 158, width: 250, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 76%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'line', x1: 70, y1: 207, x2: 276, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
-                { type: 'circle', cx: 72, cy: 184, r: 3, fill: 'var(--accent-color)' },
+                { type: 'circle', cx: 72, cy: 187, r: 3.5, fill: 'var(--accent-color)' },
                 { type: 'line', x1: 352, y1: 178, x2: 352, y2: 550, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
             ],
         },
