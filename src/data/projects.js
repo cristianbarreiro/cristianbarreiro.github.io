@@ -51,7 +51,7 @@ const projectsByLanguage = {
             longDescription:
                 'Una aplicación por consola que permite a los usuarios gestionar versiones de archivos y proyectos, similar a Git. Incluye funcionalidades como añadir archivo principal, crear versiones, modificarlas y hacer búsquedas de versiones.',
             date: '2025',
-            image: '/images/projects/followlens/FollowLens_Portada.png',
+            image: null,
             images: [
 
             ],
@@ -190,7 +190,7 @@ const projectsByLanguage = {
             longDescription:
                 'Security-focused project that implements a Model Context Protocol (MCP) server to provide controlled and secure file deletion capabilities for AI-powered tools. The project explores safe automation workflows by adding validation layers, controlled file operations and secure resource handling when interacting with the local filesystem through MCP-compatible clients.',
             date: '2025',
-            image: '/images/projects/followlens/FollowLens_Portada.png',
+            image: null,
             images: [],
             tags: [
                 'TypeScript',
@@ -529,7 +529,7 @@ const projectsByLanguage = {
             longDescription:
                 'Proyecto educativo de simulación de pasarela de pagos FinTech diseñado para demostrar conceptos de arquitectura de software limpia (Clean Architecture), sistemas transaccionales ACID y comunicación asíncrona. Implementa procesamiento de pagos mediante webhooks firmados criptográficamente (HMAC-SHA256 con comparación timing-safe), idempotencia a nivel de base de datos para evitar cobros duplicados ante reintentos de red, snapshots de precios en servidor y control de concurrencia optimista. Desarrollado con ASP.NET Core 10, Entity Framework Core, PostgreSQL 17 / SQLite y un frontend reactivo con Angular 22 utilizando Standalone Components y Signals. Incluye suite completa de tests unitarios y de integración.',
             date: '2026',
-            image: '/images/projects/followlens/FollowLens_Portada.png',
+            image: null,
             images: [],
             tags: [
                 '.NET 10',
@@ -558,7 +558,7 @@ const projectsByLanguage = {
             longDescription:
                 'Plataforma de transporte público multimodal concebida como un superproyecto arquitectónico que coordina aplicaciones cliente independientes: Rumbo Web (React 19, TypeScript, Vite, Express y Leaflet para mapas interactivos) y Rumbo Android (Kotlin, Jetpack Compose, Retrofit, OkHttp y Room con arquitectura Clean/capas). La plataforma comparte especificaciones funcionales, esquemas de contratos de datos y criterios de diseño visual y accesibilidad, manteniendo al mismo tiempo pilas tecnológicas, historial de versiones y ciclos de compilación y despliegue desacoplados en cada cliente mediante submódulos Git.',
             date: '2026',
-            image: '/images/projects/followlens/FollowLens_Portada.png',
+            image: null,
             images: [],
             tags: [
                 'React 19',
@@ -586,7 +586,7 @@ const projectsByLanguage = {
             longDescription:
                 'Servidor Model Context Protocol (MCP) complementado con un dashboard web interactivo diseñado para la gestión y clasificación inteligente del correo electrónico. Incorpora un motor de reglas determinista para categorizar mensajes (importantes, transaccionales, notificaciones, boletines, promociones y spam sospechoso) y automatizar tareas de limpieza del buzón. Su arquitectura prioriza la seguridad con un enfoque human-in-the-loop: requiere tokens criptográficos de confirmación (SHA-256) en dos fases antes de ejecutar acciones destructivas como el envío a la papelera, registra intenciones de forma atómica antes de invocar side-effects en proveedores externos con capacidad de reconciliación ante fallos imprevistos, y asegura una persistencia robusta en SQLite con modo WAL y registro completo de auditoría.',
             date: '2026',
-            image: '/images/projects/followlens/FollowLens_Portada.png',
+            image: null,
             images: [],
             tags: [
                 'TypeScript',
@@ -646,7 +646,7 @@ const projectsByLanguage = {
             longDescription:
                 'A console application that lets users manage file and project versions, similar to Git. It includes features like adding a main file, creating versions, modifying them, and searching versions.',
             date: '2025',
-            image: '/images/projects/followlens/FollowLens_Portada.png',
+            image: null,
             images: [
 
             ],
@@ -785,7 +785,7 @@ const projectsByLanguage = {
             longDescription:
                 'Security-focused project that implements a Model Context Protocol (MCP) server to provide controlled and secure file deletion capabilities for AI-powered tools. The project explores safe automation workflows by adding validation layers, controlled file operations and secure resource handling when interacting with the local filesystem through MCP-compatible clients.',
             date: '2025',
-            image: '/images/projects/followlens/FollowLens_Portada.png',
+            image: null,
             images: [],
             tags: [
                 'TypeScript',
@@ -1124,7 +1124,7 @@ const projectsByLanguage = {
             longDescription:
                 'Educational FinTech payment gateway simulator designed to demonstrate Clean Architecture, ACID transactional systems, and asynchronous communication. Implements payment processing through cryptographically signed webhooks (HMAC-SHA256 with timing-safe comparison), database-level idempotency to prevent duplicate charges upon network retries, server-side price snapshots, and optimistic concurrency control. Built with ASP.NET Core 10, Entity Framework Core, PostgreSQL 17 / SQLite, and a reactive Angular 22 frontend utilizing Standalone Components and Signals. Includes a comprehensive suite of unit and integration tests.',
             date: '2026',
-            image: '/images/projects/followlens/FollowLens_Portada.png',
+            image: null,
             images: [],
             tags: [
                 '.NET 10',
@@ -1153,7 +1153,7 @@ const projectsByLanguage = {
             longDescription:
                 'Multimodal public transit platform designed as an architectural umbrella project coordinating independent client applications: Rumbo Web (React 19, TypeScript, Vite, Express, and Leaflet for interactive maps) and Rumbo Android (Kotlin, Jetpack Compose, Retrofit, OkHttp, and Room with Clean Architecture layers). The platform shares functional specifications, data contract schemas, and visual design and accessibility guidelines, while maintaining decoupled technology stacks, version histories, and independent build/deployment lifecycles across clients using Git submodules.',
             date: '2026',
-            image: '/images/projects/followlens/FollowLens_Portada.png',
+            image: null,
             images: [],
             tags: [
                 'React 19',
@@ -1181,7 +1181,7 @@ const projectsByLanguage = {
             longDescription:
                 'Security-focused Model Context Protocol (MCP) server paired with an interactive web dashboard designed for intelligent email management and mailbox hygiene. It implements a deterministic rule engine to classify incoming messages (important, transactional, notifications, newsletters, promotions, and suspected spam) and automate assisted cleanup tasks. The system is designed around a human-in-the-loop security model: requiring two-phase cryptographic confirmation tokens (SHA-256) prior to executing destructive actions such as moving messages to the trash, logging intent atomically before invoking provider side-effects with crash-resilient reconciliation, and enforcing strict SQLite persistence in WAL mode with comprehensive audit trails.',
             date: '2026',
-            image: '/images/projects/followlens/FollowLens_Portada.png',
+            image: null,
             images: [],
             tags: [
                 'TypeScript',
