@@ -1,5 +1,7 @@
 import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
 
+const TECH_STACK = Object.freeze(['.NET 10', 'C#', 'Avalonia UI', 'Win32 API']);
+
 const privGvardDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
     background: {
@@ -23,7 +25,7 @@ const privGvardDescriptionVisual = {
                 { type: 'rect', x: 48, y: 174, width: 258, height: 374, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 74%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'line', x1: 70, y1: 220, x2: 284, y2: 220, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'circle', cx: 72, cy: 198, r: 3.5, fill: 'var(--accent-color)' },
-                ...createTechListBullets({ cx: 72, startY: 260, gap: 56, count: 4, fontSize: 21 }),
+                ...createTechListBullets({ cx: 72, startY: 260, gap: 56, count: TECH_STACK.length, fontSize: 21 }),
                 { type: 'line', x1: 335, y1: 184, x2: 335, y2: 548, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
             ],
         },
@@ -40,7 +42,7 @@ const privGvardDescriptionVisual = {
         },
         {
             type: 'textList',
-            content: { bind: 'tags' },
+            content: TECH_STACK,
             x: 88,
             y: 260,
             gap: 56,

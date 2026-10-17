@@ -1,4 +1,10 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
+
+const TECH_STACK = Object.freeze([
+    'C',
+    'C++',
+    'POSIX API',
+]);
 
 const versionControlDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -73,7 +79,10 @@ const versionControlDescriptionVisual = {
         { type: 'text', content: { text: 'VERSION HISTORY' }, x: 360, y: 250, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.8 },
         { type: 'text', content: { text: 'HEAD' }, x: 776, y: 295, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.7 },
         { type: 'text', content: { text: 'SEARCH' }, x: 92, y: 462, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.6 },
-        { type: 'textList', content: { bind: 'tags' }, x: 76, y: 535, gap: 14, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 500 },
+        { type: 'circle', cx: 66, cy: 536, r: 3.5, fill: 'var(--accent-color)' },
+        { type: 'text', content: { text: 'TECH STACK' }, x: 76, y: 539, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.8 },
+        ...createTechListBullets({ cx: 66, startY: 554, gap: 14, count: TECH_STACK.length, fontSize: 10 }),
+        { type: 'textList', content: TECH_STACK, x: 76, y: 554, gap: 14, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 500 },
     ],
 };
 

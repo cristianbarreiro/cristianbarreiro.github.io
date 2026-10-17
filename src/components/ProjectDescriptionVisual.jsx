@@ -282,8 +282,16 @@ function resolveContent(content, project, legacyText) {
         return content;
     }
 
+    if (Array.isArray(content)) {
+        return content;
+    }
+
     if (!content || typeof content !== 'object') {
         return typeof legacyText === 'string' || typeof legacyText === 'number' ? legacyText : null;
+    }
+
+    if (Array.isArray(content.items)) {
+        return content.items;
     }
 
     if (typeof content.bind === 'string') {

@@ -1,5 +1,13 @@
 import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
 
+const TECH_STACK = Object.freeze([
+    'JavaScript',
+    'HTML5',
+    'CSS3',
+    'Fetch API',
+    'LocalStorage',
+]);
+
 const automotoraDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
     background: {
@@ -80,8 +88,9 @@ const automotoraDescriptionVisual = {
         { type: 'rect', x: 548, y: 508, width: 198, height: 24, rx: 12, fill: 'color-mix(in srgb, var(--mantine-color-body) 70%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'path', d: 'M566 514 H578 V526 H566 Z M569 518 H575 M569 522 H575', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 1, strokeLinejoin: 'round' },
         { type: 'text', content: { text: 'LOCAL STORAGE' }, x: 590, y: 524, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.4 },
-        { type: 'text', content: { text: 'VEHICLE FINDER' }, x: 72, y: 218, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.9 },
-        { type: 'text', content: { bind: 'tags' }, x: 92, y: 570, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 500 },
+        { type: 'circle', cx: 78, cy: 567, r: 3.5, fill: 'var(--accent-color)' },
+        { type: 'text', content: { text: 'TECH STACK' }, x: 90, y: 570, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.8 },
+        { type: 'text', content: { text: '—   ' + TECH_STACK.join('   ·   ') }, x: 172, y: 570, fill: 'var(--mantine-color-text)', opacity: 0.8, fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 500 },
         { type: 'text', content: { text: 'AVAILABLE VEHICLES' }, x: 284, y: 248, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.75 },
         { type: 'text', content: { text: '01 — 24' }, x: 866, y: 248, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.5 },
         { type: 'text', content: { text: 'CATALOG API' }, x: 92, y: 490, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.4 },

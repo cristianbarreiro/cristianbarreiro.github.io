@@ -1,4 +1,10 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
+
+const TECH_STACK = Object.freeze([
+    'C',
+    'POSIX Threads',
+    'Semaphores API',
+]);
 
 const trafficLightsDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -76,7 +82,10 @@ const trafficLightsDescriptionVisual = {
         { type: 'text', content: { text: 'WAITING' }, x: 450, y: 386, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.55 },
         { type: 'text', content: { text: 'WAITING' }, x: 450, y: 452, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.55 },
         { type: 'text', content: { text: 'RELEASE  →  SIGNAL' }, x: 424, y: 490, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.5 },
-        { type: 'textList', content: { bind: 'tags' }, x: 76, y: 546, gap: 14, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 500 },
+        { type: 'circle', cx: 66, cy: 524, r: 3.5, fill: 'var(--accent-color)' },
+        { type: 'text', content: { text: 'TECH STACK' }, x: 76, y: 527, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.8 },
+        ...createTechListBullets({ cx: 66, startY: 544, gap: 15, count: TECH_STACK.length, fontSize: 10 }),
+        { type: 'textList', content: TECH_STACK, x: 76, y: 544, gap: 15, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 500 },
     ],
 };
 

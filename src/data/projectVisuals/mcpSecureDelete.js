@@ -1,4 +1,10 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
+
+const TECH_STACK = Object.freeze([
+    'TypeScript',
+    'Node.js',
+    'Model Context Protocol',
+]);
 
 const mcpSecureDeleteDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -66,7 +72,10 @@ const mcpSecureDeleteDescriptionVisual = {
         { type: 'circle', cx: 860, cy: 374, r: 16, fill: 'var(--accent-color)', opacity: 0.16 },
         { type: 'path', d: 'M853 374 L858 379 L868 368', fill: 'none', stroke: 'var(--accent-color)', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' },
         { type: 'text', content: { text: 'FILESYSTEM' }, x: 822, y: 414, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.6 },
-        { type: 'textList', content: { bind: 'tags' }, x: 750, y: 454, gap: 14, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 500 },
+        { type: 'circle', cx: 738, cy: 445, r: 3.5, fill: 'var(--accent-color)' },
+        { type: 'text', content: { text: 'TECH STACK' }, x: 750, y: 448, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.8 },
+        ...createTechListBullets({ cx: 738, startY: 474, gap: 18, count: TECH_STACK.length, fontSize: 12 }),
+        { type: 'textList', content: TECH_STACK, x: 750, y: 474, gap: 18, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 500 },
         { type: 'text', content: { text: 'AI CONTROL PLANE' }, x: 75, y: 230, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 700, letterSpacing: 0.8 },
         { type: 'text', content: { text: 'MCP SERVER' }, x: 366, y: 228, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 700, letterSpacing: 0.8 },
         { type: 'text', content: { text: 'VALIDATE' }, x: 418, y: 278, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.6 },

@@ -1,5 +1,16 @@
 import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
 
+const TECH_STACK = Object.freeze([
+    'TypeScript',
+    'React 19',
+    'Vite',
+    'TailwindCSS',
+    'Motion',
+    'Express',
+    'PostgreSQL',
+    'Docker',
+]);
+
 const cdevStudiosDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
     background: {
@@ -22,7 +33,7 @@ const cdevStudiosDescriptionVisual = {
                 { type: 'rect', x: 48, y: 158, width: 250, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 76%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'line', x1: 70, y1: 207, x2: 276, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
                 { type: 'circle', cx: 72, cy: 187, r: 3.5, fill: 'var(--accent-color)' },
-                ...createTechListBullets({ cx: 72, startY: 242, gap: 25, count: 12, fontSize: 17 }),
+                ...createTechListBullets({ cx: 72, startY: 242, gap: 36, count: TECH_STACK.length, fontSize: 17 }),
                 { type: 'line', x1: 352, y1: 178, x2: 352, y2: 550, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
             ],
         },
@@ -39,10 +50,10 @@ const cdevStudiosDescriptionVisual = {
         },
         {
             type: 'textList',
-            content: { bind: 'tags' },
+            content: TECH_STACK,
             x: 88,
             y: 242,
-            gap: 25,
+            gap: 36,
             fill: 'var(--mantine-color-text)',
             fontFamily: 'var(--mantine-font-family)',
             fontSize: 17,

@@ -1,4 +1,10 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
+
+const TECH_STACK = Object.freeze([
+    'C++',
+    'C',
+    'C++ STL',
+]);
 
 const libraryManagementDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -37,7 +43,8 @@ const libraryManagementDescriptionVisual = {
         { type: 'rect', x: 122, y: 401, width: 84, height: 3, rx: 1.5, fill: 'var(--mantine-color-dimmed)' },
         { type: 'rect', x: 122, y: 414, width: 104, height: 3, rx: 1.5, fill: 'var(--mantine-color-dimmed)' },
         { type: 'line', x1: 76, y1: 456, x2: 256, y2: 456, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
-        { type: 'text', content: { text: 'SYSTEM PATTERNS' }, x: 76, y: 480, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.55 },
+        { type: 'circle', cx: 66, cy: 477, r: 3.5, fill: 'var(--accent-color)' },
+        { type: 'text', content: { text: 'TECH STACK' }, x: 76, y: 480, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.8 },
         { type: 'rect', x: 328, y: 158, width: 620, height: 422, rx: 19, fill: 'color-mix(in srgb, var(--mantine-color-body) 75%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 354, y: 182, width: 566, height: 52, rx: 12, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 380, cy: 208, r: 9, fill: 'var(--accent-color)', opacity: 0.2 },
@@ -82,7 +89,8 @@ const libraryManagementDescriptionVisual = {
         { type: 'text', content: { text: 'MEMBER SERVICES' }, x: 76, y: 238, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.6 },
         { type: 'text', content: { text: 'COLLECTION / SHELVES' }, x: 376, y: 280, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.65 },
         { type: 'text', content: { text: 'CIRCULATION DESK' }, x: 656, y: 382, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.6 },
-        { type: 'textList', content: { bind: 'tags' }, x: 76, y: 509, gap: 14, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 500 },
+        ...createTechListBullets({ cx: 66, startY: 509, gap: 18, count: TECH_STACK.length, fontSize: 11 }),
+        { type: 'textList', content: TECH_STACK, x: 76, y: 509, gap: 18, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 500 },
     ],
 };
 

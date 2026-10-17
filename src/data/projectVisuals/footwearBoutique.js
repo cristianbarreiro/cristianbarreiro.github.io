@@ -1,4 +1,15 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
+
+const TECH_STACK = Object.freeze([
+    'TypeScript',
+    'React',
+    'TailwindCSS',
+    'Node.js',
+    'Express',
+    'Prisma',
+    'PostgreSQL',
+    'Stripe',
+]);
 
 const footwearBoutiqueDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -29,8 +40,10 @@ const footwearBoutiqueDescriptionVisual = {
         { type: 'rect', x: 96, y: 302, width: 150, height: 4, rx: 2, fill: 'var(--mantine-color-text)', opacity: 0.8 },
         { type: 'rect', x: 96, y: 314, width: 118, height: 3, rx: 1.5, fill: 'var(--mantine-color-dimmed)' },
         { type: 'line', x1: 96, y1: 338, x2: 270, y2: 338, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
-        { type: 'text', content: { text: 'STACK' }, x: 96, y: 362, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.7 },
-        { type: 'textList', content: { bind: 'tags' }, x: 96, y: 383, gap: 13, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 500 },
+        { type: 'circle', cx: 86, cy: 358, r: 3.5, fill: 'var(--accent-color)' },
+        { type: 'text', content: { text: 'TECH STACK' }, x: 96, y: 362, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.8 },
+        ...createTechListBullets({ cx: 86, startY: 383, gap: 15, count: TECH_STACK.length, fontSize: 11 }),
+        { type: 'textList', content: TECH_STACK, x: 96, y: 383, gap: 15, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 500 },
         { type: 'rect', x: 320, y: 256, width: 190, height: 258, rx: 15, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 334, y: 270, width: 162, height: 158, rx: 11, fill: 'color-mix(in srgb, var(--accent-color) 11%, var(--mantine-color-body))' },
         { type: 'path', d: 'M359 366 Q380 346 399 329 Q408 320 419 329 L447 353 Q455 360 466 360 Q477 360 482 370 L482 383 Q468 393 448 393 H377 Q358 393 351 384 Q350 376 359 366 Z', fill: 'color-mix(in srgb, var(--accent-color) 35%, var(--mantine-color-body))', stroke: 'var(--accent-color)', strokeWidth: 1.5, strokeLinejoin: 'round' },

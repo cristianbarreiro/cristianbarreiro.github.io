@@ -1,5 +1,17 @@
 import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
 
+const TECH_STACK = Object.freeze([
+    'Java 17',
+    'Spring Boot',
+    'Maven',
+    'JUnit',
+    'React',
+    'Vite',
+    'Node.js',
+    'Express',
+    'Power BI',
+]);
+
 const geniusDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
     background: {
@@ -18,7 +30,7 @@ const geniusDescriptionVisual = {
         PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 48, y: 158, width: 256, height: 402, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 72, cy: 187, r: 3.5, fill: 'var(--accent-color)' },
-        ...createTechListBullets({ cx: 72, startY: 237, gap: 18.5, count: 17, fontSize: 13 }),
+        ...createTechListBullets({ cx: 72, startY: 242, gap: 32, count: TECH_STACK.length, fontSize: 15 }),
         { type: 'line', x1: 70, y1: 207, x2: 282, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'line', x1: 323, y1: 178, x2: 323, y2: 550, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'rect', x: 342, y: 158, width: 606, height: 370, rx: 18, fill: 'color-mix(in srgb, var(--mantine-color-body) 72%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
@@ -48,7 +60,7 @@ const geniusDescriptionVisual = {
         { type: 'rect', x: 534, y: 456, width: 158, height: 5, rx: 2.5, fill: 'var(--mantine-color-text)', opacity: 0.78 },
         { type: 'rect', x: 534, y: 470, width: 112, height: 4, rx: 2, fill: 'var(--mantine-color-dimmed)' },
         { type: 'text', content: { text: 'TECH STACK' }, x: 88, y: 191, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 700, letterSpacing: 0.8 },
-        { type: 'textList', content: { bind: 'tags' }, x: 88, y: 237, gap: 18.5, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 13, fontWeight: 500 },
+        { type: 'textList', content: TECH_STACK, x: 88, y: 242, gap: 32, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 15, fontWeight: 500 },
         { type: 'text', content: { text: 'BUDGET MANAGER' }, x: 392, y: 377, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.3 },
         { type: 'text', content: { text: 'CRM' }, x: 586, y: 377, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.3 },
         { type: 'text', content: { text: 'DASHBOARD' }, x: 780, y: 377, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.3 },

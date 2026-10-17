@@ -1,4 +1,10 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
+
+const TECH_STACK = Object.freeze([
+    'Python',
+    'Socket API',
+    'TCP/IP',
+]);
 
 const messagingSystemDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -76,8 +82,10 @@ const messagingSystemDescriptionVisual = {
         { type: 'rect', x: 544, y: 509, width: 164, height: 24, rx: 12, fill: 'var(--mantine-color-body)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 562, cy: 521, r: 4, fill: 'var(--accent-color)' },
         { type: 'text', content: { text: 'SOCKET CHANNEL' }, x: 577, y: 524, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.5 },
-        { type: 'text', content: { text: 'REAL-TIME NETWORK' }, x: 72, y: 188, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.9 },
-        { type: 'textList', content: { bind: 'tags' }, x: 746, y: 550, gap: 14, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 500 },
+        { type: 'circle', cx: 734, cy: 542, r: 3.5, fill: 'var(--accent-color)' },
+        { type: 'text', content: { text: 'TECH STACK' }, x: 746, y: 545, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.8 },
+        ...createTechListBullets({ cx: 734, startY: 562, gap: 16, count: TECH_STACK.length, fontSize: 11 }),
+        { type: 'textList', content: TECH_STACK, x: 746, y: 562, gap: 16, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 500 },
         { type: 'text', content: { text: 'CLIENT A' }, x: 92, y: 463, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.7 },
         { type: 'text', content: { text: 'MESSAGE SERVER' }, x: 432, y: 506, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.7 },
         { type: 'text', content: { text: 'CLIENT B' }, x: 738, y: 463, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.7 },

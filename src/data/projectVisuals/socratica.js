@@ -1,4 +1,12 @@
-import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR } from './common';
+import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
+
+const TECH_STACK = Object.freeze([
+    'PHP',
+    'Laravel',
+    'MariaDB',
+    'JavaScript',
+    'HTML5 / CSS3',
+]);
 
 const socraticaDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
@@ -70,7 +78,10 @@ const socraticaDescriptionVisual = {
         { type: 'text', content: { text: 'COMMUNITY GRAPH' }, x: 388, y: 196, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.75 },
         { type: 'text', content: { text: 'CULTURAL DEBATE' }, x: 690, y: 304, fill: 'var(--accent-color)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.5 },
         { type: 'text', content: { text: 'PROFILE' }, x: 392, y: 406, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.5 },
-        { type: 'textList', content: { bind: 'tags' }, x: 90, y: 478, gap: 14, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 500 },
+        { type: 'circle', cx: 80, cy: 478, r: 3.5, fill: 'var(--accent-color)' },
+        { type: 'text', content: { text: 'TECH STACK' }, x: 90, y: 481, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.8 },
+        ...createTechListBullets({ cx: 80, startY: 498, gap: 16, count: TECH_STACK.length, fontSize: 10 }),
+        { type: 'textList', content: TECH_STACK, x: 90, y: 498, gap: 16, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 500 },
     ],
 };
 

@@ -1,5 +1,16 @@
 import { PROJECT_VISUAL_FRAME, PROJECT_VISUAL_TOP_BAR, createTechListBullets } from './common';
 
+const TECH_STACK = Object.freeze([
+    'React 19',
+    'TypeScript',
+    'Kotlin',
+    'Jetpack Compose',
+    'Android',
+    'Leaflet',
+    'Express',
+    'Room DB',
+]);
+
 const rumboDescriptionVisual = {
     viewBox: [0, 0, 1000, 620],
     background: {
@@ -18,7 +29,7 @@ const rumboDescriptionVisual = {
         PROJECT_VISUAL_TOP_BAR,
         { type: 'rect', x: 48, y: 158, width: 250, height: 390, rx: 16, fill: 'color-mix(in srgb, var(--mantine-color-body) 78%, transparent)', stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'circle', cx: 72, cy: 187, r: 3.5, fill: 'var(--accent-color)' },
-        ...createTechListBullets({ cx: 72, startY: 241, gap: 29, count: 11, fontSize: 15 }),
+        ...createTechListBullets({ cx: 72, startY: 242, gap: 36, count: TECH_STACK.length, fontSize: 16 }),
         { type: 'line', x1: 70, y1: 207, x2: 276, y2: 207, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'line', x1: 325, y1: 178, x2: 325, y2: 550, stroke: 'var(--mantine-color-default-border)', strokeWidth: 1 },
         { type: 'path', d: 'M374 214 C430 214 418 296 494 296 S552 214 626 214 S698 316 774 316 S826 230 902 230', fill: 'none', stroke: 'var(--mantine-color-default-border)', strokeWidth: 14, strokeLinecap: 'round', strokeLinejoin: 'round' },
@@ -55,7 +66,7 @@ const rumboDescriptionVisual = {
         { type: 'rect', x: 760, y: 510, width: 132, height: 5, rx: 2.5, fill: 'var(--mantine-color-text)', opacity: 0.78 },
         { type: 'rect', x: 760, y: 523, width: 88, height: 4, rx: 2, fill: 'var(--mantine-color-dimmed)' },
         { type: 'text', content: { text: 'TECH STACK' }, x: 88, y: 191, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 12, fontWeight: 700, letterSpacing: 0.8 },
-        { type: 'textList', content: { bind: 'tags' }, x: 88, y: 241, gap: 29, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 15, fontWeight: 500 },
+        { type: 'textList', content: TECH_STACK, x: 88, y: 242, gap: 36, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 16, fontWeight: 500 },
         { type: 'text', content: { text: 'TRANSIT ROUTE' }, x: 352, y: 174, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.8 },
         { type: 'text', content: { text: 'SHARED PLATFORM CONTRACTS' }, x: 418, y: 454, fill: 'var(--mantine-color-dimmed)', fontFamily: 'var(--mantine-font-family)', fontSize: 11, fontWeight: 700, letterSpacing: 0.5 },
         { type: 'text', content: { text: 'WEB CLIENT' }, x: 428, y: 542, fill: 'var(--mantine-color-text)', fontFamily: 'var(--mantine-font-family)', fontSize: 10, fontWeight: 700, letterSpacing: 0.45 },
