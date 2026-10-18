@@ -446,23 +446,23 @@ const projectsByLanguage = {
             images: [
                 {
                     src: '/images/projects/privgvard/privgvard_presentation.png',
-                    alt: 'Presentación oficial de PrivGvard con logotipo y lema',
+                    alt: 'Presentación oficial de PrivGuard con logotipo y lema',
                 },
                 {
                     src: '/images/projects/privgvard/privgvard_description.png',
-                    alt: 'Descripción de características y mockup de PrivGvard en portátil',
+                    alt: 'Descripción de características y mockup de PrivGuard en portátil',
                 },
                 {
                     src: '/images/projects/privgvard/privgvard_first.png',
-                    alt: 'Ventana principal de PrivGvard con controles de privacidad y hardware detectado',
+                    alt: 'Ventana principal de PrivGuard con controles de privacidad y hardware detectado',
                 },
                 {
                     src: '/images/projects/privgvard/privgvard_second.png',
-                    alt: 'Menú desplegable de opciones y configuración de PrivGvard',
+                    alt: 'Menú desplegable de opciones y configuración de PrivGuard',
                 },
                 {
                     src: '/images/projects/privgvard/privgvard_third.png',
-                    alt: 'Panel de configuración general y preferencias de PrivGvard',
+                    alt: 'Panel de configuración general y preferencias de PrivGuard',
                 },
             ],
             tags: [
@@ -1041,23 +1041,23 @@ const projectsByLanguage = {
             images: [
                 {
                     src: '/images/projects/privgvard/privgvard_presentation.png',
-                    alt: 'PrivGvard official presentation banner with logo and brand tagline',
+                    alt: 'PrivGuard official presentation banner with logo and brand tagline',
                 },
                 {
                     src: '/images/projects/privgvard/privgvard_description.png',
-                    alt: 'PrivGvard feature overview and laptop mockup',
+                    alt: 'PrivGuard feature overview and laptop mockup',
                 },
                 {
                     src: '/images/projects/privgvard/privgvard_first.png',
-                    alt: 'PrivGvard main window with privacy controls and detected hardware',
+                    alt: 'PrivGuard main window with privacy controls and detected hardware',
                 },
                 {
                     src: '/images/projects/privgvard/privgvard_second.png',
-                    alt: 'PrivGvard dropdown options and settings menu',
+                    alt: 'PrivGuard dropdown options and settings menu',
                 },
                 {
                     src: '/images/projects/privgvard/privgvard_third.png',
-                    alt: 'PrivGvard general settings and preferences panel',
+                    alt: 'PrivGuard general settings and preferences panel',
                 },
             ],
             tags: [

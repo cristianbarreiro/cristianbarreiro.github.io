@@ -42,7 +42,7 @@ export const globeTechnologies = [
     priority: 3,
     orbit: 0,
     isCore: true,
-    projects: ['PrivGvard — Privacidad de Cámara y Micrófono', 'PayFlow — Simulador de Pasarela de Pagos'],
+    projects: ['PrivGuard — Privacidad de Cámara y Micrófono', 'PayFlow — Simulador de Pasarela de Pagos'],
     relatedStack: ['.NET 10', 'ASP.NET Core', 'Avalonia UI', 'Win32 API'],
   },
   {
@@ -116,7 +116,7 @@ export const globeTechnologies = [
     priority: 2,
     orbit: 1,
     isCore: false,
-    projects: ['PrivGvard — Privacidad de Cámara y Micrófono', 'PayFlow — Simulador de Pasarela de Pagos'],
+    projects: ['PrivGuard — Privacidad de Cámara y Micrófono', 'PayFlow — Simulador de Pasarela de Pagos'],
     relatedStack: ['C#', 'ASP.NET Core', 'Entity Framework Core', 'Avalonia UI'],
   },
   {
@@ -246,7 +246,7 @@ export const globeTechnologies = [
     priority: 1,
     orbit: 2,
     isCore: false,
-    projects: ['CDEV Studios', 'PrivGvard — Privacidad de Cámara y Micrófono', 'PayFlow — Simulador de Pasarela de Pagos'],
+    projects: ['CDEV Studios', 'PrivGuard — Privacidad de Cámara y Micrófono', 'PayFlow — Simulador de Pasarela de Pagos'],
     relatedStack: ['Git', 'CI/CD Actions', 'Open Source', 'GitHub Pages'],
   },
   {

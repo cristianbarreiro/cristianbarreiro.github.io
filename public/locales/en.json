@@ -130,7 +130,7 @@
     "cpp": "C++"
   },
   "techDesc": {
-    "csharp": "Strongly-typed language for the .NET ecosystem. Used in PrivGvard for native Windows security and in PayFlow for transactional backend services.",
+    "csharp": "Strongly-typed language for the .NET ecosystem. Used in PrivGuard for native Windows security and in PayFlow for transactional backend services.",
     "dotnet": "High-performance cross-platform framework. Used with .NET 10 and Avalonia UI for desktop security tools and ASP.NET Core for transactional REST APIs.",
     "react": "My primary library for building reactive, component-based user interfaces. Used across all my modern frontend projects.",
     "typescript": "A typed superset of JavaScript that improves maintainability and catches errors at compile time. Foundation of my current frontend work.",
@@ -203,7 +203,7 @@
       "card1Title": "CDEV Studios & Genius Platform",
       "card1Category": "Full-Stack & Microservices Ecosystem",
       "card1Desc": "Modular architectures with JWT auth, RBAC access control, OpenAPI docs, and relational persistence in PostgreSQL.",
-      "card2Title": "PrivGvard (.NET 10 & Avalonia UI) & MCP Security Tools",
+      "card2Title": "PrivGuard (.NET 10 & Avalonia UI) & MCP Security Tools",
       "card2Category": "Security & Native Windows Engineering",
       "card2Desc": "Native desktop application leveraging Win32 P/Invoke, hardware-level PnP device control, and MCP protocols for AI assistants.",
       "card3Title": "Monorepo E-commerce Platforms",
