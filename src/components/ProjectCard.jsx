@@ -184,7 +184,7 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                                         leftSection={<IconExternalLink size={14} />}
                                         onClick={(e) => e.stopPropagation()}
                                     >
-                                        {t(project.backofficeUrl ? 'projectCard.ecommerce' : 'projectCard.demo')}
+                                        {t(project.demoLabelKey ? `projectCard.${project.demoLabelKey}` : project.backofficeUrl ? 'projectCard.ecommerce' : 'projectCard.demo')}
                                     </Button>
                                 )}
 
@@ -371,7 +371,7 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                             leftSection={<IconExternalLink size={isCarousel ? 16 : 14} />}
                             onClick={(e) => e.stopPropagation()}
                         >
-                            {t(project.backofficeUrl ? 'projectCard.ecommerce' : 'projectCard.demo')}
+                            {t(project.demoLabelKey ? `projectCard.${project.demoLabelKey}` : project.backofficeUrl ? 'projectCard.ecommerce' : 'projectCard.demo')}
                         </Button>
                     )}
 

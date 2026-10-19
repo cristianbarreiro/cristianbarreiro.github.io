@@ -204,7 +204,7 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
                                                 size="md"
                                                 leftSection={<IconExternalLink size={18} />}
                                             >
-                                                {t(project.backofficeUrl ? 'projectCard.ecommerce' : 'projectCard.demo')}
+                                                {t(project.demoLabelKey ? `projectCard.${project.demoLabelKey}` : project.backofficeUrl ? 'projectCard.ecommerce' : 'projectCard.demo')}
                                             </Button>
                                         )}
 

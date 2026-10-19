@@ -246,6 +246,7 @@
   "projectCard": {
     "featured": "Destacado",
     "demo": "Demo",
+    "liveApp": "Live App",
     "ecommerce": "E-commerce",
     "backoffice": "Backoffice",
     "code": "Código",
