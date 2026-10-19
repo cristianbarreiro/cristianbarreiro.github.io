@@ -7,6 +7,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
+// Salvaguarda global para librerías o dependencias que llamen a React sin import explícito
+if (typeof window !== 'undefined') {
+  window.React = React;
+}
+
 import { I18nextProvider } from 'react-i18next';
 
 // Estilos de Mantine (¡importante importar!)
