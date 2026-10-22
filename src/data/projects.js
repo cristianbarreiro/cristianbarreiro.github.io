@@ -26,7 +26,6 @@ import {
     novaVoltDescriptionVisual,
     cataleyaDescriptionVisual,
     payFlowDescriptionVisual,
-    rumboDescriptionVisual,
     desktopCalendarDescriptionVisual,
     geniusDescriptionVisual,
     antiSpamMcpDescriptionVisual,
@@ -552,34 +551,6 @@ const projectsByLanguage = {
             featured: false,
         },
         {
-            id: 18,
-            title: 'Rumbo Platform — Plataforma de Transporte',
-            description:
-                'Plataforma integral de transporte público multimodal que coordina aplicaciones web y móviles independientes para la gestión de líneas, paradas y recorridos.',
-            longDescription:
-                'Plataforma de transporte público multimodal concebida como un superproyecto arquitectónico que coordina aplicaciones cliente independientes: Rumbo Web (React 19, TypeScript, Vite, Express y Leaflet para mapas interactivos) y Rumbo Android (Kotlin, Jetpack Compose, Retrofit, OkHttp y Room con arquitectura Clean/capas). La plataforma comparte especificaciones funcionales, esquemas de contratos de datos y criterios de diseño visual y accesibilidad, manteniendo al mismo tiempo pilas tecnológicas, historial de versiones y ciclos de compilación y despliegue desacoplados en cada cliente mediante submódulos Git.',
-            date: '2026',
-            image: null,
-            images: [],
-            tags: [
-                'React 19',
-                'TypeScript',
-                'Kotlin',
-                'Jetpack Compose',
-                'Android',
-                'Leaflet',
-                'Vite',
-                'Express',
-                'Room DB',
-                'Clean Architecture',
-                'Git Submodules',
-            ],
-            demoUrl: '',
-            repoUrl: 'https://github.com/cristianbarreiro/Rumbo_Platform',
-            descriptionVisual: rumboDescriptionVisual,
-            featured: false,
-        },
-        {
             id: 19,
             title: 'AntiSpam MCP — InboxGuardian',
             description:
@@ -604,6 +575,7 @@ const projectsByLanguage = {
             repoUrl: 'https://github.com/cristianbarreiro/AntiSpam-MCP',
             descriptionVisual: antiSpamMcpDescriptionVisual,
             featured: false,
+            inDevelopment: true,
         },
         {
             id: 20,
@@ -1148,34 +1120,6 @@ const projectsByLanguage = {
             featured: false,
         },
         {
-            id: 18,
-            title: 'Rumbo Platform — Transit Platform',
-            description:
-                'Comprehensive transit platform coordinating independent web and mobile applications for managing transit lines, stops, and routes.',
-            longDescription:
-                'Multimodal public transit platform designed as an architectural umbrella project coordinating independent client applications: Rumbo Web (React 19, TypeScript, Vite, Express, and Leaflet for interactive maps) and Rumbo Android (Kotlin, Jetpack Compose, Retrofit, OkHttp, and Room with Clean Architecture layers). The platform shares functional specifications, data contract schemas, and visual design and accessibility guidelines, while maintaining decoupled technology stacks, version histories, and independent build/deployment lifecycles across clients using Git submodules.',
-            date: '2026',
-            image: null,
-            images: [],
-            tags: [
-                'React 19',
-                'TypeScript',
-                'Kotlin',
-                'Jetpack Compose',
-                'Android',
-                'Leaflet',
-                'Vite',
-                'Express',
-                'Room DB',
-                'Clean Architecture',
-                'Git Submodules',
-            ],
-            demoUrl: '',
-            repoUrl: 'https://github.com/cristianbarreiro/Rumbo_Platform',
-            descriptionVisual: rumboDescriptionVisual,
-            featured: false,
-        },
-        {
             id: 19,
             title: 'AntiSpam MCP — InboxGuardian',
             description:
@@ -1200,6 +1144,7 @@ const projectsByLanguage = {
             repoUrl: 'https://github.com/cristianbarreiro/AntiSpam-MCP',
             descriptionVisual: antiSpamMcpDescriptionVisual,
             featured: false,
+            inDevelopment: true,
         },
         {
             id: 20,

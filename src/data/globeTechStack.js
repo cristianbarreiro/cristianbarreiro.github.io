@@ -158,7 +158,7 @@ export const globeTechnologies = [
     priority: 2,
     orbit: 1,
     isCore: false,
-    projects: ['Sistema de Control de Versiones', 'Rumbo Platform — Plataforma de Transporte'],
+    projects: ['Sistema de Control de Versiones'],
     relatedStack: ['GitHub', 'Version Control', 'Submodules', 'Branching'],
   },
   {
@@ -214,7 +214,7 @@ export const globeTechnologies = [
     priority: 2,
     orbit: 1,
     isCore: false,
-    projects: ['CDEV Studios', 'E-commerce ShopHub', 'Rumbo Platform — Plataforma de Transporte'],
+    projects: ['CDEV Studios', 'E-commerce ShopHub'],
     relatedStack: ['Node.js', 'REST APIs', 'Middleware', 'JWT Authentication'],
   },
 
