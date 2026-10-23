@@ -585,7 +585,10 @@ function ProjectImagesViewer({
                                         onTouchMove={handleTouchMove}
                                         onTouchEnd={handleTouchEnd}
                                         style={{
-                                            transform: `translate(${panOffset.x}px, ${panOffset.y}px) scale(${zoomScale})`,
+                                            transform:
+                                                zoomScale > 1.0
+                                                    ? `translate(${panOffset.x}px, ${panOffset.y}px) scale(${zoomScale})`
+                                                    : 'none',
                                             transformOrigin: 'center center',
                                             transition: isDraggingState ? 'none' : 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)',
                                         }}

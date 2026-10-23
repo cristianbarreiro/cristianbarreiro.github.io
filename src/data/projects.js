@@ -499,8 +499,13 @@ const projectsByLanguage = {
             longDescription:
                 'FollowLens es una aplicación web desarrollada para analizar relaciones de Instagram directamente desde las exportaciones oficiales de datos del usuario. Permite importar archivos ZIP o JSON con seguidores y seguidos, identificar relaciones mutuas y no recíprocas, detectar nuevos seguidores, seguidores perdidos, nuevos seguimientos, unfollows y cambios entre diferentes fechas de exportación. Incluye búsqueda, filtros, paginación, evolución histórica por cuenta y exportación CSV. Todo el procesamiento de los datos personales se realiza localmente en el navegador, sin utilizar la API de Instagram ni enviar los archivos importados a servidores. El historial puede conservarse opcionalmente mediante IndexedDB y permanece únicamente en el dispositivo del usuario.',
             date: '2026',
-            image: '/images/projects/followlens/FollowLens_Portada.png',
-            images: [],
+            image: '/images/projects/followlens/FollowLens_Presentacion.png',
+            images: [
+                {
+                    src: '/images/projects/followlens/FollowLens_Presentacion.png',
+                    alt: 'Presentación oficial y panel de análisis de FollowLens',
+                },
+            ],
             tags: [
                 'TypeScript',
                 'React 19',
@@ -1068,8 +1073,13 @@ const projectsByLanguage = {
             longDescription:
                 'FollowLens is a web application developed to analyze Instagram relationships directly from the user\'s official data exports. It allows importing ZIP or JSON files with followers and following, identifying mutual and non-reciprocal relationships, detecting new followers, lost followers, new following, unfollows, and changes between different export dates. It includes search, filters, pagination, historical evolution per account, and CSV export. All personal data processing is performed locally in the browser, without using the Instagram API or sending imported files to servers. History can optionally be preserved via IndexedDB and remains solely on the user\'s device.',
             date: '2026',
-            image: '/images/projects/followlens/FollowLens_Portada.png',
-            images: [],
+            image: '/images/projects/followlens/FollowLens_Presentacion.png',
+            images: [
+                {
+                    src: '/images/projects/followlens/FollowLens_Presentacion.png',
+                    alt: 'Official presentation and analytics dashboard of FollowLens',
+                },
+            ],
             tags: [
                 'TypeScript',
                 'React 19',
