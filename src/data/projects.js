@@ -38,6 +38,7 @@ import {
     socraticaDescriptionVisual,
     libraryManagementDescriptionVisual,
     trafficLightsDescriptionVisual,
+    ettsDescriptionVisual,
 } from './projectVisuals';
 
 const projectsByLanguage = {
@@ -614,6 +615,40 @@ const projectsByLanguage = {
             featured: false,
             inDevelopment: true,
         },
+        {
+            id: 21,
+            title: 'eTTS',
+            description:
+                'Ecosistema tecnológico de soluciones de voz, accesibilidad y productividad. Su primer producto, eTTS Reader, permite traducir y leer por voz texto seleccionado, páginas web completas o documentos subidos, con selección entre español e inglés.',
+            longDescription:
+                'eTTS es un ecosistema tecnológico enfocado en desarrollar soluciones de voz, accesibilidad y productividad, cuyo objetivo es facilitar el acceso a la información y ampliar las formas de interactuar con el contenido digital. eTTS Reader es su primer producto: una herramienta intuitiva que permite traducir y sintetizar en voz alta texto seleccionado, páginas web completas o documentos subidos por el usuario, ofreciendo alternancia fluida entre español e inglés con una arquitectura modular lista para incorporar nuevas soluciones.',
+            date: '2026',
+            image: '/images/projects/etts/etts-brand.png',
+            images: [
+                {
+                    src: '/images/projects/etts/etts-brand.png',
+                    alt: 'Identidad visual y logotipo oficial de la marca eTTS',
+                },
+                {
+                    src: '/images/projects/etts/etts-reader.png',
+                    alt: 'Presentación de eTTS Reader, primer producto del ecosistema eTTS',
+                },
+            ],
+            tags: [
+                'JavaScript',
+                'WebAssembly',
+                'ONNX Runtime',
+                'Transformers.js',
+                'Vite',
+                'HTML5',
+                'CSS3',
+            ],
+            demoUrl: '',
+            repoUrl: 'https://github.com/cristianbarreiro/eTTS_Reader',
+            descriptionVisual: ettsDescriptionVisual,
+            featured: true,
+            inDevelopment: true,
+        },
     ],
     en: [
         {
@@ -1186,6 +1221,40 @@ const projectsByLanguage = {
             repoUrl: 'https://github.com/cristianbarreiro/Desktop-Calendar',
             descriptionVisual: desktopCalendarDescriptionVisual,
             featured: false,
+            inDevelopment: true,
+        },
+        {
+            id: 21,
+            title: 'eTTS',
+            description:
+                'Technology ecosystem dedicated to voice, accessibility, and productivity solutions. Its first product, eTTS Reader, enables translating and reading aloud selected text, full web pages, or uploaded documents, with language selection between Spanish and English.',
+            longDescription:
+                'eTTS is a technology ecosystem focused on voice, accessibility, and productivity solutions, designed to simplify information access and expand digital interaction. eTTS Reader is its first product: an intuitive tool that allows users to translate and read aloud selected text, entire web pages, or uploaded documents, offering seamless switching between Spanish and English backed by a modular architecture ready for future solutions.',
+            date: '2026',
+            image: '/images/projects/etts/etts-brand.png',
+            images: [
+                {
+                    src: '/images/projects/etts/etts-brand.png',
+                    alt: 'Official visual identity and logo of the eTTS brand',
+                },
+                {
+                    src: '/images/projects/etts/etts-reader.png',
+                    alt: 'Presentation of eTTS Reader, the first product of the eTTS ecosystem',
+                },
+            ],
+            tags: [
+                'JavaScript',
+                'WebAssembly',
+                'ONNX Runtime',
+                'Transformers.js',
+                'Vite',
+                'HTML5',
+                'CSS3',
+            ],
+            demoUrl: '',
+            repoUrl: 'https://github.com/cristianbarreiro/eTTS_Reader',
+            descriptionVisual: ettsDescriptionVisual,
+            featured: true,
             inDevelopment: true,
         },
     ],

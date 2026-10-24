@@ -6,7 +6,7 @@ import ProjectImagesViewer from './ProjectImagesViewer';
 import { DEFAULT_DESCRIPTION_VISUAL } from '../data/defaultDescriptionVisual';
 import { resolveProjectImages } from '../utils/projectImages';
 
-function FeaturedProjectShowcase({ project, view = 'media', onViewChange }) {
+function FeaturedProjectShowcase({ project, view = 'media', onViewChange, onSelectProject }) {
     const { t } = useTranslation();
 
     const projectImages = useMemo(() => resolveProjectImages(project, t), [project, t]);
@@ -36,6 +36,7 @@ function FeaturedProjectShowcase({ project, view = 'media', onViewChange }) {
                     hasImages={projectImages.length > 0}
                     keyboardNav={false}
                     onOpenMedia={showMedia}
+                    onSelectProject={onSelectProject}
                 />
             )}
         </Box>

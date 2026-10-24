@@ -55,6 +55,13 @@ function FeaturedProjects() {
         setActiveIndex(nextIndex);
     };
 
+    const handleSelectProjectById = (id) => {
+        const nextIdx = featuredProjects.findIndex((p) => p.id === id);
+        if (nextIdx !== -1) {
+            handleIndexChange(nextIdx);
+        }
+    };
+
     if (featuredProjects.length === 0) return null;
 
     const accentLineVariants = scaleX(0.2, DURATION.slow);
@@ -144,6 +151,7 @@ function FeaturedProjects() {
                             project={activeProject}
                             view={view}
                             onViewChange={setView}
+                            onSelectProject={handleSelectProjectById}
                         />
                     </MotionDiv>
                 </div>

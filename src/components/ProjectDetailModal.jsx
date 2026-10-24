@@ -7,7 +7,7 @@ import ProjectDetailViewer from './ProjectDetailViewer';
 import { DEFAULT_DESCRIPTION_VISUAL } from '../data/defaultDescriptionVisual';
 import { resolveProjectImages } from '../utils/projectImages';
 
-function ProjectDetailModal({ project, opened, onClose }) {
+function ProjectDetailModal({ project, opened, onClose, onSelectProject }) {
     const { t } = useTranslation();
     const isMobile = useMediaQuery('(max-width: 48em)');
     const [viewState, setViewState] = useState({ project, view: 'description' });
@@ -18,6 +18,10 @@ function ProjectDetailModal({ project, opened, onClose }) {
     const handleClose = () => {
         setViewState({ project, view: 'description' });
         onClose();
+    };
+    const handleSelectProject = (id) => {
+        setViewState({ project: null, view: 'description' });
+        onSelectProject?.(id);
     };
 
     const projectImages = useMemo(() => resolveProjectImages(project, t), [project, t]);
@@ -76,6 +80,7 @@ function ProjectDetailModal({ project, opened, onClose }) {
                     hasImages={projectImages.length > 0}
                     onOpenMedia={() => changeView('media')}
                     onClose={handleClose}
+                    onSelectProject={handleSelectProject}
                 />
             ))}
         </Modal>

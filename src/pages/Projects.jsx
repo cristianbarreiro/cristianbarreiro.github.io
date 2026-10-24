@@ -89,6 +89,13 @@ function Projects() {
         setSelectedProject(project);
     }, []);
 
+    const handleSelectProjectById = useCallback((id) => {
+        const target = projects.find((p) => p.id === id);
+        if (target) {
+            setSelectedProject(target);
+        }
+    }, [projects]);
+
     const handleDeselectProject = useCallback(() => {
         setSelectedProject(null);
     }, []);
@@ -262,6 +269,7 @@ function Projects() {
                                             <ProjectCard
                                                 project={project}
                                                 onSelect={(event) => handleSelectProject(project, event)}
+                                                onSelectProject={handleSelectProjectById}
                                                 isSelected={selectedProject?.id === project.id}
                                             />
                                         </MotionDiv>
@@ -285,6 +293,7 @@ function Projects() {
                                             project={project}
                                             variant="list"
                                             onSelect={(event) => handleSelectProject(project, event)}
+                                            onSelectProject={handleSelectProjectById}
                                             isSelected={selectedProject?.id === project.id}
                                         />
                                     </MotionDiv>
@@ -323,6 +332,7 @@ function Projects() {
                                                     project={project}
                                                     variant="carousel"
                                                     onSelect={(event) => handleSelectProject(project, event)}
+                                                    onSelectProject={handleSelectProjectById}
                                                     isSelected={selectedProject?.id === project.id}
                                                 />
                                             </Box>
@@ -404,6 +414,7 @@ function Projects() {
                 project={selectedProject}
                 opened={!!selectedProject}
                 onClose={handleDeselectProject}
+                onSelectProject={handleSelectProjectById}
             />
         </main>
     );

@@ -17,3 +17,4 @@ export { default as versionControlDescriptionVisual } from './versionControl';
 export { default as socraticaDescriptionVisual } from './socratica';
 export { default as libraryManagementDescriptionVisual } from './libraryManagement';
 export { default as trafficLightsDescriptionVisual } from './trafficLights';
+export { default as ettsDescriptionVisual } from './etts';

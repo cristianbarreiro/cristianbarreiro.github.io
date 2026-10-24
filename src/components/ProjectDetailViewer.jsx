@@ -28,7 +28,7 @@ import ProjectDownloadMenu from './ProjectDownloadMenu';
 import { formatProjectDate } from '../utils/formatDate';
 import './ProjectDetailViewer.css';
 
-function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onClose, keyboardNav = true }) {
+function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onClose, onSelectProject, keyboardNav = true }) {
     const { t } = useTranslation();
     const { primaryColor } = useThemeContext();
     const shouldReduceMotion = useReducedMotion();
@@ -228,6 +228,17 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
                                                 projectTitle={project.title}
                                                 size="md"
                                             />
+                                        )}
+
+                                        {project.relatedProjectId && (
+                                            <Button
+                                                variant="light"
+                                                size="md"
+                                                leftSection={<IconExternalLink size={18} />}
+                                                onClick={() => onSelectProject?.(project.relatedProjectId)}
+                                            >
+                                                {t(project.relatedProjectLabelKey ? `projectCard.${project.relatedProjectLabelKey}` : 'projectCard.relatedProduct')}: {project.relatedProjectTitle || ''}
+                                            </Button>
                                         )}
 
                                         {project.repoUrl && (

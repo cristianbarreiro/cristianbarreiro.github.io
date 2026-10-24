@@ -187,4 +187,35 @@ describe('i18n Remediation Test Suite', () => {
     assert.equal(getCVHref('en-US'), '/eng_cv_dev_cristianbarreiro.pdf');
     assert.equal(getCVHref('fr'), '/esp_cv_dev_cristianbarreiro.pdf');
   });
+
+  // 13. Proyecto eTTS: integridad, assets y paridad bilingüe
+  test('13. Proyecto eTTS: integridad, assets y paridad bilingüe', () => {
+    const projectsContent = fs.readFileSync(path.join(rootDir, 'src', 'data', 'projects.js'), 'utf8');
+
+    // 1. Debe existir el proyecto eTTS y NO existir eTTS Reader como proyecto separado
+    assert.ok(projectsContent.includes("title: 'eTTS'"), 'Debe existir el proyecto eTTS');
+    assert.ok(!projectsContent.includes("title: 'eTTS Reader'"), 'No debe existir el proyecto eTTS Reader como entrada independiente');
+
+    // 2. Las dos imágenes tienen referencias válidas y existen físicamente en public/images/projects/etts/
+    const ettsBrandImg = path.join(rootDir, 'public', 'images', 'projects', 'etts', 'etts-brand.png');
+    const ettsReaderImg = path.join(rootDir, 'public', 'images', 'projects', 'etts', 'etts-reader.png');
+    assert.ok(fs.existsSync(ettsBrandImg), 'etts-brand.png debe existir físicamente en public/');
+    assert.ok(fs.existsSync(ettsReaderImg), 'etts-reader.png debe existir físicamente en public/');
+
+    // 3. Referencias a ambas imágenes dentro del proyecto eTTS
+    assert.ok(
+      projectsContent.includes('/images/projects/etts/etts-brand.png'),
+      'eTTS debe referenciar etts-brand.png como imagen principal'
+    );
+    assert.ok(
+      projectsContent.includes('/images/projects/etts/etts-reader.png'),
+      'eTTS debe referenciar etts-reader.png en el carrusel de imágenes'
+    );
+
+    // 4. Enlace al repositorio oficial del producto
+    assert.ok(
+      projectsContent.includes("repoUrl: 'https://github.com/cristianbarreiro/eTTS_Reader'"),
+      'eTTS debe apuntar al repositorio oficial https://github.com/cristianbarreiro/eTTS_Reader'
+    );
+  });
 });

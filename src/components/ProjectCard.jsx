@@ -39,7 +39,7 @@ import { formatProjectDate } from '../utils/formatDate';
  */
 const MAX_VISIBLE_TAGS = 5;
 
-function ProjectCard({ project, variant = 'default', onSelect, isSelected = false }) {
+function ProjectCard({ project, variant = 'default', onSelect, onSelectProject, isSelected = false }) {
     const theme = useMantineTheme();
     const { t } = useTranslation();
     const [galleryOpened, setGalleryOpened] = useState(false);
@@ -227,6 +227,20 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                                     </ActionIcon>
                                 )}
 
+                                {project.relatedProjectId && (
+                                    <Button
+                                        variant="light"
+                                        size="xs"
+                                        leftSection={<IconExternalLink size={14} />}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            onSelectProject?.(project.relatedProjectId);
+                                        }}
+                                    >
+                                        {t(project.relatedProjectLabelKey ? `projectCard.${project.relatedProjectLabelKey}` : 'projectCard.relatedProduct')}
+                                    </Button>
+                                )}
+
                                 {project.repoUrl && (
                                     <Button
                                         component="a"
@@ -412,6 +426,20 @@ function ProjectCard({ project, variant = 'default', onSelect, isSelected = fals
                         >
                             <IconPhoto size={isCarousel ? 18 : 16} />
                         </ActionIcon>
+                    )}
+
+                    {project.relatedProjectId && (
+                        <Button
+                            variant="light"
+                            size={isCarousel ? 'sm' : 'xs'}
+                            leftSection={<IconExternalLink size={isCarousel ? 16 : 14} />}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onSelectProject?.(project.relatedProjectId);
+                            }}
+                        >
+                            {t(project.relatedProjectLabelKey ? `projectCard.${project.relatedProjectLabelKey}` : 'projectCard.relatedProduct')}
+                        </Button>
                     )}
 
                     {/* Enlace a repositorio */}
