@@ -50,9 +50,15 @@ function FeaturedProjects() {
         return all.filter((p) => p.featured).slice(0, MAX_FEATURED);
     }, [i18n.resolvedLanguage, i18n.language]);
 
+    // Índice activo calculado de forma segura y pura durante el render (evita cascading renders)
+    const safeIndex = featuredProjects.length > 0
+        ? Math.max(0, Math.min(activeIndex, featuredProjects.length - 1))
+        : 0;
+
     const handleIndexChange = (nextIndex) => {
-        setDirection(nextIndex >= activeIndex ? 1 : -1);
-        setActiveIndex(nextIndex);
+        const targetIndex = Math.max(0, Math.min(nextIndex, featuredProjects.length - 1));
+        setDirection(targetIndex >= safeIndex ? 1 : -1);
+        setActiveIndex(targetIndex);
     };
 
     const handleSelectProjectById = (id) => {
@@ -65,7 +71,6 @@ function FeaturedProjects() {
     if (featuredProjects.length === 0) return null;
 
     const accentLineVariants = scaleX(0.2, DURATION.slow);
-    const safeIndex = Math.min(activeIndex, featuredProjects.length - 1);
     const activeProject = featuredProjects[safeIndex];
 
     const showcaseVariants = {

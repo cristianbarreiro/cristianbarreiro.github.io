@@ -77,8 +77,14 @@ function Projects() {
     // Índice interno del carrusel
     const [rawCarouselIndex, setCarouselIndex] = useState(0);
 
-    // Proyecto seleccionado para el modal de detalle
-    const [selectedProject, setSelectedProject] = useState(null);
+    // ID del proyecto seleccionado para el modal de detalle
+    const [selectedProjectId, setSelectedProjectId] = useState(null);
+
+    // Derivar proyecto activo únicamente si está presente entre los proyectos visibles
+    const selectedProject = useMemo(() => {
+        if (selectedProjectId == null) return null;
+        return projects.find((p) => p.id === selectedProjectId) || null;
+    }, [projects, selectedProjectId]);
 
     const handleSelectProject = useCallback((project, event) => {
         const opener = event?.currentTarget;
@@ -86,18 +92,15 @@ function Projects() {
             opener.setAttribute('tabindex', '-1');
             opener.focus({ preventScroll: true });
         }
-        setSelectedProject(project);
+        setSelectedProjectId(project?.id ?? null);
     }, []);
 
     const handleSelectProjectById = useCallback((id) => {
-        const target = projects.find((p) => p.id === id);
-        if (target) {
-            setSelectedProject(target);
-        }
-    }, [projects]);
+        setSelectedProjectId(id ?? null);
+    }, []);
 
     const handleDeselectProject = useCallback(() => {
-        setSelectedProject(null);
+        setSelectedProjectId(null);
     }, []);
 
     // Obtiene todos los tags únicos para el dropdown de filtro
@@ -164,86 +167,90 @@ function Projects() {
                     </ScrollReveal>
 
                     {/* Controles de filtrado + toggle de vista */}
-                    <ScrollReveal delay={0.1}>
-                        <Group gap="md" align="end" wrap="wrap" justify="space-between">
-                            <Group gap="md" align="end" wrap="wrap">
-                                <Select
-                                    label={t('projects.filterLabel')}
-                                    placeholder={t('projects.filterPlaceholder')}
-                                    data={allTags}
-                                    value={selectedTag}
-                                    onChange={handleTagChange}
-                                    clearable
-                                    searchable
-                                    leftSection={<IconFilter size={16} />}
-                                    w={{ base: '100%', sm: 250 }}
+                    {projects.length > 0 && (
+                        <ScrollReveal delay={0.1}>
+                            <Group gap="md" align="end" wrap="wrap" justify="space-between">
+                                <Group gap="md" align="end" wrap="wrap">
+                                    <Select
+                                        label={t('projects.filterLabel')}
+                                        placeholder={t('projects.filterPlaceholder')}
+                                        data={allTags}
+                                        value={selectedTag}
+                                        onChange={handleTagChange}
+                                        clearable
+                                        searchable
+                                        leftSection={<IconFilter size={16} />}
+                                        w={{ base: '100%', sm: 250 }}
+                                    />
+
+                                    {/* Botón para limpiar filtro (solo visible si hay filtro activo) */}
+                                    {selectedTag && (
+                                        <Button
+                                            variant="subtle"
+                                            size="sm"
+                                            leftSection={<IconX size={14} />}
+                                            onClick={clearFilter}
+                                        >
+                                            {t('projects.clearFilter')}
+                                        </Button>
+                                    )}
+                                </Group>
+
+                                {/* Toggle Grid / Carrusel / Lista */}
+                                <SegmentedControl
+                                    value={viewMode}
+                                    onChange={setViewMode}
+                                    data={[
+                                        {
+                                            value: 'grid',
+                                            label: (
+                                                <Group gap={6} wrap="nowrap">
+                                                    <IconLayoutGrid size={16} />
+                                                    <span>{t('projects.viewGrid')}</span>
+                                                </Group>
+                                            ),
+                                        },
+                                        {
+                                            value: 'carousel',
+                                            label: (
+                                                <Group gap={6} wrap="nowrap">
+                                                    <IconCarouselHorizontal size={16} />
+                                                    <span>{t('projects.viewCarousel')}</span>
+                                                </Group>
+                                            ),
+                                        },
+                                        {
+                                            value: 'list',
+                                            label: (
+                                                <Group gap={6} wrap="nowrap">
+                                                    <IconList size={16} />
+                                                    <span>{t('projects.viewList')}</span>
+                                                </Group>
+                                            ),
+                                        },
+                                    ]}
+                                    aria-label={t('projects.viewToggleAria')}
                                 />
-
-                                {/* Botón para limpiar filtro (solo visible si hay filtro activo) */}
-                                {selectedTag && (
-                                    <Button
-                                        variant="subtle"
-                                        size="sm"
-                                        leftSection={<IconX size={14} />}
-                                        onClick={clearFilter}
-                                    >
-                                        {t('projects.clearFilter')}
-                                    </Button>
-                                )}
                             </Group>
-
-                            {/* Toggle Grid / Carrusel / Lista */}
-                            <SegmentedControl
-                                value={viewMode}
-                                onChange={setViewMode}
-                                data={[
-                                    {
-                                        value: 'grid',
-                                        label: (
-                                            <Group gap={6} wrap="nowrap">
-                                                <IconLayoutGrid size={16} />
-                                                <span>{t('projects.viewGrid')}</span>
-                                            </Group>
-                                        ),
-                                    },
-                                    {
-                                        value: 'carousel',
-                                        label: (
-                                            <Group gap={6} wrap="nowrap">
-                                                <IconCarouselHorizontal size={16} />
-                                                <span>{t('projects.viewCarousel')}</span>
-                                            </Group>
-                                        ),
-                                    },
-                                    {
-                                        value: 'list',
-                                        label: (
-                                            <Group gap={6} wrap="nowrap">
-                                                <IconList size={16} />
-                                                <span>{t('projects.viewList')}</span>
-                                            </Group>
-                                        ),
-                                    },
-                                ]}
-                                aria-label={t('projects.viewToggleAria')}
-                            />
-                        </Group>
-                    </ScrollReveal>
+                        </ScrollReveal>
+                    )}
 
                     {/* Indicador de resultados */}
-                    <Group gap="sm">
-                        <Text size="sm" c="dimmed">
-                            {t('projects.showing', {
-                                shown: sortedProjects.length,
-                                total: projects.length,
-                            })}
-                        </Text>
-                        {selectedTag && (
-                            <Badge variant="light" size="sm">
-                                {selectedTag}
-                            </Badge>
-                        )}
-                    </Group>
+                    {projects.length > 0 && (
+                        <Group gap="sm">
+                            <Text size="sm" c="dimmed">
+                                {t('projects.showing', {
+                                    shown: sortedProjects.length,
+                                    total: projects.length,
+                                })}
+                            </Text>
+                            {selectedTag && (
+                                <Badge variant="light" size="sm">
+                                    {selectedTag}
+                                </Badge>
+                            )}
+                        </Group>
+                    )}
                 </Stack>
             </section>
 
@@ -398,14 +405,18 @@ function Projects() {
                         </div>
                     )
                 ) : (
-                    // Mensaje cuando no hay resultados
+                    // Mensaje cuando no hay resultados o no hay proyectos
                     <Stack align="center" py="xl" gap="md">
                         <Text size="lg" c="dimmed">
-                            {t('projects.noResults', { tag: selectedTag })}
+                            {projects.length === 0
+                                ? t('projects.noProjects')
+                                : t('projects.noResults', { tag: selectedTag })}
                         </Text>
-                        <Button variant="light" onClick={clearFilter}>
-                            {t('projects.viewAll')}
-                        </Button>
+                        {selectedTag && (
+                            <Button variant="light" onClick={clearFilter}>
+                                {t('projects.viewAll')}
+                            </Button>
+                        )}
                     </Stack>
                 )}
             </section>

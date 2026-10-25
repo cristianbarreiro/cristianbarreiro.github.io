@@ -216,6 +216,18 @@ export function generateDerivedTokens(hexColor) {
   const normalized = normalizeHex(hexColor) || '#0088FF';
   const { r, g, b } = hexToRgb(normalized);
   const shades = generateMantineShades(normalized);
+  const { h, s, l } = hexToHsl(normalized);
+
+  // Derivar tonos armónicos para el degradado del scrollbar:
+  // Para el acento azul por defecto (~208°), produce la combinación fluida cian (#25BFFF) -> azul (#168BFF) -> violeta (#7657FF)
+  // Para cualquier otro tono del selector, calcula un degradado análogo y coherente
+  const topColor = hslToHex(h - 18, Math.min(100, s + 5), Math.min(65, l + 8));
+  const midColor = normalized;
+  const bottomColor = hslToHex(h + 38, Math.min(100, s + 5), Math.min(68, l + 12));
+
+  const topColorHover = hslToHex(h - 18, Math.min(100, s + 10), Math.min(74, l + 14));
+  const midColorHover = shades[4] || shades[5];
+  const bottomColorHover = hslToHex(h + 38, Math.min(100, s + 10), Math.min(76, l + 18));
 
   return {
     accentColor: normalized,
@@ -228,6 +240,10 @@ export function generateDerivedTokens(hexColor) {
     accentColorGlowSubtle: `rgba(${r}, ${g}, ${b}, 0.18)`,
     accentColorBackground: `rgba(${r}, ${g}, ${b}, 0.12)`,
     accentColorBackgroundHover: `rgba(${r}, ${g}, ${b}, 0.22)`,
+    scrollbarThumbGradient: `linear-gradient(180deg, ${topColor} 0%, ${midColor} 50%, ${bottomColor} 100%)`,
+    scrollbarThumbGradientHover: `linear-gradient(180deg, ${topColorHover} 0%, ${midColorHover} 50%, ${bottomColorHover} 100%)`,
+    scrollbarThumbGlow: `rgba(${r}, ${g}, ${b}, 0.4)`,
+    scrollbarThumbGlowHover: `rgba(${r}, ${g}, ${b}, 0.65)`,
   };
 }
 
@@ -252,4 +268,9 @@ export function applyGlobalColorTokens(hexColor) {
   root.style.setProperty('--accent-color-background', tokens.accentColorBackground);
   root.style.setProperty('--accent-color-background-hover', tokens.accentColorBackgroundHover);
   root.style.setProperty('--glow-color', tokens.accentColorGlow);
+
+  root.style.setProperty('--scrollbar-thumb-gradient', tokens.scrollbarThumbGradient);
+  root.style.setProperty('--scrollbar-thumb-gradient-hover', tokens.scrollbarThumbGradientHover);
+  root.style.setProperty('--scrollbar-thumb-glow', tokens.scrollbarThumbGlow);
+  root.style.setProperty('--scrollbar-thumb-glow-hover', tokens.scrollbarThumbGlowHover);
 }

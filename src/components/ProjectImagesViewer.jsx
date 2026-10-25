@@ -623,67 +623,69 @@ function ProjectImagesViewer({
                 </Box>
 
                 {/* Footer Info & Thumbnail Ribbon */}
-                <Box className="project-media-viewer__footer">
-                    {/* Image Caption if present */}
-                    {currentImage.caption && (
-                        <Text size="sm" c="dimmed" ta="center" className="project-media-viewer__caption">
-                            {currentImage.caption}
-                        </Text>
-                    )}
+                {(currentImage.caption || (hasMultipleImages && showThumbnails)) && (
+                    <Box className="project-media-viewer__footer">
+                        {/* Image Caption if present */}
+                        {currentImage.caption && (
+                            <Text size="sm" c="dimmed" ta="center" className="project-media-viewer__caption">
+                                {currentImage.caption}
+                            </Text>
+                        )}
 
-                    {/* Collapsible Thumbnail Strip */}
-                    {hasMultipleImages && showThumbnails && (
-                        <Box className="project-media-viewer__thumbnails" ref={thumbnailsRef}>
-                            <div className="project-media-viewer__thumbnails-track">
-                                {images.map((img, index) => {
-                                    const isThumbError = thumbErrors[index];
-                                    return (
-                                        <button
-                                            key={index}
-                                            type="button"
-                                            onClick={() => {
-                                                resetZoomAndPan();
-                                                setActiveIndex(index);
-                                            }}
-                                            className={`project-media-viewer__thumb ${
-                                                index === activeIndex ? 'project-media-viewer__thumb--active' : ''
-                                            }`}
-                                            aria-label={t('projectCard.galleryImageAlt', {
-                                                project: projectTitle,
-                                                index: index + 1,
-                                            })}
-                                        >
-                                            {isThumbError || !img.src ? (
-                                                <div className="project-media-viewer__thumb-fallback">
-                                                    {img.type === 'video' ? <IconVideoOff size={16} /> : <IconPhotoOff size={16} />}
-                                                </div>
-                                            ) : img.type === 'video' ? (
-                                                <div className="project-media-viewer__thumb-video">
-                                                    <video
+                        {/* Collapsible Thumbnail Strip */}
+                        {hasMultipleImages && showThumbnails && (
+                            <Box className="project-media-viewer__thumbnails" ref={thumbnailsRef}>
+                                <div className="project-media-viewer__thumbnails-track">
+                                    {images.map((img, index) => {
+                                        const isThumbError = thumbErrors[index];
+                                        return (
+                                            <button
+                                                key={index}
+                                                type="button"
+                                                onClick={() => {
+                                                    resetZoomAndPan();
+                                                    setActiveIndex(index);
+                                                }}
+                                                className={`project-media-viewer__thumb ${
+                                                    index === activeIndex ? 'project-media-viewer__thumb--active' : ''
+                                                }`}
+                                                aria-label={t('projectCard.galleryImageAlt', {
+                                                    project: projectTitle,
+                                                    index: index + 1,
+                                                })}
+                                            >
+                                                {isThumbError || !img.src ? (
+                                                    <div className="project-media-viewer__thumb-fallback">
+                                                        {img.type === 'video' ? <IconVideoOff size={16} /> : <IconPhotoOff size={16} />}
+                                                    </div>
+                                                ) : img.type === 'video' ? (
+                                                    <div className="project-media-viewer__thumb-video">
+                                                        <video
+                                                            src={img.src}
+                                                            muted
+                                                            playsInline
+                                                            onError={() => setThumbErrors((prev) => ({ ...prev, [index]: true }))}
+                                                        />
+                                                        <div className="project-media-viewer__thumb-play-overlay">
+                                                            <IconPlayerPlay size={14} />
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <img
                                                         src={img.src}
-                                                        muted
-                                                        playsInline
+                                                        alt=""
+                                                        loading="lazy"
                                                         onError={() => setThumbErrors((prev) => ({ ...prev, [index]: true }))}
                                                     />
-                                                    <div className="project-media-viewer__thumb-play-overlay">
-                                                        <IconPlayerPlay size={14} />
-                                                    </div>
-                                                </div>
-                                            ) : (
-                                                <img
-                                                    src={img.src}
-                                                    alt=""
-                                                    loading="lazy"
-                                                    onError={() => setThumbErrors((prev) => ({ ...prev, [index]: true }))}
-                                                />
-                                            )}
-                                        </button>
-                                    );
-                                })}
-                            </div>
-                        </Box>
-                    )}
-                </Box>
+                                                )}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            </Box>
+                        )}
+                    </Box>
+                )}
         </Box>
     );
 }

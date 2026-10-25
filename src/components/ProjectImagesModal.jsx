@@ -12,9 +12,10 @@ function ProjectImagesModal({ opened, onClose, onBackToDescription, images, proj
             withCloseButton={false}
             centered
             fullScreen={isMobile}
-            size={isMobile ? '100%' : 'min(94vw, 1280px)'}
+            size={isMobile ? '100%' : 'min(960px, calc(100vw - 32px))'}
             padding={0}
             radius={isMobile ? 0 : 'xl'}
+            className="project-media-modal"
             overlayProps={{
                 backgroundOpacity: 0.7,
                 blur: 12,
@@ -33,13 +34,21 @@ function ProjectImagesModal({ opened, onClose, onBackToDescription, images, proj
                     overflow: 'hidden',
                     display: 'flex',
                     flexDirection: 'column',
+                    width: isMobile ? '100%' : 'min(960px, calc(100vw - 32px))',
+                    maxWidth: isMobile ? '100%' : '960px',
+                    height: isMobile ? '100%' : 'min(620px, calc(100dvh - 32px))',
+                    minHeight: isMobile ? '100%' : 'min(620px, calc(100dvh - 32px))',
+                    maxHeight: isMobile ? '100%' : '620px',
                 },
                 body: {
                     padding: 0,
                     overflow: 'hidden',
-                    flex: 1,
+                    flex: '1 1 0%',
+                    minHeight: 0,
+                    minWidth: 0,
                     display: 'flex',
                     flexDirection: 'column',
+                    height: '100%',
                 },
             }}
         >

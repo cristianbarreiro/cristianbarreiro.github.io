@@ -196,20 +196,18 @@ describe('i18n Remediation Test Suite', () => {
     assert.ok(projectsContent.includes("title: 'eTTS'"), 'Debe existir el proyecto eTTS');
     assert.ok(!projectsContent.includes("title: 'eTTS Reader'"), 'No debe existir el proyecto eTTS Reader como entrada independiente');
 
-    // 2. Las dos imágenes tienen referencias válidas y existen físicamente en public/images/projects/etts/
+    // 2. La imagen principal tiene referencia válida y existe físicamente en public/images/projects/etts/
     const ettsBrandImg = path.join(rootDir, 'public', 'images', 'projects', 'etts', 'etts-brand.png');
-    const ettsReaderImg = path.join(rootDir, 'public', 'images', 'projects', 'etts', 'etts-reader.png');
     assert.ok(fs.existsSync(ettsBrandImg), 'etts-brand.png debe existir físicamente en public/');
-    assert.ok(fs.existsSync(ettsReaderImg), 'etts-reader.png debe existir físicamente en public/');
 
-    // 3. Referencias a ambas imágenes dentro del proyecto eTTS
+    // 3. Referencia a la imagen principal eTTS y ausencia de etts-reader.png
     assert.ok(
       projectsContent.includes('/images/projects/etts/etts-brand.png'),
       'eTTS debe referenciar etts-brand.png como imagen principal'
     );
     assert.ok(
-      projectsContent.includes('/images/projects/etts/etts-reader.png'),
-      'eTTS debe referenciar etts-reader.png en el carrusel de imágenes'
+      !projectsContent.includes('/images/projects/etts/etts-reader.png'),
+      'eTTS no debe referenciar etts-reader.png en el proyecto'
     );
 
     // 4. Enlace al repositorio oficial del producto
@@ -217,5 +215,31 @@ describe('i18n Remediation Test Suite', () => {
       projectsContent.includes("repoUrl: 'https://github.com/cristianbarreiro/eTTS_Reader'"),
       'eTTS debe apuntar al repositorio oficial https://github.com/cristianbarreiro/eTTS_Reader'
     );
+  });
+
+  // 14. Visibilidad configurable de proyectos (showInPortfolio)
+  test('14. Visibilidad configurable de proyectos (showInPortfolio)', () => {
+    const projectsContent = fs.readFileSync(path.join(rootDir, 'src', 'data', 'projects.js'), 'utf8');
+
+    // 1. Debe exportar las funciones clave de visibilidad
+    assert.ok(projectsContent.includes('export const isProjectVisible ='), 'Debe exportar isProjectVisible');
+    assert.ok(projectsContent.includes('export const getAllProjects ='), 'Debe exportar getAllProjects');
+    assert.ok(projectsContent.includes('export const getVisibleProjects ='), 'Debe exportar getVisibleProjects');
+    assert.ok(projectsContent.includes('export const getProjects ='), 'Debe exportar getProjects');
+
+    // 2. Debe documentar la propiedad en JSDoc
+    assert.ok(projectsContent.includes('showInPortfolio: (opcional) `true`'), 'Debe documentar showInPortfolio en JSDoc');
+
+    // 3. Debe declarar explícitamente showInPortfolio en todos los proyectos activos (38 en total: 19 ES + 19 EN)
+    const allMatches = projectsContent.match(/showInPortfolio:\s*(true|false)/g);
+    assert.ok(allMatches && allMatches.length >= 38, `Debe haber al menos 38 declaraciones de showInPortfolio (19 ES + 19 EN), encontrados: ${allMatches?.length}`);
+
+    // Proyectos deshabilitados configurados con showInPortfolio: false (6 proyectos en ES y EN)
+    const falseMatches = projectsContent.match(/showInPortfolio:\s*false/g);
+    assert.ok(falseMatches && falseMatches.length >= 12, `Debe haber al menos 12 declaraciones showInPortfolio: false (6 proyectos en ES y EN), encontrados: ${falseMatches?.length}`);
+
+    // 4. Paridad de clave i18n noProjects entre es y en
+    assert.ok(es.projects.noProjects, 'es.json debe incluir projects.noProjects');
+    assert.ok(en.projects.noProjects, 'en.json debe incluir projects.noProjects');
   });
 });

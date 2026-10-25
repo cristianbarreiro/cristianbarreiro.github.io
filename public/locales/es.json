@@ -235,6 +235,7 @@
     "clearFilter": "Limpiar filtro",
     "showing": "Mostrando {{shown}} de {{total}} proyectos",
     "noResults": "No se encontraron proyectos con la tecnología \"{{tag}}\"",
+    "noProjects": "No hay proyectos disponibles en este momento.",
     "viewAll": "Ver todos los proyectos",
     "viewGrid": "Grilla",
     "viewCarousel": "Carrusel",

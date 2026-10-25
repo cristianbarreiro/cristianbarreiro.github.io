@@ -14,6 +14,9 @@
  * - backofficeUrl: enlace al backoffice en vivo (opcional)
  * - repoUrl: enlace al repositorio
  * - featured: si es un proyecto destacado (aparece primero)
+ * - showInPortfolio: (opcional) `true` para mostrar en la interfaz pública, `false` para ocultar.
+ *   Por defecto es `true` si no se especifica. Para deshabilitar temporalmente un proyecto sin
+ *   borrar sus datos, cambia este valor a `false`.
  * - inDevelopment: (opcional) `true` si el proyecto sigue en desarrollo.
  *   Por defecto ausente/`false`: solo se muestra el indicador "En desarrollo"
  *   en los viewers cuando el valor es `true`.
@@ -59,6 +62,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_EDA',
             descriptionVisual: versionControlDescriptionVisual,
+            showInPortfolio: true,
             featured: false,
         },
         {
@@ -101,6 +105,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/cdevstudio_platform',
             descriptionVisual: cdevStudiosDescriptionVisual,
+            showInPortfolio: false,
             featured: false,
         },
         {
@@ -127,6 +132,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: '',
             descriptionVisual: socraticaDescriptionVisual,
+            showInPortfolio: true,
             featured: false,
         },
         {
@@ -156,6 +162,7 @@ const projectsByLanguage = {
             demoUrl: 'https://carsauto.vercel.app',
             repoUrl: 'https://github.com/cristianbarreiro/carsauto',
             descriptionVisual: automotoraDescriptionVisual,
+            showInPortfolio: true,
             featured: false,
         },
         {
@@ -180,6 +187,7 @@ const projectsByLanguage = {
             demoUrl: 'https://e-commerce-monorepo-three.vercel.app/',
             repoUrl: '',
             descriptionVisual: shopHubDescriptionVisual,
+            showInPortfolio: false,
             featured: false
         },
         {
@@ -203,6 +211,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/mcp-secure-delete',
             descriptionVisual: mcpSecureDeleteDescriptionVisual,
+            showInPortfolio: true,
             featured: false,
         },
         {
@@ -249,6 +258,7 @@ const projectsByLanguage = {
             demoUrl: 'https://novavoltshop.vercel.app/',
             repoUrl: '',
             descriptionVisual: novaVoltDescriptionVisual,
+            showInPortfolio: false,
             featured: false
         },
         {
@@ -339,6 +349,7 @@ const projectsByLanguage = {
             backofficeUrl: 'https://cataleyabackoffice.vercel.app/',
             repoUrl: '',
             descriptionVisual: cataleyaDescriptionVisual,
+            showInPortfolio: false,
             featured: false
         },
         {
@@ -372,6 +383,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: '',
             descriptionVisual: geniusDescriptionVisual,
+            showInPortfolio: true,
             featured: false
         },
         {
@@ -387,6 +399,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/labredesproyectito/laboratorio_redes',
             descriptionVisual: messagingSystemDescriptionVisual,
+            showInPortfolio: true,
             featured: false
         },
         {
@@ -402,6 +415,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/proyectitopa/laboratorio_5',
             descriptionVisual: libraryManagementDescriptionVisual,
+            showInPortfolio: true,
             featured: false
         },
         {
@@ -417,6 +431,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_SO-parte-2',
             descriptionVisual: trafficLightsDescriptionVisual,
+            showInPortfolio: true,
             featured: false
         },
         {
@@ -432,11 +447,12 @@ const projectsByLanguage = {
             demoUrl: 'https://boutique-exclusivi-ds7v.vercel.app/',
             repoUrl: '',
             descriptionVisual: footwearBoutiqueDescriptionVisual,
+            showInPortfolio: false,
             featured: false
         },
         {
             id: 14,
-            title: 'Monitor de Privacidad',
+            title: 'PrivGuard - Monitor de Privacidad',
             description:
                 'Aplicación de seguridad para Windows orientada a la monitorización continua, registro de auditoría y protección en tiempo real del acceso a cámara y micrófono, enfocada en detectar actividad no autorizada o sospechosa.',
             longDescription:
@@ -490,6 +506,7 @@ const projectsByLanguage = {
                 },
             ],
             descriptionVisual: privGvardDescriptionVisual,
+            showInPortfolio: true,
             featured: true,
         },
         {
@@ -524,6 +541,7 @@ const projectsByLanguage = {
             demoLabelKey: 'liveApp',
             repoUrl: 'https://github.com/cristianbarreiro/Instagram_Analyzer',
             descriptionVisual: followLensDescriptionVisual,
+            showInPortfolio: true,
             featured: true,
             inDevelopment: true,
         },
@@ -554,6 +572,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/payment_gateway',
             descriptionVisual: payFlowDescriptionVisual,
+            showInPortfolio: true,
             featured: false,
         },
         {
@@ -580,6 +599,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/AntiSpam-MCP',
             descriptionVisual: antiSpamMcpDescriptionVisual,
+            showInPortfolio: false,
             featured: false,
             inDevelopment: true,
         },
@@ -612,6 +632,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/Desktop-Calendar',
             descriptionVisual: desktopCalendarDescriptionVisual,
+            showInPortfolio: true,
             featured: false,
             inDevelopment: true,
         },
@@ -629,10 +650,6 @@ const projectsByLanguage = {
                     src: '/images/projects/etts/etts-brand.png',
                     alt: 'Identidad visual y logotipo oficial de la marca eTTS',
                 },
-                {
-                    src: '/images/projects/etts/etts-reader.png',
-                    alt: 'Presentación de eTTS Reader, primer producto del ecosistema eTTS',
-                },
             ],
             tags: [
                 'JavaScript',
@@ -646,6 +663,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/eTTS_Reader',
             descriptionVisual: ettsDescriptionVisual,
+            showInPortfolio: true,
             featured: true,
             inDevelopment: true,
         },
@@ -667,6 +685,7 @@ const projectsByLanguage = {
             demoUrl: '#',
             repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_EDA',
             descriptionVisual: versionControlDescriptionVisual,
+            showInPortfolio: true,
             featured: false,
         },
         {
@@ -709,6 +728,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/cdevstudio_platform',
             descriptionVisual: cdevStudiosDescriptionVisual,
+            showInPortfolio: false,
             featured: false,
         },
         {
@@ -735,6 +755,7 @@ const projectsByLanguage = {
             demoUrl: '#',
             repoUrl: 'https://github.com/BinaryTech-corp',
             descriptionVisual: socraticaDescriptionVisual,
+            showInPortfolio: true,
             featured: false,
         },
         {
@@ -764,6 +785,7 @@ const projectsByLanguage = {
             demoUrl: 'https://carsauto.vercel.app',
             repoUrl: 'https://github.com/cristianbarreiro/carsauto',
             descriptionVisual: automotoraDescriptionVisual,
+            showInPortfolio: true,
             featured: false,
         },
         {
@@ -788,6 +810,7 @@ const projectsByLanguage = {
             demoUrl: 'https://e-commerce-monorepo-three.vercel.app/',
             repoUrl: '',
             descriptionVisual: shopHubDescriptionVisual,
+            showInPortfolio: false,
             featured: false,
         },
         {
@@ -811,6 +834,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/mcp-secure-delete',
             descriptionVisual: mcpSecureDeleteDescriptionVisual,
+            showInPortfolio: true,
             featured: false,
         },
         {
@@ -857,6 +881,7 @@ const projectsByLanguage = {
             demoUrl: 'https://novavoltshop.vercel.app/',
             repoUrl: '',
             descriptionVisual: novaVoltDescriptionVisual,
+            showInPortfolio: false,
             featured: false,
         },
         {
@@ -947,6 +972,7 @@ const projectsByLanguage = {
             backofficeUrl: 'https://cataleyabackoffice.vercel.app/',
             repoUrl: '',
             descriptionVisual: cataleyaDescriptionVisual,
+            showInPortfolio: false,
             featured: false,
         },
         {
@@ -980,6 +1006,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: '',
             descriptionVisual: geniusDescriptionVisual,
+            showInPortfolio: true,
             featured: false
         },
         {
@@ -995,6 +1022,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/labredesproyectito/laboratorio_redes',
             descriptionVisual: messagingSystemDescriptionVisual,
+            showInPortfolio: true,
             featured: false
         },
         {
@@ -1010,6 +1038,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/proyectitopa/laboratorio_5',
             descriptionVisual: libraryManagementDescriptionVisual,
+            showInPortfolio: true,
             featured: false
         },
         {
@@ -1025,6 +1054,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/Obligatorio_SO-parte-2',
             descriptionVisual: trafficLightsDescriptionVisual,
+            showInPortfolio: true,
             featured: false
         },
         {
@@ -1040,11 +1070,12 @@ const projectsByLanguage = {
             demoUrl: 'https://boutique-exclusivi-ds7v.vercel.app/',
             repoUrl: '',
             descriptionVisual: footwearBoutiqueDescriptionVisual,
+            showInPortfolio: false,
             featured: false
         },
         {
             id: 14,
-            title: 'Privacy Monitor',
+            title: 'PrivGuard - Privacy Monitor',
             description:
                 'Security-focused Windows application for real-time monitoring, logging, and protection of camera and microphone access, with a focus on detecting unauthorized or suspicious activity.',
             longDescription:
@@ -1098,6 +1129,7 @@ const projectsByLanguage = {
                 },
             ],
             descriptionVisual: privGvardDescriptionVisual,
+            showInPortfolio: true,
             featured: true,
         },
         {
@@ -1132,6 +1164,7 @@ const projectsByLanguage = {
             demoLabelKey: 'liveApp',
             repoUrl: 'https://github.com/cristianbarreiro/Instagram_Analyzer',
             descriptionVisual: followLensDescriptionVisual,
+            showInPortfolio: true,
             featured: true,
             inDevelopment: true,
         },
@@ -1162,6 +1195,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/payment_gateway',
             descriptionVisual: payFlowDescriptionVisual,
+            showInPortfolio: true,
             featured: false,
         },
         {
@@ -1188,6 +1222,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/AntiSpam-MCP',
             descriptionVisual: antiSpamMcpDescriptionVisual,
+            showInPortfolio: false,
             featured: false,
             inDevelopment: true,
         },
@@ -1220,6 +1255,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/Desktop-Calendar',
             descriptionVisual: desktopCalendarDescriptionVisual,
+            showInPortfolio: true,
             featured: false,
             inDevelopment: true,
         },
@@ -1237,10 +1273,6 @@ const projectsByLanguage = {
                     src: '/images/projects/etts/etts-brand.png',
                     alt: 'Official visual identity and logo of the eTTS brand',
                 },
-                {
-                    src: '/images/projects/etts/etts-reader.png',
-                    alt: 'Presentation of eTTS Reader, the first product of the eTTS ecosystem',
-                },
             ],
             tags: [
                 'JavaScript',
@@ -1254,6 +1286,7 @@ const projectsByLanguage = {
             demoUrl: '',
             repoUrl: 'https://github.com/cristianbarreiro/eTTS_Reader',
             descriptionVisual: ettsDescriptionVisual,
+            showInPortfolio: true,
             featured: true,
             inDevelopment: true,
         },
@@ -1270,10 +1303,29 @@ const sortProjectsByCanonicalOrder = (list = []) => {
     });
 };
 
-export const getProjects = (language = 'es') => {
+/**
+ * Determina si un proyecto está habilitado para mostrarse en el portfolio público.
+ * Por defecto es `true` si no está definido; solo se oculta si es estrictamente `false`.
+ *
+ * @param {Object} project - Objeto del proyecto
+ * @returns {boolean}
+ */
+export const isProjectVisible = (project) => {
+    return Boolean(project && project.showInPortfolio !== false);
+};
+
+/**
+ * Obtiene la lista completa de todos los proyectos registrados (visibles y ocultos),
+ * ordenados por el criterio canónico (destacados primero, luego por ID descendente)
+ * y con sincronización bilingüe exacta.
+ *
+ * @param {string} language - Código de idioma ('es' | 'en')
+ * @returns {Array<Object>}
+ */
+export const getAllProjects = (language = 'es') => {
     const lang = (language || 'es').split('-')[0];
 
-    // Sort ES projects first to establish the canonical sorted sequence
+    // Ordenar los proyectos de ES primero para establecer la secuencia canónica ordenada
     const esSorted = sortProjectsByCanonicalOrder(projectsByLanguage.es);
 
     if (lang === 'es') {
@@ -1282,85 +1334,72 @@ export const getProjects = (language = 'es') => {
 
     const targetSource = projectsByLanguage[lang] || projectsByLanguage.es;
 
-    // Reorder target language items to match the exact order of their corresponding ES items.
-    return esSorted.map(esProj => {
-        const origIndex = projectsByLanguage.es.findIndex(p => p.id === esProj.id);
-        return targetSource[origIndex] || esProj;
+    // Reordenar los elementos del idioma destino para coincidir exactamente con el orden canónico de ES
+    return esSorted.map((esProj) => {
+        const origIndex = projectsByLanguage.es.findIndex((p) => p.id === esProj.id);
+        const targetProj = targetSource[origIndex] || esProj;
+
+        // Asegurar que si showInPortfolio se especificó en ES, tenga precedencia si no se definió en la traducción
+        const showInPortfolio = targetProj.showInPortfolio !== undefined
+            ? targetProj.showInPortfolio
+            : esProj.showInPortfolio;
+
+        return {
+            ...targetProj,
+            showInPortfolio: showInPortfolio !== undefined ? showInPortfolio : true,
+        };
     });
 };
 
-// Compatibilidad: por defecto exporta ES
-export const projects = getProjects('es');
-// {
-//     id: 3,
-//     title: 'E-commerce Landing',
-//     description:
-//         'Landing page responsive para tienda online con carrito de compras básico.',
-//     longDescription:
-//         'Página de aterrizaje para un e-commerce ficticio con diseño moderno, catálogo de productos y un carrito de compras funcional implementado con React Context.',
-//     image: null,
-//     tags: ['React', 'Mantine', 'Context API', 'Responsive'],
-//     demoUrl: 'https://demo-ecommerce.ejemplo.com',
-//     repoUrl: 'https://github.com/tu-usuario/ecommerce-landing',
-//     featured: false,
-// },
-// {
-//     id: 4,
-//     title: 'Quiz Interactivo',
-//     description:
-//         'Aplicación de preguntas y respuestas con puntuación y diferentes categorías.',
-//     longDescription:
-//         'Un quiz interactivo con múltiples categorías, sistema de puntuación, temporizador y tabla de resultados. Los datos de preguntas vienen de una API externa.',
-//     image: null,
-//     tags: ['JavaScript', 'HTML', 'CSS', 'API REST'],
-//     demoUrl: 'https://demo-quiz.ejemplo.com',
-//     repoUrl: 'https://github.com/tu-usuario/quiz-app',
-//     featured: false,
-// },
-// {
-//     id: 5,
-//     title: 'Blog Personal',
-//     description: 'Blog estático con Markdown y sistema de categorías.',
-//     longDescription:
-//         'Un blog personal construido con React que renderiza artículos escritos en Markdown. Incluye sistema de categorías, búsqueda y modo oscuro.',
-//     image: null,
-//     tags: ['React', 'Markdown', 'React Router', 'CSS Modules'],
-//     demoUrl: 'https://demo-blog.ejemplo.com',
-//     repoUrl: 'https://github.com/tu-usuario/blog-personal',
-//     featured: false,
-// },
-// {
-//     id: 6,
-//     title: 'Calculadora Científica',
-//     description:
-//         'Calculadora con operaciones básicas y científicas, historial de operaciones.',
-//     longDescription:
-//         'Una calculadora completa con operaciones matemáticas básicas y científicas. Incluye historial de operaciones, soporte para teclado y diseño responsive.',
-//     image: null,
-//     tags: ['JavaScript', 'HTML', 'CSS', 'Math.js'],
-//     demoUrl: 'https://demo-calc.ejemplo.com',
-//     repoUrl: 'https://github.com/tu-usuario/scientific-calculator',
-//     featured: false,
-// },
+/**
+ * Colección derivada de proyectos habilitados públicamente para el portfolio.
+ * Filtra los proyectos con `showInPortfolio: false` preservando el orden canónico.
+ *
+ * @param {string} language - Código de idioma ('es' | 'en')
+ * @param {Object|boolean} [options] - Opciones adicionales o booleano `includeHidden`
+ * @param {boolean} [options.includeHidden=false] - Si es `true`, incluye también proyectos con `showInPortfolio: false`
+ * @returns {Array<Object>}
+ */
+export const getProjects = (language = 'es', options = {}) => {
+    const includeHidden = typeof options === 'boolean'
+        ? options
+        : Boolean(options?.includeHidden);
 
+    const all = getAllProjects(language);
+
+    if (includeHidden) {
+        return all;
+    }
+
+    return all.filter((p) => isProjectVisible(p));
+};
 
 /**
- * Obtiene todos los tags únicos de los proyectos
- * Útil para crear filtros
+ * Colección derivada de proyectos habilitados públicamente.
+ * Alias semántico para componentes que consuman proyectos visibles.
+ */
+export const getVisibleProjects = (language = 'es') => getProjects(language, false);
+
+// Compatibilidad: por defecto exporta proyectos visibles en ES
+export const projects = getProjects('es');
+
+/**
+ * Obtiene todos los tags únicos de los proyectos visibles.
+ * Útil para crear filtros en la interfaz.
  */
 export const getAllTags = (list = projects) => {
-    const allTags = (list || []).flatMap((project) => project.tags);
+    const allTags = (list || []).flatMap((project) => project.tags || []);
     return [...new Set(allTags)].sort();
 };
 
 /**
- * Filtra proyectos por tag
+ * Filtra proyectos por tag a partir de la lista provista (por defecto proyectos visibles en ES).
  */
-export const filterProjectsByTag = (tag) => {
+export const filterProjectsByTag = (tag, list = projects) => {
     if (!tag || tag === 'Todos') {
-        return projects;
+        return list;
     }
-    return projects.filter((project) => project.tags.includes(tag));
+    return (list || []).filter((project) => project.tags && project.tags.includes(tag));
 };
 
 export default projects;
