@@ -95,7 +95,9 @@
 /* ── Inline showcase shell ─────────────────────────────────────── */
 .featured-showcase {
   position: relative;
-  height: clamp(420px, 66vh, 640px);
+  height: auto;
+  min-height: 0;
+  max-height: none;
   border: 1px solid var(--media-viewer-border);
   border-radius: var(--mantine-radius-lg);
   background: var(--media-viewer-bg);
@@ -105,29 +107,102 @@
   overflow: hidden;
 }
 
-.featured-showcase .project-media-viewer {
-  height: 100%;
+.featured-showcase .project-media-viewer,
+.featured-showcase .project-detail-viewer {
+  height: auto;
   max-height: none;
   display: flex;
   flex-direction: column;
 }
 
 .featured-showcase .project-media-viewer__header {
+  height: 58px;
+  min-height: 58px;
   flex-shrink: 0;
 }
 
-.featured-showcase .project-media-viewer__canvas {
-  flex: 1 1 0%;
+/* Área de visualización común: toma como referencia dimensional exacta el SVG (1000 / 620) */
+.featured-showcase .project-media-viewer__canvas,
+.featured-showcase .project-detail-viewer__canvas {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1000 / 620;
+  flex: none;
   min-height: 0;
   max-height: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   overflow: hidden;
 }
 
-.featured-showcase .project-media-viewer__stage {
+.featured-showcase .project-media-viewer__stage,
+.featured-showcase .project-detail-viewer__stage {
+  width: 100%;
+  height: 100%;
   flex: 1 1 0%;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Modalidad DESCRIPTION: texto estructurado con scroll interno si excede el área disponible */
+.featured-showcase .project-detail-viewer__slide {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.featured-showcase .project-detail-viewer__description {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 76px;
+}
+
+.featured-showcase .project-detail-viewer__description-content {
+  width: 100%;
+  max-width: 780px;
+  margin: auto;
+  padding: 24px 8px 32px;
+  box-sizing: border-box;
+}
+
+/* Modalidad VISUAL: representación SVG aprovechando todo el ancho y alto del canvas */
+.featured-showcase .project-detail-viewer__visual {
+  padding: 0;
+}
+
+.featured-showcase .project-detail-viewer__visual-frame {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  border: none;
+  background: transparent;
+}
+
+.featured-showcase .project-detail-viewer__visual-frame svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Modalidad IMAGE: imágenes/vídeos contenidos en el área común sin alterar la altura de la tarjeta */
+.featured-showcase .project-media-viewer__media-wrapper {
   width: 100%;
   height: 100%;
   min-height: 0;
@@ -139,23 +214,13 @@
   box-sizing: border-box;
 }
 
-.featured-showcase .project-media-viewer__media-wrapper {
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-}
-
 .featured-showcase .project-media-viewer__media {
   max-width: 100%;
   max-height: 100%;
   width: auto;
   height: auto;
   object-fit: contain;
+  border-radius: 12px;
 }
 
 .featured-showcase .project-media-viewer__media--video {
@@ -167,7 +232,13 @@
 }
 
 .featured-showcase .project-media-viewer__footer {
-  flex-shrink: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 20;
 }
 
 @media (max-width: 62em) {
@@ -187,46 +258,78 @@
     min-height: 0 !important;
   }
 
-  .featured-showcase .project-media-viewer {
+  .featured-showcase .project-media-viewer,
+  .featured-showcase .project-detail-viewer {
     height: auto !important;
     max-height: none !important;
   }
 
-  /* Media view: adapt canvas and stage to photo/video height without vertical gap */
-  .featured-showcase .project-media-viewer__canvas {
+  .featured-showcase .project-media-viewer__header {
+    height: 52px !important;
+    min-height: 52px !important;
+    padding: 0 12px !important;
+  }
+
+  /* Área común también en responsive, manteniendo consistencia dimensional entre modalidades */
+  .featured-showcase .project-media-viewer__canvas,
+  .featured-showcase .project-detail-viewer__canvas {
+    width: 100% !important;
     height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-    flex: initial !important;
-    display: block !important;
+    aspect-ratio: 1000 / 620 !important;
+    flex: none !important;
+    display: flex !important;
     position: relative !important;
   }
 
-  .featured-showcase .project-media-viewer__stage {
-    height: auto !important;
-    min-height: 0 !important;
-    padding: 6px 10px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+  .featured-showcase .project-media-viewer__stage,
+  .featured-showcase .project-detail-viewer__stage {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+  }
+
+  .featured-showcase .project-detail-viewer__slide {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+  }
+
+  .featured-showcase .project-detail-viewer__description {
+    padding: 0 44px !important;
+  }
+
+  .featured-showcase .project-detail-viewer__description-content {
+    margin: auto !important;
+    padding: 12px 0 16px !important;
+    gap: 8px !important;
+  }
+
+  .featured-showcase .project-detail-viewer__visual {
+    padding: 0 !important;
+  }
+
+  .featured-showcase .project-detail-viewer__visual-frame {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .featured-showcase .project-detail-viewer__visual-frame svg {
+    width: 100% !important;
+    height: 100% !important;
   }
 
   .featured-showcase .project-media-viewer__media-wrapper {
-    height: auto !important;
-    min-height: 0 !important;
     width: 100% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    height: 100% !important;
+    padding: 8px !important;
   }
 
   .featured-showcase .project-media-viewer__media {
     max-width: 100% !important;
+    max-height: 100% !important;
     width: auto !important;
-    max-height: min(50vh, 360px) !important;
     height: auto !important;
     object-fit: contain !important;
-    aspect-ratio: auto 16 / 9 !important;
     border-radius: 8px !important;
   }
 
@@ -245,56 +348,6 @@
     width: 52px !important;
     height: 36px !important;
   }
-
-  /* Description & Visual slides: adapt cleanly to content */
-  .featured-showcase .project-detail-viewer {
-    height: auto !important;
-    max-height: none !important;
-  }
-
-  .featured-showcase .project-detail-viewer__canvas {
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-  }
-
-  .featured-showcase .project-detail-viewer__stage {
-    height: auto !important;
-    min-height: 0 !important;
-    overflow: visible !important;
-    padding: 0 !important;
-  }
-
-  .featured-showcase .project-detail-viewer__slide {
-    height: auto !important;
-    min-height: 0 !important;
-    padding: 0 14px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    justify-content: flex-start !important;
-  }
-
-  .featured-showcase .project-detail-viewer__description-content {
-    margin: 0 auto !important;
-    padding: 12px 0 16px !important;
-    gap: 8px !important;
-  }
-
-  .featured-showcase .project-detail-viewer__visual {
-    padding: 0 !important;
-  }
-
-  .featured-showcase .project-detail-viewer__visual-frame {
-    height: auto !important;
-    max-height: none !important;
-  }
-
-  .featured-showcase .project-detail-viewer__visual-frame svg {
-    height: auto !important;
-    max-height: none !important;
-    width: 100% !important;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -304,51 +357,3 @@
     transition: none;
   }
 }
-
-/* ── Adaptive height for description view in Home showcase (Desktop) ── */
-.featured-showcase--description {
-  height: auto;
-  min-height: 0;
-}
-
-.featured-showcase--description .project-detail-viewer {
-  height: auto;
-  max-height: none;
-}
-
-.featured-showcase--description .project-detail-viewer__canvas {
-  height: auto;
-  min-height: 0;
-  max-height: none;
-}
-
-.featured-showcase--description .project-detail-viewer__stage {
-  height: auto;
-  overflow: visible;
-  padding: 0;
-}
-
-.featured-showcase--description .project-detail-viewer__slide {
-  height: auto;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-}
-
-@media (min-width: 48.01em) {
-  .featured-showcase--description .project-detail-viewer__slide {
-    padding: 0 76px;
-  }
-
-  .featured-showcase--description .project-detail-viewer__slide.project-detail-viewer__visual {
-    padding: 0;
-  }
-}
-
-.featured-showcase--description .project-detail-viewer__description-content {
-  margin: 0 auto;
-  padding: 24px 0 28px;
-}
-
