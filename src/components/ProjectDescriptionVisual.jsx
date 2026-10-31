@@ -426,6 +426,8 @@ function ProjectDescriptionVisual({ project, visualData, className, style }) {
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox={viewBox.join(' ')}
+            width="100%"
+            height="100%"
             preserveAspectRatio="xMidYMid meet"
             className={className}
             role={accessibleTitle ? 'img' : undefined}
@@ -435,10 +437,10 @@ function ProjectDescriptionVisual({ project, visualData, className, style }) {
             style={{
                 display: 'block',
                 width: '100%',
+                height: '100%',
                 maxWidth: '100%',
-                height: 'auto',
+                maxHeight: '100%',
                 overflow: 'hidden',
-                aspectRatio: `${viewBox[2]} / ${viewBox[3]}`,
                 ...style,
             }}
         >

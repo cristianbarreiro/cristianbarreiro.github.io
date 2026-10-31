@@ -282,7 +282,7 @@
   }
 
   .featured-showcase .project-detail-viewer__visual {
-    padding: 6px 10px !important;
+    padding: 0 !important;
   }
 
   .featured-showcase .project-detail-viewer__visual-frame {
@@ -292,7 +292,7 @@
 
   .featured-showcase .project-detail-viewer__visual-frame svg {
     height: auto !important;
-    max-height: min(45vh, 260px) !important;
+    max-height: none !important;
     width: 100% !important;
   }
 }
@@ -340,6 +340,10 @@
 @media (min-width: 48.01em) {
   .featured-showcase--description .project-detail-viewer__slide {
     padding: 0 76px;
+  }
+
+  .featured-showcase--description .project-detail-viewer__slide.project-detail-viewer__visual {
+    padding: 0;
   }
 }
 

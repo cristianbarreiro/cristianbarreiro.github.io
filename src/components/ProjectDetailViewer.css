@@ -117,7 +117,12 @@
   margin-top: -8px;
 }
 
-.project-detail-viewer__visual {
+/*
+ * Diapositiva Visual: ocupa todo el ancho y alto disponible del canvas.
+ * Los controles de navegación están posicionados de forma independiente (position: absolute)
+ * y flotan superpuestos a los lados sin reducir el área destinada al SVG.
+ */
+.project-detail-viewer__slide.project-detail-viewer__visual {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,18 +130,18 @@
   width: 100%;
   height: 100%;
   min-height: 0;
+  padding: 0;
 }
 
 .project-detail-viewer__visual-frame {
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1000 / 620;
   width: 100%;
-  max-width: 780px;
-  height: auto;
-  max-height: calc(100% - 24px);
-  margin: auto;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin: 0;
   border: none;
   background: transparent;
   box-sizing: border-box;
@@ -148,7 +153,6 @@
   height: 100%;
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
 }
 
 .project-detail-viewer__footer {
