@@ -1735,74 +1735,49 @@ button:hover .icon-send-jello {
 }
 
 /* ========================================
-   8. SCROLLBAR PERSONALIZADO
+   8. SCROLLBAR
    ======================================== */
 
-/* -- 8.1 Firefox -- */
+/* -- 8.1 Estándar (Firefox y navegadores con soporte CSS Scrollbars) -- */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent-color, #0088ff) transparent;
+  scrollbar-width: auto;
+  scrollbar-color: var(--accent-color, #0088ff) rgba(13, 17, 23, 0.6);
 }
 
-[data-mantine-color-scheme="dark"] * {
-  scrollbar-color: var(--accent-color, #0088ff) transparent;
-}
-
-/* -- 8.2 Webkit (Chrome, Safari, Edge) -- */
+/* -- 8.2 Webkit / Chromium / Edge (mantiene ancho estándar de 15px y acento dinámico) -- */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 15px;
+  height: 15px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent !important;
-  border: none;
+  background: rgba(13, 17, 23, 0.6);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-gradient, linear-gradient(180deg, #25bfff 0%, #168bff 50%, #7657ff 100%));
+  background-color: var(--accent-color, #0088ff);
   border-radius: 999px;
-  border: none;
-  transition: background 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  border: 3px solid transparent;
+  background-clip: content-box;
+  min-height: 36px;
+  transition: background-color 0.2s ease, filter 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-gradient-hover, linear-gradient(180deg, #42caff 0%, #389eff 50%, #8f75ff 100%));
-  box-shadow: 0 0 8px var(--scrollbar-thumb-glow, rgba(37, 191, 255, 0.4));
-  filter: brightness(1.1);
+  background-color: var(--accent-color-hover, var(--accent-color, #0088ff));
+  filter: brightness(1.15);
 }
 
 ::-webkit-scrollbar-thumb:active {
-  filter: brightness(1.2);
+  background-color: var(--accent-color-active, var(--accent-color, #0088ff));
+  filter: brightness(1.25);
 }
 
 ::-webkit-scrollbar-corner {
-  background: transparent !important;
+  background: transparent;
 }
 
-/* -- 8.3 Scrollbar Modo Oscuro (track 100% transparente y degradado dinámico) -- */
-[data-mantine-color-scheme="dark"] ::-webkit-scrollbar-track {
-  background: transparent !important;
-  border: none;
-}
-
-[data-mantine-color-scheme="dark"] ::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-gradient, linear-gradient(180deg, #25bfff 0%, #168bff 50%, #7657ff 100%));
-  border-radius: 999px;
-  border: none;
-}
-
-[data-mantine-color-scheme="dark"] ::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-gradient-hover, linear-gradient(180deg, #42caff 0%, #389eff 50%, #8f75ff 100%));
-  box-shadow: 0 0 8px var(--scrollbar-thumb-glow, rgba(37, 191, 255, 0.45));
-  filter: brightness(1.1);
-}
-
-[data-mantine-color-scheme="dark"] ::-webkit-scrollbar-thumb:active {
-  filter: brightness(1.2);
-}
-
-/* -- 8.4 Scrollbar oculta en mobile (scroll sigue activo) -- */
+/* -- 8.3 Scrollbar oculta en mobile (scroll sigue activo) -- */
 @media (max-width: 768px) {
   * {
     scrollbar-width: none;

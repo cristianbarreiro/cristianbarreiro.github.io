@@ -496,7 +496,9 @@ function ProjectImagesViewer({
                     </Group>
                 </Box>
 
-                {/* Main Media Canvas Viewport */}
+                {/* Content Body: Canvas (Row 1) + Footer (Row 2) */}
+                <Box className="project-media-viewer__body">
+                    {/* Main Media Canvas Viewport */}
                 <Box
                     className="project-media-viewer__canvas"
                     ref={viewportRef}
@@ -686,6 +688,7 @@ function ProjectImagesViewer({
                         )}
                     </Box>
                 )}
+                </Box>
         </Box>
     );
 }

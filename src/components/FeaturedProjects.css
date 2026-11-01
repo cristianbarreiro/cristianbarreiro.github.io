@@ -122,7 +122,7 @@
 }
 
 /* Área de visualización común: toma como referencia dimensional exacta el SVG (1000 / 620) */
-.featured-showcase .project-media-viewer__canvas,
+.featured-showcase .project-media-viewer__body,
 .featured-showcase .project-detail-viewer__canvas {
   width: 100%;
   height: auto;
@@ -130,6 +130,24 @@
   flex: none;
   min-height: 0;
   max-height: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Modalidad IMAGE: dos filas independientes (Fila 1: Imagen flexible, Fila 2: Miniaturas sin superposición) */
+.featured-showcase .project-media-viewer__body {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: 100%;
+  height: 100%;
+}
+
+.featured-showcase .project-media-viewer__body > .project-media-viewer__canvas {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  aspect-ratio: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -232,10 +250,9 @@
 }
 
 .featured-showcase .project-media-viewer__footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: static;
+  width: 100%;
+  flex-shrink: 0;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   z-index: 20;
@@ -271,12 +288,26 @@
   }
 
   /* Área común también en responsive, manteniendo consistencia dimensional entre modalidades */
-  .featured-showcase .project-media-viewer__canvas,
+  .featured-showcase .project-media-viewer__body,
   .featured-showcase .project-detail-viewer__canvas {
     width: 100% !important;
     height: auto !important;
     aspect-ratio: 1000 / 620 !important;
     flex: none !important;
+    position: relative !important;
+  }
+
+  .featured-showcase .project-media-viewer__body {
+    display: grid !important;
+    grid-template-rows: 1fr auto !important;
+    grid-template-columns: 100% !important;
+  }
+
+  .featured-showcase .project-media-viewer__body > .project-media-viewer__canvas {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
     display: flex !important;
     position: relative !important;
   }
