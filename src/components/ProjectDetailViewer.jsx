@@ -23,6 +23,7 @@ import {
 import { motion as Motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useThemeContext } from '../context/ThemeContext';
+import { SHOW_PROJECT_VISUALS } from '../config/featureFlags';
 import ProjectDescriptionVisual from './ProjectDescriptionVisual';
 import ProjectDownloadMenu from './ProjectDownloadMenu';
 import { formatProjectDate } from '../utils/formatDate';
@@ -41,7 +42,7 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
         : { duration: 0.25, ease: [0.16, 1, 0.3, 1] };
 
     useEffect(() => {
-        if (!keyboardNav) return undefined;
+        if (!keyboardNav || !SHOW_PROJECT_VISUALS) return undefined;
 
         const handleKeyDown = (event) => {
             if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
@@ -77,7 +78,7 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
                             radius="sm"
                             className="project-media-viewer__type-badge"
                         >
-                            {t(activeSlide === 0 ? 'projectCard.detailDescription' : 'projectCard.detailVisual')}
+                            {t(SHOW_PROJECT_VISUALS && activeSlide === 1 ? 'projectCard.detailVisual' : 'projectCard.detailDescription')}
                         </Badge>
                         <Text fw={600} size="sm" lineClamp={1} className="project-media-viewer__title">
                             {project.title}
@@ -118,22 +119,24 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
             </Box>
 
             <Box className="project-media-viewer__canvas project-detail-viewer__canvas">
-                {paintedSlide === 0 && <div className="project-detail-viewer__description-background" />}
+                {(paintedSlide === 0 || !SHOW_PROJECT_VISUALS) && <div className="project-detail-viewer__description-background" />}
 
-                <ActionIcon
-                    variant="subtle"
-                    size="xl"
-                    radius="xl"
-                    onClick={() => setActiveSlide((current) => (current === 0 ? 1 : 0))}
-                    aria-label={t('projectCard.previousDetailView')}
-                    className="project-media-viewer__nav-btn project-media-viewer__nav-btn--prev"
-                >
-                    <IconChevronLeft size={26} />
-                </ActionIcon>
+                {SHOW_PROJECT_VISUALS && (
+                    <ActionIcon
+                        variant="subtle"
+                        size="xl"
+                        radius="xl"
+                        onClick={() => setActiveSlide((current) => (current === 0 ? 1 : 0))}
+                        aria-label={t('projectCard.previousDetailView')}
+                        className="project-media-viewer__nav-btn project-media-viewer__nav-btn--prev"
+                    >
+                        <IconChevronLeft size={26} />
+                    </ActionIcon>
+                )}
 
                 <Box className="project-media-viewer__stage project-detail-viewer__stage">
                     <AnimatePresence mode="wait" onExitComplete={() => setPaintedSlide(activeSlide)}>
-                        {activeSlide === 0 ? (
+                        {!SHOW_PROJECT_VISUALS || activeSlide === 0 ? (
                             <Motion.div
                                 key="description"
                                 initial={{ opacity: 0, scale: 0.97 }}
@@ -274,55 +277,61 @@ function ProjectDetailViewer({ project, visualData, hasImages, onOpenMedia, onCl
                     </AnimatePresence>
                 </Box>
 
-                <ActionIcon
-                    variant="subtle"
-                    size="xl"
-                    radius="xl"
-                    onClick={() => setActiveSlide((current) => (current === 0 ? 1 : 0))}
-                    aria-label={t('projectCard.nextDetailView')}
-                    className="project-media-viewer__nav-btn project-media-viewer__nav-btn--next"
-                >
-                    <IconChevronRight size={26} />
-                </ActionIcon>
-
-                <Box className="project-media-viewer__counter-badge" aria-live="polite">
-                    <Text size="xs" fw={600} className="project-media-viewer__counter-text">
-                        {String(activeSlide + 1).padStart(2, '0')} / 02
-                    </Text>
-                </Box>
-            </Box>
-
-            <Box className="project-media-viewer__footer project-detail-viewer__footer">
-                <Group justify="center" align="center" gap="sm" className="project-detail-viewer__mobile-nav">
+                {SHOW_PROJECT_VISUALS && (
                     <ActionIcon
                         variant="subtle"
-                        size="lg"
+                        size="xl"
                         radius="xl"
                         onClick={() => setActiveSlide((current) => (current === 0 ? 1 : 0))}
-                        aria-label={t('projectCard.previousDetailView')}
-                        className="project-detail-viewer__mobile-nav-btn project-detail-viewer__mobile-nav-btn--prev"
+                        aria-label={t('projectCard.nextDetailView')}
+                        className="project-media-viewer__nav-btn project-media-viewer__nav-btn--next"
                     >
-                        <IconChevronLeft size={20} />
+                        <IconChevronRight size={26} />
                     </ActionIcon>
+                )}
 
-                    <Box className="project-detail-viewer__mobile-nav-counter" aria-live="polite">
+                {SHOW_PROJECT_VISUALS && (
+                    <Box className="project-media-viewer__counter-badge" aria-live="polite">
                         <Text size="xs" fw={600} className="project-media-viewer__counter-text">
                             {String(activeSlide + 1).padStart(2, '0')} / 02
                         </Text>
                     </Box>
-
-                    <ActionIcon
-                        variant="subtle"
-                        size="lg"
-                        radius="xl"
-                        onClick={() => setActiveSlide((current) => (current === 0 ? 1 : 0))}
-                        aria-label={t('projectCard.nextDetailView')}
-                        className="project-detail-viewer__mobile-nav-btn project-detail-viewer__mobile-nav-btn--next"
-                    >
-                        <IconChevronRight size={20} />
-                    </ActionIcon>
-                </Group>
+                )}
             </Box>
+
+            {SHOW_PROJECT_VISUALS && (
+                <Box className="project-media-viewer__footer project-detail-viewer__footer">
+                    <Group justify="center" align="center" gap="sm" className="project-detail-viewer__mobile-nav">
+                        <ActionIcon
+                            variant="subtle"
+                            size="lg"
+                            radius="xl"
+                            onClick={() => setActiveSlide((current) => (current === 0 ? 1 : 0))}
+                            aria-label={t('projectCard.previousDetailView')}
+                            className="project-detail-viewer__mobile-nav-btn project-detail-viewer__mobile-nav-btn--prev"
+                        >
+                            <IconChevronLeft size={20} />
+                        </ActionIcon>
+
+                        <Box className="project-detail-viewer__mobile-nav-counter" aria-live="polite">
+                            <Text size="xs" fw={600} className="project-media-viewer__counter-text">
+                                {String(activeSlide + 1).padStart(2, '0')} / 02
+                            </Text>
+                        </Box>
+
+                        <ActionIcon
+                            variant="subtle"
+                            size="lg"
+                            radius="xl"
+                            onClick={() => setActiveSlide((current) => (current === 0 ? 1 : 0))}
+                            aria-label={t('projectCard.nextDetailView')}
+                            className="project-detail-viewer__mobile-nav-btn project-detail-viewer__mobile-nav-btn--next"
+                        >
+                            <IconChevronRight size={20} />
+                        </ActionIcon>
+                    </Group>
+                </Box>
+            )}
         </Box>
     );
 }
