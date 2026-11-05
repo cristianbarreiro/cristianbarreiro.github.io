@@ -1642,7 +1642,9 @@ button:hover .icon-send-jello {
   padding: var(--mantine-spacing-md, 16px);
 }
 
-.main-content-wrapper.minimal-bg::before {
+/* Los temas con componente propio ocultan el degradado legado del contenedor */
+.main-content-wrapper.minimal-bg::before,
+.main-content-wrapper.gradient-bg::before {
   display: none;
 }
 

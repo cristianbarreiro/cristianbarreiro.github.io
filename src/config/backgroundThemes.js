@@ -1,4 +1,5 @@
 import MinimalBackground from '../components/MinimalBackground';
+import GradientBackground from '../components/GradientBackground';
 
 /**
  * Registro configurable de temas de fondo para la aplicación.
@@ -12,8 +13,8 @@ export const BACKGROUND_THEMES = [
     descriptionKey: 'themeChanger.bgGradientDesc',
     type: 'gradient',
     icon: 'sparkles',
-    component: null,
-    available: false,
+    component: GradientBackground,
+    available: true,
   },
   {
     id: 'minimal',

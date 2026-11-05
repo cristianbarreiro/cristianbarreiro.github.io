@@ -20,6 +20,9 @@ function Layout({ isSplashActive = false }) {
     const { backgroundTheme } = useThemeContext();
     const activeBgConfig = getBackgroundThemeConfig(backgroundTheme);
     const BackgroundComponent = activeBgConfig?.component;
+    // Clase derivada del tema efectivamente resuelto (solo temas disponibles),
+    // no del valor persistido: evita el fondo legado si el ID guardado no es válido.
+    const bgThemeClass = activeBgConfig?.id ? `${activeBgConfig.id}-bg` : '';
 
     const [routeLoading, setRouteLoading] = useState(false);
     const navStartTsRef = useRef(0);
@@ -114,8 +117,8 @@ function Layout({ isSplashActive = false }) {
                     </div>
                 )}
                 {/* Contenedor con fondo */}
-                <Box className={`main-content-wrapper ${backgroundTheme === 'minimal' ? 'minimal-bg' : ''}`}>
-                    {BackgroundComponent && <BackgroundComponent key={backgroundTheme} />}
+                <Box className={`main-content-wrapper ${bgThemeClass}`}>
+                    {BackgroundComponent && <BackgroundComponent key={activeBgConfig.id} />}
 
                     {/* Contenido de la página */}
                     <Container size="lg" py="xl" className="content-above-video">

@@ -1,0 +1,192 @@
+/* ==========================================================================
+   Tema de fondo: Gradiente Animado
+   --------------------------------------------------------------------------
+   Capas (4 en total):
+     1-3. Auroras radiales animadas (solo transform → compositor, sin repaint).
+     4.   Viñeta estática para profundidad y legibilidad.
+   Sin filter/blur: la suavidad la aporta el propio radial-gradient.
+   ========================================================================== */
+
+.gradient-background {
+  /*
+   * Paleta. Nivel 1 (fallback universal): tonos fijos sobrios.
+   * Los niveles 2 y 3 (@supports más abajo) la derivan de --accent-color.
+   * Se usa @supports en lugar de cascada porque una custom property con una
+   * función no soportada no hace fallback: queda inválida en tiempo de cómputo.
+   */
+  --gb-base: #06070c;
+  --gb-tone-1: #1a63c4; /* acento */
+  --gb-tone-2: #5b2bb5; /* análogo violeta */
+  --gb-tone-3: #0e7f9c; /* análogo cian */
+
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: var(--gb-base);
+  contain: strict;
+  isolation: isolate;
+  animation: gb-fade-in 0.6s ease-out both;
+}
+
+/* Nivel 2: mezcla del acento con anclas violeta/cian (Chromium 111+, Safari 16.2+, Firefox 113+) */
+@supports (color: color-mix(in oklab, red, blue)) {
+  .gradient-background {
+    --gb-tone-1: color-mix(in oklab, var(--accent-color, #0088ff) 72%, #0b1640);
+    --gb-tone-2: color-mix(in oklab, var(--accent-color, #0088ff) 40%, #5b21b6);
+    --gb-tone-3: color-mix(in oklab, var(--accent-color, #0088ff) 40%, #0e7490);
+  }
+}
+
+/*
+ * Nivel 3: color relativo OKLCH. Rota el tono del acento (±) para obtener la
+ * tríada análoga y ACOTA luminosidad y croma: un acento muy brillante o
+ * saturado (p. ej. amarillo, verde lima) nunca produce un fondo estridente.
+ */
+@supports (color: oklch(from red l c h)) {
+  .gradient-background {
+    --gb-tone-1: oklch(from var(--accent-color, #0088ff) clamp(0.42, l, 0.58) min(c, 0.16) h);
+    --gb-tone-2: oklch(from var(--accent-color, #0088ff) clamp(0.36, l, 0.5) min(c, 0.15) calc(h + 50));
+    --gb-tone-3: oklch(from var(--accent-color, #0088ff) clamp(0.44, l, 0.6) min(c, 0.11) calc(h - 45));
+  }
+}
+
+/* -- Auroras -------------------------------------------------------------- */
+
+.gradient-background__aurora {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+  backface-visibility: hidden;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.gradient-background__aurora--1 {
+  top: -28vmax;
+  left: -22vmax;
+  width: 78vmax;
+  height: 78vmax;
+  background: radial-gradient(circle at center, var(--gb-tone-1) 0%, transparent 65%);
+  opacity: 0.42;
+  animation-name: gb-drift-1;
+  animation-duration: 28s;
+}
+
+.gradient-background__aurora--2 {
+  right: -28vmax;
+  bottom: -32vmax;
+  width: 86vmax;
+  height: 86vmax;
+  background: radial-gradient(circle at center, var(--gb-tone-2) 0%, transparent 65%);
+  opacity: 0.38;
+  animation-name: gb-drift-2;
+  animation-duration: 34s;
+  animation-delay: -9s;
+}
+
+.gradient-background__aurora--3 {
+  top: 18%;
+  left: 30%;
+  width: 60vmax;
+  height: 60vmax;
+  background: radial-gradient(circle at center, var(--gb-tone-3) 0%, transparent 62%);
+  opacity: 0.24;
+  animation-name: gb-drift-3;
+  animation-duration: 24s;
+  animation-delay: -15s;
+}
+
+/* -- Viñeta estática: oscurece bordes y protege el contraste del texto ---- */
+
+.gradient-background__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 120% 90% at 50% 40%, transparent 35%, rgba(4, 5, 9, 0.7) 100%),
+    linear-gradient(180deg, rgba(4, 5, 9, 0.15) 0%, transparent 30%, rgba(4, 5, 9, 0.35) 100%);
+}
+
+/* -- Movimiento: trayectorias amplias y lentas, con `alternate` (sin saltos) -- */
+
+@keyframes gb-drift-1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(16vmax, 10vmax, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(6vmax, 24vmax, 0) scale(0.94);
+  }
+}
+
+@keyframes gb-drift-2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-18vmax, -8vmax, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-8vmax, -22vmax, 0) scale(0.96);
+  }
+}
+
+@keyframes gb-drift-3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.9);
+  }
+  50% {
+    transform: translate3d(-20vmax, 8vmax, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(12vmax, -10vmax, 0) scale(1);
+  }
+}
+
+@keyframes gb-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* -- Móvil: menos superficie compuesta (2 auroras) ------------------------ */
+
+@media (max-width: 48em) {
+  .gradient-background__aurora--3 {
+    display: none;
+  }
+
+  .gradient-background__aurora--1 {
+    opacity: 0.36;
+  }
+
+  .gradient-background__aurora--2 {
+    opacity: 0.32;
+  }
+}
+
+/* -- Movimiento reducido: composición estática equivalente ---------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-background,
+  .gradient-background__aurora {
+    animation: none !important;
+  }
+
+  .gradient-background__aurora {
+    will-change: auto;
+  }
+}
+

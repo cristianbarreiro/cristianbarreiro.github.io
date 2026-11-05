@@ -60,9 +60,9 @@ function persistPrimaryColor(value) {
 
 function getPersistedBackgroundTheme() {
   const ls = safeLocalStorageGet(BG_THEME_KEY);
-  if (ls && ls !== 'space' && BACKGROUND_THEMES.some((t) => t.id === ls)) return ls;
+  if (ls && ls !== 'space' && BACKGROUND_THEMES.some((t) => t.id === ls && t.available)) return ls;
   const ck = readCookie(BG_THEME_KEY);
-  if (ck && ck !== 'space' && BACKGROUND_THEMES.some((t) => t.id === ck)) return ck;
+  if (ck && ck !== 'space' && BACKGROUND_THEMES.some((t) => t.id === ck && t.available)) return ck;
 
   // Si venía de 'space' o valor inexistente, persistir fallback seguro
   if (ls === 'space' || ck === 'space') {
