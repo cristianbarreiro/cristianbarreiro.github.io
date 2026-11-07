@@ -339,12 +339,16 @@ function Home({ isSplashActive: isSplashProp }) {
                         </MotionDiv>
 
                         {/* Botones CTA (Call to Action) */}
-                        <MotionDiv variants={shouldReduceMotion ? undefined : heroChildVariants}>
-                            <Group mt="md" gap="md">
+                        <MotionDiv
+                            variants={shouldReduceMotion ? undefined : heroChildVariants}
+                            className="hero-cta-wrapper"
+                        >
+                            <Group mt="md" gap="md" justify="center" className="hero-cta-group">
                                 <RippleButton
                                     component={Link}
                                     to="/projects"
                                     size="lg"
+                                    className="hero-cta-btn hero-cta-btn--primary"
                                     rightSection={
                                         <IconArrowRight
                                             size={18}
@@ -359,6 +363,7 @@ function Home({ isSplashActive: isSplashProp }) {
                                     to="/contact"
                                     size="lg"
                                     variant="outline"
+                                    className="hero-cta-btn hero-cta-btn--secondary"
                                     leftSection={
                                         <IconMail size={18} className="icon-mail-rotate" />
                                     }

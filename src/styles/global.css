@@ -1545,6 +1545,96 @@ button:hover .icon-send-jello {
   }
 }
 
+/* ========================================
+   HERO CALL TO ACTION (CTA) BUTTONS
+   ======================================== */
+
+.hero-cta-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mantine-spacing-md, 16px);
+  width: auto;
+}
+
+/* Optimización responsive para dispositivos móviles */
+@media (max-width: 47.99em) {
+  .hero-cta-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 10px;
+  }
+
+  .hero-cta-btn {
+    height: 48px;
+    min-height: 48px;
+    font-size: 0.9375rem; /* 15px */
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    border-radius: var(--mantine-radius-md, 8px);
+  }
+
+  .hero-cta-btn--primary {
+    flex: 58 1 0%;
+    min-width: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .hero-cta-btn--secondary {
+    flex: 42 1 0%;
+    min-width: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .hero-cta-btn .mantine-Button-inner {
+    width: 100%;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .hero-cta-btn .mantine-Button-label {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: nowrap;
+  }
+}
+
+/* Ajuste refinado para pantallas ultracompactas (<= 330px) */
+@media (max-width: 20.625em) {
+  .hero-cta-group {
+    gap: 6px;
+  }
+
+  .hero-cta-btn {
+    height: 46px;
+    min-height: 46px;
+    font-size: 0.875rem; /* 14px */
+  }
+
+  .hero-cta-btn--primary {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .hero-cta-btn--secondary {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+}
+
 /* ----------------------------------------------
  * Animación: jello-horizontal (Animista)
  * ---------------------------------------------- */
