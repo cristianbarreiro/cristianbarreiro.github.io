@@ -1644,7 +1644,8 @@ button:hover .icon-send-jello {
 
 /* Los temas con componente propio ocultan el degradado legado del contenedor */
 .main-content-wrapper.minimal-bg::before,
-.main-content-wrapper.gradient-bg::before {
+.main-content-wrapper.gradient-bg::before,
+.main-content-wrapper.particles-bg::before {
   display: none;
 }
 

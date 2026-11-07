@@ -1,5 +1,6 @@
 import MinimalBackground from '../components/MinimalBackground';
 import GradientBackground from '../components/GradientBackground';
+import ParticleBackground from '../components/ParticleBackground';
 
 /**
  * Registro configurable de temas de fondo para la aplicación.
@@ -31,8 +32,8 @@ export const BACKGROUND_THEMES = [
     descriptionKey: 'themeChanger.bgParticlesDesc',
     type: 'particles',
     icon: 'atom',
-    component: null,
-    available: false,
+    component: ParticleBackground,
+    available: true,
   },
 ];
 
