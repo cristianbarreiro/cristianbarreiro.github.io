@@ -570,37 +570,24 @@ function ThemeChanger() {
           </div>
 
           <div className="theme-changer-picker-container">
-            {/* Swatch circular + input[type=color] nativo */}
+            {/* Swatch circular (indicador visual exclusivo del color actual) */}
             <div
               className="theme-changer-color-swatch-wrap"
-              title={t('themeChanger.openColorPicker')}
+              title={`${t('themeChanger.previewColor')}: ${previewColor}`}
             >
-              <input
-                ref={colorInputRef}
-                type="color"
-                id="theme-accent-color-native-input"
-                className="theme-changer-native-color-input"
-                value={normalizeHex(previewColor) || '#0088FF'}
-                onInput={handleNativePickerInput}
-                onChange={handleNativePickerInput}
-                onPointerUp={handleNativePickerCommit}
-                onMouseUp={handleNativePickerCommit}
-                onTouchEnd={handleNativePickerCommit}
-                aria-label={t('themeChanger.colorPicker')}
-              />
-              <label
+              <div
                 ref={swatchRef}
-                htmlFor="theme-accent-color-native-input"
                 className="theme-changer-color-swatch"
                 style={{ '--swatch-color': previewColor }}
-                aria-label={t('themeChanger.previewColor')}
+                role="img"
+                aria-label={`${t('themeChanger.previewColor')}: ${previewColor}`}
               >
                 <span className="theme-changer-swatch-glow" />
                 <IconColorPicker size={14} className="theme-changer-swatch-icon" />
-              </label>
+              </div>
             </div>
 
-            {/* Input manual HEX + botón de elegir color */}
+            {/* Input manual HEX + botón de elegir color + input nativo helper */}
             <div className={`theme-changer-hex-wrap ${hexError ? 'is-error' : ''}`}>
               <input
                 ref={hexInputRef}
@@ -616,6 +603,20 @@ function ThemeChanger() {
                 autoComplete="off"
                 aria-label={t('themeChanger.hexAria')}
                 aria-invalid={hexError}
+              />
+              <input
+                ref={colorInputRef}
+                type="color"
+                id="theme-accent-color-native-input"
+                className="theme-changer-native-color-input"
+                value={normalizeHex(previewColor) || '#0088FF'}
+                onInput={handleNativePickerInput}
+                onChange={handleNativePickerInput}
+                onPointerUp={handleNativePickerCommit}
+                onMouseUp={handleNativePickerCommit}
+                onTouchEnd={handleNativePickerCommit}
+                tabIndex={-1}
+                aria-hidden="true"
               />
               <button
                 type="button"
